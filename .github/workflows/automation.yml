@@ -25,8 +25,10 @@ jobs:
       
       - name: Commit results
         run: |
-          git config --local user.email "automation@drapewell.com"
-          git config --local user.name "Drapewell Bot"
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
           git add -A
           git commit -m "Daily automation run - $(date)" || echo "No changes"
           git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
