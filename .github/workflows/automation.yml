@@ -1,0 +1,32 @@
+name: Drapewell Automation
+
+on:
+  schedule:
+    - cron: '0 6 * * *'  # Runs daily at 6:00 AM UTC
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  automation:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      
+      - name: Run automation
+        run: python main.py
+      
+      - name: Commit results
+        run: |
+          git config --local user.email "automation@drapewell.com"
+          git config --local user.name "Drapewell Bot"
+          git add -A
+          git commit -m "Daily automation run - $(date)" || echo "No changes"
+          git push
