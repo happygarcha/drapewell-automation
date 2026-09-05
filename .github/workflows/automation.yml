@@ -2,31 +2,30 @@ name: Drapewell Automation
 
 on:
   schedule:
-    - cron: '0 6 * * *'  # Runs daily at 6:00 AM UTC
-  workflow_dispatch:  # Allow manual trigger
+    - cron: '0 6 * * *'
+  workflow_dispatch:
 
 jobs:
   automation:
     runs-on: ubuntu-latest
-    
     steps:
       - uses: actions/checkout@v3
       
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      - uses: actions/setup-python@v4
         with:
           python-version: '3.11'
       
-      - name: Install dependencies
-        run: pip install -r requirements.txt
+      - run: pip install requests
       
       - name: Run automation
         run: python main.py
+        env:
+          SHOPIFY_TOKEN: ${{ secrets.SHOPIFY_TOKEN }}
       
-      - name: Upload results
-        uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: automation-results
           path: |
-            drapewell_products_queue.json
-            drapewell_report.txt
+            drapewell_sync_report.txt
+            drapewell_products_synced.json
