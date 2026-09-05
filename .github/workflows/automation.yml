@@ -23,12 +23,10 @@ jobs:
       - name: Run automation
         run: python main.py
       
-      - name: Commit results
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add -A
-          git commit -m "Daily automation run - $(date)" || echo "No changes"
-          git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload results
+        uses: actions/upload-artifact@v3
+        with:
+          name: automation-results
+          path: |
+            drapewell_products_queue.json
+            drapewell_report.txt
