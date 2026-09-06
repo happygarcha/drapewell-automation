@@ -310,24 +310,31 @@ def create_collection_page(collection_name: str, collection_info: Dict) -> bool:
         }
     }
     
+    log_message("ℹ️", f"Creating page: {collection_name} (handle: {collection_info['handle']}-shop)")
+    log_message("ℹ️", f"Variables: {variables}")
+    
     success, data = shopify_graphql_query(query, variables)
     
     if not success:
-        log_message("❌", f"Failed to create page for {collection_name}: {data}")
+        log_message("❌", f"API call failed for {collection_name}: {data}")
         return False
+    
+    # DEBUG: Print full response
+    log_message("ℹ️", f"API Response for {collection_name}: {data}")
     
     page_data = data.get("pageCreate", {})
     errors = page_data.get("userErrors", [])
     
     if errors:
-        log_message("❌", f"Errors creating {collection_name} page: {[e.get('message') for e in errors]}")
+        log_message("❌", f"Shopify errors for {collection_name}: {errors}")
         return False
     
     if not page_data.get("page"):
-        log_message("❌", f"Page creation returned no page object for {collection_name}")
+        log_message("❌", f"No page object returned for {collection_name}. Full response: {page_data}")
         return False
     
-    log_message("✅", f"Created collection page: {collection_name}")
+    page_id = page_data.get("page", {}).get("id")
+    log_message("✅", f"Created collection page: {collection_name} (ID: {page_id})")
     return True
 
 def create_collection_pages():
