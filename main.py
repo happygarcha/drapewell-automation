@@ -281,7 +281,7 @@ def get_collection_id(collection_handle: str) -> Optional[str]:
     return collection.get("id") if collection else None
 
 def create_collection_page_rest(collection_name: str, collection_info: Dict) -> bool:
-    """Create a collection landing page using REST API instead of GraphQL"""
+    """Create a collection landing page using REST API"""
     
     if not SHOPIFY_TOKEN:
         log_message("❌", "SHOPIFY_TOKEN not set")
@@ -295,7 +295,6 @@ def create_collection_page_rest(collection_name: str, collection_info: Dict) -> 
         "Content-Type": "application/json"
     }
     
-    # Build simple HTML body
     body_html = f"<h1>{collection_name}</h1><p>{collection_info['description']}</p><p><a href=\"/collections/{collection_info['handle']}\">Shop {collection_name}</a></p>"
     
     payload = {
@@ -307,25 +306,26 @@ def create_collection_page_rest(collection_name: str, collection_info: Dict) -> 
         }
     }
     
-    log_message("ℹ️", f"Creating page via REST: {collection_name}")
-    log_message("ℹ️", f"Payload: {payload}")
+    log_message("ℹ️", f"Creating page: {collection_name}")
+    log_message("ℹ️", f"URL: {url}")
+    log_message("ℹ️", f"Payload: {json.dumps(payload, indent=2)}")
     
     try:
         response = requests.post(url, json=payload, headers=headers, timeout=30)
         
-        log_message("ℹ️", f"REST Response Status: {response.status_code}")
-        log_message("ℹ️", f"REST Response: {response.text}")
+        log_message("ℹ️", f"HTTP Status: {response.status_code}")
+        log_message("ℹ️", f"Response Body: {response.text}")
         
         if response.status_code in [200, 201]:
             data = response.json()
             page_id = data.get("page", {}).get("id")
-            log_message("✅", f"Created collection page via REST: {collection_name} (ID: {page_id})")
+            log_message("✅", f"Created page: {collection_name} (ID: {page_id})")
             return True
         else:
-            log_message("❌", f"REST API error for {collection_name}: {response.status_code} - {response.text}")
+            log_message("❌", f"API Error {response.status_code}: {response.text}")
             return False
     except Exception as e:
-        log_message("❌", f"Exception creating page for {collection_name}: {str(e)}")
+        log_message("❌", f"Exception: {str(e)}")
         return False
 
 def create_collection_pages():
