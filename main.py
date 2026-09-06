@@ -280,72 +280,63 @@ def get_collection_id(collection_handle: str) -> Optional[str]:
     collection = data.get("collectionByHandle")
     return collection.get("id") if collection else None
 
-def create_collection_page(collection_name: str, collection_info: Dict) -> bool:
-    """Create a collection landing page"""
+def create_collection_page_rest(collection_name: str, collection_info: Dict) -> bool:
+    """Create a collection landing page using REST API instead of GraphQL"""
     
-    # Build simple HTML body with collection info (reduced HTML complexity)
+    if not SHOPIFY_TOKEN:
+        log_message("❌", "SHOPIFY_TOKEN not set")
+        return False
+    
+    # REST API endpoint
+    url = f"https://{SHOPIFY_STORE}/admin/api/2024-01/pages.json"
+    
+    headers = {
+        "X-Shopify-Access-Token": SHOPIFY_TOKEN,
+        "Content-Type": "application/json"
+    }
+    
+    # Build simple HTML body
     body_html = f"<h1>{collection_name}</h1><p>{collection_info['description']}</p><p><a href=\"/collections/{collection_info['handle']}\">Shop {collection_name}</a></p>"
     
-    query = """
-    mutation CreatePage($input: PageInput!) {
-      pageCreate(input: $input) {
-        page {
-          id
-          handle
-          title
-        }
-        userErrors {
-          field
-          message
-        }
-      }
-    }
-    """
-    
-    variables = {
-        "input": {
+    payload = {
+        "page": {
             "title": f"Shop {collection_name}",
             "handle": f"{collection_info['handle']}-shop",
-            "bodyHtml": body_html
+            "body_html": body_html,
+            "published": True
         }
     }
     
-    log_message("ℹ️", f"Creating page: {collection_name} (handle: {collection_info['handle']}-shop)")
-    log_message("ℹ️", f"Variables: {variables}")
+    log_message("ℹ️", f"Creating page via REST: {collection_name}")
+    log_message("ℹ️", f"Payload: {payload}")
     
-    success, data = shopify_graphql_query(query, variables)
-    
-    if not success:
-        log_message("❌", f"API call failed for {collection_name}: {data}")
+    try:
+        response = requests.post(url, json=payload, headers=headers, timeout=30)
+        
+        log_message("ℹ️", f"REST Response Status: {response.status_code}")
+        log_message("ℹ️", f"REST Response: {response.text}")
+        
+        if response.status_code in [200, 201]:
+            data = response.json()
+            page_id = data.get("page", {}).get("id")
+            log_message("✅", f"Created collection page via REST: {collection_name} (ID: {page_id})")
+            return True
+        else:
+            log_message("❌", f"REST API error for {collection_name}: {response.status_code} - {response.text}")
+            return False
+    except Exception as e:
+        log_message("❌", f"Exception creating page for {collection_name}: {str(e)}")
         return False
-    
-    # DEBUG: Print full response
-    log_message("ℹ️", f"API Response for {collection_name}: {data}")
-    
-    page_data = data.get("pageCreate", {})
-    errors = page_data.get("userErrors", [])
-    
-    if errors:
-        log_message("❌", f"Shopify errors for {collection_name}: {errors}")
-        return False
-    
-    if not page_data.get("page"):
-        log_message("❌", f"No page object returned for {collection_name}. Full response: {page_data}")
-        return False
-    
-    page_id = page_data.get("page", {}).get("id")
-    log_message("✅", f"Created collection page: {collection_name} (ID: {page_id})")
-    return True
 
 def create_collection_pages():
-    """Create landing pages for all collections"""
-    log_message("🔄", "=== PHASE 2: COLLECTION PAGES ===")
+    """Create landing pages for all collections using REST API"""
+    log_message("🔄", "=== PHASE 2: COLLECTION PAGES (REST API) ===")
     
     created = 0
     failed = 0
     
     for collection_name, collection_info in COLLECTIONS.items():
-        if create_collection_page(collection_name, collection_info):
+        if create_collection_page_rest(collection_name, collection_info):
             created += 1
         else:
             failed += 1
