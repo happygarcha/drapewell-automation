@@ -1,0 +1,26 @@
+name: Manual Workflow Runs Test
+
+on:
+  workflow_dispatch:
+    inputs:
+      run_note:
+        description: "Optional note for this safe test run"
+        required: false
+        default: "Manual GitHub Actions test — no external systems contacted"
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  safe-test:
+    name: Safe manual test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Confirm safe scope
+        run: |
+          echo "Drapewell Automation Control Center test"
+          echo "Status: GitHub Actions workflow is running."
+          echo "Run note: ${{ inputs.run_note }}"
+          echo "Safety: No Shopify calls, no CJ Dropshipping calls, no Google Sheets calls, and no secrets used."
