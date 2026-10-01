@@ -57,7 +57,11 @@
       if (e.target === drawer || e.target.closest("[data-close-cart]")) return drawer.close();
       var b = e.target.closest("[data-line]"); if (!b) return;
       fetch("/cart/change.js", { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify({ id: b.dataset.line, quantity: parseInt(b.dataset.q, 10) }) })
-        .then(function (r) { return r.json(); }).then(function (c) { cart = c; paintCart(); });
+        .then(function (r) { return r.json(); }).then(function (c) {
+          cart = c; paintCart();
+          /* emptied the cart: let the message show for a beat, then slide the drawer away */
+          if (!c.items.length) setTimeout(function () { if (!cart.items.length && drawer.open) drawer.close(); }, reduce ? 400 : 1100);
+        });
     });
   }
   document.addEventListener("click", function (e) { var t = e.target.closest("[data-open-cart]"); if (t) { e.preventDefault(); openCart(); } });
