@@ -367,3 +367,9 @@ html:not(.motion) .strip { display: none; }
   .grid .card:nth-child(even) { margin-top: 0; }
 }
 @media (prefers-reduced-motion: reduce) { .s-ghost { translate: 0 -50%; } }
+
+/* liquid canvas sits over the plate's photo once the texture is ready */
+.lq { position: absolute; inset: 0; width: 100%; height: 100%; display: block; pointer-events: none; opacity: 0; transition: opacity 0.4s; }
+.lq-on .lq { opacity: 1; }
+.lq-on img { visibility: hidden; }
+.s-plate .cap, .hero-reveal .plate figcaption { z-index: 2; }

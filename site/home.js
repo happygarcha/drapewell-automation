@@ -99,6 +99,7 @@ void main(){
     scenes.forEach((s, k) => { const on = k === i; s.classList.toggle("on", on); s.setAttribute("aria-hidden", String(!on)); s.querySelectorAll("a").forEach((a) => { a.tabIndex = on ? 0 : -1; }); });
     rail.querySelectorAll("button").forEach((b, k) => b.toggleAttribute("aria-current", k === i));
     stage.style.setProperty("--tint", tints[i] || "var(--wall)");
+    if (window.DWLiquid) { window.DWLiquid.attach(scenes[i]); if (scenes[i + 1]) window.DWLiquid.attach(scenes[i + 1]); }
   }
 
   /* ---------- scroll + render loop ---------- */
@@ -160,10 +161,122 @@ void main(){
     rip.raf = requestAnimationFrame(ripLoop);
   }
   if (fine && !reduce && dmap) {
-    document.addEventListener("pointerover", (e) => { const pl = e.target.closest && e.target.closest(".s-plate"); if (!pl) return; const im = pl.querySelector("img"); if (rip.el && rip.el !== im) rip.el.style.filter = ""; rip.el = im; im.style.filter = "url(#ripple)"; rip.to = 22; if (!rip.raf) rip.raf = requestAnimationFrame(ripLoop); });
+    document.addEventListener("pointerover", (e) => { if (window.DWLiquidOn) return; const pl = e.target.closest && e.target.closest(".s-plate"); if (!pl) return; const im = pl.querySelector("img"); if (rip.el && rip.el !== im) rip.el.style.filter = ""; rip.el = im; im.style.filter = "url(#ripple)"; rip.to = 22; if (!rip.raf) rip.raf = requestAnimationFrame(ripLoop); });
     document.addEventListener("pointerout", (e) => { const pl = e.target.closest && e.target.closest(".s-plate"); if (pl && !pl.contains(e.relatedTarget)) { rip.to = 0; if (!rip.raf) rip.raf = requestAnimationFrame(ripLoop); } });
   }
   document.addEventListener("visibilitychange", () => { if (!document.hidden) kick(); });
+
+
+  /* ---------- liquid photos: one shared WebGL renderer, a 2D canvas inside each plate ---------- */
+  const LQ_VERT = "attribute vec2 p; varying vec2 vUv; void main(){ vUv = vec2(p.x*0.5+0.5, 0.5-p.y*0.5); gl_Position = vec4(p,0.0,1.0); }";
+  const LQ_FRAG = `precision mediump float;
+varying vec2 vUv; uniform sampler2D uTex; uniform vec2 uScale; uniform float uAspect, uTime, uScroll, uHover;
+uniform vec2 uTrail[8]; uniform vec2 uVel[8]; uniform float uAge[8];
+void main(){
+  vec2 uv = vUv; vec2 d = vec2(0.0);
+  for (int i = 0; i < 8; i++) {
+    vec2 dp = uv - uTrail[i]; dp.x *= uAspect;
+    float f = exp(-dot(dp, dp) * 16.0) * uAge[i];
+    d += uVel[i] * f;
+    float ring = sin(length(dp) * 38.0 - (1.0 - uAge[i]) * 14.0) * exp(-length(dp) * 5.0) * uAge[i];
+    d += normalize(dp + 0.0001) * ring * 0.012;
+  }
+  d *= 0.42;
+  uv += d;
+  uv += vec2(sin(uv.y * 9.0 + uTime * 1.2), cos(uv.x * 7.0 + uTime)) * 0.0035 * (0.4 + uHover);
+  uv.y += sin(uv.x * 5.0 + uTime * 0.8) * uScroll * 0.03;
+  uv = (uv - 0.5) * uScale + 0.5;
+  float s = length(d) * 1.6 + abs(uScroll) * 0.01;
+  vec2 dir = normalize(d + vec2(0.0001, 0.0));
+  float r = texture2D(uTex, clamp(uv + dir * s * 0.38, 0.0, 1.0)).r;
+  float g = texture2D(uTex, clamp(uv, 0.0, 1.0)).g;
+  float b = texture2D(uTex, clamp(uv - dir * s * 0.38, 0.0, 1.0)).b;
+  vec3 col = vec3(r, g, b);
+  col += smoothstep(0.0, 0.05, length(d)) * 0.04;
+  gl_FragColor = vec4(col, 1.0);
+}`;
+  const Liquid = (function () {
+    if (reduce) return null;
+    const cv = document.createElement("canvas"); cv.width = 760; cv.height = 960;
+    const gl = cv.getContext("webgl", { preserveDrawingBuffer: false, antialias: false, alpha: false });
+    if (!gl) return null;
+    let prog;
+    try {
+      const sh = (t, s) => { const o = gl.createShader(t); gl.shaderSource(o, s); gl.compileShader(o); if (!gl.getShaderParameter(o, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(o)); return o; };
+      prog = gl.createProgram(); gl.attachShader(prog, sh(gl.VERTEX_SHADER, LQ_VERT)); gl.attachShader(prog, sh(gl.FRAGMENT_SHADER, LQ_FRAG)); gl.linkProgram(prog);
+      if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) throw new Error("link");
+    } catch (_) { return null; }
+    gl.useProgram(prog);
+    const buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf); gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+    const loc = gl.getAttribLocation(prog, "p"); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+    const U = (n) => gl.getUniformLocation(prog, n);
+    const u = { tex: U("uTex"), scale: U("uScale"), aspect: U("uAspect"), time: U("uTime"), scroll: U("uScroll"), hover: U("uHover"), trail: U("uTrail"), vel: U("uVel"), age: U("uAge") };
+    const items = new Set(); let raf = 0, scrollV = 0, lastSY = scrollY;
+
+    function attach(plateEl) {
+      if (plateEl._lq) return;
+      const img = plateEl.querySelector("img"); if (!img || !img.src) return;
+      const c2 = document.createElement("canvas"); c2.className = "lq"; c2.setAttribute("aria-hidden", "true");
+      const it = { el: plateEl, img, c2, ctx: c2.getContext("2d"), tex: null, ready: false, hover: 0, hoverT: 0, last: null, trail: Array.from({ length: 8 }, () => ({ x: 0.5, y: 0.5, vx: 0, vy: 0, a: 0 })), head: 0, nat: [1, 1] };
+      plateEl._lq = it; plateEl.appendChild(c2);
+      const im = new Image(); im.crossOrigin = "anonymous";
+      im.onload = () => {
+        try {
+          const t = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D, t);
+          gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false);
+          gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, im);
+          gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+          gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+          it.tex = t; it.nat = [im.naturalWidth, im.naturalHeight]; it.ready = true; items.add(it); render(it, 0); plateEl.classList.add("lq-on");
+        } catch (_) { c2.remove(); }
+      };
+      im.onerror = () => c2.remove();
+      im.src = img.currentSrc || img.src;
+    }
+    function push(it, e) {
+      const r = it.el.getBoundingClientRect(); const x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+      if (it.last) { const k = it.trail[it.head = (it.head + 1) % 8]; k.x = x; k.y = y; k.vx = Math.max(-0.5, Math.min(0.5, (x - it.last.x) * 1.8)); k.vy = Math.max(-0.5, Math.min(0.5, (y - it.last.y) * 1.8)); k.a = 1; }
+      it.last = { x, y }; it.hoverT = 1; start();
+    }
+    function render(it, now) {
+      const r = it.el.getBoundingClientRect(); const dpr = Math.min(devicePixelRatio || 1, 1.5);
+      const w = Math.max(2, Math.min(cv.width, Math.round(r.width * dpr))), h = Math.max(2, Math.min(cv.height, Math.round(r.height * dpr)));
+      if (it.c2.width !== w || it.c2.height !== h) { it.c2.width = w; it.c2.height = h; }
+      gl.viewport(0, 0, w, h);
+      gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, it.tex); gl.uniform1i(u.tex, 0);
+      const pa = w / h, ia = it.nat[0] / it.nat[1];
+      gl.uniform2f(u.scale, Math.min(1, pa / ia), Math.min(1, ia / pa)); gl.uniform1f(u.aspect, pa);
+      gl.uniform1f(u.time, now / 1000); gl.uniform1f(u.scroll, scrollV); gl.uniform1f(u.hover, it.hover);
+      const tr = new Float32Array(16), ve = new Float32Array(16), ag = new Float32Array(8);
+      it.trail.forEach((k, i) => { tr[i * 2] = k.x; tr[i * 2 + 1] = k.y; ve[i * 2] = k.vx; ve[i * 2 + 1] = k.vy; ag[i] = k.a; });
+      gl.uniform2fv(u.trail, tr); gl.uniform2fv(u.vel, ve); gl.uniform1fv(u.age, ag);
+      gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+      it.ctx.drawImage(cv, 0, cv.height - h, w, h, 0, 0, w, h);
+    }
+    function tick(now) {
+      scrollV += ((scrollY - lastSY) / Math.max(1, innerHeight) * 6 - scrollV) * 0.18; lastSY = scrollY;
+      let busy = Math.abs(scrollV) > 0.01;
+      items.forEach((it) => {
+        const vis = it.el.closest(".scene.on") || it.el.closest(".hero-reveal"); if (!vis) return;
+        it.hover += (it.hoverT - it.hover) * 0.1;
+        let alive = it.hover > 0.01 || it.hoverT > 0;
+        it.trail.forEach((k) => { k.a *= 0.93; if (k.a < 0.01) k.a = 0; else alive = true; });
+        if (alive || busy) { render(it, now); busy = true; }
+      });
+      raf = busy ? requestAnimationFrame(tick) : 0;
+    }
+    function start() { if (!raf) raf = requestAnimationFrame(tick); }
+    addEventListener("scroll", start, { passive: true });
+    return { attach, push, start, hasGL: true };
+  })();
+
+  document.addEventListener("pointermove", (e) => {
+    if (!Liquid) return; const pl = e.target.closest && e.target.closest(".s-plate, .hero-reveal .plate"); if (pl && pl._lq && pl._lq.ready) Liquid.push(pl._lq, e);
+  }, { passive: true });
+  document.addEventListener("pointerout", (e) => { const pl = e.target.closest && e.target.closest(".s-plate, .hero-reveal .plate"); if (pl && pl._lq && !pl.contains(e.relatedTarget)) { pl._lq.hoverT = 0; pl._lq.last = null; Liquid && Liquid.start(); } });
+  window.DWLiquidOn = !!Liquid;
+  function attachLiquid(rootEl) { if (!Liquid || !rootEl) return; rootEl.querySelectorAll(".s-plate, .plate").forEach((p) => Liquid.attach(p)); if (rootEl.matches && rootEl.matches(".plate")) Liquid.attach(rootEl); }
+  window.DWLiquid = { attach: attachLiquid };
 
   /* rail clicks scroll to the room */
   rail && rail.addEventListener("click", (e) => {
@@ -186,6 +299,6 @@ void main(){
     document.addEventListener("pointerout", (e) => { const pl = e.target.closest && e.target.closest(".s-plate"); if (pl) { pl.style.setProperty("--rx", "0deg"); pl.style.setProperty("--ry", "0deg"); } });
   }
 
-  document.addEventListener("dw:render", (e) => { buildStory(e.detail.rooms, e.detail.products); measure(); kick(); });
+  document.addEventListener("dw:render", (e) => { buildStory(e.detail.rooms, e.detail.products); measure(); kick(); setTimeout(() => window.DWLiquid && window.DWLiquid.attach(document.querySelector(".hero-reveal")), 60); });
   measure(); kick();
 })();
