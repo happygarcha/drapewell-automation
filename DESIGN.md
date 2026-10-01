@@ -9,6 +9,15 @@ colors:
   accent: "oklch(0.42 0.08 220)"
   accent-deep: "oklch(0.34 0.08 220)"
   accent-ink: "oklch(0.98 0.004 220)"
+  discover-bg: "oklch(0.14 0.025 285)"
+  discover-surface: "oklch(0.19 0.03 285)"
+  discover-surface-2: "oklch(0.235 0.035 285)"
+  discover-text: "oklch(0.97 0.005 285)"
+  discover-text-soft: "oklch(0.76 0.02 285)"
+  discover-line: "oklch(1 0 0 / 0.1)"
+  neon-magenta: "oklch(0.72 0.27 340)"
+  neon-cyan: "oklch(0.86 0.17 200)"
+  neon-lime: "oklch(0.9 0.22 130)"
 typography:
   display:
     fontFamily: "Hanken Grotesk, system-ui, sans-serif"
@@ -36,6 +45,13 @@ rounded:
   none: "0"
   window: "999px"
   circle: "50%"
+  discover-xs: "8px"
+  discover-arch: "160px"
+  discover-arch-base: "24px"
+  discover-sm: "12px"
+  discover-md: "20px"
+  discover-hero: "32px"
+  discover-pill: "999px"
 spacing:
   gutter: "clamp(18px, 5vw, 64px)"
   spread: "clamp(56px, 9vw, 128px)"
@@ -85,3 +101,6 @@ Windows, not boxes: product photos are cut as arches (999px top corners), circle
 - Do keep one accent colour and let space do the work.
 - Don't add shadows, gradients beyond the caption scrim, cream grounds or serif display faces.
 - Don't use product tiles as the page structure on the home page; rooms are spreads.
+
+## Discover surface (discover/)
+A second, dark surface built to the Muzli rules the owner supplied: Inter body text with bold, wide editorial headings (Archivo, 125% width, 800 to 900), strict 4px spacing steps (every margin, padding and gap is a multiple of 4), a three-column dashboard (sticky left curation sidebar, sticky right feeds, an oversized hero accent card), and deep-contrast dark mode with vibrant neon radial gradients (magenta, cyan, lime). Neon is reserved for the hero glow, active states, prices and primary actions. The calm lookbook in `site/` is unchanged.

@@ -1,0 +1,36 @@
+/* Real Drapewell catalog read from Shopify on 2026-10-01 (price = lowest variant, CAD). Titles are shortened for display.
+   Photos load from the store's own CDN. SKUs, supplier ids and stock are intentionally not included. */
+window.DW_STORE = 'https://drapewell.myshopify.com';
+window.DW_CDN = "https://cdn.shopify.com/s/files/1/1010/9399/8901/files/";
+window.DW_PRODUCTS = [
+  { handle: "botanical-watercolour-shower-curtain", name: "Botanical shower curtain", room: "bathroom", price: 39.99, img: "dcf53c91-67f3-4aff-ac14-be81c6c723f5.jpg", tint: "oklch(0.9 0.03 150)" },
+  { handle: "terrazzo-shower-curtain", name: "Terrazzo shower curtain", room: "bathroom", price: 39.99, img: "1eb4ee1a-7397-47e3-ae86-8520f4feef16.jpg", tint: "oklch(0.9 0.012 60)" },
+  { handle: "watercolour-shower-curtain-set", name: "Watercolour shower curtain", room: "bathroom", price: 39.99, img: "492143d0-f564-49fb-8421-45f9850d5338.jpg", tint: "oklch(0.9 0.025 250)" },
+  { handle: "geometric-shower-curtain", name: "Waterproof shower curtain", room: "bathroom", price: 24.99, img: "eb838cbf-6dbc-4677-afed-1b78f8a08e36.jpg", tint: "oklch(0.88 0.02 280)" },
+  { handle: "botanical-coastal-boho-peva-shower-curtain", name: "Coastal and boho shower curtain", room: "bathroom", price: 24.99, img: "b0065a20-1d67-447c-ac52-fda0c898d65d.jpg", tint: "oklch(0.89 0.025 200)" },
+  { handle: "anti-mildew-shower-curtain", name: "Anti-mildew shower curtain", room: "bathroom", price: 39.99, img: "1575198812892.jpg", tint: "oklch(0.9 0.01 100)" },
+  { handle: "dinosaur-shower-curtain", name: "Dinosaur shower curtain", room: "bathroom", price: 39.99, img: "2f950cbd-caf4-450f-8734-d4a77f5b8dbc.jpg", tint: "oklch(0.9 0.04 150)" },
+  { handle: "modern-bath-set", name: "Mix-and-match bath collection", room: "bathroom", price: 24.99, img: "1622077754041.jpg", tint: "oklch(0.9 0.02 150)" },
+  { handle: "tie-dye-plush-rug-plush-toilet-three-piece-set", name: "Plush 3-piece toilet rug set", room: "bathroom", price: 24.99, img: "63c292ef-7483-4c80-965c-fa259ca943e8.jpg", tint: "oklch(0.88 0.015 250)" },
+  { handle: "matte-black-bathroom-accessories-set-plastic-soap-dispenser-toothbrush-holder-cup-soap-dish-for-modern-bathroom-decor", name: "Matte bathroom accessories", room: "bathroom", price: 34.99, img: "5de6fc26-7181-466b-bd4a-d518f7c6f1b9.jpg", tint: "oklch(0.86 0.005 250)" },
+  { handle: "bathroom-black-cat-canvas-poster-toilet-wall-art-print", name: "Black cat canvas art set", room: "bathroom", price: 24.99, img: "0162dd8e-1c44-42a2-8f14-7ea8353ab410.jpg", tint: "oklch(0.9 0.01 250)" },
+  { handle: "flower-shaped-plush-bedside-rug", name: "Flower-shaped bedside rug", room: "bedroom", price: 29.99, img: "4f432b31-f580-46ac-8a88-b9f62e571af5.jpg", tint: "oklch(0.92 0.04 95)" },
+  { handle: "round-plush-accent-rug", name: "Round plush accent rug", room: "bedroom", price: 24.99, img: "1614996081680.jpg", tint: "oklch(0.9 0.015 60)" },
+  { handle: "nordic-knitted-throw-blanket-tassel", name: "Nordic knitted throw", room: "bedroom", price: 32.99, img: "b169bedc-dd7d-4863-a954-0e9b673f0047.jpg", tint: "oklch(0.9 0.012 80)" },
+  { handle: "cotton-kitchen-apron-solid-colour", name: "Cotton kitchen apron", room: "kitchen", price: 26.99, img: "e94745bd-4f4d-4493-84a7-f168f631f254.jpg", tint: "oklch(0.9 0.02 70)" },
+  { handle: "chenille-jacquard-tassel-table-runner", name: "Chenille table runner", room: "kitchen", price: 39.99, img: "1618207672550.jpg", tint: "oklch(0.9 0.015 240)" },
+  { handle: "electronic-kitchen-scale", name: "Digital kitchen scale", room: "kitchen", price: 33.3, img: "0c8c41be-9765-4872-8bf9-f91198dda572.jpg", tint: "oklch(0.92 0.005 250)" },
+  { handle: "botanical-watercolour-canvas-wall-art-set-of-3", name: "Botanical canvas art, set of 3", room: "living-room", price: 24.99, img: "0fe707d9-7dba-4bac-a92c-cce6286efb44.jpg", tint: "oklch(0.92 0.015 150)" },
+  { handle: "abstract-wall-art-print-30x40", name: "Abstract wall art print", room: "living-room", price: 20.99, img: "35dc0c55-e3a7-4130-979b-138d2eea0e00.png", tint: "oklch(0.9 0.02 40)" },
+  { handle: "modern-art-colourful-wall-print", name: "Colourful modern art print", room: "living-room", price: 14.99, img: "1614863159780.jpg", tint: "oklch(0.9 0.03 40)" },
+  { handle: "nordic-knitted-throw-blanket-tassel", name: "Nordic knitted throw", room: "living-room", price: 32.99, img: "b169bedc-dd7d-4863-a954-0e9b673f0047.jpg", tint: "oklch(0.9 0.012 80)" },
+  { handle: "foldable-cat-tent-bed", name: "Foldable cat tent bed", room: "pet-supplies", price: 13.99, img: "1622428115167_42a78250-1e3c-454c-9217-802f99931211.jpg", tint: "oklch(0.9 0.04 150)" },
+  { handle: "foldable-fleece-pet-bed-mat", name: "Foldable fleece pet bed mat", room: "pet-supplies", price: 16.99, img: "db8e3ced-6f9f-4a69-9cc6-07a0f0476f9f_3d866fc1-4796-45ed-bd1f-e75795d499a3.jpg", tint: "oklch(0.9 0.015 250)" },
+  { handle: "red-christmas-tree-skirt-48-inch", name: "Red Christmas tree skirt", room: "seasonal", price: 21.99, img: "2521194997719.jpg", tint: "oklch(0.88 0.05 25)" },
+  { handle: "embroidered-knitted-christmas-stocking", name: "Embroidered knitted stocking", room: "seasonal", price: 13.99, img: "8114bb2d-3982-483c-8704-dee7d4465c7b.jpg", tint: "oklch(0.9 0.04 150)" },
+  { handle: "embroidered-christmas-cushion-cover-45x45", name: "Embroidered Christmas cushion cover", room: "seasonal", price: 15.99, img: "faaab811-988d-4aa3-aaf6-57b9f1962d9d.jpg", tint: "oklch(0.9 0.03 25)" },
+  { handle: "cotton-embroidered-snowflake-christmas-cushion-cover", name: "Snowflake cushion cover", room: "seasonal", price: 15.99, img: "498014355538931_d2c82ecb-66cf-4100-8c10-aec351deb74d.png", tint: "oklch(0.92 0.015 240)" },
+  { handle: "towel-embroidered-pumpkin-cushion-cover-45x45", name: "Pumpkin cushion cover", room: "seasonal", price: 18.99, img: "accb7992-cd95-46be-b6fb-5118102e9391.jpg", tint: "oklch(0.9 0.04 70)" },
+  { handle: "autumn-maple-leaf-pumpkin-embroidered-cushion-cover", name: "Maple leaf cushion cover", room: "seasonal", price: 16.99, img: "b60df2fb-f00e-40ac-a51c-dedb2f09ccce.jpg", tint: "oklch(0.9 0.04 60)" },
+  { handle: "thanksgiving-maple-leaf-pumpkin-wreath", name: "Maple leaf and pumpkin wreath", room: "seasonal", price: 20.99, img: "78c7d851-5f27-45e9-9e20-96f3e4b75f20.jpg", tint: "oklch(0.9 0.05 60)" },
+];

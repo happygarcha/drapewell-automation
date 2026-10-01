@@ -36,6 +36,51 @@
         ],
         "createdAt": "2026-10-01T18:50:43.862Z",
         "reason": "Agent: repeating gradients are the pleated fabric stand-in under each photo; cloth is the product"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "inter",
+        "files": [
+          "discover/*"
+        ],
+        "createdAt": "2026-10-01T19:40:38.685Z",
+        "reason": "user confirmed: the Muzli design-system rules the user gave pin Inter"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "archivo",
+        "files": [
+          "discover/*"
+        ],
+        "createdAt": "2026-10-01T19:40:38.706Z",
+        "reason": "Agent: Archivo (wide axis) implements the user's 'bold, wide editorial headings' rule alongside Inter"
+      },
+      {
+        "rule": "radial-halo",
+        "value": "*",
+        "files": [
+          "discover/*"
+        ],
+        "createdAt": "2026-10-01T19:40:57.978Z",
+        "reason": "user confirmed: the Muzli rules the user gave call for neon radial gradients and Inter"
+      },
+      {
+        "rule": "dark-glow",
+        "value": "*",
+        "files": [
+          "discover/*"
+        ],
+        "createdAt": "2026-10-01T19:40:57.992Z",
+        "reason": "user confirmed: the Muzli rules the user gave call for neon radial gradients and Inter"
+      },
+      {
+        "rule": "overused-font",
+        "value": "inter",
+        "files": [
+          "discover/*"
+        ],
+        "createdAt": "2026-10-01T19:40:58.005Z",
+        "reason": "user confirmed: the Muzli rules the user gave call for neon radial gradients and Inter"
       }
     ]
   }

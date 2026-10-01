@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Drapewell Discover</title>
+<meta name="description" content="Discover Drapewell by room: curated textiles, rugs, wall art and seasonal décor. Tracked shipping to Canada and the U.S.">
+<meta name="theme-color" content="#0b0b14">
+<link rel="stylesheet" href="styles.css">
+<script src="menu.js"></script>
+<script src="catalog.js"></script>
+<script src="data.js"></script>
+<script src="cart.js"></script>
+<script src="discover.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#feed">Skip to products</a>
+
+<div class="shell">
+  <!-- left: curation sidebar -->
+  <aside class="side left" aria-label="Browse">
+    <a class="brand" href="index.html">Drapewell</a>
+    <label class="search"><span class="sr-only">Search products</span><input id="q" type="search" placeholder="Search products" autocomplete="off"></label>
+    <nav aria-label="Rooms">
+      <h2 class="eyebrow">Rooms</h2>
+      <ul class="rooms" id="rooms"></ul>
+    </nav>
+    <div class="sort">
+      <h2 class="eyebrow">Sort</h2>
+      <div class="seg" id="sort" role="group" aria-label="Sort products">
+        <button type="button" data-sort="featured" aria-pressed="true">Featured</button>
+        <button type="button" data-sort="low" aria-pressed="false">Price ↑</button>
+        <button type="button" data-sort="high" aria-pressed="false">Price ↓</button>
+      </div>
+    </div>
+    <button type="button" class="cart-btn" data-open-cart>Cart <span data-cart-count>0</span></button>
+  </aside>
+
+  <!-- centre: discovery -->
+  <main id="main" class="main">
+    <section class="hero" id="hero" aria-label="Featured">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-copy">
+        <p class="eyebrow" id="hero-room">Featured room</p>
+        <h1 id="hero-title">Rooms, finished.</h1>
+        <p class="hero-sub" id="hero-sub">Shower curtains, rugs, wall art and seasonal décor, chosen to work together.</p>
+        <div class="hero-actions">
+          <button type="button" class="btn primary" id="hero-open">Open piece</button>
+          <div class="hero-dots" id="hero-dots" role="group" aria-label="Featured pieces"></div>
+        </div>
+      </div>
+      <div class="hero-art"><figure class="ph" id="hero-ph"><img id="hero-img" alt="" decoding="async" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></figure><p class="hero-price" id="hero-price"></p></div>
+      <div class="hero-bar" aria-hidden="true"><i id="hero-prog"></i></div>
+    </section>
+
+    <header class="feed-head">
+      <h2 id="feed-title">All rooms</h2>
+      <p id="feed-count" role="status" aria-live="polite"></p>
+    </header>
+    <div class="feed" id="feed"></div>
+    <p class="note" id="data-status" role="status"></p>
+  </main>
+
+  <!-- right: curation feeds -->
+  <aside class="side right" aria-label="Feeds">
+    <section class="feedbox" aria-labelledby="fresh-h">
+      <h2 class="eyebrow" id="fresh-h">Fresh picks</h2>
+      <ol class="mini" id="fresh"></ol>
+    </section>
+    <section class="feedbox" aria-labelledby="deal-h">
+      <h2 class="eyebrow" id="deal-h">Under $20</h2>
+      <ol class="mini" id="under"></ol>
+    </section>
+    <p class="fine">Checkout happens on the live Drapewell store. Prices in CAD, shown from the lowest variant.</p>
+  </aside>
+</div>
+
+<!-- detail panel -->
+<dialog class="panel" id="panel" aria-label="Product details">
+  <div class="panel-in">
+    <button type="button" class="x" data-close aria-label="Close">Close</button>
+    <figure class="ph tall" id="p-ph"><img id="p-img" alt="" decoding="async" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></figure>
+    <div class="p-info">
+      <p class="eyebrow" id="p-room"></p>
+      <h2 id="p-title"></h2>
+      <p class="p-price" id="p-price"></p>
+      <div id="p-options"></div>
+      <div class="p-row">
+        <div class="stepper" role="group" aria-label="Quantity"><button type="button" id="less" aria-label="Fewer">−</button><output id="qty" aria-live="polite">1</output><button type="button" id="more" aria-label="More">+</button></div>
+        <button type="button" class="btn primary" id="add" disabled>Add to cart</button>
+      </div>
+      <p class="msg" id="p-msg" role="status" aria-live="polite"></p>
+      <p class="desc" id="p-desc"></p>
+    </div>
+  </div>
+</dialog>
+</body>
+</html>
