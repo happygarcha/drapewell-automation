@@ -6,11 +6,13 @@
 <title>Drapewell General Catalog</title>
 <meta name="description" content="Four departments in one catalog. Look up an item by number.">
 <link rel="stylesheet" href="styles.css">
+<script src="menu.js"></script>
 <script src="app.js" defer></script>
 </head>
 <body data-page="home">
 <header class="mast">
   <a class="wordmark" href="index.html">Drapewell<small>General catalog</small></a>
+  <nav class="mast-links" id="mast-links" aria-label="Pages"></nav>
   <a class="cart-link" href="#" aria-label="Cart">Cart <span class="cart-count">0</span></a>
 </header>
 
@@ -19,13 +21,25 @@
 <main class="book">
   <div class="page">
     <section class="cover" aria-labelledby="h1">
-      <h1 id="h1">Four departments. One catalog.</h1>
-      <p>Home textiles, kitchen, gadgets and fashion. Flip to your department, or order by item number.</p>
+      <h1 id="h1">Every room. One catalog.</h1>
+      <p>Pick a department from the tabs, or order by item number. The tabs follow the store menu.</p>
       <form class="lookup" id="lookup" novalidate>
-        <div class="field"><label for="item-q">Item number or name</label><input id="item-q" type="text" autocomplete="off" placeholder="e.g. K-118"></div>
+        <div class="field"><label for="item-q">Item number or name</label><input id="item-q" type="text" autocomplete="off" placeholder="e.g. KIT-312"></div>
         <button class="btn" type="submit">Find item</button>
       </form>
       <p class="lookup-note" id="lookup-note" role="status" aria-live="polite"></p>
+    </section>
+    <section class="editor" id="editor" hidden aria-labelledby="editor-h">
+      <h2 id="editor-h">Edit menu</h2>
+      <p class="editor-note">Preview only: changes stay in this browser. Your live menu is edited in Shopify admin under Online Store, Navigation.</p>
+      <ul class="menu-list" id="menu-list"></ul>
+      <form class="menu-add" id="menu-add" novalidate>
+        <div class="field"><label for="m-title">New item title</label><input id="m-title" type="text" autocomplete="off" placeholder="e.g. Garden"></div>
+        <div class="field"><label for="m-handle">Collection handle (optional)</label><input id="m-handle" type="text" autocomplete="off" placeholder="garden"></div>
+        <button class="btn" type="submit">Add to menu</button>
+        <button class="btn ghost" type="button" id="menu-reset">Reset to live menu</button>
+      </form>
+      <p class="lookup-note" id="menu-note" role="status" aria-live="polite"></p>
     </section>
     <div id="depts"></div>
   </div>

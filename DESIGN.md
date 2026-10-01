@@ -55,7 +55,7 @@ components:
 # Design System: Drapewell General Catalog
 
 ## Overview
-One shop, four departments, laid out as a general-store mail-order catalog: dense numbered spreads, one department per page, order by item number. Cool pale-blue paper on a darker desk, warm near-black ink, a single printer's red. Line-drawn item illustrations, hairline rules, a fold shadow down the middle of each spread. Palette strategy: Restrained. Light scene: a catalog open on a table in daylight. No photos, no cream, no serif display.
+One shop with menu-driven departments, laid out as a general-store mail-order catalog: dense numbered spreads, one department per page, order by item number. Cool pale-blue paper on a darker desk, warm near-black ink, a single printer's red. Line-drawn item illustrations, hairline rules, a fold shadow down the middle of each spread. Palette strategy: Restrained. Light scene: a catalog open on a table in daylight. No photos, no cream, no serif display.
 
 ## Colors
 - **Desk** is the ground; **Paper** is the page. Both are tinted toward blue, never cream.
@@ -66,7 +66,7 @@ One shop, four departments, laid out as a general-store mail-order catalog: dens
 Barlow Condensed (500/600, uppercase, tracked) for the masthead, index tabs, department headings, headlines and item numbers. Hanken Grotesk for item names, specs and controls. Body measure under 70ch.
 
 ## Layout
-Max width 1280px, fluid gutter. A page is one paper sheet; a department is a two-column ruled list (single column under 900px) with a soft fold shadow between columns. Departments switch via index tabs on the page edge.
+Max width 1280px, fluid gutter. A page is one paper sheet; a department is a two-column ruled list (single column under 900px) with a soft fold shadow between columns. Departments are index tabs on the page edge, generated from the store menu (menu.js mirrors the live Shopify Main menu; an in-page editor adds, removes and reorders items in a browser-local copy).
 
 ## Elevation & Depth
 The page sits on the desk with one long soft shadow (22px offset, 40px blur, negative spread). Items are flat, separated by hairline rules. No glow, no hard offset shadows.

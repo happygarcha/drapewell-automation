@@ -33,7 +33,7 @@ Approval-gated automation: nothing acts on Shopify or CJ Dropship without explic
 
 - Initial scope is a manual Google Sheets Workflow Runs test only; no Shopify or CJ calls yet.
 - Must stay no-additional-cost.
-- Niches (confirmed): home textiles and decor (including drapes), kitchen and home, gadgets and accessories, fashion and lifestyle. Catalog breadth and exact categories are still open.
+- Live store (drapewell.myshopify.com, CAD, Basic plan) navigation, read from Shopify: Main menu = Home, Bathroom, Bedroom, Kitchen, Living Room, Pet Supplies, Seasonal, About, Contact. Departments are the collection items in that menu, which the owner adds or removes in Shopify admin.
 - Undecided: whether the shopper storefront is Shopify-themed or a separate site; how the operator approval UI is hosted.
 
 ## Brand Commitments

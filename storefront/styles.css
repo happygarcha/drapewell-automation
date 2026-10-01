@@ -216,3 +216,27 @@ a { color: inherit; text-underline-offset: 0.25em; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
 }
+
+/* ---------- masthead links and menu editor ---------- */
+.mast-links { display: flex; gap: 20px; margin-left: auto; margin-right: 16px; }
+.mast-links a { font-weight: 500; text-decoration: none; color: var(--ink-on-desk); padding: 6px 2px; }
+.mast-links a:hover { text-decoration: underline; }
+.tab-edit { margin-left: auto; background: transparent; border-style: dashed; }
+.tab-edit[aria-expanded="true"] { background: var(--paper); }
+.empty { margin: 16px 0 0; color: var(--ink-soft); }
+.editor { border: 1px dashed var(--ink); padding: 18px; margin-bottom: 8px; display: grid; gap: 14px; }
+.editor[hidden] { display: none; }
+.editor h2 { margin: 0; font-family: var(--font-cat); font-weight: 600; font-size: 1.5rem; text-transform: uppercase; letter-spacing: 0.04em; }
+.editor-note { margin: 0; color: var(--ink-soft); max-width: 66ch; }
+.menu-list { list-style: none; margin: 0; padding: 0; display: grid; }
+.menu-list li { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; padding: 8px 0; border-bottom: 1px solid var(--rule); }
+.m-title { font-weight: 600; min-width: 9rem; }
+.m-type { font-family: var(--font-cat); font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-soft); }
+.m-actions { margin-left: auto; display: flex; gap: 6px; }
+.m-actions button { font: inherit; font-size: 0.9rem; cursor: pointer; background: transparent; color: var(--ink); border: 1px solid var(--ink); border-radius: 2px; padding: 4px 10px; min-height: 32px; }
+.m-actions button:hover:not(:disabled) { background: var(--ink); color: var(--paper); }
+.m-actions button[data-remove] { color: var(--red-deep); border-color: var(--red-deep); }
+.m-actions button[data-remove]:hover { background: var(--red-deep); color: var(--red-ink); }
+.m-actions button:disabled { opacity: 0.35; cursor: not-allowed; }
+.menu-add { display: flex; flex-wrap: wrap; gap: 10px; align-items: end; }
+@media (max-width: 700px) { .mast-links { display: none; } .tab-edit { margin-left: 0; } }
