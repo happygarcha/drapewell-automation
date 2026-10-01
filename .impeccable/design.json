@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-01T00:00:00Z",
+  "title": "Design System: Drapewell Storefront",
+  "extensions": {
+    "colorMeta": {
+      "indigo": { "role": "primary", "displayName": "Tag Indigo", "canonical": "oklch(0.4 0.16 268)", "tonalRamp": ["oklch(0.98 0.005 268)", "oklch(0.4 0.16 268)", "oklch(0.33 0.15 268)"] },
+      "counter": { "role": "neutral", "displayName": "Mill Counter", "canonical": "oklch(0.83 0.012 255)", "tonalRamp": ["oklch(0.975 0.006 255)", "oklch(0.83 0.012 255)", "oklch(0.77 0.014 255)"] }
+    },
+    "typographyMeta": {
+      "tag": { "displayName": "Hang-tag lettering", "purpose": "Tag names, notch numerals and row labels only." },
+      "ui": { "displayName": "Interface", "purpose": "Body, headings and controls." }
+    },
+    "shadows": [
+      { "name": "card-rest", "value": "0 10px 22px -14px oklch(0.2 0.05 265 / 0.45)", "purpose": "Swatch card resting on the counter." },
+      { "name": "card-lift", "value": "0 16px 28px -14px oklch(0.2 0.05 265 / 0.5)", "purpose": "Hover lift." }
+    ],
+    "motion": [
+      { "name": "ease-out", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "All state transitions; notches stagger 55ms." }
+    ],
+    "breakpoints": [{ "name": "stack", "value": "560px" }, { "name": "product-split", "value": "880px" }]
+  },
+  "components": [
+    { "name": "Primary Button", "kind": "button", "refersTo": "button-primary", "description": "Main action: Show what fits, Add to cart.", "html": "<button class=\"ds-btn\">Add to cart</button>", "css": ".ds-btn{font:600 1rem system-ui;background:oklch(0.4 0.16 268);color:oklch(0.98 0.005 268);border:1px solid oklch(0.4 0.16 268);border-radius:3px;padding:11px 20px;cursor:pointer}.ds-btn:hover{background:oklch(0.33 0.15 268)}.ds-btn:focus-visible{outline:2px solid oklch(0.4 0.16 268);outline-offset:3px}" },
+    { "name": "Hang Tag", "kind": "chip", "refersTo": "hang-tag", "description": "Product name tag hung on each swatch.", "html": "<div class=\"ds-tag\">HARBOUR<br><small>NO. 0412</small></div>", "css": ".ds-tag{display:inline-block;background:oklch(0.4 0.16 268);color:oklch(0.98 0.005 268);font:600 1.45rem 'Arial Narrow',sans-serif;letter-spacing:.05em;padding:22px 12px 10px;clip-path:polygon(14% 0,86% 0,100% 14%,100% 100%,0 100%,0 14%);transform:rotate(3deg)}.ds-tag small{font-size:.95rem;font-weight:500}" },
+    { "name": "Notch Strip", "kind": "custom", "refersTo": "swatch-card", "description": "Drop-length cells; the fitting size is lit.", "html": "<div class=\"ds-n\"><span>63</span><span class=\"on\">84</span><span>96</span></div>", "css": ".ds-n{display:flex;gap:4px}.ds-n span{flex:1;text-align:center;padding:6px 14px 4px;border:1px solid oklch(0.2 0.03 265 / .22);border-radius:0 0 3px 3px;font:600 1.05rem 'Arial Narrow',sans-serif;color:oklch(0.38 0.03 265)}.ds-n .on{background:oklch(0.4 0.16 268);color:oklch(0.98 0.005 268);border-color:oklch(0.4 0.16 268)}" }
+  ],
+  "narrative": {
+    "northStar": "The Mill Sample Counter",
+    "overview": "Drapes are swatch cards laid on a cool counter, compared side by side and sized by notches. Flat print, one indigo accent, no cream.",
+    "keyCharacteristics": ["Pinked swatch edges", "Indigo hang tags", "Notched size strips", "Soft offset shadows"],
+    "rules": [{ "name": "One Accent Rule", "body": "Indigo is the only system accent; fabric colour belongs to the product.", "section": "colors" }],
+    "dos": ["Do label all catalog content as sample", "Do light notches to show fit"],
+    "donts": ["Don't use cream grounds or serif display faces", "Don't invent prices, stock or ratings"]
+  }
+}

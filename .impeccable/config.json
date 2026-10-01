@@ -5,5 +5,20 @@
       "maxFindings": 5,
       "maxChars": 8000
     }
+  },
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "repeating-stripes-gradient",
+        "value": "*",
+        "files": [
+          "storefront/*.html"
+        ],
+        "createdAt": "2026-10-01T16:20:41.436Z",
+        "reason": "Agent: repeating gradients are the fabric weave of the swatch cards; the textile is the product"
+      }
+    ]
   }
 }
