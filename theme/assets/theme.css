@@ -350,3 +350,16 @@ dialog.cart[open] .line { animation: lineIn 0.6s var(--ease) both; animation-del
   .slide.is-active .hero-art .ph img { animation: none; }
   .js .ph img { opacity: 1; }
 }
+
+/* ---------- layout hardening (Shopify wraps each section in .shopify-section) ---------- */
+.shell { grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 1100px) { .shell { grid-template-columns: 240px minmax(0, 1fr) 296px; } }
+.side, .main { grid-template-columns: minmax(0, 1fr); }
+.main > .shopify-section { display: grid; gap: var(--s6); grid-template-columns: minmax(0, 1fr); min-width: 0; align-content: start; }
+.hero, .slides, .slide, .feed, .page-head, .pdp { min-width: 0; max-width: 100%; }
+.slides, .slide { grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 760px) { .slide { grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr); } }
+.hero-nav { flex-wrap: wrap; }
+.hero-h { overflow-wrap: anywhere; }
+@media (max-width: 480px) { .hero-dots button { width: 32px; } .hero-dots { gap: 0; } }
+body { overflow-x: clip; }
