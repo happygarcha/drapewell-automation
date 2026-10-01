@@ -72,6 +72,9 @@
     </aside>
 
     <main id="main" class="main">
+      {%- unless request.page_type == 'index' -%}
+        <a class="back-home" href="{{ routes.root_url }}"><span aria-hidden="true">&larr;</span> {{ 'general.back_home' | t }}</a>
+      {%- endunless -%}
       {{ content_for_layout }}
     </main>
 
