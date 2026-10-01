@@ -13,12 +13,12 @@ delegated: the user left the stack choice to the agent. No UI scaffold exists ye
 ## Users
 
 Two audiences, both confirmed:
-- **Drapewell shoppers**: customers browsing and buying drapes on the storefront.
+- **Drapewell shoppers**: customers browsing and buying across several product niches on the storefront.
 - **Drapewell operator**: the owner/staff who review and approve what the automation proposes before anything touches Shopify or CJ Dropship.
 
 ## Product Purpose
 
-Drapewell sells drapes. The repository is its approval-gated, no-additional-cost automation system built on GitHub Actions and Google Sheets. Success means routine store operations run without added cost while a human stays in control of every consequential action.
+Drapewell is a multi-niche store: it sells many kinds of items, not only drapes. The repository is its approval-gated, no-additional-cost automation system built on GitHub Actions and Google Sheets. Success means routine store operations run without added cost while a human stays in control of every consequential action.
 
 ## Positioning
 
@@ -33,7 +33,7 @@ Approval-gated automation: nothing acts on Shopify or CJ Dropship without explic
 
 - Initial scope is a manual Google Sheets Workflow Runs test only; no Shopify or CJ calls yet.
 - Must stay no-additional-cost.
-- Undecided: whether the shopper storefront is Shopify-themed or a separate site; how the operator approval UI is hosted.
+- Undecided: which niches/categories the store covers; whether the shopper storefront is Shopify-themed or a separate site; how the operator approval UI is hosted.
 
 ## Brand Commitments
 
