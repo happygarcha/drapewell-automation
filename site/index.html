@@ -11,6 +11,7 @@
 <script src="catalog.js"></script>
 <script src="data.js"></script>
 <script src="cart.js"></script>
+<script src="home.js" defer></script>
 <script src="app.js" defer></script>
 </head>
 <body data-page="home">
@@ -22,19 +23,29 @@
 </header>
 
 <main id="main">
-  <section class="hero" aria-labelledby="h1">
-    <div>
-      <h1 id="h1">Rooms, finished.</h1>
-      <p>Shower curtains, rugs, wall art and seasonal décor, chosen to work together. Tracked shipping to Canada and the U.S.</p>
-      <a class="cta" href="#room-bathroom">Step into a room</a>
+  <section class="hero" id="hero" aria-labelledby="h1">
+    <div class="hero-pin">
+      <div class="hero-reveal"><figure class="plate" id="hero-plate"></figure></div>
+      <canvas id="curtain" aria-hidden="true"></canvas>
+      <div class="hero-copy">
+        <h1 id="h1">Rooms, finished.</h1>
+        <p>Shower curtains, rugs, wall art and seasonal décor, chosen to work together. Tracked shipping to Canada and the U.S.</p>
+        <a class="cta magnet" href="#story">Step into a room</a>
+        <span class="cue" aria-hidden="true">Scroll to open the curtain</span>
+      </div>
     </div>
-    <figure class="plate" id="hero-plate"></figure>
   </section>
 
-  <nav class="index" aria-label="Rooms"><ol id="index"></ol></nav>
+  <section class="story" id="story" aria-label="Rooms">
+    <div class="story-pin" id="stage">
+      <ol class="rail" id="rail" aria-label="Rooms"></ol>
+    </div>
+  </section>
 
-  <div id="spreads"></div>
-
+  <div class="static" id="static">
+    <nav class="index" aria-label="Rooms"><ol id="index"></ol></nav>
+    <div id="spreads"></div>
+  </div>
 </main>
 
 <footer class="foot">

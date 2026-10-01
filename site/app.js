@@ -6,7 +6,7 @@ document.documentElement.classList.add("js");
 /* a photo that fails to load leaves its tinted frame, never a broken-image icon */
 document.addEventListener("error", (e) => { if (e.target.tagName === "IMG") e.target.style.visibility = "hidden"; }, true);
 
-const ROOM_LINES = {
+window.DW_ROOM_LINES = {
   bathroom: "Shower curtains, rugs and small things that make the room feel put together.",
   bedroom: "Soft rugs and throws for the quiet corners of the room.",
   kitchen: "Linen and tools for the table and the counter.",
@@ -74,13 +74,14 @@ function initHome() {
         <div class="reveal">
           <p class="room-no">${pad(i + 1)}</p>
           <h2 id="h-${esc(r.handle)}">${esc(r.title)}</h2>
-          <p class="room-line">${esc(ROOM_LINES[r.handle] || "New in the store.")}</p>
+          <p class="room-line">${esc(DW_ROOM_LINES[r.handle] || "New in the store.")}</p>
           ${ps.length ? `<ul class="room-list">${ps.slice(0, 4).map((p) => `<li><a href="${productUrl(p)}"><span class="thumb" style="--tint:${p.tint}"><img src="${img(p, 160)}" alt="" loading="lazy" decoding="async"></span><span class="t">${esc(p.name)}</span><span class="p">${from(p)}</span></a></li>`).join("")}</ul>
           <a class="more" href="${roomUrl(r.handle)}">See all ${ps.length} in ${esc(r.title)}</a>` : `<p class="empty">No products in this room yet.</p>`}
         </div></section>`;
     }).join("");
     renderEditor();
     reveal();
+    document.dispatchEvent(new CustomEvent("dw:render", { detail: { rooms: rs, products: list } }));
   }
 
   function renderEditor() {
@@ -132,8 +133,8 @@ async function initRoom() {
   $("#room-title").textContent = r.title;
   paintFooter();
   const draw = (ps) => {
-    $("#room-sub").textContent = ps.length ? `${ps.length} ${ps.length === 1 ? "piece" : "pieces"}. ${ROOM_LINES[handle] || ""}` : "No products in this room yet.";
-    $("#grid").innerHTML = ps.map((p) => `<li class="card reveal"><a href="${productUrl(p)}"><figure class="plate" style="--tint:${p.tint}">${photo(p, "(min-width: 900px) 25vw, 50vw")}</figure><div class="row"><span class="t">${esc(p.name)}</span><span class="p">${from(p)}</span></div></a></li>`).join("");
+    $("#room-sub").textContent = ps.length ? `${ps.length} ${ps.length === 1 ? "piece" : "pieces"}. ${DW_ROOM_LINES[handle] || ""}` : "No products in this room yet.";
+    $("#grid").innerHTML = ps.map((p) => `<li class="card reveal"><a href="${productUrl(p)}"><figure class="plate" style="--tint:${p.tint};view-transition-name:pv-${esc(p.handle)}">${photo(p, "(min-width: 900px) 25vw, 50vw")}</figure><div class="row"><span class="t">${esc(p.name)}</span><span class="p">${from(p)}</span></div></a></li>`).join("");
     reveal();
   };
   draw(snap(handle));
@@ -157,7 +158,7 @@ async function initProduct() {
   let current = 0;
   const gallery = $("#gallery");
   const drawGallery = () => {
-    gallery.innerHTML = `<figure class="plate" style="--tint:${p.tint}">${p.images[current] ? `<img src="${sized(p.images[current], 1200)}" alt="${esc(p.title)}" decoding="async">` : ""}</figure>` +
+    gallery.innerHTML = `<figure class="plate" style="--tint:${p.tint};view-transition-name:pv-${esc(p.handle)}">${p.images[current] ? `<img src="${sized(p.images[current], 1200)}" alt="${esc(p.title)}" decoding="async">` : ""}</figure>` +
       (p.images.length > 1 ? `<ul class="thumbs">${p.images.slice(0, 6).map((u, i) => `<li><button type="button" data-i="${i}" aria-label="Photo ${i + 1}" aria-pressed="${i === current}"><img src="${sized(u, 160)}" alt="" loading="lazy"></button></li>`).join("")}</ul>` : "");
   };
   gallery.addEventListener("click", (e) => {
