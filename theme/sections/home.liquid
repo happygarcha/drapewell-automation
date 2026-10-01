@@ -40,7 +40,6 @@
 
 <header class="feed-head">
   <h2>{{ section.settings.feed_title }}</h2>
-  <p>{{ collections.all.products_count }} {{ 'home.pieces' | t }}</p>
 </header>
 
 {%- paginate collections.all.products by section.settings.per_page -%}
