@@ -18,6 +18,15 @@
         ],
         "createdAt": "2026-10-01T16:20:41.436Z",
         "reason": "Agent: repeating gradients are the fabric weave of the swatch cards; the textile is the product"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "barlow condensed",
+        "files": [
+          "storefront/*"
+        ],
+        "createdAt": "2026-10-01T16:46:31.057Z",
+        "reason": "Agent: storefront/ is the superseded catalog mockup that uses Barlow Condensed; DESIGN.md now documents the lookbook in site/, which does not"
       }
     ]
   }
