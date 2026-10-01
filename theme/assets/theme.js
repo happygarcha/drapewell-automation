@@ -58,12 +58,16 @@
     var inCart = cart.items.map(function (i) { return i.product_id; });
     var show = list.filter(function (p) { return p.available && inCart.indexOf(p.id) < 0; }).slice(0, 3);
     sec.hidden = !show.length;
+    var addTxt = sec.dataset.addTxt || "Add", chooseTxt = sec.dataset.chooseTxt || "Choose an option";
     ul.innerHTML = show.map(function (p) {
-      var single = p.variants && p.variants.length === 1 && p.variants[0].available;
+      var vs = (p.variants || []).filter(function (v) { return v.available; });
+      var single = p.variants && p.variants.length === 1 && vs.length === 1;
+      var lbl = esc(addTxt) + ": " + esc(p.title);
+      var btn = single ? '<button type="button" class="up-add" data-up-add="' + vs[0].id + '" aria-label="' + lbl + '"><span aria-hidden="true">+</span></button>'
+                       : '<button type="button" class="up-add" data-up-pick aria-expanded="false" aria-label="' + lbl + '"><span aria-hidden="true">+</span></button>';
+      var pick = single ? "" : '<div class="up-pick"><select aria-label="' + esc(chooseTxt) + ": " + esc(p.title) + '">' + vs.map(function (v) { return '<option value="' + v.id + '">' + esc(v.title || (v.options || []).join(" / ")) + (v.price != null && v.price !== p.price ? " — " + money(v.price) : "") + "</option>"; }).join("") + '</select><button type="button" class="up-go" data-up-confirm>' + esc(addTxt) + "</button></div>";
       return '<li class="up"><a class="up-th" href="' + esc(p.url) + '"><span class="ph">' + (p.featured_image ? '<img src="' + esc(qimg(p.featured_image, 160)) + '" alt="" loading="lazy">' : "") + '</span></a>' +
-        '<div class="up-d"><a href="' + esc(p.url) + '">' + esc(p.title) + '</a><span>' + money(p.price) + "</span></div>" +
-        (single ? '<button type="button" class="up-add" data-up-add="' + p.variants[0].id + '" aria-label="' + esc(sec.dataset.addTxt || "Add") + ": " + esc(p.title) + '">' + esc(sec.dataset.addTxt || "Add") + "</button>"
-                : '<button type="button" class="up-add" data-up-quick="' + esc(p.handle) + '" aria-label="' + esc(sec.dataset.viewTxt || "View") + ": " + esc(p.title) + '">' + esc(sec.dataset.viewTxt || "View") + "</button>") + "</li>";
+        '<div class="up-d"><a href="' + esc(p.url) + '">' + esc(p.title) + '</a><span>' + money(p.price) + "</span></div>" + btn + pick + "</li>";
     }).join("");
   }
   function paintUpsell() {
@@ -83,7 +87,10 @@
       if (e.target === drawer || e.target.closest("[data-close-cart]")) return drawer.close();
       var ua = e.target.closest("[data-up-add]");
       if (ua) { ua.disabled = true; fetch("/cart/add.js", { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify({ id: ua.dataset.upAdd, quantity: 1 }) }).then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(loadCart).catch(function () { ua.disabled = false; }); return; }
-      var uq = e.target.closest("[data-up-quick]"); if (uq) { drawer.close(); openQuick(uq.dataset.upQuick); return; }
+      var up = e.target.closest("[data-up-pick]");
+      if (up) { var row = up.closest(".up"), o = !row.classList.contains("open"); row.classList.toggle("open", o); up.setAttribute("aria-expanded", String(o)); if (o) { var sel = $("select", row); if (sel) sel.focus(); } return; }
+      var uc = e.target.closest("[data-up-confirm]");
+      if (uc) { var sv = $("select", uc.closest(".up")); if (!sv || !sv.value) return; uc.disabled = true; fetch("/cart/add.js", { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify({ id: sv.value, quantity: 1 }) }).then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(loadCart).catch(function () { uc.disabled = false; }); return; }
       var b = e.target.closest("[data-line]"); if (!b) return;
       fetch("/cart/change.js", { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify({ id: b.dataset.line, quantity: parseInt(b.dataset.q, 10) }) })
         .then(function (r) { return r.json(); }).then(function (c) {

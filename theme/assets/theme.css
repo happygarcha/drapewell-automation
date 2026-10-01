@@ -532,3 +532,14 @@ dialog.cart { max-width: 100vw; }
 .line { grid-template-columns: 64px minmax(0, 1fr) auto; }
 .line .q { flex-wrap: wrap; }
 .line .pr { white-space: nowrap; }
+
+/* upsell: round "+" quick add, inline option picker */
+.up-add { width: 44px; min-width: 44px; height: 44px; padding: 0; display: grid; place-items: center; font-size: 26px; line-height: 1; }
+.up-add span { translate: 0 -1px; transition: rotate 0.4s var(--spring); }
+.up.open .up-add span { rotate: 45deg; }
+.up-pick { grid-column: 1 / -1; display: none; grid-template-columns: minmax(0, 1fr) auto; gap: var(--s2); }
+.up.open .up-pick { display: grid; animation: lineIn 0.4s var(--ease) both; }
+.up-pick select { min-height: 44px; min-width: 0; padding: 0 var(--s3); background: var(--surface-2); color: var(--text); border: 1px solid var(--line); border-radius: var(--r-sm); font: inherit; font-size: 16px; }
+.up-go { min-height: 44px; padding: 0 var(--s5); border-radius: 999px; border: 0; background: var(--neon-c); color: oklch(0.14 0.025 285); font: inherit; font-weight: 700; cursor: pointer; }
+.up-go:disabled { opacity: 0.5; }
+@media (prefers-reduced-motion: reduce) { .up-add span { transition: none; } .up.open .up-pick { animation: none; } }
