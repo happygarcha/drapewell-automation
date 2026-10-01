@@ -65,7 +65,7 @@
       var lbl = esc(addTxt) + ": " + esc(p.title);
       var btn = single ? '<button type="button" class="up-add" data-up-add="' + vs[0].id + '" aria-label="' + lbl + '"><span aria-hidden="true">+</span></button>'
                        : '<button type="button" class="up-add" data-up-pick aria-expanded="false" aria-label="' + lbl + '"><span aria-hidden="true">+</span></button>';
-      var pick = single ? "" : '<div class="up-pick"><select aria-label="' + esc(chooseTxt) + ": " + esc(p.title) + '">' + vs.map(function (v) { return '<option value="' + v.id + '">' + esc(v.title || (v.options || []).join(" / ")) + (v.price != null && v.price !== p.price ? " — " + money(v.price) : "") + "</option>"; }).join("") + '</select><button type="button" class="up-go" data-up-confirm>' + esc(addTxt) + "</button></div>";
+      var pick = single ? "" : '<div class="up-pick"><select aria-label="' + esc(chooseTxt) + ": " + esc(p.title) + '">' + vs.map(function (v) { var vi = v.featured_image && (v.featured_image.src || v.featured_image); return '<option value="' + v.id + '"' + (vi ? ' data-img="' + esc(qimg(vi, 160)) + '"' : "") + ">" + esc(v.title || (v.options || []).join(" / ")) + (v.price != null && v.price !== p.price ? " — " + money(v.price) : "") + "</option>"; }).join("") + '</select><button type="button" class="up-go" data-up-confirm>' + esc(addTxt) + "</button></div>";
       return '<li class="up"><a class="up-th" href="' + esc(p.url) + '"><span class="ph">' + (p.featured_image ? '<img src="' + esc(qimg(p.featured_image, 160)) + '" alt="" loading="lazy">' : "") + '</span></a>' +
         '<div class="up-d"><a href="' + esc(p.url) + '">' + esc(p.title) + '</a><span>' + money(p.price) + "</span></div>" + btn + pick + "</li>";
     }).join("");
@@ -100,6 +100,13 @@
         });
     });
   }
+  /* upsell: show the chosen variant's own picture in the row */
+  if (drawer) drawer.addEventListener("change", function (e) {
+    var sel = e.target.closest && e.target.closest(".up-pick select"); if (!sel) return;
+    var u = sel.selectedOptions[0] && sel.selectedOptions[0].dataset.img, im = $(".up-th img", sel.closest(".up")); if (!u || !im) return;
+    if (reduce || !im.animate) { im.src = u; return; }
+    var pre = new Image(); pre.onload = function () { im.animate([{ opacity: 1 }, { opacity: 0.15 }], { duration: 120, fill: "forwards" }).onfinish = function () { im.src = u; im.animate([{ opacity: 0.15 }, { opacity: 1 }], { duration: 260, fill: "forwards" }); }; }; pre.onerror = function () { im.src = u; }; pre.src = u;
+  });
   document.addEventListener("click", function (e) { var t = e.target.closest("[data-open-cart]"); if (t) { e.preventDefault(); openCart(); } });
   loadCart();
 
