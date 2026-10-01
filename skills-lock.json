@@ -67,6 +67,12 @@
       "skillPath": "skills/pick-ui-library/SKILL.md",
       "computedHash": "5d2a77bf0ecafbda85aa95fb49999b6d77945d9066ec83d970b62e5b388cd686"
     },
+    "pinterest-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/pinterest/SKILL.md",
+      "computedHash": "a48e150e874bc93a70a2a9470e6aa0fefc6fea5888c98479ea22280584385979"
+    },
     "prototype": {
       "source": "emilkowalski/skills",
       "sourceType": "github",
