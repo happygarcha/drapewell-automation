@@ -1,88 +1,85 @@
 ---
-name: Drapewell General Catalog
-description: A general-store mail-order catalog for a multi-niche shop. Cool paper pages on a desk, printer's red, dense numbered rows.
+name: Drapewell Lookbook
+description: A calm room lookbook for a home-textiles store. Cool white walls, ink slate type, one deep teal accent, large light-weight headlines.
 colors:
-  desk: "oklch(0.8 0.012 235)"
-  paper: "oklch(0.968 0.008 235)"
-  paper-shade: "oklch(0.92 0.01 235)"
-  ink: "oklch(0.2 0.02 40)"
-  ink-soft: "oklch(0.4 0.02 40)"
-  ink-on-desk: "oklch(0.25 0.02 40)"
-  red: "oklch(0.5 0.2 27)"
-  red-deep: "oklch(0.42 0.19 27)"
-  red-ink: "oklch(0.98 0.005 27)"
+  wall: "oklch(0.975 0.004 240)"
+  wall-deep: "oklch(0.945 0.006 240)"
+  ink: "oklch(0.24 0.025 250)"
+  ink-soft: "oklch(0.46 0.02 250)"
+  accent: "oklch(0.42 0.08 220)"
+  accent-deep: "oklch(0.34 0.08 220)"
+  accent-ink: "oklch(0.98 0.004 220)"
 typography:
-  ui:
+  display:
+    fontFamily: "Hanken Grotesk, system-ui, sans-serif"
+    fontSize: "clamp(2.8rem, 8vw, 6rem)"
+    fontWeight: 300
+    lineHeight: 0.96
+    letterSpacing: "-0.035em"
+  room-title:
+    fontFamily: "Hanken Grotesk, system-ui, sans-serif"
+    fontSize: "clamp(2.2rem, 5vw, 3.8rem)"
+    fontWeight: 300
+    lineHeight: 1
+    letterSpacing: "-0.03em"
+  body:
     fontFamily: "Hanken Grotesk, system-ui, sans-serif"
     fontSize: "1rem"
     fontWeight: 400
-    lineHeight: 1.5
-  catalog-headline:
-    fontFamily: "Barlow Condensed, Arial Narrow, sans-serif"
-    fontSize: "clamp(2.4rem, 6.5vw, 4.6rem)"
-    fontWeight: 600
-    lineHeight: 0.92
-    letterSpacing: "0.005em"
-  item-number:
-    fontFamily: "Barlow Condensed, Arial Narrow, sans-serif"
-    fontSize: "1.25rem"
-    fontWeight: 600
-    letterSpacing: "0.08em"
+    lineHeight: 1.55
+  wordmark:
+    fontFamily: "Hanken Grotesk, system-ui, sans-serif"
+    fontSize: "1.05rem"
+    fontWeight: 500
+    letterSpacing: "0.32em"
 rounded:
-  sm: "2px"
-  tab: "4px"
+  none: "0"
 spacing:
-  gutter: "clamp(14px, 4vw, 40px)"
-  page-padding: "20px, 40px from 700px"
+  gutter: "clamp(18px, 5vw, 64px)"
+  spread: "clamp(56px, 9vw, 128px)"
 components:
   button-primary:
-    backgroundColor: "{colors.red}"
-    textColor: "{colors.red-ink}"
-    rounded: "{rounded.sm}"
-    padding: "10px 18px"
+    backgroundColor: "{colors.ink}"
+    textColor: "{colors.wall}"
+    rounded: "{rounded.none}"
+    padding: "14px 26px"
   button-primary-hover:
-    backgroundColor: "{colors.red-deep}"
-  index-tab:
-    backgroundColor: "{colors.paper-shade}"
-    textColor: "{colors.ink}"
-    typography: "{typography.item-number}"
-    rounded: "{rounded.tab}"
-  index-tab-active:
-    backgroundColor: "{colors.red}"
-    textColor: "{colors.red-ink}"
+    backgroundColor: "{colors.accent-deep}"
+  plate:
+    backgroundColor: "{colors.wall-deep}"
+    rounded: "{rounded.none}"
 ---
 
-# Design System: Drapewell General Catalog
+# Design System: Drapewell Lookbook
 
 ## Overview
-One shop with menu-driven departments, laid out as a general-store mail-order catalog: dense numbered spreads, one department per page, order by item number. Cool pale-blue paper on a darker desk, warm near-black ink, a single printer's red. Line-drawn item illustrations, hairline rules, a fold shadow down the middle of each spread. Palette strategy: Restrained. Light scene: a catalog open on a table in daylight. No photos, no cream, no serif display.
+A calm room lookbook: each room is a spread with one large plate and a short, quiet list of what is in the room. Cool white walls, deep ink slate type, one deep teal accent for prices and the current room. Light-weight grotesque at large size, hairline rules, generous space, square corners. Palette strategy: Restrained. Light scene: a bright, quiet room in daylight. No cream, no serif display, no terracotta.
 
 ## Colors
-- **Desk** is the ground; **Paper** is the page. Both are tinted toward blue, never cream.
-- **Ink** is warm near-black; secondary text uses **ink-soft**.
-- **Red** is the only accent: item numbers, active tab, primary actions, the single spot in every drawing. **Red-deep** is for small red text and hover.
+- **Wall** is the page; **wall-deep** tints frames and thumbnails. Both lean blue, never cream.
+- **Ink** is the text and primary button; **ink-soft** is secondary text.
+- **Accent** (deep teal) marks prices and the active room only; **accent-deep** is hover.
 
 ## Typography
-Barlow Condensed (500/600, uppercase, tracked) for the masthead, index tabs, department headings, headlines and item numbers. Hanken Grotesk for item names, specs and controls. Body measure under 70ch.
+Hanken Grotesk only. Display and room titles at weight 300 with tight tracking; body at 400; wordmark at 500 uppercase with wide tracking. Tabular numerals throughout. Display never exceeds 6rem.
 
 ## Layout
-Max width 1280px, fluid gutter. A page is one paper sheet; a department is a two-column ruled list (single column under 900px) with a soft fold shadow between columns. Departments are index tabs on the page edge, generated from the store menu (menu.js mirrors the live Shopify Main menu; an in-page editor adds, removes and reorders items in a browser-local copy).
+Max width 1440px, fluid gutter. The home page is a hero, a numbered room index, then one spread per room (7:5 plate and text, alternating sides from 900px). Room pages are a four-up grid of 4:5 plates. Menu items drive the room links, spreads and index.
 
 ## Elevation & Depth
-The page sits on the desk with one long soft shadow (22px offset, 40px blur, negative spread). Items are flat, separated by hairline rules. No glow, no hard offset shadows.
+Flat. No shadows. Depth comes from space and hairline rules. Photographs sit in tinted frames, with a soft bottom scrim only under the caption.
 
 ## Shapes
-2px corners on buttons and inputs; tabs have 4px top corners. Illustrations are 2px round-cap strokes in ink with one filled red spot.
+Square corners everywhere. Plates are 4:5; thumbnails 56 by 70.
 
 ## Components
-- **Item row:** drawing, red item number, name (link), spec, "Price not set", action (Add to cart, or Choose [option] when options exist).
-- **Index tab:** paper-shade at rest; red and raised when active.
-- **Item-number lookup:** one field, one primary button.
-- **Option chips and quantity stepper:** square-cornered, ink border, red when selected.
-- **Page turn:** switching department lays the new page down with a 550ms left-to-right clip reveal; it respects reduced motion.
+- **Plate:** tinted frame (fallback when a photo is missing), image cover-cropped, caption on a bottom scrim, slow 2.5% zoom on hover.
+- **Room list:** thumbnail, name, price; hairline separated.
+- **Primary button:** ink fill, no radius; teal on hover.
+- **Reveal:** plates and text fade up once on scroll (900ms ease-out); respects reduced motion and stays visible without JavaScript.
 
 ## Do's and Don'ts
-- Do label all catalog content as sample; never invent prices, stock, ratings or shipping claims.
-- Do keep one red spot per drawing and one accent colour across the system.
-- Don't add photos or gradients; don't use cream grounds or serif display faces.
-- Don't make the departments identical tiles; they are ruled lists on a page.
+- Do use real catalog photos and prices from the store; never show SKUs, supplier ids or stock.
+- Do keep one accent colour and let space do the work.
+- Don't add shadows, gradients beyond the caption scrim, cream grounds or serif display faces.
+- Don't use product tiles as the page structure on the home page; rooms are spreads.

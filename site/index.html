@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Drapewell | Rooms, finished</title>
+<meta name="description" content="Shower curtains, rugs, wall art and seasonal décor, chosen to work together. Tracked shipping to Canada and the U.S.">
+<link rel="stylesheet" href="styles.css">
+<script src="menu.js"></script>
+<script src="catalog.js"></script>
+<script src="app.js" defer></script>
+</head>
+<body data-page="home">
+<header class="mast">
+  <a class="wordmark" href="index.html">Drapewell</a>
+  <nav class="mast-nav" id="mast-nav" aria-label="Main"></nav>
+  <div class="mast-end"><a href="https://drapewell.myshopify.com/cart">Cart</a></div>
+</header>
+
+<main>
+  <section class="hero" aria-labelledby="h1">
+    <div>
+      <h1 id="h1">Rooms, finished.</h1>
+      <p>Shower curtains, rugs, wall art and seasonal décor, chosen to work together. Tracked shipping to Canada and the U.S.</p>
+      <a class="cta" href="#room-bathroom">Step into a room</a>
+    </div>
+    <figure class="plate" id="hero-plate"></figure>
+  </section>
+
+  <nav class="index" aria-label="Rooms"><ol id="index"></ol></nav>
+
+  <div id="spreads"></div>
+
+</main>
+
+<footer class="foot">
+  <div class="foot-links" id="foot-links"></div>
+  <details class="editor">
+    <summary>Preview: edit the menu</summary>
+    <div class="editor-body">
+      <p>Preview only: changes stay in this browser. Your live menu is edited in Shopify admin under Online Store, Navigation.</p>
+      <ul class="menu-list" id="menu-list"></ul>
+      <form class="menu-add" id="menu-add" novalidate>
+        <label>New item title<input id="m-title" type="text" autocomplete="off" placeholder="e.g. Garden"></label>
+        <label>Collection handle (optional)<input id="m-handle" type="text" autocomplete="off" placeholder="garden"></label>
+        <button type="submit">Add to menu</button>
+        <button type="button" id="menu-reset">Reset to live menu</button>
+      </form>
+      <p id="menu-note" role="status" aria-live="polite"></p>
+    </div>
+  </details>
+  <small>Design mockup of the Drapewell storefront. Products and photos come from the live store; prices are in CAD and shown as the lowest variant price. Product links open the live store.</small>
+</footer>
+</body>
+</html>

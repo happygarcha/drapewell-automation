@@ -1,66 +1,54 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-01T16:27:38Z",
-  "title": "Design System: Drapewell General Catalog",
+  "generatedAt": "2026-10-01T16:46:03Z",
+  "title": "Design System: Drapewell Lookbook",
   "extensions": {
     "colorMeta": {
-      "red": {
+      "accent": {
         "role": "primary",
-        "displayName": "Printer's Red",
-        "canonical": "oklch(0.5 0.2 27)",
+        "displayName": "Deep Teal",
+        "canonical": "oklch(0.42 0.08 220)",
         "tonalRamp": [
-          "oklch(0.98 0.005 27)",
-          "oklch(0.5 0.2 27)",
-          "oklch(0.42 0.19 27)"
+          "oklch(0.98 0.004 220)",
+          "oklch(0.42 0.08 220)",
+          "oklch(0.34 0.08 220)"
         ]
       },
-      "paper": {
+      "wall": {
         "role": "neutral",
-        "displayName": "Cool Catalog Paper",
-        "canonical": "oklch(0.968 0.008 235)",
+        "displayName": "Cool Wall",
+        "canonical": "oklch(0.975 0.004 240)",
         "tonalRamp": [
-          "oklch(0.968 0.008 235)",
-          "oklch(0.92 0.01 235)",
-          "oklch(0.8 0.012 235)"
-        ]
-      },
-      "ink-on-desk": {
-        "role": "neutral",
-        "displayName": "Ink on Desk",
-        "canonical": "oklch(0.25 0.02 40)",
-        "tonalRamp": [
-          "oklch(0.4 0.02 40)",
-          "oklch(0.25 0.02 40)",
-          "oklch(0.2 0.02 40)"
+          "oklch(0.975 0.004 240)",
+          "oklch(0.945 0.006 240)",
+          "oklch(0.24 0.025 250)"
         ]
       }
     },
     "typographyMeta": {
-      "catalog-headline": {
-        "displayName": "Catalog headline",
-        "purpose": "Masthead, tabs, department headings."
+      "display": {
+        "displayName": "Display",
+        "purpose": "Home headline only."
       },
-      "item-number": {
-        "displayName": "Item number",
-        "purpose": "Item numbers and labels."
+      "room-title": {
+        "displayName": "Room title",
+        "purpose": "Spread and room-page titles."
       },
-      "ui": {
-        "displayName": "Interface",
-        "purpose": "Names, specs, controls."
+      "body": {
+        "displayName": "Body",
+        "purpose": "Everything else."
+      },
+      "wordmark": {
+        "displayName": "Wordmark",
+        "purpose": "Masthead."
       }
     },
-    "shadows": [
-      {
-        "name": "page",
-        "value": "0 22px 40px -26px oklch(0.2 0.03 235 / 0.6)",
-        "purpose": "The catalog page resting on the desk."
-      }
-    ],
+    "shadows": [],
     "motion": [
       {
-        "name": "page-turn",
-        "value": "550ms cubic-bezier(0.16, 1, 0.3, 1) clip-path reveal",
-        "purpose": "Switching department."
+        "name": "reveal",
+        "value": "900ms cubic-bezier(0.16, 1, 0.3, 1), 18px rise + fade",
+        "purpose": "Once per plate and text block as it scrolls in."
       }
     ],
     "breakpoints": [
@@ -70,7 +58,7 @@
       },
       {
         "name": "compact",
-        "value": "560px"
+        "value": "720px"
       }
     ]
   },
@@ -79,50 +67,50 @@
       "name": "Primary Button",
       "kind": "button",
       "refersTo": "button-primary",
-      "description": "Add to cart, Find item.",
-      "html": "<button class=\"ds-btn\">Add to cart</button>",
-      "css": ".ds-btn{font:600 1rem system-ui;background:oklch(0.5 0.2 27);color:oklch(0.98 0.005 27);border:1px solid oklch(0.5 0.2 27);border-radius:2px;padding:10px 18px;cursor:pointer}.ds-btn:hover{background:oklch(0.42 0.19 27)}.ds-btn:focus-visible{outline:2px solid oklch(0.5 0.2 27);outline-offset:3px}"
+      "description": "Step into a room.",
+      "html": "<a class=\"ds-cta\" href=\"#\">Step into a room</a>",
+      "css": ".ds-cta{display:inline-block;font:500 1rem system-ui;background:oklch(0.24 0.025 250);color:oklch(0.975 0.004 240);padding:14px 26px;text-decoration:none}.ds-cta:hover{background:oklch(0.34 0.08 220)}.ds-cta:focus-visible{outline:2px solid oklch(0.42 0.08 220);outline-offset:4px}"
     },
     {
-      "name": "Index Tab",
-      "kind": "chip",
-      "refersTo": "index-tab",
-      "description": "Department tab; red when active.",
-      "html": "<button class=\"ds-tab\">Kitchen &amp; home</button>",
-      "css": ".ds-tab{font:600 1.15rem 'Arial Narrow',sans-serif;letter-spacing:.06em;text-transform:uppercase;background:oklch(0.92 0.01 235);color:oklch(0.2 0.02 40);border:1px solid oklch(0.2 0.02 40 / .25);border-bottom:0;border-radius:4px 4px 0 0;padding:8px 16px 6px;cursor:pointer}.ds-tab:hover{background:oklch(0.95 0.01 235)}"
+      "name": "Room List Row",
+      "kind": "custom",
+      "refersTo": "plate",
+      "description": "Thumbnail, product name and price.",
+      "html": "<a class=\"ds-row\" href=\"#\"><span class=\"ds-th\"></span><span>Terrazzo shower curtain</span><span class=\"ds-p\">From $39.99</span></a>",
+      "css": ".ds-row{display:grid;grid-template-columns:56px 1fr auto;gap:16px;align-items:center;padding:12px 0;border-bottom:1px solid oklch(0.24 0.025 250 / .15);text-decoration:none;color:oklch(0.24 0.025 250);font:1rem system-ui}.ds-th{width:56px;height:70px;background:oklch(0.9 0.012 60)}.ds-p{color:oklch(0.34 0.08 220);font-weight:500}.ds-row:hover span:nth-child(2){text-decoration:underline}"
     },
     {
-      "name": "Item Number Field",
-      "kind": "input",
+      "name": "Nav Link",
+      "kind": "nav",
       "refersTo": "button-primary",
-      "description": "Order by item number.",
-      "html": "<input class=\"ds-in\" placeholder=\"e.g. K-118\">",
-      "css": ".ds-in{font:1.15rem system-ui;padding:10px 12px;background:oklch(0.968 0.008 235);color:oklch(0.2 0.02 40);border:1px solid oklch(0.2 0.02 40);border-radius:2px}.ds-in:focus-visible{outline:2px solid oklch(0.5 0.2 27);outline-offset:3px}"
+      "description": "Room link in the masthead; current room underlined in teal.",
+      "html": "<a class=\"ds-nav\" aria-current=\"page\" href=\"#\">Bathroom</a>",
+      "css": ".ds-nav{font:.95rem system-ui;color:oklch(0.24 0.025 250);text-decoration:none;padding:6px 0;border-bottom:1px solid oklch(0.42 0.08 220)}"
     }
   ],
   "narrative": {
-    "northStar": "The General-Store Catalog",
-    "overview": "One shop, four departments, laid out as numbered mail-order catalog spreads. Cool paper, warm ink, one printer red.",
+    "northStar": "The Quiet Room",
+    "overview": "Each room is a spread: one large plate, a short list. Cool walls, ink type, one teal accent.",
     "keyCharacteristics": [
-      "Index tabs per department",
-      "Numbered ruled rows",
-      "Line drawings with one red spot",
-      "Fold shadow down the spread"
+      "Light-weight display type",
+      "Alternating 7:5 spreads",
+      "Tinted photo frames",
+      "No shadows"
     ],
     "rules": [
       {
-        "name": "One Red Rule",
-        "body": "Red is the only accent: numbers, active tab, actions, and one spot per drawing.",
+        "name": "One Accent Rule",
+        "body": "Teal marks prices and the current room only.",
         "section": "colors"
       }
     ],
     "dos": [
-      "Do label all catalog content as sample",
-      "Do keep one accent colour"
+      "Do use real catalog photos and prices",
+      "Do let space do the work"
     ],
     "donts": [
-      "Don't use cream grounds or serif display faces",
-      "Don't invent prices, stock or ratings"
+      "Don't add shadows or cream grounds",
+      "Don't expose SKUs, supplier ids or stock"
     ]
   }
 }
