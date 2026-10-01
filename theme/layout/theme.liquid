@@ -29,7 +29,7 @@
         <input type="hidden" name="type" value="product">
       </form>
       <nav aria-label="{{ 'general.rooms' | t }}">
-        <h2 class="eyebrow">{{ 'general.rooms' | t }}</h2>
+        <p class="eyebrow">{{ 'general.rooms' | t }}</p>
         <ul class="rooms">
           {%- for link in linklists['main-menu'].links -%}
             {%- if link.type == 'collection_link' or link.links.size > 0 -%}

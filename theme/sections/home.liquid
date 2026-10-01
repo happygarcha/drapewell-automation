@@ -9,7 +9,7 @@
         <article class="slide{% if n == 0 %} is-active{% endif %}" data-hue="{{ n | times: 61 | plus: 340 | modulo: 360 }}" data-slide="{{ n }}"{% if n != 0 %} aria-hidden="true"{% endif %}>
           <div class="hero-copy stagger">
             <p class="eyebrow">{{ link.title }}</p>
-            <h1 class="hero-h">{{ product.title }}</h1>
+            {%- if n == 0 -%}<h1 class="hero-h">{{ product.title }}</h1>{%- else -%}<h2 class="hero-h">{{ product.title }}</h2>{%- endif -%}
             <p class="hero-sub">{{ 'home.discover' | t: room: link.title }}</p>
             <div class="hero-actions"><a class="btn primary" href="{{ product.url }}"{% if n != 0 %} tabindex="-1"{% endif %}>{{ 'home.open' | t }}</a></div>
           </div>

@@ -45,7 +45,7 @@
       var goal = parseInt(ship.dataset.free, 10) || 0, left = goal - cart.total_price;
       ship.hidden = !cart.items.length || !goal;
       $("[data-ship-t]", ship).textContent = left > 0 ? money(left) + " " + ship.dataset.leftTxt : ship.dataset.doneTxt;
-      $("[data-ship-i]", ship).style.width = Math.min(100, goal ? (cart.total_price / goal) * 100 : 0).toFixed(1) + "%";
+      $("[data-ship-i]", ship).style.setProperty("--p", Math.min(1, goal ? cart.total_price / goal : 0).toFixed(3));
       ship.classList.toggle("done", left <= 0);
     }
     var co = $("#cart-co", drawer); co.href = cart.items.length ? "/checkout" : "/cart"; co.setAttribute("aria-disabled", String(!cart.items.length));

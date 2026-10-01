@@ -468,7 +468,7 @@ dialog.quick[open]::backdrop { opacity: 1; }
 .ship { display: grid; gap: var(--s2); }
 .ship-t { margin: 0; font-size: 14px; line-height: 20px; font-weight: 600; }
 .ship-bar { height: 8px; border-radius: 8px; background: var(--surface-2); overflow: hidden; }
-.ship-bar i { display: block; height: 100%; width: 0; border-radius: inherit; background: linear-gradient(90deg, var(--neon-a), var(--neon-b), var(--neon-c)); transition: width 0.9s var(--spring); }
+.ship-bar i { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--neon-a), var(--neon-b), var(--neon-c)); transition: width 0.9s var(--spring); }
 .ship.done .ship-t { color: var(--neon-c); }
 
 /* ---------- v2: glass, grain, phone-native fixes ---------- */
@@ -487,3 +487,23 @@ input, select, textarea { font-size: 16px; }
 /* v2 fixes: dialogs may use the full phone width; sheet keeps the button in view */
 dialog.cart { max-width: 100vw; }
 @media (max-width: 759px) { .quick .ph.tall { aspect-ratio: auto; height: 32dvh; } }
+
+/* ---------- a11y + motion audit fixes ---------- */
+.qv { width: 44px; height: 44px; }
+.cell:focus-within .qv { opacity: 1; }
+.back-home { min-height: 44px; }
+.ctl { width: 44px; height: 44px; }
+.ship-bar i { width: 100%; transform: scaleX(var(--p, 0)); transform-origin: left; transition: transform 0.9s var(--spring); }
+@media (prefers-reduced-motion: reduce) {
+  @view-transition { navigation: none; }
+  .ship-bar i { transition: none; }
+  .card, .card .ph img, .back-home, .qv, .sub-wrap .sub a { transition-duration: 0.01ms; }
+  .cell .card { transform: none; }
+}
+@media (forced-colors: active) { .ship-bar { border: 1px solid CanvasText; } .ship-bar i { background: Highlight; } .qv, .back-home { border-color: CanvasText; } }
+.hero-dots button { width: 44px; height: 44px; }
+.hero-dots button::after { left: 10px; right: 10px; }
+.hero-dots button[aria-pressed="true"]::after { left: 6px; right: 6px; }
+@media (max-width: 480px) { .hero-dots button { width: 36px; } }
+.brand { display: inline-flex; align-items: center; min-height: 44px; }
+.site-foot .foot-links a { display: inline-flex; align-items: center; min-height: 44px; padding-block: 0; }
