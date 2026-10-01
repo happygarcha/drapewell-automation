@@ -1,6 +1,24 @@
 {
   "version": 1,
   "skills": {
+    "airbnb-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/airbnb/SKILL.md",
+      "computedHash": "859ec22b1c16cf8f03ca4902bfc37a7cab33ba2d0136e8acd4a4653a0c07843d"
+    },
+    "airtable-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/airtable/SKILL.md",
+      "computedHash": "e894469a1a27d7b5039d49fe55357c5f59cbaa116f9057027c6477f73f66a363"
+    },
+    "amplitude-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/amplitude/SKILL.md",
+      "computedHash": "d1679c2d71f4a048d5e3ee67e5fc42f08c1930ea33fbab56a65e478e2da961da"
+    },
     "animate": {
       "source": "emilkowalski/skills",
       "sourceType": "github",
@@ -19,17 +37,131 @@
       "skillPath": "skills/animation-vocabulary/SKILL.md",
       "computedHash": "0058036865ecbb864fd0c4132efcc62425355d6e99c7e6ef6a936742d62a5dea"
     },
+    "anthropic-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/anthropic/SKILL.md",
+      "computedHash": "4d18ed626a7f29b41f05a4e92ce86d4fc824e4621d4d6da4130ebb03d7d8699f"
+    },
     "apple-design": {
       "source": "emilkowalski/skills",
       "sourceType": "github",
       "skillPath": "skills/apple-design/SKILL.md",
       "computedHash": "0190417d092a0df447b000154e39733ea6d97efad6d3bec8a6ce3845aeb88914"
     },
+    "apple-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/apple/SKILL.md",
+      "computedHash": "cd8ebe89688d7fb36c838618d1a1847d645a721b231d2a82c746d4d22003b77c"
+    },
+    "arc-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/arc/SKILL.md",
+      "computedHash": "9a3149a1fe144317413a1347c66c2e4c8c05c5b1998939eec11272f08aa1f7de"
+    },
+    "ashby-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/ashby/SKILL.md",
+      "computedHash": "c443d299988d815634cf76d038b491be0acd5920e77b5ef28c4b693d40c1cd9d"
+    },
     "ask-sonner": {
       "source": "emilkowalski/skills",
       "sourceType": "github",
       "skillPath": "skills/ask-sonner/SKILL.md",
       "computedHash": "8bd257b845985f4b35b603b510a126604176521094af79c4b7347ffeb8a8f7ab"
+    },
+    "awwwards-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/awwwards/SKILL.md",
+      "computedHash": "4d10d8a5120bd962f862a57ad1581c499dad7ce568d64dd130ae0a5fe5e32881"
+    },
+    "bear-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/bear/SKILL.md",
+      "computedHash": "70afb6d9d511056737ac4eb508b4d456824ecd2989667a6317a3205e93816b5c"
+    },
+    "beehiiv-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/beehiiv/SKILL.md",
+      "computedHash": "1d754f9e723f62e78ebb748de9134f9d7e3408fa76572d990912cb42a5f60a08"
+    },
+    "brex-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/brex/SKILL.md",
+      "computedHash": "bdea29057c073aacdd6b665f86a518f4827e243b8cfc0f70ac67bc3e8c3b0209"
+    },
+    "cal-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/cal/SKILL.md",
+      "computedHash": "63b6666a3de5bbeeda5438fc8356d43c33aed53afe663d3de6072ff24767cb84"
+    },
+    "clerk-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/clerk/SKILL.md",
+      "computedHash": "e06a96b3373a171ce5853ac0a0320fae2e800d98c4880e0ae2267bf3624607d3"
+    },
+    "coda-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/coda/SKILL.md",
+      "computedHash": "bbde2a29cdbec60c38c8dec85df5d9bead4246ab7c5340606ed6fe8e6c1bb0fa"
+    },
+    "codeium-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/codeium/SKILL.md",
+      "computedHash": "7fe4c407ca39927222e104ff1b78159b7c8e8e2644ea9632789d2b89a219e9c9"
+    },
+    "convertkit-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/convertkit/SKILL.md",
+      "computedHash": "27de16fad4123c5851c091bea7ad0f7c456b7f0fede6edce264f3031e57b6566"
+    },
+    "convex-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/convex/SKILL.md",
+      "computedHash": "1294e439e0cc526f234821186d1ea11c431205ab857643a8accac14ebbf40bd3"
+    },
+    "copy-ai-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/copy-ai/SKILL.md",
+      "computedHash": "dc3cf09ffb97e1ba4ff3ea26fb385e349785b6b3df406f2253123965c78eecc4"
+    },
+    "craft-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/craft/SKILL.md",
+      "computedHash": "5dfc0cdaf9a6191217d926882fb0e46f2436db01fae6bbd63e1bf3aa705f5c69"
+    },
+    "deel-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/deel/SKILL.md",
+      "computedHash": "c0933c3b7d431a7ee912a8cec77086ffaef19264eb0e3429743aa5c648867642"
+    },
+    "descript-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/descript/SKILL.md",
+      "computedHash": "7ee1b3e9e69876db83b3bdbaaa75bd62e9eaecad777a926a018f9f25c64601cd"
+    },
+    "discord-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/discord/SKILL.md",
+      "computedHash": "9b8d4a7da1a6fea7361b820fe8ad51842462bf502a7d011749ac6e8582548ea4"
     },
     "dribbble-ui-skills": {
       "source": "ihlamury/design-skills",
@@ -43,11 +175,59 @@
       "skillPath": "skills/emil-design-eng/SKILL.md",
       "computedHash": "51f2537e04d15911b41d78e2de24c36a0e26d41beae15e82a954fe5496a5eda9"
     },
+    "figma-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/figma/SKILL.md",
+      "computedHash": "e8a1e5234a3a86b8843f6a38199fcaeb0bb3cff915de77a7aa1bb055f515e24a"
+    },
     "find-animation-opportunities": {
       "source": "emilkowalski/skills",
       "sourceType": "github",
       "skillPath": "skills/find-animation-opportunities/SKILL.md",
       "computedHash": "465d087c41768e4f14ed640dd049036009f613feb55baaa5831b68b33178f9d2"
+    },
+    "framer-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/framer/SKILL.md",
+      "computedHash": "435977afccf8443fabc511b8d12569493e652828eb473778c12cb07d42af69b8"
+    },
+    "front-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/front/SKILL.md",
+      "computedHash": "a100b5db5ac4fe893267dbf8089016af12ab1733de1a2655005890fb0abc50e5"
+    },
+    "ghost-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/ghost/SKILL.md",
+      "computedHash": "02517ed255f7871ed10658e254110d794e681568c2f7c3604ebbc60c9ec7ab44"
+    },
+    "github-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/github/SKILL.md",
+      "computedHash": "edc16127264973236e113e12b1083889ee54ef9898f4b8fd4c08f7947a7bf903"
+    },
+    "gumroad-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/gumroad/SKILL.md",
+      "computedHash": "2f6abd195e4dac2d9435b13d2e7553abf0b32616fd0e2bf9bea8d3d375f8c632"
+    },
+    "gusto-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/gusto/SKILL.md",
+      "computedHash": "ed481c90047855eb89479e079f62bbd3fe2f6fe864b5c15b2d985ccbba36e25a"
+    },
+    "hugging-face-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/hugging-face/SKILL.md",
+      "computedHash": "35949eadbb157bae0657d63928f0d00789f14a0288a3316dd04fe0d7b4d7e4a6"
     },
     "improve-animations": {
       "source": "emilkowalski/skills",
@@ -55,11 +235,149 @@
       "skillPath": "skills/improve-animations/SKILL.md",
       "computedHash": "524ea241e41d58bbdd8e288700fe24f5725e2a2f3ae7186ad7cebf9055058356"
     },
+    "intercom-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/intercom/SKILL.md",
+      "computedHash": "452c2f96d31f7a37084e35643161f990307e620ea4b9a9e2df413b7746a322b6"
+    },
+    "jasper-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/jasper/SKILL.md",
+      "computedHash": "a0cbe76b630ca242f90d19ef8a5b7dc1a2e3ade79e1f67e0ad380d3ee116824e"
+    },
+    "lattice-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/lattice/SKILL.md",
+      "computedHash": "0ea0f7093ff074cc407b6d89355f634f53ee6875aacc40753ab35aba5e6e1b9d"
+    },
+    "launchdarkly-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/launchdarkly/SKILL.md",
+      "computedHash": "a0534caaec36d172a61ceaf071354731cb706d8cd47fb30073bbe8c9c8dcd6dd"
+    },
+    "lemonsqueezy-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/lemonsqueezy/SKILL.md",
+      "computedHash": "c52d665e9d35b8dfaca6424500487b298cd117c9d7b05cfa88330c0dd550a313"
+    },
+    "linear-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/linear/SKILL.md",
+      "computedHash": "90c9a6ba781cd83c22943718259ef0bd8704c9de0e0a3e42ed2914322bc88c05"
+    },
+    "liveblocks-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/liveblocks/SKILL.md",
+      "computedHash": "79b11520ac2c290ecabad782347f7d74f0771d03d5c9ae6d7a92c45c2796afc7"
+    },
+    "loom-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/loom/SKILL.md",
+      "computedHash": "8d05b60d8cfa7dbb5698ce5a1518bf04b33b044efefb8b093a9f2416ec5a7fca"
+    },
+    "loops-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/loops/SKILL.md",
+      "computedHash": "f6319ebe24308d7ea4d21fd3948980b74ac5fdb9fd3d29ffafcd424d3ae498ab"
+    },
+    "mailchimp-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/mailchimp/SKILL.md",
+      "computedHash": "956be959f9d67a1c7aef36832672a55179a4a34b950d5d3de63d7dbf33a9ca37"
+    },
+    "matter-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/matter/SKILL.md",
+      "computedHash": "a6649b4467343fef2e1c80190c2a68fb255ba8186a88876292b34b3b96f98dd3"
+    },
+    "mem-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/mem/SKILL.md",
+      "computedHash": "d0d0b507b70fc472801e08f3fd5b8250913664812778860779d4b83a2a26eecb"
+    },
+    "mercury-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/mercury/SKILL.md",
+      "computedHash": "889c69cf529aa607355bde8b5a3971bb405dff9e9f55493206a0b9dbc32aaadd"
+    },
+    "miro-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/miro/SKILL.md",
+      "computedHash": "5349ef1ea9bbbaa66fbd4e8c12dc8ffbc905ad7078c0b0b71e1d1565e7860dd9"
+    },
+    "mixpanel-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/mixpanel/SKILL.md",
+      "computedHash": "72dbf677271125b6c49dfeb148bf41d478e557be6131b6fd977c08955a486532"
+    },
+    "mobbin-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/mobbin/SKILL.md",
+      "computedHash": "33ab5591d7d9cbc5efe4cfb0022e36905b8ad4ce1b26107bf054cd71e469e790"
+    },
     "mobile-native": {
       "source": "emilkowalski/skills",
       "sourceType": "github",
       "skillPath": "skills/mobile-native/SKILL.md",
       "computedHash": "f221cea36642168df6d3d6d7f236237cbf1ae669138ff7df07775674223d49ad"
+    },
+    "monzo-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/monzo/SKILL.md",
+      "computedHash": "32101a74d712379d95e0ae41db854cbf16ad5972e04dbe0b79c88615d76b0f08"
+    },
+    "n26-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/n26/SKILL.md",
+      "computedHash": "61de662188af18a1130265290dd7d2f3f3c73216547ac46bb9c2dc6408211c58"
+    },
+    "neon-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/neon/SKILL.md",
+      "computedHash": "f9cbed43d9317c42c54241d20ba5b2d4d0194aede93847f734ace209d6952aaf"
+    },
+    "notion-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/notion/SKILL.md",
+      "computedHash": "c5fd708f48ca93c87235621da3f28b49058365e9a36db7ee22b58bfdb27088f4"
+    },
+    "obsidian-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/obsidian/SKILL.md",
+      "computedHash": "0e3257f6669fb42507e1837f253052a9b5f5f47b91dc3e38bec935a7c2efa362"
+    },
+    "openai-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/openai/SKILL.md",
+      "computedHash": "3585e9ff0c39c164e08e8d43d842a1536c4adcf4be6f7de8c7695c2329aed8f1"
+    },
+    "paddle-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/paddle/SKILL.md",
+      "computedHash": "bb7f37f42b8d2c2ba7f957f11ffa874ab7ae417770980dda91871b8080461baa"
     },
     "pick-ui-library": {
       "source": "emilkowalski/skills",
@@ -73,17 +391,209 @@
       "skillPath": "skills/pinterest/SKILL.md",
       "computedHash": "a48e150e874bc93a70a2a9470e6aa0fefc6fea5888c98479ea22280584385979"
     },
+    "pitch-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/pitch/SKILL.md",
+      "computedHash": "614f06212567872508b493575dade2532a6f3e7377bf85aaa1e0de1bfd9b3f54"
+    },
+    "plaid-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/plaid/SKILL.md",
+      "computedHash": "5adf02aa936592f0350a7805945830639376ca6262c0544b55592c5df35f7047"
+    },
+    "planetscale-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/planetscale/SKILL.md",
+      "computedHash": "d5960f792bd58b3ecd70c6b68654535b726926638384f0efe22c894e297c42ab"
+    },
+    "posthog-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/posthog/SKILL.md",
+      "computedHash": "954da3674e4ffea0c1373cb74966579dbac1b126c413effe8c8ac14545c93457"
+    },
     "prototype": {
       "source": "emilkowalski/skills",
       "sourceType": "github",
       "skillPath": "skills/prototype/SKILL.md",
       "computedHash": "77be567d8c946608fdd15e61b62ab383cdf289a194dce2479828b7eda860d3ba"
     },
+    "railway-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/railway/SKILL.md",
+      "computedHash": "87e0f2d89d8c263c18bf7cfe00be3f1f705a3892986fce1614f37feadbe28ff8"
+    },
+    "ramp-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/ramp/SKILL.md",
+      "computedHash": "f0f44e251f592844b33a44131dbd6221e32a0235482a438c1a4ce259aa7a0d9c"
+    },
+    "raycast-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/raycast/SKILL.md",
+      "computedHash": "33790855e90af3634b71b2279ef4e6ba4fb9c405e8dc4351eec17d22c0c8d983"
+    },
+    "readwise-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/readwise/SKILL.md",
+      "computedHash": "2eed3a465b7f38f3e76f3af67dbb4a698e1f5a6e414b2f3a3f1b4335b068d85b"
+    },
+    "replit-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/replit/SKILL.md",
+      "computedHash": "3cdc1dceea8ed031611743d37eedd72b7290085cac852fda8e171a86def99bd9"
+    },
+    "resend-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/resend/SKILL.md",
+      "computedHash": "ff7d7164865fce29016874991e75b11349d6801015bbcd9f78375bc5801e035b"
+    },
+    "retool-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/retool/SKILL.md",
+      "computedHash": "74f5591987b74fb49a77cfe625afa71b124d6069e5ca141debbf0b9d53c20cd8"
+    },
     "review-animations": {
       "source": "emilkowalski/skills",
       "sourceType": "github",
       "skillPath": "skills/review-animations/SKILL.md",
       "computedHash": "b4e5f0f4fe3e2743c85bf7354108f48a0b9d502cb20ef5c4a9c195da91f93736"
+    },
+    "rippling-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/rippling/SKILL.md",
+      "computedHash": "31f7c26044854dd2fcd8dccb5aacdb2671a121e0c36d2947788216c0bfdf4bca"
+    },
+    "robinhood-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/robinhood/SKILL.md",
+      "computedHash": "cd8665b718d522206e6158214b8d62aafb44f19fc2dc0b9b51877307c8f97136"
+    },
+    "segment-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/segment/SKILL.md",
+      "computedHash": "db4b5df7dd4c2e1563569f1613dbab32b68c5099a1051693204cdf740d2b218a"
+    },
+    "shopify-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/shopify/SKILL.md",
+      "computedHash": "02df29aa979ddff9fbd73ead6ad24af02c04391b1af96076b97792c04500a5bf"
+    },
+    "shortcut-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/shortcut/SKILL.md",
+      "computedHash": "551040794bb705159d3ca4296c50ebbcbf563007f74eae06be97fdc11b58ca7d"
+    },
+    "slack-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/slack/SKILL.md",
+      "computedHash": "651b46bb5ed63b580034556cafc55b784a215a7ecfdcfd1f1674ae31041190b0"
+    },
+    "spotify-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/spotify/SKILL.md",
+      "computedHash": "0829bbe99ae018559d3fbc9984aa12a88d3caac59cb064939025040fef1f3b44"
+    },
+    "stripe-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/stripe/SKILL.md",
+      "computedHash": "8e65e006f937b7b00aabb57958a68b553acfa65b1d6f8d645b78ae7d44aab3aa"
+    },
+    "substack-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/substack/SKILL.md",
+      "computedHash": "84b79a10977670e874f15da21a7963cc816c0b41b1db345304af6c0413d3e8b8"
+    },
+    "supabase-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/supabase/SKILL.md",
+      "computedHash": "cdf5d2250d19f7913c4bdc00cc6a005796515e1bb6254fc63c90f0bce7f5b2d8"
+    },
+    "superhuman-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/superhuman/SKILL.md",
+      "computedHash": "71143cfc099663a38d1c62f26838a1f61d89bad3a1eebcc3ac3a2bfb05ec6e33"
+    },
+    "things-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/things/SKILL.md",
+      "computedHash": "a7be85bd36054e2c67e39fbc5adb646a2a246fd552397354f47f57a793daad27"
+    },
+    "ticktick-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/ticktick/SKILL.md",
+      "computedHash": "07c99181a7b4394ed9d48a7e578e6925e079fb8e27bc60ffad63b80817f040ad"
+    },
+    "tldraw-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/tldraw/SKILL.md",
+      "computedHash": "ad0c2b5fb8e6a40cf572c7976be2b205a8170aa73cd6356336e7c6d5a0d1a6dd"
+    },
+    "todoist-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/todoist/SKILL.md",
+      "computedHash": "417d6a92c716ca637cd7e2227e1c99ffc3bbf43bb826fd2fc047688c6cf98a23"
+    },
+    "upstash-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/upstash/SKILL.md",
+      "computedHash": "4adf485123fb46e9f96385738ca9bb28ccb84d6cfb874f55865c2ed8f5f07678"
+    },
+    "vercel-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/vercel/SKILL.md",
+      "computedHash": "34e0a886aa79d3084b6474984c520c1ba6eb201c67db157444054cc34a31cbb3"
+    },
+    "warp-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/warp/SKILL.md",
+      "computedHash": "ec3a1eab9da49c81e74b6fced762c95ebca57a9a1d331ef3fe17778cba2aff78"
+    },
+    "webflow-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/webflow/SKILL.md",
+      "computedHash": "9ef523b9df5806924c963f7bfaa4c83f2126efa7e7d8d4748e344f8b1024575c"
+    },
+    "weights-biases-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/weights-biases/SKILL.md",
+      "computedHash": "14f64692df3645ecfdee3ac204a523c9506dd1bb5e6048da233dfc937a13c037"
+    },
+    "wise-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "skillPath": "skills/wise/SKILL.md",
+      "computedHash": "d804fb559432b6c5d8565310763006ae7c92b767272cdafec2505ea66a3c2858"
     },
     "write-swift": {
       "source": "emilkowalski/skills",
