@@ -32,13 +32,41 @@
         <h2 class="eyebrow">{{ 'general.rooms' | t }}</h2>
         <ul class="rooms">
           {%- for link in linklists['main-menu'].links -%}
-            <li style="--k: {{ forloop.index0 }}">
-              <a href="{{ link.url }}"{% if link.active or link.child_active %} aria-current="page"{% endif %}>
-                <span>{{ link.title }}</span>
-              </a>
-            </li>
+            {%- if link.type == 'collection_link' or link.links.size > 0 -%}
+              {%- assign open = false -%}
+              {%- if link.active or link.child_active -%}{%- assign open = true -%}{%- endif -%}
+              <li class="room{% if link.links.size > 0 %} has-sub{% endif %}{% if open %} is-open{% endif %}" style="--k: {{ forloop.index0 }}">
+                <div class="room-row">
+                  <a href="{{ link.url }}"{% if link.active %} aria-current="page"{% endif %}><span>{{ link.title }}</span></a>
+                  {%- if link.links.size > 0 -%}
+                    <button type="button" class="sub-toggle" aria-expanded="{{ open }}" aria-controls="sub-{{ forloop.index }}" aria-label="{{ 'general.sections' | t }}: {{ link.title }}"><span aria-hidden="true"></span></button>
+                  {%- endif -%}
+                </div>
+                {%- if link.links.size > 0 -%}
+                  <div class="sub-wrap" id="sub-{{ forloop.index }}">
+                    <ul class="sub">
+                      {%- for child in link.links -%}
+                        <li><a href="{{ child.url }}"{% if child.active %} aria-current="page"{% endif %}>{{ child.title }}</a></li>
+                      {%- endfor -%}
+                    </ul>
+                  </div>
+                {%- endif -%}
+              </li>
+            {%- endif -%}
           {%- endfor -%}
         </ul>
+        {%- comment -%} Phones: the open room's sections as a second row of chips {%- endcomment -%}
+        {%- for link in linklists['main-menu'].links -%}
+          {%- if link.links.size > 0 -%}
+            {%- if link.active or link.child_active -%}
+              <ul class="subrow" aria-label="{{ link.title }}">
+                {%- for child in link.links -%}
+                  <li><a href="{{ child.url }}"{% if child.active %} aria-current="page"{% endif %}>{{ child.title }}</a></li>
+                {%- endfor -%}
+              </ul>
+            {%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
       </nav>
       <a class="cart-btn" href="{{ routes.cart_url }}" data-open-cart>{{ 'general.cart' | t }} <span data-cart-count>{{ cart.item_count }}</span></a>
     </aside>
@@ -49,6 +77,29 @@
 
     {% section 'side-feeds' %}
   </div>
+
+  <footer class="site-foot">
+    <nav aria-label="{{ 'general.footer_nav' | t }}">
+      <ul class="foot-links">
+        {%- assign seen = '' -%}
+        {%- for link in linklists['main-menu'].links -%}
+          {%- unless link.type == 'collection_link' or link.type == 'frontpage_link' or link.links.size > 0 -%}
+            {%- unless seen contains link.url -%}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+              {%- assign seen = seen | append: link.url | append: '|' -%}
+            {%- endunless -%}
+          {%- endunless -%}
+        {%- endfor -%}
+        {%- for link in linklists['footer'].links -%}
+          {%- unless seen contains link.url -%}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {%- assign seen = seen | append: link.url | append: '|' -%}
+          {%- endunless -%}
+        {%- endfor -%}
+      </ul>
+    </nav>
+    <p class="fine">&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}</p>
+  </footer>
 
   {% render 'cart-drawer' %}
   <script src="{{ 'theme.js' | asset_url }}" defer></script>

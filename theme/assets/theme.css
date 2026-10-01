@@ -363,3 +363,33 @@ dialog.cart[open] .line { animation: lineIn 0.6s var(--ease) both; animation-del
 .hero-h { overflow-wrap: anywhere; }
 @media (max-width: 480px) { .hero-dots button { width: 32px; } .hero-dots { gap: 0; } }
 body { overflow-x: clip; }
+
+/* ---------- room accordion (sub-items come from the Shopify menu) + footer ---------- */
+.rooms .room-row { display: flex; align-items: stretch; gap: var(--s1); }
+.rooms .room-row > a { flex: 1; min-width: 0; }
+.rooms .room-row > .sub-toggle { width: 44px; min-width: 44px; max-width: 44px; min-height: 44px; flex: none; display: inline-grid; place-items: center; padding: 0; background: transparent; border: 1px solid transparent; border-radius: var(--r-sm); color: var(--text-soft); cursor: pointer; transition: background-color 0.25s var(--ease), color 0.25s; }
+.rooms .room-row > .sub-toggle:hover { background: var(--surface); color: var(--text); }
+.rooms .sub-toggle span { width: 8px; height: 8px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; rotate: 45deg; translate: 0 -2px; transition: rotate 0.5s var(--spring), translate 0.5s var(--spring); }
+.room.is-open > .room-row .rooms .sub-toggle span { rotate: 225deg; translate: 0 2px; }
+.sub-wrap { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.5s var(--ease); }
+.room.is-open > .sub-wrap { grid-template-rows: 1fr; }
+.sub { list-style: none; margin: 0; padding: 0 0 0 var(--s4); min-height: 0; overflow: hidden; display: grid; gap: var(--s1); border-left: 1px solid var(--line); margin-left: var(--s4); }
+.room.is-open > .sub-wrap .sub { padding-block: var(--s1); }
+.sub a { display: block; padding: var(--s2) var(--s3); border-radius: var(--r-sm); color: var(--text-soft); text-decoration: none; font-size: 14px; line-height: 20px; transition: color 0.2s, background-color 0.2s, translate 0.4s var(--ease); }
+.sub a:hover { color: var(--text); background: var(--surface); translate: 4px 0; }
+.sub a[aria-current="page"] { color: var(--neon-c); font-weight: 600; }
+.subrow { display: none; list-style: none; margin: var(--s2) 0 0; padding: 0; }
+@media (max-width: 1099px) {
+  .rooms .room-row > .sub-toggle, .sub-wrap { display: none; }
+  .subrow { display: flex; gap: var(--s2); overflow-x: auto; scrollbar-width: none; padding-bottom: var(--s1); }
+  .subrow a { display: block; white-space: nowrap; padding: var(--s2) var(--s4); border-radius: 999px; background: var(--surface-2); border: 1px solid var(--line); color: var(--text-soft); text-decoration: none; font-size: 14px; line-height: 24px; min-height: 40px; }
+  .subrow a[aria-current="page"] { background: var(--neon-c); color: oklch(0.14 0.025 285); border-color: transparent; font-weight: 600; }
+}
+.site-foot { max-width: 1600px; margin: 0 auto; padding: var(--s8) var(--s4) var(--s12); display: grid; gap: var(--s4); border-top: 1px solid var(--line); }
+@media (min-width: 1100px) { .site-foot { padding-inline: var(--s6); } }
+.site-foot .foot-links { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--s2) var(--s6); }
+.site-foot .foot-links a { color: var(--text-soft); text-decoration: none; font-size: 14px; line-height: 24px; padding-block: var(--s2); display: inline-block; }
+.site-foot .foot-links a:hover { color: var(--text); text-decoration: underline; text-underline-offset: 4px; }
+@media (prefers-reduced-motion: reduce) { .sub-wrap, .sub-toggle span, .sub a { transition: none; } }
+
+@media (max-width: 1099px) { .rooms .room-row { display: block; } .rooms .room-row > a { flex: none; white-space: nowrap; } }

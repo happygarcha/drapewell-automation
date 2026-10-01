@@ -89,6 +89,15 @@
     sync();
   }
 
+
+  /* ---------- room accordion ---------- */
+  $$(".sub-toggle").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var li = btn.closest(".room"), open = !li.classList.contains("is-open");
+      li.classList.toggle("is-open", open); btn.setAttribute("aria-expanded", String(open));
+    });
+  });
+
   /* ---------- hero slideshow ---------- */
   var hero = $("[data-hero]");
   if (hero) {
