@@ -1,0 +1,14 @@
+<dialog class="cart" id="cart-drawer" aria-label="{{ 'general.cart' | t }}">
+  <div class="cart-in">
+    <header>
+      <h2>{{ 'general.cart' | t }}</h2>
+      <button type="button" class="x" data-close-cart aria-label="{{ 'general.close' | t }}">{{ 'general.close' | t }}</button>
+    </header>
+    <div class="cart-lines" id="cart-lines"></div>
+    <footer>
+      <div class="sub"><span>{{ 'general.subtotal' | t }}</span><span id="cart-sub">{{ cart.total_price | money }}</span></div>
+      <p class="fine">{{ 'general.shipping_note' | t }}</p>
+      <a class="co" id="cart-co" href="{{ routes.cart_url }}">{{ 'general.checkout' | t }}</a>
+    </footer>
+  </div>
+</dialog>

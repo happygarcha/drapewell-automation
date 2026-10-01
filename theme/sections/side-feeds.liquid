@@ -1,0 +1,43 @@
+<aside class="side right" aria-label="Feeds">
+  <section class="feedbox" aria-labelledby="fresh-h">
+    <h2 class="eyebrow" id="fresh-h">{{ section.settings.fresh_title }}</h2>
+    <ol class="mini">
+      {%- for product in collections.all.products limit: 4 -%}
+        <li><a class="mini-link" href="{{ product.url }}">
+          <figure class="ph">{% if product.featured_image %}{{ product.featured_image | image_url: width: 160 | image_tag: loading: 'lazy', alt: '' }}{% endif %}</figure>
+          <span><span class="t">{{ product.title | truncate: 44 }}</span><span class="p">{{ product.price | money }}</span></span>
+        </a></li>
+      {%- endfor -%}
+    </ol>
+  </section>
+
+  <section class="feedbox" aria-labelledby="deal-h">
+    <h2 class="eyebrow" id="deal-h">{{ section.settings.under_title }}</h2>
+    <ol class="mini">
+      {%- assign shown = 0 -%}
+      {%- assign limit_cents = section.settings.under_price | times: 100 -%}
+      {%- for product in collections.all.products limit: 60 -%}
+        {%- if product.price < limit_cents and shown < 4 -%}
+          {%- assign shown = shown | plus: 1 -%}
+          <li><a class="mini-link" href="{{ product.url }}">
+            <figure class="ph">{% if product.featured_image %}{{ product.featured_image | image_url: width: 160 | image_tag: loading: 'lazy', alt: '' }}{% endif %}</figure>
+            <span><span class="t">{{ product.title | truncate: 44 }}</span><span class="p">{{ product.price | money }}</span></span>
+          </a></li>
+        {%- endif -%}
+      {%- endfor -%}
+      {%- if shown == 0 -%}<li class="fine">{{ 'general.none_under' | t }}</li>{%- endif -%}
+    </ol>
+  </section>
+  <p class="fine">{{ 'general.shipping_note' | t }}</p>
+</aside>
+
+{% schema %}
+{
+  "name": "Side feeds",
+  "settings": [
+    { "type": "text", "id": "fresh_title", "label": "First feed title", "default": "Fresh picks" },
+    { "type": "text", "id": "under_title", "label": "Second feed title", "default": "Under $20" },
+    { "type": "number", "id": "under_price", "label": "Second feed: price limit", "default": 20 }
+  ]
+}
+{% endschema %}

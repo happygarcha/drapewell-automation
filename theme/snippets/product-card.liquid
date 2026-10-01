@@ -1,0 +1,12 @@
+{%- comment -%} Usage: render 'product-card', product: product, index: forloop.index0 {%- endcomment -%}
+<a class="card" href="{{ product.url }}" style="--i: {{ index | default: 0 | at_most: 14 }}">
+  {%- assign room = product.collections | first -%}
+  {%- if room != blank -%}<span class="chip">{{ room.title }}</span>{%- endif -%}
+  <figure class="ph">
+    {%- if product.featured_image -%}
+      {{ product.featured_image | image_url: width: 700 | image_tag: loading: 'lazy', widths: '300, 500, 700', sizes: '(min-width: 1500px) 20vw, (min-width: 760px) 24vw, 46vw', alt: product.featured_image.alt | default: product.title }}
+    {%- endif -%}
+  </figure>
+  <span class="t">{{ product.title }}</span>
+  <span class="p">{% render 'price', product: product %}</span>
+</a>

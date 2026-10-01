@@ -1,6 +1,7 @@
 name: Deploy storefront to GitHub Pages
 
 # Publishes discover/ (the dark dashboard) at the root and site/ (the calm lookbook) at /lookbook/.
+# Also packages theme/ as drapewell-discover-theme.zip (a Shopify theme you can import from this URL).
 # Static files only: no secrets, no Shopify or CJ calls from the workflow.
 on:
   push:
@@ -8,6 +9,7 @@ on:
     paths:
       - "site/**"
       - "discover/**"
+      - "theme/**"
   workflow_dispatch:
 
 permissions:
@@ -35,6 +37,7 @@ jobs:
           mkdir -p _site/lookbook
           cp -r discover/. _site/
           cp -r site/. _site/lookbook/
+          (cd theme && zip -qr ../_site/drapewell-discover-theme.zip . -x '.*')
           touch _site/.nojekyll
           echo "Files in _site:" && find _site -type f | wc -l
 

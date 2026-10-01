@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0b14">
+  <title>{{ page_title }}{% unless page_title contains shop.name %} | {{ shop.name }}{% endunless %}</title>
+  {% if page_description != blank %}<meta name="description" content="{{ page_description | escape }}">{% endif %}
+  <link rel="canonical" href="{{ canonical_url }}">
+  {{ 'inter.woff2' | asset_url | preload_tag: as: 'font', type: 'font/woff2', crossorigin: '' }}
+  <style>
+    @font-face { font-family: "Inter"; src: url("{{ 'inter.woff2' | asset_url }}") format("woff2"); font-weight: 100 900; font-display: swap; }
+    @font-face { font-family: "Archivo"; src: url("{{ 'archivo.woff2' | asset_url }}") format("woff2"); font-weight: 100 900; font-stretch: 62% 125%; font-display: swap; }
+  </style>
+  {{ 'theme.css' | asset_url | stylesheet_tag }}
+  {{ content_for_header }}
+</head>
+<body class="template-{{ request.page_type | handle }}">
+  <a class="skip" href="#main">{{ 'general.skip' | t }}</a>
+
+  <div class="shell">
+    <aside class="side left" aria-label="Browse">
+      <a class="brand" href="{{ routes.root_url }}">{{ shop.name }}</a>
+      <form class="search" action="{{ routes.search_url }}" method="get" role="search">
+        <label class="sr-only" for="q">{{ 'general.search' | t }}</label>
+        <input id="q" type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'general.search' | t }}" autocomplete="off">
+        <input type="hidden" name="type" value="product">
+      </form>
+      <nav aria-label="{{ 'general.rooms' | t }}">
+        <h2 class="eyebrow">{{ 'general.rooms' | t }}</h2>
+        <ul class="rooms">
+          {%- for link in linklists['main-menu'].links -%}
+            <li>
+              <a href="{{ link.url }}"{% if link.active or link.child_active %} aria-current="page"{% endif %}>
+                <span>{{ link.title }}</span>
+                {%- if link.type == 'collection_link' and link.object != blank -%}<span class="n">{{ link.object.products_count }}</span>{%- endif -%}
+              </a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </nav>
+      <a class="cart-btn" href="{{ routes.cart_url }}" data-open-cart>{{ 'general.cart' | t }} <span data-cart-count>{{ cart.item_count }}</span></a>
+    </aside>
+
+    <main id="main" class="main">
+      {{ content_for_layout }}
+    </main>
+
+    {% section 'side-feeds' %}
+  </div>
+
+  {% render 'cart-drawer' %}
+  <script src="{{ 'theme.js' | asset_url }}" defer></script>
+</body>
+</html>

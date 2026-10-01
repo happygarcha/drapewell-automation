@@ -1,0 +1,53 @@
+{
+  "general": {
+    "skip": "Skip to content",
+    "search": "Search products",
+    "rooms": "Rooms",
+    "cart": "Cart",
+    "close": "Close",
+    "subtotal": "Subtotal",
+    "checkout": "Checkout",
+    "from": "From",
+    "sold_out": "Sold out",
+    "pagination": "Pagination",
+    "none_under": "Nothing under this price right now.",
+    "shipping_note": "Shipping and taxes are calculated at checkout.",
+    "not_found": "Page not found",
+    "not_found_body": "That page does not exist, or it has moved."
+  },
+  "home": {
+    "featured": "Featured",
+    "discover": "Discover the {{ room }} edit: pieces chosen to work together.",
+    "open": "Open piece",
+    "prev": "Previous piece",
+    "next": "Next piece",
+    "pause": "Pause slideshow",
+    "play": "Play slideshow",
+    "show": "Show piece",
+    "pieces": "pieces"
+  },
+  "collection": {
+    "sort": "Sort products",
+    "empty": "No products in this room yet."
+  },
+  "product": {
+    "add": "Add to cart",
+    "quantity": "Quantity",
+    "fewer": "Fewer",
+    "more": "More",
+    "photo": "Photo",
+    "choose": "Choose",
+    "unavailable": "That combination is not available."
+  },
+  "cart": {
+    "empty": "Your cart is empty.",
+    "continue": "Back to the rooms",
+    "remove": "Remove",
+    "update": "Update cart"
+  },
+  "search": {
+    "results": "results for",
+    "none": "Nothing matches that search. Try another word.",
+    "prompt": "Type a product name in the search box."
+  }
+}

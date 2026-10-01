@@ -1,0 +1,65 @@
+{%- liquid
+  assign current = product.selected_or_first_available_variant
+-%}
+<nav class="crumbs fine" aria-label="Breadcrumb">
+  <a href="{{ routes.root_url }}">{{ shop.name }}</a>
+  {%- if collection != blank %} / <a href="{{ collection.url }}">{{ collection.title }}</a>{% endif %}
+</nav>
+
+<div class="pdp" data-product>
+  <div class="gallery">
+    <figure class="ph tall" data-main-image>
+      {%- if product.featured_media -%}{{ product.featured_media.preview_image | image_url: width: 1200 | image_tag: loading: 'eager', fetchpriority: 'high', widths: '600, 900, 1200', sizes: '(min-width: 900px) 46vw, 92vw', alt: product.featured_media.alt | default: product.title }}{%- endif -%}
+    </figure>
+    {%- if product.images.size > 1 -%}
+      <ul class="thumbs">
+        {%- for image in product.images limit: 8 -%}
+          <li><button type="button" data-thumb="{{ image | image_url: width: 1200 }}" aria-label="{{ 'product.photo' | t }} {{ forloop.index }}" aria-current="{% if forloop.first %}true{% else %}false{% endif %}">{{ image | image_url: width: 160 | image_tag: loading: 'lazy', alt: '' }}</button></li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+  </div>
+
+  <div class="buy">
+    <p class="eyebrow">{{ product.type | default: product.vendor }}</p>
+    <h1>{{ product.title }}</h1>
+    <p class="p-price" data-price>{{ current.price | money }}{% if current.compare_at_price > current.price %}<s class="was">{{ current.compare_at_price | money }}</s>{% endif %}</p>
+
+    {%- form 'product', product, id: 'product-form' -%}
+      <input type="hidden" name="id" value="{{ current.id }}" data-variant-id>
+      {%- unless product.has_only_default_variant -%}
+        {%- for option in product.options_with_values -%}
+          <fieldset class="opt-group">
+            <legend>{{ option.name }}</legend>
+            <div class="chips">
+              {%- for value in option.values -%}
+                <label class="chipb">
+                  <input type="radio" name="option-{{ option.position }}" value="{{ value | escape }}" data-option="{{ option.position }}"{% if option.selected_value == value %} checked{% endif %}>
+                  <span>{{ value }}</span>
+                </label>
+              {%- endfor -%}
+            </div>
+          </fieldset>
+        {%- endfor -%}
+      {%- endunless -%}
+      <div class="addrow">
+        <div class="stepper" role="group" aria-label="{{ 'product.quantity' | t }}">
+          <button type="button" data-qty-less aria-label="{{ 'product.fewer' | t }}">−</button>
+          <input class="sr-only" type="number" name="quantity" value="1" min="1" max="9" data-qty-input aria-label="{{ 'product.quantity' | t }}">
+          <output data-qty-out>1</output>
+          <button type="button" data-qty-more aria-label="{{ 'product.more' | t }}">+</button>
+        </div>
+        <button type="submit" class="btn primary" data-add{% unless current.available %} disabled{% endunless %}>{% if current.available %}{{ 'product.add' | t }}{% else %}{{ 'general.sold_out' | t }}{% endif %}</button>
+      </div>
+      <p class="msg" data-msg role="status" aria-live="polite"></p>
+    {%- endform -%}
+
+    {%- if product.description != blank -%}<div class="desc">{{ product.description }}</div>{%- endif -%}
+  </div>
+</div>
+
+<script type="application/json" data-product-json>{{ product | json }}</script>
+
+{% schema %}
+{ "name": "Product" }
+{% endschema %}
