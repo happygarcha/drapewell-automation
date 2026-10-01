@@ -11,6 +11,19 @@
     catch (e) { return "$" + (cents / 100).toFixed(2); }
   };
 
+  /* ---------- add-to-cart flight ---------- */
+  function fly(img) {
+    if (reduce || !img || !img.getBoundingClientRect || !img.src) return;
+    var target = $$("[data-open-cart]").filter(function (e) { var r = e.getBoundingClientRect(); return r.width && r.height && r.bottom > 0 && r.top < innerHeight; })[0];
+    if (!target || !img.animate) return;
+    var a = img.getBoundingClientRect(), b = target.getBoundingClientRect();
+    var c = document.createElement("img"); c.src = img.currentSrc || img.src; c.alt = ""; c.className = "fly";
+    c.style.cssText = "left:" + a.left + "px;top:" + a.top + "px;width:" + a.width + "px;height:" + a.height + "px";
+    document.body.appendChild(c);
+    var dx = b.left + b.width / 2 - (a.left + a.width / 2), dy = b.top + b.height / 2 - (a.top + a.height / 2);
+    c.animate([{ transform: "translate(0,0) scale(1)", opacity: 1, borderRadius: "16px" }, { transform: "translate(" + dx + "px," + dy + "px) scale(0.05)", opacity: 0.25, borderRadius: "50%" }], { duration: 650, easing: "cubic-bezier(0.5, 0, 0.2, 1)" }).onfinish = function () { c.remove(); };
+  }
+
   /* ---------- cart ---------- */
   var drawer = $("#cart-drawer");
   var cart = { items: [], total_price: 0, item_count: 0 };
@@ -27,10 +40,18 @@
         '<div class="pr">' + money(l.final_line_price) + "</div></div>";
     }).join("") : '<p class="empty">Your cart is empty.</p>';
     $("#cart-sub", drawer).textContent = money(cart.total_price);
+    var ship = $(".ship", drawer);
+    if (ship) {
+      var goal = parseInt(ship.dataset.free, 10) || 0, left = goal - cart.total_price;
+      ship.hidden = !cart.items.length || !goal;
+      $("[data-ship-t]", ship).textContent = left > 0 ? money(left) + " " + ship.dataset.leftTxt : ship.dataset.doneTxt;
+      $("[data-ship-i]", ship).style.width = Math.min(100, goal ? (cart.total_price / goal) * 100 : 0).toFixed(1) + "%";
+      ship.classList.toggle("done", left <= 0);
+    }
     var co = $("#cart-co", drawer); co.href = cart.items.length ? "/checkout" : "/cart"; co.setAttribute("aria-disabled", String(!cart.items.length));
   }
   function loadCart() { return fetch("/cart.js", { headers: { Accept: "application/json" } }).then(function (r) { return r.json(); }).then(function (c) { cart = c; paintCart(); return c; }).catch(function () {}); }
-  function openCart() { if (!drawer || !drawer.showModal) { location.href = "/cart"; return; } loadCart().then(function () { if (!drawer.open) drawer.showModal(); }); }
+  function openCart() {  /* also exposed for quick view */ if (!drawer || !drawer.showModal) { location.href = "/cart"; return; } loadCart().then(function () { if (!drawer.open) drawer.showModal(); }); }
   if (drawer) {
     drawer.addEventListener("click", function (e) {
       if (e.target === drawer || e.target.closest("[data-close-cart]")) return drawer.close();
@@ -77,7 +98,7 @@
       addBtn.disabled = true;
       fetch("/cart/add.js", { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify({ id: idInput.value, quantity: +qty.value }) })
         .then(function (r) { if (!r.ok) throw new Error("add failed"); return r.json(); })
-        .then(function () { addBtn.classList.add("is-ok"); addBtn.textContent = "Added ✓"; loadCart().then(function () { setTimeout(function () { addBtn.disabled = false; addBtn.classList.remove("is-ok"); addBtn.textContent = addLabel; openCart(); }, reduce ? 0 : 700); }); })
+        .then(function () { fly($("[data-main-image] img")); addBtn.classList.add("is-ok"); addBtn.textContent = "Added ✓"; loadCart().then(function () { setTimeout(function () { addBtn.disabled = false; addBtn.classList.remove("is-ok"); addBtn.textContent = addLabel; openCart(); }, reduce ? 0 : 700); }); })
         .catch(function () { addBtn.disabled = false; msg.textContent = "Could not add that to the cart. Try again."; });
     });
     $$("[data-thumb]").forEach(function (b) { b.addEventListener("click", function () {
@@ -86,8 +107,96 @@
     }); });
     var fig = $("[data-main-image]");
     if (fig && fine) fig.addEventListener("pointermove", function (e) { var r = fig.getBoundingClientRect(); fig.style.setProperty("--zx", (((e.clientX - r.left) / r.width) * 100).toFixed(0) + "%"); fig.style.setProperty("--zy", (((e.clientY - r.top) / r.height) * 100).toFixed(0) + "%"); }, { passive: true });
+    /* swipe the gallery on touch screens */
+    var thumbBtns = $$("[data-thumb]");
+    if (fig && thumbBtns.length > 1) {
+      var gx = 0, gy = 0;
+      fig.addEventListener("touchstart", function (e) { gx = e.touches[0].clientX; gy = e.touches[0].clientY; }, { passive: true });
+      fig.addEventListener("touchend", function (e) {
+        var t = e.changedTouches[0], dx = t.clientX - gx, dy = t.clientY - gy; if (Math.abs(dx) < 48 || Math.abs(dx) < Math.abs(dy) * 1.4) return;
+        var at = thumbBtns.findIndex(function (b) { return b.getAttribute("aria-current") === "true"; }), n = (at + (dx < 0 ? 1 : -1) + thumbBtns.length) % thumbBtns.length;
+        fig.style.setProperty("--dir", dx < 0 ? 1 : -1); thumbBtns[n].click();
+      }, { passive: true });
+    }
+
+    /* sticky add-to-cart bar (phones) */
+    var sticky = $("[data-sticky]"), sBtn = $("[data-sticky-btn]"), sPrice = $("[data-sticky-price]");
+    if (sticky && "IntersectionObserver" in window) {
+      document.body.appendChild(sticky); /* out of any transformed ancestor so position:fixed stays on the viewport */
+      var mirror = function () { sBtn.disabled = addBtn.disabled; sBtn.textContent = addBtn.textContent; sBtn.classList.toggle("is-ok", addBtn.classList.contains("is-ok")); sPrice.textContent = priceEl.textContent; };
+      new MutationObserver(mirror).observe(form, { subtree: true, childList: true, attributes: true, characterData: true });
+      new MutationObserver(mirror).observe(priceEl, { childList: true, characterData: true, subtree: true });
+      new IntersectionObserver(function (en) { var e = en[0]; sticky.hidden = e.isIntersecting || e.boundingClientRect.top > 0; mirror(); }).observe(addBtn);
+    }
+
+    /* recently viewed */
+    try {
+      var KEY = "dw-recent", list = JSON.parse(localStorage.getItem(KEY) || "[]");
+      if (!Array.isArray(list)) list = [];
+      var others = list.filter(function (x) { return x && x.h !== data.handle; });
+      var me = { h: data.handle, t: data.title, i: data.featured_image || "", p: data.price };
+      localStorage.setItem(KEY, JSON.stringify([me].concat(others).slice(0, 10)));
+      var row = $("[data-recent-row]"), box = $("[data-recent]");
+      if (row && others.length) {
+        row.innerHTML = others.slice(0, 6).map(function (x) {
+          return '<a class="mini-card" href="/products/' + esc(x.h) + '"><span class="ph">' + (x.i ? '<img src="' + esc(String(x.i).replace(/(\.[a-z]+)(\?|$)/i, "_300x$1$2")) + '" alt="" loading="lazy">' : "") + '</span><span class="t">' + esc(x.t) + '</span><span class="p">' + money(x.p) + "</span></a>";
+        }).join("");
+        box.hidden = false;
+      }
+    } catch (e) { /* storage blocked: skip */ }
     sync();
   }
+
+  /* ---------- quick view ---------- */
+  var quick = $("#quick"), qin = $("#quick-in");
+  function qimg(src, w) { return String(src || "").replace(/(\.[a-z]+)(\?|$)/i, "_" + w + "x$1$2"); }
+  function openQuick(handle) {
+    if (!quick || !quick.showModal) { location.href = "/products/" + handle; return; }
+    fetch("/products/" + encodeURIComponent(handle) + ".js", { headers: { Accept: "application/json" } }).then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (p) {
+      var names = (p.options || []).map(function (o) { return typeof o === "string" ? o : o.name; });
+      var opt = function (v) { return v.options || [v.option1, v.option2, v.option3].filter(Boolean); };
+      var plain = p.variants.length === 1 && names.length <= 1 && /default title/i.test(opt(p.variants[0])[0] || "");
+      var first = p.variants.filter(function (v) { return v.available; })[0] || p.variants[0], pick = opt(first).slice();
+      var groups = plain ? "" : names.map(function (n, gi) {
+        var vals = []; p.variants.forEach(function (v) { var x = opt(v)[gi]; if (vals.indexOf(x) < 0) vals.push(x); });
+        return '<fieldset class="opt-group"><legend>' + esc(n) + '</legend><div class="chips">' + vals.map(function (x) { return '<label class="chipb"><input type="radio" name="q-' + gi + '" value="' + esc(x) + '" data-qopt="' + gi + '"' + (pick[gi] === x ? " checked" : "") + "><span>" + esc(x) + "</span></label>"; }).join("") + "</div></fieldset>";
+      }).join("");
+      qin.innerHTML = '<div class="grab" data-grab aria-hidden="true"><i></i></div><button type="button" class="x" data-qclose aria-label="Close">Close</button>' +
+        '<figure class="ph tall"><img data-qimg alt="" src="' + esc(qimg(p.featured_image, 800)) + '"></figure>' +
+        '<div class="q-info"><h2>' + esc(p.title) + '</h2><p class="p-price" data-qprice></p>' + groups +
+        '<button type="button" class="btn primary" data-qadd></button><p class="msg" data-qmsg role="status" aria-live="polite"></p>' +
+        '<a class="more" href="' + esc(p.url) + '">View full details &rarr;</a></div>';
+      var cur;
+      var paint = function () {
+        cur = p.variants.filter(function (v) { return opt(v).every(function (x, i) { return x === pick[i]; }); })[0];
+        var b = $("[data-qadd]", qin), m = $("[data-qmsg]", qin);
+        $("[data-qprice]", qin).textContent = cur ? money(cur.price) : "";
+        b.disabled = !cur || !cur.available; b.textContent = !cur ? "Unavailable" : cur.available ? "Add to cart" : "Sold out"; m.textContent = cur ? "" : "That combination is not available.";
+        if (cur && cur.featured_image && cur.featured_image.src) { var im = $("[data-qimg]", qin), u = qimg(cur.featured_image.src, 800); if (im.getAttribute("src") !== u) im.src = u; }
+      };
+      qin.onchange = function (e) { if (e.target.matches("[data-qopt]")) { pick[+e.target.dataset.qopt] = e.target.value; paint(); } };
+      qin.onclick = function (e) {
+        if (e.target.closest("[data-qclose]")) return quick.close();
+        var b = e.target.closest("[data-qadd]"); if (!b || b.disabled) return;
+        b.disabled = true;
+        fetch("/cart/add.js", { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify({ id: cur.id, quantity: 1 }) })
+          .then(function (r) { if (!r.ok) throw 0; return r.json(); })
+          .then(function () { var im = $("[data-qimg]", qin); fly(im); quick.close(); loadCart().then(function () { setTimeout(openCart, reduce ? 0 : 650); }); })
+          .catch(function () { b.disabled = false; $("[data-qmsg]", qin).textContent = "Could not add that to the cart. Try again."; });
+      };
+      paint(); quick.showModal();
+    }).catch(function () { location.href = "/products/" + handle; });
+  }
+  if (quick) {
+    quick.addEventListener("click", function (e) { if (e.target === quick) quick.close(); });
+    /* drag the grab handle down to dismiss (phones) */
+    var qy = 0, qd = 0, dragging = false;
+    quick.addEventListener("pointerdown", function (e) { if (!e.target.closest("[data-grab]")) return; dragging = true; qy = e.clientY; qd = 0; quick.style.transition = "none"; quick.setPointerCapture && quick.setPointerCapture(e.pointerId); });
+    quick.addEventListener("pointermove", function (e) { if (!dragging) return; qd = Math.max(0, e.clientY - qy); quick.style.transform = "translateY(" + qd + "px)"; });
+    var endDrag = function () { if (!dragging) return; dragging = false; quick.style.transition = ""; quick.style.transform = ""; if (qd > 110) quick.close(); };
+    quick.addEventListener("pointerup", endDrag); quick.addEventListener("pointercancel", endDrag);
+  }
+  document.addEventListener("click", function (e) { var q = e.target.closest("[data-quick]"); if (q) { e.preventDefault(); openQuick(q.dataset.quick); } });
 
 
   /* ---------- room accordion ---------- */

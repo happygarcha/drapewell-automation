@@ -1,12 +1,20 @@
 {%- comment -%} Usage: render 'product-card', product: product, index: forloop.index0 {%- endcomment -%}
-<a class="card" href="{{ product.url }}" style="--i: {{ index | default: 0 | at_most: 14 }}">
-  {%- assign room = product.collections | first -%}
-  {%- if room != blank -%}<span class="chip">{{ room.title }}</span>{%- endif -%}
-  <figure class="ph" style="view-transition-name: pv-{{ product.handle }}">
-    {%- if product.featured_image -%}
-      {{ product.featured_image | image_url: width: 700 | image_tag: loading: 'lazy', widths: '300, 500, 700', sizes: '(min-width: 1500px) 20vw, (min-width: 760px) 24vw, 46vw', alt: product.featured_image.alt | default: product.title }}
-    {%- endif -%}
-  </figure>
-  <span class="t">{{ product.title }}</span>
-  <span class="p">{% render 'price', product: product %}</span>
-</a>
+<div class="cell">
+  <a class="card" href="{{ product.url }}" style="--i: {{ index | default: 0 | at_most: 14 }}">
+    {%- assign room = product.collections | first -%}
+    {%- if room != blank -%}<span class="chip">{{ room.title }}</span>{%- endif -%}
+    <figure class="ph" style="view-transition-name: pv-{{ product.handle }}">
+      {%- if product.featured_image -%}
+        {{ product.featured_image | image_url: width: 700 | image_tag: loading: 'lazy', widths: '300, 500, 700', sizes: '(min-width: 1500px) 20vw, (min-width: 760px) 24vw, 46vw', alt: product.featured_image.alt | default: product.title }}
+      {%- endif -%}
+      {%- if product.images.size > 1 -%}
+        {{ product.images[1] | image_url: width: 500 | image_tag: loading: 'lazy', class: 'alt', widths: '300, 500', sizes: '(min-width: 1500px) 20vw, (min-width: 760px) 24vw, 46vw', alt: '' }}
+      {%- endif -%}
+    </figure>
+    <span class="t">{{ product.title }}</span>
+    <span class="p">{% render 'price', product: product %}</span>
+  </a>
+  {%- if product.available -%}
+    <button type="button" class="qv" data-quick="{{ product.handle }}" aria-label="{{ 'general.quick_view' | t }}: {{ product.title | escape }}"><span aria-hidden="true">+</span></button>
+  {%- endif -%}
+</div>

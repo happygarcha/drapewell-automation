@@ -58,6 +58,16 @@
   </div>
 </div>
 
+<div class="sticky-atc" data-sticky hidden>
+  <div class="sa-t"><span class="sa-n">{{ product.title }}</span><span class="sa-p" data-sticky-price>{{ current.price | money }}</span></div>
+  <button type="submit" form="product-form" class="btn primary" data-sticky-btn{% unless current.available %} disabled{% endunless %}>{% if current.available %}{{ 'product.add' | t }}{% else %}{{ 'general.sold_out' | t }}{% endif %}</button>
+</div>
+
+<section class="recent" data-recent hidden aria-labelledby="recent-h">
+  <h2 id="recent-h" class="eyebrow">{{ 'general.recent' | t }}</h2>
+  <div class="recent-row" data-recent-row></div>
+</section>
+
 <script type="application/json" data-product-json>{{ product | json }}</script>
 
 {% schema %}
