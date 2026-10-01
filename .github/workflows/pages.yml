@@ -38,6 +38,7 @@ jobs:
           cp -r discover/. _site/
           cp -r site/. _site/lookbook/
           (cd theme && zip -qr ../_site/drapewell-discover-theme.zip . -x '.*')
+          cp -r theme _site/theme-src
           touch _site/.nojekyll
           echo "Files in _site:" && find _site -type f | wc -l
 

@@ -8,7 +8,7 @@
 
 <div class="pdp" data-product>
   <div class="gallery">
-    <figure class="ph tall" data-main-image>
+    <figure class="ph tall" data-main-image style="view-transition-name: pv-{{ product.handle }}">
       {%- if product.featured_media -%}{{ product.featured_media.preview_image | image_url: width: 1200 | image_tag: loading: 'eager', fetchpriority: 'high', widths: '600, 900, 1200', sizes: '(min-width: 900px) 46vw, 92vw', alt: product.featured_media.alt | default: product.title }}{%- endif -%}
     </figure>
     {%- if product.images.size > 1 -%}
@@ -20,7 +20,7 @@
     {%- endif -%}
   </div>
 
-  <div class="buy">
+  <div class="buy stagger">
     <p class="eyebrow">{{ product.type | default: product.vendor }}</p>
     <h1>{{ product.title }}</h1>
     <p class="p-price" data-price>{{ current.price | money }}{% if current.compare_at_price > current.price %}<s class="was">{{ current.compare_at_price | money }}</s>{% endif %}</p>
