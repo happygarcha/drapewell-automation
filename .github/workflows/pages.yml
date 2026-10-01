@@ -1,6 +1,6 @@
 name: Deploy storefront to GitHub Pages
 
-# Publishes site/ (the lookbook) at the root and discover/ (the dark dashboard) at /discover/.
+# Publishes discover/ (the dark dashboard) at the root and site/ (the calm lookbook) at /lookbook/.
 # Static files only: no secrets, no Shopify or CJ calls from the workflow.
 on:
   push:
@@ -32,9 +32,9 @@ jobs:
 
       - name: Assemble the site
         run: |
-          mkdir -p _site/discover
-          cp -r site/. _site/
-          cp -r discover/. _site/discover/
+          mkdir -p _site/lookbook
+          cp -r discover/. _site/
+          cp -r site/. _site/lookbook/
           touch _site/.nojekyll
           echo "Files in _site:" && find _site -type f | wc -l
 
