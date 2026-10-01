@@ -34,6 +34,8 @@ typography:
     letterSpacing: "0.32em"
 rounded:
   none: "0"
+  window: "999px"
+  circle: "50%"
 spacing:
   gutter: "clamp(18px, 5vw, 64px)"
   spread: "clamp(56px, 9vw, 128px)"
@@ -70,7 +72,7 @@ Max width 1440px, fluid gutter. The home page is a hero, a numbered room index, 
 Flat. No shadows. Depth comes from space and hairline rules. Photographs sit in tinted frames, with a soft bottom scrim only under the caption.
 
 ## Shapes
-Square corners everywhere. Plates are 4:5; thumbnails 56 by 70.
+Windows, not boxes: product photos are cut as arches (999px top corners), circles (50%) and pills (999px); buttons, inputs and rules stay square. A pleated fabric stand-in sits under every photo so a missing image still reads as cloth and light. Thumbnails are 56 by 70.
 
 ## Components
 - **Plate:** tinted frame (fallback when a photo is missing), image cover-cropped, caption on a bottom scrim, slow 2.5% zoom on hover.
@@ -79,7 +81,7 @@ Square corners everywhere. Plates are 4:5; thumbnails 56 by 70.
 - **Reveal:** plates and text fade up once on scroll (900ms ease-out); respects reduced motion and stays visible without JavaScript.
 
 ## Do's and Don'ts
-- Do use real catalog photos and prices from the store; never show SKUs, supplier ids or stock.
+- Do cut photos as windows (arch, circle, pill) and let large outline type pass behind them; never show SKUs, supplier ids or stock.
 - Do keep one accent colour and let space do the work.
 - Don't add shadows, gradients beyond the caption scrim, cream grounds or serif display faces.
 - Don't use product tiles as the page structure on the home page; rooms are spreads.

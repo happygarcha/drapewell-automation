@@ -27,6 +27,15 @@
         ],
         "createdAt": "2026-10-01T16:46:31.057Z",
         "reason": "Agent: storefront/ is the superseded catalog mockup that uses Barlow Condensed; DESIGN.md now documents the lookbook in site/, which does not"
+      },
+      {
+        "rule": "repeating-stripes-gradient",
+        "value": "*",
+        "files": [
+          "site/*.html"
+        ],
+        "createdAt": "2026-10-01T18:50:43.862Z",
+        "reason": "Agent: repeating gradients are the pleated fabric stand-in under each photo; cloth is the product"
       }
     ]
   }

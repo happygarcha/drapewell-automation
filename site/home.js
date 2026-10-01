@@ -80,12 +80,14 @@ void main(){
       const slot = ["a", "b", "c"];
       const el = document.createElement("div");
       el.className = "scene"; el.dataset.i = i; el.setAttribute("aria-hidden", "true");
-      el.innerHTML = `<h2 class="s-title">${words}</h2>
+      el.innerHTML = `<div class="s-ghost" aria-hidden="true">${esc(r.title)}</div><h2 class="s-title">${words}</h2>
         <p class="s-line">${esc((window.DW_ROOM_LINES || {})[r.handle] || "New in the store.")}</p>
         <a class="s-more" href="room.html?room=${encodeURIComponent(r.handle)}" tabindex="-1">See all ${products(r.handle).length}</a>
         ${ps.map((p, k) => `<a class="s-plate ${slot[k]}" href="product.html?handle=${encodeURIComponent(p.handle)}" tabindex="-1" style="--tint:${p.tint};view-transition-name:pv-${esc(p.handle)}"><img src="${p.images[0]}${p.images[0].includes("?") ? "&" : "?"}width=${k ? 700 : 1100}" alt="" loading="lazy" decoding="async"><span class="cap"><span>${esc(p.name)}</span><b>${p.variants.length > 1 ? "From " : ""}$${p.price.toFixed(2)}</b></span></a>`).join("")}`;
       stage.appendChild(el);
     });
+    const strip = $("#strip");
+    if (strip) { const word = withItems.map((r) => `<span>${esc(r.title)}</span>`).join(""); strip.innerHTML = word + word + word + word; }
     storyEl.style.height = `calc(${n} * 85svh + 100svh)`;
     scenes = [...stage.querySelectorAll(".scene")];
     active = -1; dirty = true;
@@ -109,8 +111,14 @@ void main(){
     if (curtain) root.classList.add("gl");
   }
 
+  let lastY = scrollY, skew = 0;
   function measure() {
     const vh = innerHeight;
+    const strip = $("#strip");
+    if (strip && root.classList.contains("motion")) {
+      const dy = scrollY - lastY; lastY = scrollY; skew += (clamp(dy * 0.12, -9, 9) - skew) * 0.25;
+      const w = strip.scrollWidth / 4; strip.style.transform = `translateX(${(-(scrollY * 0.45) % w).toFixed(1)}px) skewX(${(-skew).toFixed(2)}deg)`;
+    }
     if (hero && root.classList.contains("gl")) {
       const r = hero.getBoundingClientRect(); const p = clamp(-r.top / Math.max(1, r.height - vh));
       openT = ease(clamp(p * 1.18));
@@ -138,7 +146,23 @@ void main(){
 
   addEventListener("scroll", () => { measure(); kick(); }, { passive: true });
   addEventListener("resize", () => { measure(); kick(); });
-  addEventListener("pointermove", (e) => { mxT = e.clientX / innerWidth; myT = e.clientY / innerHeight; kick(); }, { passive: true });
+  addEventListener("pointermove", (e) => {
+    mxT = e.clientX / innerWidth; myT = e.clientY / innerHeight; kick();
+    if (stage) { stage.style.setProperty("--mx", `${(mxT * 100).toFixed(1)}%`); stage.style.setProperty("--my", `${(myT * 100).toFixed(1)}%`); }
+  }, { passive: true });
+  /* cloth ripple on product photos: an SVG displacement filter that eases in on hover */
+  const turb = $("#rip-turb"), dmap = $("#rip-map");
+  let rip = { el: null, v: 0, to: 0, raf: 0 };
+  function ripLoop(now) {
+    rip.v += (rip.to - rip.v) * 0.12;
+    if (dmap) { dmap.setAttribute("scale", rip.v.toFixed(2)); turb.setAttribute("baseFrequency", `${(0.004 + Math.sin(now / 900) * 0.0008).toFixed(5)} ${(0.012 + Math.cos(now / 1100) * 0.002).toFixed(5)}`); }
+    if (rip.to === 0 && rip.v < 0.3) { if (rip.el) rip.el.style.filter = ""; rip.el = null; rip.raf = 0; return; }
+    rip.raf = requestAnimationFrame(ripLoop);
+  }
+  if (fine && !reduce && dmap) {
+    document.addEventListener("pointerover", (e) => { const pl = e.target.closest && e.target.closest(".s-plate"); if (!pl) return; const im = pl.querySelector("img"); if (rip.el && rip.el !== im) rip.el.style.filter = ""; rip.el = im; im.style.filter = "url(#ripple)"; rip.to = 22; if (!rip.raf) rip.raf = requestAnimationFrame(ripLoop); });
+    document.addEventListener("pointerout", (e) => { const pl = e.target.closest && e.target.closest(".s-plate"); if (pl && !pl.contains(e.relatedTarget)) { rip.to = 0; if (!rip.raf) rip.raf = requestAnimationFrame(ripLoop); } });
+  }
   document.addEventListener("visibilitychange", () => { if (!document.hidden) kick(); });
 
   /* rail clicks scroll to the room */

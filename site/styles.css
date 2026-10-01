@@ -320,3 +320,50 @@ dialog.cart[open]::backdrop { opacity: 1; }
   html.gl .hero-copy > *, html.gl .cue::after { animation: none; }
   dialog.cart, dialog.cart::backdrop { transition: none; }
 }
+
+/* ---------- beyond boxes: windows, cloth, kinetic type ---------- */
+/* a fabric stand-in sits under every photo, so a missing photo still reads as cloth and light */
+.plate, .s-plate, .thumb {
+  background-color: var(--tint, var(--wall-deep));
+  background-image:
+    repeating-linear-gradient(90deg, oklch(1 0 0 / 0.26) 0 2px, transparent 2px 24px),
+    radial-gradient(120% 90% at 28% 8%, oklch(1 0 0 / 0.55), transparent 62%),
+    linear-gradient(180deg, transparent 55%, oklch(0.3 0.03 250 / 0.14));
+}
+/* window shapes: arch, circle, pill */
+.hero-reveal .plate, .gallery .plate { border-radius: 999px 999px 0 0; }
+html.gl .hero-reveal .plate { aspect-ratio: 4 / 5.4; }
+.s-plate.a { border-radius: 999px 999px 0 0; }
+.s-plate.b { aspect-ratio: 1; border-radius: 50%; }
+.s-plate.c { aspect-ratio: 3 / 5; border-radius: 999px; }
+.s-plate.b .cap { justify-content: center; padding: 30px 10px 22px; }
+.s-plate.b .cap span { display: none; }
+.s-plate.c .cap { padding: 40px 12px 22px; flex-direction: column; align-items: center; text-align: center; gap: 2px; }
+.s-plate.a .cap { padding-bottom: 14px; }
+.grid .card:nth-child(3n + 1) .plate { border-radius: 999px 999px 0 0; }
+.grid .card:nth-child(3n + 3) .plate { border-radius: 999px; aspect-ratio: 4 / 5; }
+@media (min-width: 700px) { .grid .card:nth-child(even) { margin-top: 56px; } }
+
+.s-ghost { position: absolute; z-index: 0; left: 13vw; top: 46%; margin: 0; white-space: nowrap; pointer-events: none; user-select: none;
+  font-weight: 200; font-size: clamp(7rem, 24vw, 21rem); line-height: 0.8; letter-spacing: -0.05em; color: transparent;
+  -webkit-text-stroke: 1.5px oklch(0.24 0.025 250 / 0.16); opacity: 0; translate: calc((var(--local, 0.5) - 0.5) * -16vw) -50%; transition: opacity 1.4s var(--ease-out); }
+.scene.on .s-ghost { opacity: 1; }
+.s-title, .s-line, .s-more { position: relative; z-index: 2; }
+.s-plate { z-index: 1; }
+
+.story-pin::before { content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background: radial-gradient(540px circle at var(--mx, 72%) var(--my, 28%), oklch(1 0 0 / 0.6), transparent 62%); }
+.scene, .rail { z-index: 2; }
+
+.strip { overflow: hidden; padding: clamp(28px, 5vw, 64px) 0; border-block: 1px solid var(--rule); }
+.strip-track { display: flex; gap: 0; width: max-content; will-change: transform; }
+.strip-track span { font-weight: 200; font-size: clamp(3rem, 9vw, 7rem); line-height: 1; letter-spacing: -0.04em; white-space: nowrap; padding-right: 0.6em; color: transparent; -webkit-text-stroke: 1.2px var(--ink); }
+.strip-track span:nth-child(even) { color: var(--ink); -webkit-text-stroke: 0; }
+html:not(.motion) .strip { display: none; }
+.s-plate img { transition: filter 0.6s var(--ease-out); }
+@media (max-width: 899px) {
+  .s-ghost { font-size: 34vw; top: 38%; }
+  .s-plate.b { width: min(30vw, 24svh); }
+  .grid .card:nth-child(even) { margin-top: 0; }
+}
+@media (prefers-reduced-motion: reduce) { .s-ghost { translate: 0 -50%; } }
