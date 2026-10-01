@@ -33,7 +33,8 @@ Approval-gated automation: nothing acts on Shopify or CJ Dropship without explic
 
 - Initial scope is a manual Google Sheets Workflow Runs test only; no Shopify or CJ calls yet.
 - Must stay no-additional-cost.
-- Undecided: which niches/categories the store covers; whether the shopper storefront is Shopify-themed or a separate site; how the operator approval UI is hosted.
+- Niches (confirmed): home textiles and decor (including drapes), kitchen and home, gadgets and accessories, fashion and lifestyle. Catalog breadth and exact categories are still open.
+- Undecided: whether the shopper storefront is Shopify-themed or a separate site; how the operator approval UI is hosted.
 
 ## Brand Commitments
 

@@ -1,89 +1,88 @@
 ---
-name: Drapewell Storefront
-description: A mill sample counter for ready-made drapes. Swatch cards on a cool grey counter, indigo hang tags, notched size strips.
+name: Drapewell General Catalog
+description: A general-store mail-order catalog for a multi-niche shop. Cool paper pages on a desk, printer's red, dense numbered rows.
 colors:
-  counter: "oklch(0.83 0.012 255)"
-  counter-deep: "oklch(0.77 0.014 255)"
-  card: "oklch(0.975 0.006 255)"
-  card-edge: "oklch(0.88 0.01 255)"
-  ink: "oklch(0.2 0.03 265)"
-  ink-soft: "oklch(0.38 0.03 265)"
-  indigo: "oklch(0.4 0.16 268)"
-  indigo-deep: "oklch(0.33 0.15 268)"
-  indigo-ink: "oklch(0.98 0.005 268)"
+  desk: "oklch(0.8 0.012 235)"
+  paper: "oklch(0.968 0.008 235)"
+  paper-shade: "oklch(0.92 0.01 235)"
+  ink: "oklch(0.2 0.02 40)"
+  ink-soft: "oklch(0.4 0.02 40)"
+  ink-on-desk: "oklch(0.25 0.02 40)"
+  red: "oklch(0.5 0.2 27)"
+  red-deep: "oklch(0.42 0.19 27)"
+  red-ink: "oklch(0.98 0.005 27)"
 typography:
   ui:
     fontFamily: "Hanken Grotesk, system-ui, sans-serif"
     fontSize: "1rem"
     fontWeight: 400
     lineHeight: 1.5
-  headline:
-    fontFamily: "Hanken Grotesk, system-ui, sans-serif"
-    fontSize: "clamp(2.1rem, 6vw, 4.4rem)"
-    fontWeight: 700
-    lineHeight: 1
-    letterSpacing: "-0.03em"
-  tag:
+  catalog-headline:
     fontFamily: "Barlow Condensed, Arial Narrow, sans-serif"
-    fontSize: "1.45rem"
+    fontSize: "clamp(2.4rem, 6.5vw, 4.6rem)"
     fontWeight: 600
-    lineHeight: 1
-    letterSpacing: "0.05em"
+    lineHeight: 0.92
+    letterSpacing: "0.005em"
+  item-number:
+    fontFamily: "Barlow Condensed, Arial Narrow, sans-serif"
+    fontSize: "1.25rem"
+    fontWeight: 600
+    letterSpacing: "0.08em"
 rounded:
   sm: "2px"
-  md: "3px"
+  tab: "4px"
 spacing:
-  gutter: "clamp(16px, 4vw, 40px)"
-  card-gap: "28px 24px"
+  gutter: "clamp(14px, 4vw, 40px)"
+  page-padding: "20px, 40px from 700px"
 components:
   button-primary:
-    backgroundColor: "{colors.indigo}"
-    textColor: "{colors.indigo-ink}"
-    rounded: "{rounded.md}"
-    padding: "11px 20px"
+    backgroundColor: "{colors.red}"
+    textColor: "{colors.red-ink}"
+    rounded: "{rounded.sm}"
+    padding: "10px 18px"
   button-primary-hover:
-    backgroundColor: "{colors.indigo-deep}"
-  swatch-card:
-    backgroundColor: "{colors.card}"
-    rounded: "{rounded.md}"
-    padding: "12px"
-  hang-tag:
-    backgroundColor: "{colors.indigo}"
-    textColor: "{colors.indigo-ink}"
-    typography: "{typography.tag}"
+    backgroundColor: "{colors.red-deep}"
+  index-tab:
+    backgroundColor: "{colors.paper-shade}"
+    textColor: "{colors.ink}"
+    typography: "{typography.item-number}"
+    rounded: "{rounded.tab}"
+  index-tab-active:
+    backgroundColor: "{colors.red}"
+    textColor: "{colors.red-ink}"
 ---
 
-# Design System: Drapewell Storefront
+# Design System: Drapewell General Catalog
 
 ## Overview
-Shopping at a mill sample counter. Drapes are physical swatch cards laid on a cool mill-grey counter; you pull two or three to compare and read sizes off the notches. The surface is flat print: soft offset shadows, pinked swatch edges, punched tag holes. It refuses the photo-title-price product grid. Palette strategy: Restrained, with one saturated indigo carrying tags, lit notches and the primary action. Light scene: a daytime counter by a window.
+One shop, four departments, laid out as a general-store mail-order catalog: dense numbered spreads, one department per page, order by item number. Cool pale-blue paper on a darker desk, warm near-black ink, a single printer's red. Line-drawn item illustrations, hairline rules, a fold shadow down the middle of each spread. Palette strategy: Restrained. Light scene: a catalog open on a table in daylight. No photos, no cream, no serif display.
 
 ## Colors
-- **Counter** and **counter-deep** are the cool grey ground. **Card** is bleached white tinted toward indigo, never cream.
-- **Indigo** is the only accent: hang tags, lit notches, the primary button, focus ring. Fabric colours (the swatches) belong to products, not the system.
-- Secondary text is tinted toward the indigo hue (`ink-soft`), never neutral grey.
+- **Desk** is the ground; **Paper** is the page. Both are tinted toward blue, never cream.
+- **Ink** is warm near-black; secondary text uses **ink-soft**.
+- **Red** is the only accent: item numbers, active tab, primary actions, the single spot in every drawing. **Red-deep** is for small red text and hover.
 
 ## Typography
-Hanken Grotesk for the interface; Barlow Condensed (500/600, uppercase, tracked) only for hang-tag lettering, notch numerals and row labels. No serif display. Body measure stays under 70ch; headline uses balanced wrapping.
+Barlow Condensed (500/600, uppercase, tracked) for the masthead, index tabs, department headings, headlines and item numbers. Hanken Grotesk for item names, specs and controls. Body measure under 70ch.
 
 ## Layout
-Max width 1280px with a fluid gutter. The collection is an auto-fill grid of cards at a 250px minimum, deliberately staggered by differing swatch heights so it reads as laid-out cards, not a table. The compare sheet is a fixed bottom sheet.
+Max width 1280px, fluid gutter. A page is one paper sheet; a department is a two-column ruled list (single column under 900px) with a soft fold shadow between columns. Departments switch via index tabs on the page edge.
 
 ## Elevation & Depth
-Cards: 10px blur, strongly negative spread, low alpha, plus a 1px inner highlight. Hover lifts 3px. Never a zero-blur block shadow, never a glow.
+The page sits on the desk with one long soft shadow (22px offset, 40px blur, negative spread). Items are flat, separated by hairline rules. No glow, no hard offset shadows.
 
 ## Shapes
-2-3px corners. Swatches have a zigzag pinked bottom edge (conic-gradient mask). Tags are clipped with angled top corners and a punched hole. Notches are small cut-outs on the top edge of each size cell.
+2px corners on buttons and inputs; tabs have 4px top corners. Illustrations are 2px round-cap strokes in ink with one filled red spot.
 
 ## Components
-- **Swatch card:** swatch + hang tag + spec line + notch strip + pull-to-compare + Choose size.
-- **Hang tag:** indigo, condensed uppercase name and sample ref number, rotated 3deg.
-- **Notch strip:** drop lengths; absent sizes are struck through; fitting sizes fill indigo, staggered 55ms.
-- **Compare sheet:** up to three cards side by side.
-- **Window finder:** width and height in inches; returns panels and drop.
+- **Item row:** drawing, red item number, name (link), spec, "Price not set", action (Add to cart, or Choose [option] when options exist).
+- **Index tab:** paper-shade at rest; red and raised when active.
+- **Item-number lookup:** one field, one primary button.
+- **Option chips and quantity stepper:** square-cornered, ink border, red when selected.
+- **Page turn:** switching department lays the new page down with a 550ms left-to-right clip reveal; it respects reduced motion.
 
 ## Do's and Don'ts
-- Do keep catalog content labelled as sample; never invent prices, stock, ratings or shipping claims.
-- Do light notches to show fit; dim non-fitting cards rather than hide them.
-- Don't use cream grounds, serif display faces, gradient text, glass, or nested cards.
-- Don't add accent colours beyond indigo; fabric colour comes from the product.
+- Do label all catalog content as sample; never invent prices, stock, ratings or shipping claims.
+- Do keep one red spot per drawing and one accent colour across the system.
+- Don't add photos or gradients; don't use cream grounds or serif display faces.
+- Don't make the departments identical tiles; they are ruled lists on a page.

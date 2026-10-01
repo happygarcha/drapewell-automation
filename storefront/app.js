@@ -1,21 +1,43 @@
-/* Drapewell storefront mockup. Static, no network calls.
-   All catalog content below is SAMPLE data: names, fabrics, sizes and specs are
-   placeholders. There are no prices, stock levels or shipping claims. */
+/* Drapewell storefront mockup: a general-store catalog. Static, no network calls.
+   All catalog content is SAMPLE data: names, specs and options are placeholders.
+   There are no prices, stock levels or shipping claims. */
 
-const ALL_DROPS = [63, 84, 96, 108, 120];
-const PANEL_WIDTH = 52; // inches per panel (sample)
-const FULLNESS = 2; // fabric width as a multiple of window width (sample guide)
-const RAIL_ALLOWANCE = 4; // inches above the window the rod sits (sample guide)
+const DEPTS = [
+  { id: "H", name: "Home textiles", blurb: "Drapes, cushions, rugs" },
+  { id: "K", name: "Kitchen & home", blurb: "Cook, store, serve" },
+  { id: "G", name: "Gadgets", blurb: "Cables, stands, mounts" },
+  { id: "F", name: "Fashion", blurb: "Bags, hats, basics" },
+];
 
-const PRODUCTS = [
-  { id: "harbour", name: "Harbour", ref: "0412", cls: "f-linen", c: "oklch(0.62 0.05 235)", h: 210, fabric: "Slub linen blend", light: "Light-filtering", lining: "Lined", care: "Machine wash cold", drops: [63, 84, 96, 108] },
-  { id: "slate", name: "Slate", ref: "0377", cls: "f-velvet", c: "oklch(0.36 0.02 260)", h: 172, fabric: "Matte velvet", light: "Room-darkening", lining: "Lined", care: "Dry clean", drops: [84, 96, 108, 120] },
-  { id: "salt", name: "Salt", ref: "0209", cls: "f-sheer", c: "oklch(0.93 0.01 240)", h: 236, fabric: "Voile sheer", light: "Sheer", lining: "Unlined", care: "Machine wash cold", drops: [63, 84, 96, 108, 120] },
-  { id: "marl", name: "Marl", ref: "0551", cls: "f-herringbone", c: "oklch(0.7 0.02 250)", h: 184, fabric: "Herringbone weave", light: "Light-filtering", lining: "Lined", care: "Machine wash cold", drops: [84, 96] },
-  { id: "ink", name: "Ink", ref: "0618", cls: "f-blackout", c: "oklch(0.28 0.06 265)", h: 220, fabric: "Triple-weave blackout", light: "Blackout", lining: "Lined", care: "Wipe clean", drops: [63, 84, 96, 108, 120] },
-  { id: "moss", name: "Moss", ref: "0143", cls: "f-linen", c: "oklch(0.52 0.06 150)", h: 196, fabric: "Washed linen", light: "Light-filtering", lining: "Unlined", care: "Machine wash cold", drops: [63, 84, 96] },
-  { id: "clay", name: "Clay", ref: "0488", cls: "f-twill", c: "oklch(0.58 0.12 45)", h: 178, fabric: "Cotton twill", light: "Room-darkening", lining: "Lined", care: "Machine wash cold", drops: [84, 96, 108, 120] },
-  { id: "dune", name: "Dune", ref: "0266", cls: "f-sheer", c: "oklch(0.84 0.05 85)", h: 228, fabric: "Open-weave sheer", light: "Sheer", lining: "Unlined", care: "Machine wash cold", drops: [63, 84, 96] },
+/* line drawings: 120x120, ink strokes with one red spot each */
+const ART = {
+  drape: `<path d="M22 16h76"/><path d="M28 16c-4 30-4 60 0 90h22c-4-30-4-60 0-90M92 16c4 30 4 60 0 90H70c4-30 4-60 0-90"/><path d="M36 20v82M42 20v82M78 20v82M84 20v82"/><circle class="spot" cx="39" cy="62" r="5"/>`,
+  cushion: `<path d="M20 26c24-8 56-8 80 0 6 22 6 46 0 68-24 8-56 8-80 0-6-22-6-46 0-68z"/><path d="M20 26l80 68M100 26L20 94"/><circle class="spot" cx="60" cy="60" r="6"/>`,
+  rug: `<rect x="14" y="26" width="92" height="68" rx="2"/><rect x="24" y="36" width="72" height="48"/><path d="M34 60l13-14 13 14-13 14zM60 60l13-14 13 14-13 14z"/><circle class="spot" cx="60" cy="60" r="4"/><path d="M14 98v8M26 98v8M38 98v8M50 98v8M62 98v8M74 98v8M86 98v8M98 98v8"/>`,
+  pan: `<path d="M24 52h58v38c0 6-4 10-10 10H34c-6 0-10-4-10-10z"/><path d="M82 62h26"/><path d="M22 52h62"/><path d="M30 46h46c0-8-8-12-23-12s-23 4-23 12z"/><circle class="spot" cx="53" cy="30" r="5"/>`,
+  kettle: `<path d="M30 40h44l6 50c0 6-4 10-10 10H34c-6 0-10-4-10-10z"/><path d="M74 54c14-6 22 0 22 8M30 40c0-8 4-14 22-14s22 6 22 14"/><path d="M80 44l20-12"/><circle class="spot" cx="52" cy="20" r="5"/>`,
+  jars: `<rect x="12" y="44" width="28" height="52" rx="3"/><rect x="46" y="34" width="28" height="62" rx="3"/><rect x="80" y="52" width="28" height="44" rx="3"/><path d="M12 44v-8h28v8M46 34v-8h28v8M80 52v-8h28v8"/><circle class="spot" cx="60" cy="68" r="5"/>`,
+  cable: `<path d="M20 36h16v14H20zM84 80h16v14H84z"/><path d="M36 43c30 0 6 38 38 38h10"/><path d="M16 40h4M16 46h4M100 84h4M100 90h4"/><circle class="spot" cx="60" cy="62" r="5"/>`,
+  stand: `<path d="M30 92h60l-6-12H36z"/><path d="M42 80l10-52h28l-8 52"/><rect x="50" y="30" width="26" height="44" rx="3"/><circle class="spot" cx="63" cy="68" r="3"/>`,
+  mount: `<circle cx="60" cy="60" r="38"/><path d="M30 60h60M34 48h52M34 72h52"/><rect x="48" y="30" width="24" height="44" rx="3"/><circle class="spot" cx="60" cy="68" r="3"/>`,
+  tote: `<path d="M26 44h68l6 56H20z"/><path d="M42 44c0-26 36-26 36 0"/><rect class="spot" x="50" y="66" width="20" height="14" rx="1"/>`,
+  beanie: `<path d="M24 84c0-34 14-54 36-54s36 20 36 54z"/><path d="M22 84h76v14H22z"/><path d="M40 84v14M52 84v14M64 84v14M76 84v14"/><circle class="spot" cx="60" cy="24" r="8"/>`,
+  tee: `<path d="M42 22l-26 16 10 18 12-6v52h44V50l12 6 10-18-26-16c-4 8-10 12-18 12s-14-4-18-12z"/><rect class="spot" x="55" y="86" width="12" height="9"/>`,
+};
+
+const ITEMS = [
+  { no: "H-014", d: "H", name: "Linen drape panel", spec: "Light-filtering, lined. Sample sizes.", art: "drape", opts: { label: "Drop, in", values: ["63", "84", "96", "108"] } },
+  { no: "H-022", d: "H", name: "Velvet cushion cover", spec: "Hidden zip. Fits a standard insert.", art: "cushion", opts: { label: "Size, in", values: ["16", "18", "20"] } },
+  { no: "H-031", d: "H", name: "Flatweave rug", spec: "Reversible, low pile.", art: "rug", opts: { label: "Size, ft", values: ["3×5", "5×8", "8×10"] } },
+  { no: "K-105", d: "K", name: "Enamel saucepan with lid", spec: "Oven-safe handle. Sample spec.", art: "pan" },
+  { no: "K-118", d: "K", name: "Pour-over kettle", spec: "Narrow spout, steel body.", art: "kettle" },
+  { no: "K-126", d: "K", name: "Stackable storage jars, set of 3", spec: "Airtight lids.", art: "jars" },
+  { no: "G-207", d: "G", name: "Braided charging cable", spec: "USB-C, strain-relief ends.", art: "cable", opts: { label: "Length, m", values: ["1", "2"] } },
+  { no: "G-213", d: "G", name: "Desk phone stand", spec: "Adjustable angle, non-slip base.", art: "stand" },
+  { no: "G-240", d: "G", name: "Car vent phone mount", spec: "One-hand release.", art: "mount" },
+  { no: "F-301", d: "F", name: "Canvas tote bag", spec: "Inside pocket, reinforced straps.", art: "tote" },
+  { no: "F-312", d: "F", name: "Knit beanie", spec: "Folded cuff, one size.", art: "beanie", opts: { label: "Colour", values: ["Ink", "Red", "Grey"] } },
+  { no: "F-327", d: "F", name: "Crew-neck tee", spec: "Midweight cotton.", art: "tee", opts: { label: "Size", values: ["S", "M", "L", "XL"] } },
 ];
 
 /* ---------- helpers ---------- */
@@ -26,159 +48,123 @@ function store(key, value) {
   try { if (value === undefined) return localStorage.getItem(key); localStorage.setItem(key, value); } catch (_) { /* storage may be blocked */ }
   return null;
 }
-
 function cartCount() { return parseInt(store("dw-cart"), 10) || 0; }
 function paintCart() { $$(".cart-count").forEach((el) => { el.textContent = cartCount(); }); }
+function art(key) { return `<svg class="line-art" viewBox="0 0 120 120" role="img" aria-hidden="true">${ART[key]}</svg>`; }
 
-/* window finder: returns { panels, drop } or an error string */
-function fit(widthIn, heightIn) {
-  if (!(widthIn > 0) || !(heightIn > 0)) return { error: "Enter your window width and height in inches." };
-  const panels = Math.max(1, Math.ceil((widthIn * FULLNESS) / PANEL_WIDTH));
-  const need = heightIn + RAIL_ALLOWANCE;
-  const drop = ALL_DROPS.find((d) => d >= need);
-  if (!drop) return { error: `A window ${heightIn} in tall needs a drop over ${ALL_DROPS.at(-1)} in, longer than the sample range.` };
-  return { panels, drop, widthIn, heightIn };
+function itemRow(it, headingTag = "h3") {
+  const hasOpts = !!it.opts;
+  return `<li class="item" data-no="${it.no}">
+    <div class="item-art">${art(it.art)}</div>
+    <div><span class="item-no">${it.no}</span></div>
+    <div><${headingTag}><a href="product.html?no=${it.no}">${it.name}</a></${headingTag}><p class="spec">${it.spec}</p></div>
+    <div class="item-foot">
+      <span class="price">Price not set</span>
+      ${hasOpts ? `<a class="btn" href="product.html?no=${it.no}">Choose ${it.opts.label.toLowerCase().replace(/, .*/, "")}</a>` : `<button class="btn" type="button" data-add="${it.no}">Add to cart</button>`}
+    </div>
+    <p class="added" role="status" aria-live="polite"></p>
+  </li>`;
 }
 
-function describeFit(f) {
-  return `For a <strong>${f.widthIn} × ${f.heightIn} in</strong> window: <strong>${f.panels} ${f.panels === 1 ? "panel" : "panels"}</strong> at a <strong>${f.drop} in drop</strong>. Cards that come in that drop are lit.`;
-}
+/* ---------- home ---------- */
+function initHome() {
+  const book = $("#depts");
+  const tabs = $("#tabs");
+  tabs.innerHTML = [{ id: "all", name: "All departments" }, ...DEPTS].map((d) => `<button class="tab" type="button" data-tab="${d.id}" aria-pressed="${d.id === "all"}">${d.name}</button>`).join("");
 
-/* ---------- collection page ---------- */
-function initCollection() {
-  const list = $("#cards");
-  const result = $("#finder-result");
-  const sheet = $("#compare");
-  const pulled = new Set();
-  let current = null;
+  book.innerHTML = DEPTS.map((d) => `
+    <section class="dept" id="dept-${d.id}" aria-labelledby="h-${d.id}">
+      <div class="dept-head"><h2 id="h-${d.id}">${d.name}</h2><p>${d.blurb}</p></div>
+      <ul class="items">${ITEMS.filter((i) => i.d === d.id).map((i) => itemRow(i)).join("")}</ul>
+    </section>`).join("");
 
-  list.innerHTML = PRODUCTS.map((p) => `
-    <li class="swatch" data-id="${p.id}">
-      <div class="cloth ${p.cls}" style="--c:${p.c};--h:${p.h}px" role="img" aria-label="${p.name} fabric swatch, ${p.fabric}"></div>
-      <div class="tag"><h3 class="tag-name">${p.name}</h3><p class="tag-ref">No. ${p.ref}</p></div>
-      <div class="swatch-body">
-        <p class="spec">${p.fabric}. ${p.light}.</p>
-        <div class="notches">
-          <span class="notch-label" id="n-${p.id}">Drop lengths, in</span>
-          <ul class="notch-row" aria-labelledby="n-${p.id}">
-            ${ALL_DROPS.map((d, i) => `<li class="notch ${p.drops.includes(d) ? "" : "is-absent"}" data-drop="${d}" style="--i:${i}">${d}<span class="sr-only">${p.drops.includes(d) ? "" : " not offered"}</span></li>`).join("")}
-          </ul>
-        </div>
-        <div class="card-actions">
-          <label class="pull"><input type="checkbox" data-pull="${p.id}"> Pull to compare</label>
-          <a class="btn" href="product.html?id=${p.id}" data-view>Choose size</a>
-        </div>
-      </div>
-    </li>`).join("");
-
-  function applyFit() {
-    $$(".swatch", list).forEach((card) => {
-      const p = PRODUCTS.find((x) => x.id === card.dataset.id);
-      const ok = current && !current.error && p.drops.includes(current.drop);
-      card.classList.toggle("no-fit", !!(current && !current.error && !ok));
-      $$(".notch", card).forEach((n) => n.classList.toggle("is-fit", !!(ok && +n.dataset.drop === current.drop)));
-      const a = $("[data-view]", card);
-      a.href = `product.html?id=${p.id}` + (current && !current.error ? `&w=${current.widthIn}&h=${current.heightIn}` : "");
+  function show(id) {
+    $$("[data-tab]", tabs).forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.tab === id)));
+    $$(".dept", book).forEach((s) => {
+      const on = id === "all" || s.id === `dept-${id}`;
+      s.hidden = !on;
+      s.classList.remove("is-turning");
+      if (on && id !== "all") { void s.offsetWidth; s.classList.add("is-turning"); }
     });
   }
+  tabs.addEventListener("click", (e) => { const b = e.target.closest("[data-tab]"); if (b) show(b.dataset.tab); });
 
-  $("#finder").addEventListener("submit", (e) => {
+  book.addEventListener("click", (e) => {
+    const btn = e.target.closest("[data-add]");
+    if (!btn) return;
+    store("dw-cart", String(cartCount() + 1));
+    paintCart();
+    $(".added", btn.closest(".item")).textContent = "Added 1. Mockup: no order is placed.";
+  });
+
+  $("#lookup").addEventListener("submit", (e) => {
     e.preventDefault();
-    const w = parseFloat($("#win-w").value);
-    const h = parseFloat($("#win-h").value);
-    current = fit(w, h);
-    if (current.error) { result.textContent = current.error; } else { result.innerHTML = describeFit(current); }
-    applyFit();
+    const q = $("#item-q").value.trim().toLowerCase();
+    const note = $("#lookup-note");
+    if (!q) { note.textContent = "Type an item number such as K-118, or part of a name."; return; }
+    const hit = ITEMS.find((i) => i.no.toLowerCase() === q) || ITEMS.find((i) => i.name.toLowerCase().includes(q));
+    if (hit) { location.href = `product.html?no=${hit.no}`; } else { note.textContent = `No item matching “${$("#item-q").value.trim()}” in this sample catalog.`; }
   });
-
-  /* compare sheet */
-  function renderSheet() {
-    const picks = PRODUCTS.filter((p) => pulled.has(p.id));
-    sheet.classList.toggle("is-open", picks.length > 0);
-    sheet.setAttribute("aria-hidden", picks.length ? "false" : "true");
-    sheet.inert = picks.length === 0;
-    $$(".swatch", list).forEach((c) => c.classList.toggle("is-pulled", pulled.has(c.dataset.id)));
-    $$("[data-pull]", list).forEach((box) => { box.disabled = !box.checked && pulled.size >= 3; });
-    const rows = [["Fabric", (p) => p.fabric], ["Light", (p) => p.light], ["Lining", (p) => p.lining], ["Care", (p) => p.care], ["Drops, in", (p) => p.drops.join(", ")]];
-    const grid = $("#compare-grid");
-    grid.style.setProperty("--n", picks.length || 1);
-    grid.innerHTML = `<span class="colhead"></span>` + picks.map((p) => `<span class="colhead">${p.name}</span>`).join("") +
-      rows.map(([label, fn]) => `<span class="rowhead">${label}</span>` + picks.map((p) => `<span>${fn(p)}</span>`).join("")).join("");
-    $("#compare-count").textContent = `Comparing ${picks.length} of 3`;
-  }
-  list.addEventListener("change", (e) => {
-    const box = e.target.closest("[data-pull]");
-    if (!box) return;
-    box.checked ? pulled.add(box.dataset.pull) : pulled.delete(box.dataset.pull);
-    renderSheet();
-  });
-  $("#compare-clear").addEventListener("click", () => {
-    pulled.clear(); $$("[data-pull]", list).forEach((b) => { b.checked = false; }); renderSheet();
-  });
-  renderSheet();
 }
 
-/* ---------- product page ---------- */
+/* ---------- product ---------- */
 function initProduct() {
   const q = new URLSearchParams(location.search);
-  const p = PRODUCTS.find((x) => x.id === q.get("id")) || PRODUCTS[0];
-  document.title = `${p.name} drapes | Drapewell`;
-  const w = parseFloat(q.get("w")), h = parseFloat(q.get("h"));
-  const f = w && h ? fit(w, h) : null;
-  const suggestion = f && !f.error ? f : null;
+  const it = ITEMS.find((x) => x.no === q.get("no")) || ITEMS[0];
+  const dept = DEPTS.find((d) => d.id === it.d);
+  document.title = `${it.name} | Drapewell`;
+  $("#crumb-dept").textContent = dept.name;
+  $("#crumb-dept").href = `index.html#dept-${dept.id}`;
+  $("#crumb-name").textContent = it.name;
+  $("#plate").innerHTML = art(it.art);
+  $("#no").textContent = `Item ${it.no}`;
+  $("#title").textContent = it.name;
+  $("#lede").textContent = it.spec;
 
-  $("#crumb-name").textContent = p.name;
-  $("#bolt").innerHTML = `
-    <div class="cloth ${p.cls}" style="--c:${p.c}" role="img" aria-label="${p.name} fabric, hung in folds"></div>
-    <div class="tag"><h2 class="tag-name">${p.name}</h2><p class="tag-ref">No. ${p.ref}</p></div>`;
-  $("#title").textContent = `${p.name} drapes`;
-  $("#lede").textContent = `${p.fabric}. ${p.light}, ${p.lining.toLowerCase()}. Choose a drop length and how many panels you need.`;
-  $("#specs").innerHTML = [["Fabric", p.fabric], ["Light", p.light], ["Lining", p.lining], ["Care", p.care], ["Panel width", `${PANEL_WIDTH} in`]]
-    .map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("");
-
-  const dropBox = $("#drops");
-  dropBox.innerHTML = ALL_DROPS.map((d) => {
-    const ok = p.drops.includes(d);
-    return `<label class="drop ${suggestion && suggestion.drop === d && ok ? "is-fit" : ""}"><input type="radio" name="drop" value="${d}" ${ok ? "" : "disabled"}><span>${d}${ok ? "" : '<span class="sr-only"> not offered</span>'}</span></label>`;
-  }).join("");
-
-  let panels = suggestion ? suggestion.panels : 2;
-  const out = $("#panels"), status = $("#status"), add = $("#add");
-  const hint = $("#fit-hint");
-  if (suggestion) {
-    hint.innerHTML = `For your <strong>${suggestion.widthIn} × ${suggestion.heightIn} in</strong> window we suggest <strong>${suggestion.panels} panels</strong> at a <strong>${suggestion.drop} in drop</strong>${p.drops.includes(suggestion.drop) ? "" : ", which this fabric does not come in"}.`;
+  const optBox = $("#opt-group");
+  if (it.opts) {
+    $("#opt-h").textContent = it.opts.label;
+    $("#opts").innerHTML = it.opts.values.map((v) => `<label class="opt"><input type="radio" name="opt" value="${v}"><span>${v}</span></label>`).join("");
   } else {
-    hint.textContent = "Not sure? Use the window size finder on the drapes page and it will suggest panels and drop.";
+    optBox.hidden = true;
   }
-  function paint() {
-    out.textContent = panels;
-    $("#total-width").textContent = `${panels * PANEL_WIDTH} in of fabric`;
-  }
-  $("#less").addEventListener("click", () => { panels = Math.max(1, panels - 1); paint(); });
-  $("#more").addEventListener("click", () => { panels = Math.min(8, panels + 1); paint(); });
-  paint();
 
-  function updateAdd() {
-    const chosen = $("input[name=drop]:checked", dropBox);
-    add.disabled = !chosen;
-    add.setAttribute("aria-disabled", String(!chosen));
-    if (!chosen) status.textContent = "";
+  let qty = 1;
+  const out = $("#qty"), add = $("#add"), status = $("#status");
+  $("#less").addEventListener("click", () => { qty = Math.max(1, qty - 1); out.textContent = qty; });
+  $("#more").addEventListener("click", () => { qty = Math.min(9, qty + 1); out.textContent = qty; });
+
+  function sync() {
+    const needs = !!it.opts && !$("input[name=opt]:checked", optBox);
+    add.disabled = needs;
+    add.setAttribute("aria-disabled", String(needs));
+    if (needs) status.textContent = "";
   }
-  dropBox.addEventListener("change", updateAdd);
-  updateAdd();
+  optBox.addEventListener("change", sync);
+  sync();
 
   add.addEventListener("click", () => {
-    const chosen = $("input[name=drop]:checked", dropBox);
-    if (!chosen) { status.textContent = "Choose a drop length first."; return; }
-    store("dw-cart", String(cartCount() + panels));
+    const chosen = $("input[name=opt]:checked", optBox);
+    if (it.opts && !chosen) { status.textContent = `Choose ${it.opts.label.toLowerCase()} first.`; return; }
+    store("dw-cart", String(cartCount() + qty));
     paintCart();
-    status.textContent = `Added ${panels} ${panels === 1 ? "panel" : "panels"}, ${chosen.value} in drop. This is a mockup: no order is placed.`;
+    status.textContent = `Added ${qty} × ${it.name}${chosen ? ` (${chosen.value})` : ""}. Mockup: no order is placed.`;
+  });
+
+  const same = ITEMS.filter((i) => i.d === it.d && i.no !== it.no);
+  $("#also").innerHTML = `<ul class="items">${same.map((i) => itemRow(i)).join("")}</ul>`;
+  $("#also").addEventListener("click", (e) => {
+    const btn = e.target.closest("[data-add]");
+    if (!btn) return;
+    store("dw-cart", String(cartCount() + 1));
+    paintCart();
+    $(".added", btn.closest(".item")).textContent = "Added 1. Mockup: no order is placed.";
   });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
   paintCart();
   const page = document.body.dataset.page;
-  if (page === "collection") initCollection();
+  if (page === "home") initHome();
   if (page === "product") initProduct();
 });

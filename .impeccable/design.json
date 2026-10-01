@@ -1,36 +1,118 @@
 {
   "schemaVersion": 2,
   "generatedAt": "2026-10-01T00:00:00Z",
-  "title": "Design System: Drapewell Storefront",
+  "title": "Design System: Drapewell General Catalog",
   "extensions": {
     "colorMeta": {
-      "indigo": { "role": "primary", "displayName": "Tag Indigo", "canonical": "oklch(0.4 0.16 268)", "tonalRamp": ["oklch(0.98 0.005 268)", "oklch(0.4 0.16 268)", "oklch(0.33 0.15 268)"] },
-      "counter": { "role": "neutral", "displayName": "Mill Counter", "canonical": "oklch(0.83 0.012 255)", "tonalRamp": ["oklch(0.975 0.006 255)", "oklch(0.83 0.012 255)", "oklch(0.77 0.014 255)"] }
+      "red": {
+        "role": "primary",
+        "displayName": "Printer's Red",
+        "canonical": "oklch(0.5 0.2 27)",
+        "tonalRamp": [
+          "oklch(0.98 0.005 27)",
+          "oklch(0.5 0.2 27)",
+          "oklch(0.42 0.19 27)"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Cool Catalog Paper",
+        "canonical": "oklch(0.968 0.008 235)",
+        "tonalRamp": [
+          "oklch(0.968 0.008 235)",
+          "oklch(0.92 0.01 235)",
+          "oklch(0.8 0.012 235)"
+        ]
+      }
     },
     "typographyMeta": {
-      "tag": { "displayName": "Hang-tag lettering", "purpose": "Tag names, notch numerals and row labels only." },
-      "ui": { "displayName": "Interface", "purpose": "Body, headings and controls." }
+      "catalog-headline": {
+        "displayName": "Catalog headline",
+        "purpose": "Masthead, tabs, department headings."
+      },
+      "item-number": {
+        "displayName": "Item number",
+        "purpose": "Item numbers and labels."
+      },
+      "ui": {
+        "displayName": "Interface",
+        "purpose": "Names, specs, controls."
+      }
     },
     "shadows": [
-      { "name": "card-rest", "value": "0 10px 22px -14px oklch(0.2 0.05 265 / 0.45)", "purpose": "Swatch card resting on the counter." },
-      { "name": "card-lift", "value": "0 16px 28px -14px oklch(0.2 0.05 265 / 0.5)", "purpose": "Hover lift." }
+      {
+        "name": "page",
+        "value": "0 22px 40px -26px oklch(0.2 0.03 235 / 0.6)",
+        "purpose": "The catalog page resting on the desk."
+      }
     ],
     "motion": [
-      { "name": "ease-out", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "All state transitions; notches stagger 55ms." }
+      {
+        "name": "page-turn",
+        "value": "550ms cubic-bezier(0.16, 1, 0.3, 1) clip-path reveal",
+        "purpose": "Switching department."
+      }
     ],
-    "breakpoints": [{ "name": "stack", "value": "560px" }, { "name": "product-split", "value": "880px" }]
+    "breakpoints": [
+      {
+        "name": "spread",
+        "value": "900px"
+      },
+      {
+        "name": "compact",
+        "value": "560px"
+      }
+    ]
   },
   "components": [
-    { "name": "Primary Button", "kind": "button", "refersTo": "button-primary", "description": "Main action: Show what fits, Add to cart.", "html": "<button class=\"ds-btn\">Add to cart</button>", "css": ".ds-btn{font:600 1rem system-ui;background:oklch(0.4 0.16 268);color:oklch(0.98 0.005 268);border:1px solid oklch(0.4 0.16 268);border-radius:3px;padding:11px 20px;cursor:pointer}.ds-btn:hover{background:oklch(0.33 0.15 268)}.ds-btn:focus-visible{outline:2px solid oklch(0.4 0.16 268);outline-offset:3px}" },
-    { "name": "Hang Tag", "kind": "chip", "refersTo": "hang-tag", "description": "Product name tag hung on each swatch.", "html": "<div class=\"ds-tag\">HARBOUR<br><small>NO. 0412</small></div>", "css": ".ds-tag{display:inline-block;background:oklch(0.4 0.16 268);color:oklch(0.98 0.005 268);font:600 1.45rem 'Arial Narrow',sans-serif;letter-spacing:.05em;padding:22px 12px 10px;clip-path:polygon(14% 0,86% 0,100% 14%,100% 100%,0 100%,0 14%);transform:rotate(3deg)}.ds-tag small{font-size:.95rem;font-weight:500}" },
-    { "name": "Notch Strip", "kind": "custom", "refersTo": "swatch-card", "description": "Drop-length cells; the fitting size is lit.", "html": "<div class=\"ds-n\"><span>63</span><span class=\"on\">84</span><span>96</span></div>", "css": ".ds-n{display:flex;gap:4px}.ds-n span{flex:1;text-align:center;padding:6px 14px 4px;border:1px solid oklch(0.2 0.03 265 / .22);border-radius:0 0 3px 3px;font:600 1.05rem 'Arial Narrow',sans-serif;color:oklch(0.38 0.03 265)}.ds-n .on{background:oklch(0.4 0.16 268);color:oklch(0.98 0.005 268);border-color:oklch(0.4 0.16 268)}" }
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Add to cart, Find item.",
+      "html": "<button class=\"ds-btn\">Add to cart</button>",
+      "css": ".ds-btn{font:600 1rem system-ui;background:oklch(0.5 0.2 27);color:oklch(0.98 0.005 27);border:1px solid oklch(0.5 0.2 27);border-radius:2px;padding:10px 18px;cursor:pointer}.ds-btn:hover{background:oklch(0.42 0.19 27)}.ds-btn:focus-visible{outline:2px solid oklch(0.5 0.2 27);outline-offset:3px}"
+    },
+    {
+      "name": "Index Tab",
+      "kind": "chip",
+      "refersTo": "index-tab",
+      "description": "Department tab; red when active.",
+      "html": "<button class=\"ds-tab\">Kitchen &amp; home</button>",
+      "css": ".ds-tab{font:600 1.15rem 'Arial Narrow',sans-serif;letter-spacing:.06em;text-transform:uppercase;background:oklch(0.92 0.01 235);color:oklch(0.2 0.02 40);border:1px solid oklch(0.2 0.02 40 / .25);border-bottom:0;border-radius:4px 4px 0 0;padding:8px 16px 6px;cursor:pointer}.ds-tab:hover{background:oklch(0.95 0.01 235)}"
+    },
+    {
+      "name": "Item Number Field",
+      "kind": "input",
+      "refersTo": "button-primary",
+      "description": "Order by item number.",
+      "html": "<input class=\"ds-in\" placeholder=\"e.g. K-118\">",
+      "css": ".ds-in{font:1.15rem system-ui;padding:10px 12px;background:oklch(0.968 0.008 235);color:oklch(0.2 0.02 40);border:1px solid oklch(0.2 0.02 40);border-radius:2px}.ds-in:focus-visible{outline:2px solid oklch(0.5 0.2 27);outline-offset:3px}"
+    }
   ],
   "narrative": {
-    "northStar": "The Mill Sample Counter",
-    "overview": "Drapes are swatch cards laid on a cool counter, compared side by side and sized by notches. Flat print, one indigo accent, no cream.",
-    "keyCharacteristics": ["Pinked swatch edges", "Indigo hang tags", "Notched size strips", "Soft offset shadows"],
-    "rules": [{ "name": "One Accent Rule", "body": "Indigo is the only system accent; fabric colour belongs to the product.", "section": "colors" }],
-    "dos": ["Do label all catalog content as sample", "Do light notches to show fit"],
-    "donts": ["Don't use cream grounds or serif display faces", "Don't invent prices, stock or ratings"]
+    "northStar": "The General-Store Catalog",
+    "overview": "One shop, four departments, laid out as numbered mail-order catalog spreads. Cool paper, warm ink, one printer red.",
+    "keyCharacteristics": [
+      "Index tabs per department",
+      "Numbered ruled rows",
+      "Line drawings with one red spot",
+      "Fold shadow down the spread"
+    ],
+    "rules": [
+      {
+        "name": "One Red Rule",
+        "body": "Red is the only accent: numbers, active tab, actions, and one spot per drawing.",
+        "section": "colors"
+      }
+    ],
+    "dos": [
+      "Do label all catalog content as sample",
+      "Do keep one accent colour"
+    ],
+    "donts": [
+      "Don't use cream grounds or serif display faces",
+      "Don't invent prices, stock or ratings"
+    ]
   }
 }
