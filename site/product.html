@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Product | Drapewell</title>
+<meta name="theme-color" content="#f6f8fa">
 <link rel="stylesheet" href="styles.css">
 <script src="menu.js"></script>
 <script src="catalog.js"></script>
@@ -12,13 +13,14 @@
 <script src="app.js" defer></script>
 </head>
 <body data-page="product">
+<a class="skip" href="#main">Skip to content</a>
 <header class="mast">
   <a class="wordmark" href="index.html">Drapewell</a>
   <nav class="mast-nav" id="mast-nav" aria-label="Main"></nav>
   <div class="mast-end"><button type="button" class="cart-btn" data-open-cart>Cart <span data-cart-count>0</span></button></div>
 </header>
 <p class="crumb" id="crumb"></p>
-<main class="pdp" id="pdp">
+<main class="pdp" id="main" aria-busy="true">
   <div class="gallery" id="gallery"></div>
   <div class="buy">
     <h1 id="p-title"></h1>

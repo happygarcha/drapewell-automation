@@ -50,10 +50,10 @@ a { color: inherit; text-underline-offset: 0.28em; }
   white-space: nowrap;
 }
 .mast-nav { display: flex; gap: 2px 26px; justify-content: center; flex-wrap: wrap; }
-.mast-nav a { text-decoration: none; font-size: 0.95rem; color: var(--ink-soft); padding: 6px 0; border-bottom: 1px solid transparent; transition: color 0.3s var(--ease-out), border-color 0.3s var(--ease-out); }
+.mast-nav a { text-decoration: none; font-size: 0.95rem; color: var(--ink-soft); padding: 10px 0; border-bottom: 1px solid transparent; transition: color 0.3s var(--ease-out), border-color 0.3s var(--ease-out); }
 .mast-nav a:hover, .mast-nav a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--accent); }
 .mast-end { justify-self: end; }
-.cart-btn { font: inherit; font-size: 0.95rem; background: transparent; color: var(--ink); border: 0; border-bottom: 1px solid var(--ink); padding: 6px 0; cursor: pointer; }
+.cart-btn { font: inherit; font-size: 0.95rem; background: transparent; color: var(--ink); border: 0; border-bottom: 1px solid var(--ink); padding: 10px 2px; cursor: pointer; }
 .cart-btn:hover { color: var(--accent-deep); border-color: var(--accent-deep); }
 .cart-btn [data-cart-count] { font-variant-numeric: tabular-nums; }
 
@@ -75,7 +75,9 @@ a { color: inherit; text-underline-offset: 0.28em; }
   position: relative; background: var(--tint, var(--wall-deep)); overflow: hidden; aspect-ratio: 4 / 5; margin: 0;
 }
 .plate img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.2s var(--ease-out); }
-.plate:hover img { transform: scale(1.025); }
+@media (hover: hover) { .plate:hover img { transform: scale(1.025); } }
+.plate a { display: block; height: 100%; }
+.plate a:focus-visible { outline-offset: -4px; }
 .plate figcaption { position: absolute; left: 0; bottom: 0; right: 0; padding: 40px 18px 14px; font-size: 0.9rem; color: oklch(0.99 0 0); background: linear-gradient(transparent, oklch(0.2 0.02 250 / 0.55)); }
 .hero .plate { max-height: 82vh; width: 100%; }
 
@@ -181,7 +183,8 @@ a { color: inherit; text-underline-offset: 0.28em; }
 .chip { position: relative; }
 .chip input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
 .chip span { display: block; padding: 10px 16px; border: 1px solid var(--rule); font-size: 0.95rem; transition: border-color 0.25s var(--ease-out), background-color 0.25s var(--ease-out), color 0.25s var(--ease-out); }
-.chip:hover span { border-color: var(--ink); }
+@media (hover: hover) { .chip:hover span { border-color: var(--ink); } }
+.chip input:disabled + span { color: var(--ink-soft); text-decoration: line-through; opacity: 0.6; }
 .chip input:checked + span { background: var(--ink); color: var(--wall); border-color: var(--ink); }
 .chip input:focus-visible + span { outline: 2px solid var(--accent); outline-offset: 3px; }
 .qty-row { display: flex; gap: 14px; align-items: stretch; flex-wrap: wrap; margin-top: 8px; }
@@ -224,3 +227,11 @@ dialog.cart::backdrop { background: oklch(0.24 0.025 250 / 0.35); }
 .cart .co { text-align: center; text-decoration: none; padding: 15px; background: var(--ink); color: var(--wall); font-weight: 500; transition: background-color 0.3s var(--ease-out); }
 .cart .co:hover { background: var(--accent-deep); }
 .cart .co[aria-disabled="true"] { background: transparent; color: var(--ink-soft); border: 1px solid var(--rule); pointer-events: none; }
+
+/* ---------- polish ---------- */
+.skip { position: absolute; left: var(--gutter); top: -60px; z-index: 50; background: var(--ink); color: var(--wall); padding: 12px 18px; text-decoration: none; transition: top 0.2s var(--ease-out); }
+.skip:focus { top: 8px; }
+body:has(dialog.cart[open]) { overflow: hidden; }
+.pdp[aria-busy="true"] .buy h1::after { content: "Loading"; color: var(--ink-soft); font-size: 1rem; letter-spacing: 0; }
+.m-actions button, .menu-add button { min-height: 44px; }
+.room-list a { min-height: 44px; }

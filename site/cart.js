@@ -37,10 +37,11 @@
     });
   }
   function paint() {
-    document.querySelectorAll("[data-cart-count]").forEach((el) => { el.textContent = count(); });
+    const n = count();
+    document.querySelectorAll("[data-cart-count]").forEach((el) => { el.textContent = n; const b = el.closest("button"); if (b) b.setAttribute("aria-label", `Open cart, ${n} ${n === 1 ? "item" : "items"}`); });
     if (!dlg) return;
-    $l = dlg.querySelector("#cart-lines");
-    $l.innerHTML = lines.length ? lines.map((l) => `<div class="line">
+    const box = dlg.querySelector("#cart-lines");
+    box.innerHTML = lines.length ? lines.map((l) => `<div class="line">
       <div class="th" style="--tint:oklch(0.94 0.006 240)">${l.img ? `<img src="${esc(l.img)}" alt="" loading="lazy">` : ""}</div>
       <div class="d"><a href="product.html?handle=${encodeURIComponent(l.handle)}">${esc(l.title)}</a>${l.variantTitle && l.variantTitle !== "Default" ? `<span>${esc(l.variantTitle)}</span>` : ""}
         <div class="q"><button type="button" data-act="dec" data-k="${esc(keyOf(l))}" aria-label="Fewer">−</button><output>${l.qty}</output><button type="button" data-act="inc" data-k="${esc(keyOf(l))}" aria-label="More">+</button><button type="button" class="rm" data-act="rm" data-k="${esc(keyOf(l))}">Remove</button></div></div>
@@ -53,7 +54,6 @@
     const exact = lines.length && lines.every((l) => l.variantId);
     dlg.querySelector("#cart-fine").textContent = lines.length ? (exact ? "Checkout opens your selection on the Drapewell store. Shipping and taxes are calculated there." : "Some items are from the offline snapshot, so checkout opens the store cart; choose options there.") : "";
   }
-  let $l;
   window.DWCart = {
     add(item) {
       const k = keyOf(item); const ex = lines.find((l) => keyOf(l) === k);

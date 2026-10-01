@@ -148,7 +148,7 @@ async function initProduct() {
   paintFooter();
   const handle = new URLSearchParams(location.search).get("handle");
   const p = await window.DW.product(handle);
-  const main = $("#pdp");
+  const main = $("#main"); main.removeAttribute("aria-busy");
   if (!p) { main.innerHTML = `<p class="empty">We could not find that product. <a href="index.html">Back to the rooms</a>.</p>`; return; }
   document.title = `${p.title} | Drapewell`;
   const back = rooms(menu).find((m) => m.handle === p.room);
@@ -160,7 +160,11 @@ async function initProduct() {
     gallery.innerHTML = `<figure class="plate" style="--tint:${p.tint}">${p.images[current] ? `<img src="${sized(p.images[current], 1200)}" alt="${esc(p.title)}" decoding="async">` : ""}</figure>` +
       (p.images.length > 1 ? `<ul class="thumbs">${p.images.slice(0, 6).map((u, i) => `<li><button type="button" data-i="${i}" aria-label="Photo ${i + 1}" aria-pressed="${i === current}"><img src="${sized(u, 160)}" alt="" loading="lazy"></button></li>`).join("")}</ul>` : "");
   };
-  gallery.addEventListener("click", (e) => { const b = e.target.closest("[data-i]"); if (b) { current = +b.dataset.i; drawGallery(); } });
+  gallery.addEventListener("click", (e) => {
+    const b = e.target.closest("[data-i]"); if (!b) return;
+    current = +b.dataset.i; drawGallery();
+    const again = $(`[data-i="${current}"]`, gallery); if (again) again.focus(); // keep keyboard focus after the redraw
+  });
   drawGallery();
 
   $("#p-title").textContent = p.title;
@@ -168,6 +172,12 @@ async function initProduct() {
   const optsEl = $("#p-options");
   optsEl.innerHTML = p.options.map((o) => `<fieldset class="opt-group"><legend>${esc(o.name)}</legend><div class="chips">${o.values.map((v) => `<label class="chip"><input type="radio" name="o-${esc(o.name)}" value="${esc(v)}" data-o="${esc(o.name)}"><span>${esc(v)}</span></label>`).join("")}</div></fieldset>`).join("");
 
+  if (p.options.length === 1) {
+    p.options[0].values.forEach((val) => {
+      const vs = p.variants.filter((v) => v.options && v.options[0] === val);
+      if (vs.length && vs.every((v) => !v.available)) { const inp = $(`input[value="${CSS.escape(val)}"]`, optsEl); if (inp) { inp.disabled = true; inp.parentElement.title = "Sold out"; } }
+    });
+  }
   const priceEl = $("#p-price"), addEl = $("#add"), msg = $("#p-msg");
   let qty = 1;
   const chosen = () => {
