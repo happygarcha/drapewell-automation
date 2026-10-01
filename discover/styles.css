@@ -76,6 +76,7 @@ a { color: inherit; }
 .hero h1 { margin: 0; font-family: var(--display); font-stretch: 125%; font-weight: 900; font-size: clamp(26px, 3.1vw, 44px); line-height: 1.08; letter-spacing: -0.01em; text-transform: uppercase; text-wrap: balance; overflow-wrap: break-word; }
 .hero-sub { margin: var(--s4) 0 0; max-width: 40ch; color: var(--text-soft); font-size: 18px; line-height: 28px; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: var(--s6); align-items: center; margin-top: var(--s8); }
+.hero-actions .hero-nav { flex-wrap: wrap; }
 .hero-dots { display: flex; gap: var(--s2); }
 .hero-dots button { width: 40px; height: 40px; padding: 0; background: transparent; border: 0; cursor: pointer; position: relative; }
 .hero-dots button::after { content: ""; position: absolute; left: 8px; right: 8px; top: 50%; translate: 0 -50%; height: 4px; border-radius: 2px; background: oklch(1 0 0 / 0.3); transition: background-color 0.3s, left 0.3s var(--ease), right 0.3s var(--ease); }
@@ -202,3 +203,12 @@ body:has(dialog[open]) { overflow: hidden; }
 
 .shell > * { min-width: 0; }
 .side nav { min-width: 0; }
+
+/* hero controls: prev, dots, next, pause */
+.hero-nav { display: flex; align-items: center; gap: var(--s2); }
+.ctl { width: 40px; height: 40px; padding: 0; border-radius: 999px; background: oklch(1 0 0 / 0.1); border: 1px solid var(--line); color: var(--text); font: inherit; font-size: 20px; line-height: 24px; cursor: pointer; transition: background-color 0.2s, translate 0.5s var(--spring); }
+.ctl:hover { background: oklch(1 0 0 / 0.2); }
+.ctl:active { translate: 0 2px; }
+#hero-pause { font-size: 12px; letter-spacing: -0.12em; }
+#hero-pause[aria-pressed="true"] { background: var(--neon-c); color: oklch(0.14 0.025 285); }
+@media (prefers-reduced-motion: reduce) { .hero-bar { display: none; } }

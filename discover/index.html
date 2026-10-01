@@ -46,7 +46,12 @@
         <p class="hero-sub" id="hero-sub">Shower curtains, rugs, wall art and seasonal décor, chosen to work together.</p>
         <div class="hero-actions">
           <button type="button" class="btn primary" id="hero-open">Open piece</button>
-          <div class="hero-dots" id="hero-dots" role="group" aria-label="Featured pieces"></div>
+          <div class="hero-nav">
+            <button type="button" class="ctl" id="hero-prev" aria-label="Previous piece">‹</button>
+            <div class="hero-dots" id="hero-dots" role="group" aria-label="Featured pieces"></div>
+            <button type="button" class="ctl" id="hero-next" aria-label="Next piece">›</button>
+            <button type="button" class="ctl" id="hero-pause" aria-pressed="false" aria-label="Pause slideshow">❚❚</button>
+          </div>
         </div>
       </div>
       <div class="hero-art"><figure class="ph" id="hero-ph"><img id="hero-img" alt="" decoding="async" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></figure><p class="hero-price" id="hero-price"></p></div>

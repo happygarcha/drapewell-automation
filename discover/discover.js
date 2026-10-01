@@ -77,15 +77,27 @@
     if (instant || reduce) { apply(); return; }
     hero.classList.add("swap"); setTimeout(() => { apply(); hero.classList.remove("swap"); }, 320);
   }
-  function startTimer() { clearInterval(timer); if (reduce) return; timer = setInterval(() => showSlide(cur + 1), 7000); }
+  let paused = false;
+  function startTimer() { clearInterval(timer); if (paused || document.hidden) return; timer = setInterval(() => showSlide(cur + 1), reduce ? 9000 : 7000); }
   function drawHero() {
     pickSlides();
     $("#hero-dots").innerHTML = slides.map((p, i) => `<button type="button" data-slide="${i}" aria-label="Show ${esc(p.name)}" aria-pressed="${i === cur}"></button>`).join("");
     showSlide(Math.min(cur, Math.max(0, slides.length - 1)), true); startTimer();
   }
-  $("#hero-dots").addEventListener("click", (e) => { const b = e.target.closest("[data-slide]"); if (b) { showSlide(+b.dataset.slide); startTimer(); } });
+  const go = (n) => { showSlide(n); startTimer(); };
+  $("#hero-dots").addEventListener("click", (e) => { const b = e.target.closest("[data-slide]"); if (b) go(+b.dataset.slide); });
+  $("#hero-prev").addEventListener("click", () => go(cur - 1));
+  $("#hero-next").addEventListener("click", () => go(cur + 1));
+  $("#hero-pause").addEventListener("click", (e) => { paused = !paused; e.currentTarget.setAttribute("aria-pressed", String(paused)); e.currentTarget.textContent = paused ? "▶" : "❚❚"; e.currentTarget.setAttribute("aria-label", paused ? "Play slideshow" : "Pause slideshow"); const bar = $("#hero-prog"); bar.style.animationPlayState = paused ? "paused" : "running"; startTimer(); });
+  /* swipe on touch screens */
+  let sx = 0, sy = 0;
+  $("#hero").addEventListener("touchstart", (e) => { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
+  $("#hero").addEventListener("touchend", (e) => { const t = e.changedTouches[0]; const dx = t.clientX - sx, dy = t.clientY - sy; if (Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy) * 1.4) go(cur + (dx < 0 ? 1 : -1)); }, { passive: true });
+  document.addEventListener("visibilitychange", startTimer);
   $("#hero").addEventListener("pointermove", (e) => { if (reduce) return; const r = e.currentTarget.getBoundingClientRect(); e.currentTarget.style.setProperty("--gx", `${(((e.clientX - r.left) / r.width) * 100).toFixed(0)}%`); e.currentTarget.style.setProperty("--gy", `${(((e.clientY - r.top) / r.height) * 100).toFixed(0)}%`); }, { passive: true });
-  $("#hero").addEventListener("pointerenter", () => clearInterval(timer)); $("#hero").addEventListener("pointerleave", startTimer);
+  /* only a real mouse hovering pauses autoplay; touch never stops it */
+  $("#hero").addEventListener("pointerenter", (e) => { if (e.pointerType === "mouse") clearInterval(timer); });
+  $("#hero").addEventListener("pointerleave", (e) => { if (e.pointerType === "mouse") startTimer(); });
 
   /* ---------- detail panel ---------- */
   const panel = $("#panel");
