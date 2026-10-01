@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Product | Drapewell</title>
+<link rel="stylesheet" href="styles.css">
+<script src="menu.js"></script>
+<script src="catalog.js"></script>
+<script src="data.js"></script>
+<script src="cart.js"></script>
+<script src="app.js" defer></script>
+</head>
+<body data-page="product">
+<header class="mast">
+  <a class="wordmark" href="index.html">Drapewell</a>
+  <nav class="mast-nav" id="mast-nav" aria-label="Main"></nav>
+  <div class="mast-end"><button type="button" class="cart-btn" data-open-cart>Cart <span data-cart-count>0</span></button></div>
+</header>
+<p class="crumb" id="crumb"></p>
+<main class="pdp" id="pdp">
+  <div class="gallery" id="gallery"></div>
+  <div class="buy">
+    <h1 id="p-title"></h1>
+    <p class="price" id="p-price"></p>
+    <div id="p-options"></div>
+    <div class="qty-row">
+      <div class="stepper" role="group" aria-label="Quantity"><button type="button" id="less" aria-label="Fewer">−</button><output id="qty" aria-live="polite">1</output><button type="button" id="more" aria-label="More">+</button></div>
+      <button type="button" class="add" id="add" disabled aria-disabled="true">Add to cart</button>
+    </div>
+    <p class="msg" id="p-msg" role="status" aria-live="polite"></p>
+    <p class="desc" id="p-desc"></p>
+    <p class="src" id="p-source"></p>
+  </div>
+</main>
+<footer class="foot">
+  <div class="foot-links" id="foot-links"></div>
+  <small>Storefront preview of Drapewell. Prices are in CAD. Checkout happens on the live store.</small>
+</footer>
+</body>
+</html>
