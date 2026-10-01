@@ -507,3 +507,28 @@ dialog.cart { max-width: 100vw; }
 @media (max-width: 480px) { .hero-dots button { width: 36px; } }
 .brand { display: inline-flex; align-items: center; min-height: 44px; }
 .site-foot .foot-links a { display: inline-flex; align-items: center; min-height: 44px; padding-block: 0; }
+
+/* ---------- cart: continue shopping + upsell ---------- */
+.cart-body { overflow: auto; min-height: 0; overscroll-behavior: contain; }
+.cart-body .cart-lines { overflow: visible; }
+.cart .keep { min-height: 48px; border-radius: 999px; border: 1px solid var(--line); background: transparent; color: var(--text); font: inherit; font-weight: 600; cursor: pointer; transition: border-color 0.2s, color 0.2s, scale 0.4s var(--spring); }
+.cart .keep:hover { border-color: var(--neon-b); color: var(--neon-b); }
+.cart .keep:active { scale: 0.97; }
+.upsell { padding: var(--s4) var(--s6) var(--s6); border-top: 1px solid var(--line); display: grid; gap: var(--s3); }
+.upsell[hidden] { display: none; }
+.upsell .eyebrow { margin: 0; }
+.up-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s3); }
+.up { display: grid; grid-template-columns: 64px minmax(0, 1fr) auto; gap: var(--s3); align-items: center; animation: lineIn 0.5s var(--ease) both; }
+.up-th .ph { display: block; width: 64px; height: 80px; border-radius: var(--r-sm); border: 1px solid var(--line); }
+.up-d { display: grid; gap: var(--s1); min-width: 0; }
+.up-d a { font-size: 14px; line-height: 20px; font-weight: 600; text-decoration: none; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.up-d a:hover { color: var(--neon-b); }
+.up-d span { color: var(--neon-c); font-weight: 600; font-size: 14px; line-height: 20px; }
+.up-add { min-height: 44px; min-width: 64px; padding: 0 var(--s4); border-radius: 999px; border: 1px solid var(--neon-c); background: transparent; color: var(--neon-c); font: inherit; font-weight: 700; cursor: pointer; transition: background-color 0.2s, color 0.2s, scale 0.4s var(--spring); }
+.up-add:hover:not(:disabled) { background: var(--neon-c); color: oklch(0.14 0.025 285); }
+.up-add:active { scale: 0.95; }
+.up-add:disabled { opacity: 0.5; }
+@media (prefers-reduced-motion: reduce) { .up { animation: none; } .cart .keep, .up-add { transition: none; } }
+.line { grid-template-columns: 64px minmax(0, 1fr) auto; }
+.line .q { flex-wrap: wrap; }
+.line .pr { white-space: nowrap; }

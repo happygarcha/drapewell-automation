@@ -4,7 +4,13 @@
       <h2>{{ 'general.cart' | t }}</h2>
       <button type="button" class="x" data-close-cart aria-label="{{ 'general.close' | t }}">{{ 'general.close' | t }}</button>
     </header>
-    <div class="cart-lines" id="cart-lines"></div>
+    <div class="cart-body">
+      <div class="cart-lines" id="cart-lines"></div>
+      <section class="upsell" id="cart-up" aria-labelledby="cart-up-h" data-add-txt="{{ 'general.upsell_add' | t }}" data-view-txt="{{ 'general.upsell_view' | t }}" hidden>
+        <h3 id="cart-up-h" class="eyebrow">{{ 'general.upsell' | t }}</h3>
+        <ul class="up-list" id="cart-up-list"></ul>
+      </section>
+    </div>
     <footer>
       {%- if settings.free_shipping_threshold > 0 -%}
       <div class="ship" data-free="{{ settings.free_shipping_threshold | times: 100 }}" data-left-txt="{{ 'general.free_ship_left' | t }}" data-done-txt="{{ 'general.free_ship_done' | t }}">
@@ -15,6 +21,7 @@
       <div class="sub"><span>{{ 'general.subtotal' | t }}</span><span id="cart-sub">{{ cart.total_price | money }}</span></div>
       <p class="fine">{{ 'general.shipping_note' | t }}</p>
       <a class="co" id="cart-co" href="{{ routes.cart_url }}">{{ 'general.checkout' | t }}</a>
+      <button type="button" class="keep" data-close-cart>{{ 'general.keep_shopping' | t }}</button>
     </footer>
   </div>
 </dialog>

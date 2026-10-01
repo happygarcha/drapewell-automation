@@ -49,12 +49,41 @@
       ship.classList.toggle("done", left <= 0);
     }
     var co = $("#cart-co", drawer); co.href = cart.items.length ? "/checkout" : "/cart"; co.setAttribute("aria-disabled", String(!cart.items.length));
+    paintUpsell();
+  }
+  /* ---------- cart upsell: Shopify's related-product recommendations for the newest cart item ---------- */
+  var upCache = {};
+  function renderUp(list) {
+    var sec = $("#cart-up"), ul = $("#cart-up-list"); if (!sec || !ul) return;
+    var inCart = cart.items.map(function (i) { return i.product_id; });
+    var show = list.filter(function (p) { return p.available && inCart.indexOf(p.id) < 0; }).slice(0, 3);
+    sec.hidden = !show.length;
+    ul.innerHTML = show.map(function (p) {
+      var single = p.variants && p.variants.length === 1 && p.variants[0].available;
+      return '<li class="up"><a class="up-th" href="' + esc(p.url) + '"><span class="ph">' + (p.featured_image ? '<img src="' + esc(qimg(p.featured_image, 160)) + '" alt="" loading="lazy">' : "") + '</span></a>' +
+        '<div class="up-d"><a href="' + esc(p.url) + '">' + esc(p.title) + '</a><span>' + money(p.price) + "</span></div>" +
+        (single ? '<button type="button" class="up-add" data-up-add="' + p.variants[0].id + '" aria-label="' + esc(sec.dataset.addTxt || "Add") + ": " + esc(p.title) + '">' + esc(sec.dataset.addTxt || "Add") + "</button>"
+                : '<button type="button" class="up-add" data-up-quick="' + esc(p.handle) + '" aria-label="' + esc(sec.dataset.viewTxt || "View") + ": " + esc(p.title) + '">' + esc(sec.dataset.viewTxt || "View") + "</button>") + "</li>";
+    }).join("");
+  }
+  function paintUpsell() {
+    var sec = $("#cart-up"); if (!sec) return;
+    if (!cart.items.length) { sec.hidden = true; return; }
+    var pid = cart.items[0].product_id;
+    if (upCache[pid]) return renderUp(upCache[pid]);
+    fetch("/recommendations/products.json?product_id=" + pid + "&limit=6&intent=related", { headers: { Accept: "application/json" } })
+      .then(function (r) { return r.ok ? r.json() : { products: [] }; })
+      .then(function (d) { upCache[pid] = d.products || []; if (cart.items[0] && cart.items[0].product_id === pid) renderUp(upCache[pid]); })
+      .catch(function () {});
   }
   function loadCart() { return fetch("/cart.js", { headers: { Accept: "application/json" } }).then(function (r) { return r.json(); }).then(function (c) { cart = c; paintCart(); return c; }).catch(function () {}); }
   function openCart() {  /* also exposed for quick view */ if (!drawer || !drawer.showModal) { location.href = "/cart"; return; } loadCart().then(function () { if (!drawer.open) drawer.showModal(); }); }
   if (drawer) {
     drawer.addEventListener("click", function (e) {
       if (e.target === drawer || e.target.closest("[data-close-cart]")) return drawer.close();
+      var ua = e.target.closest("[data-up-add]");
+      if (ua) { ua.disabled = true; fetch("/cart/add.js", { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify({ id: ua.dataset.upAdd, quantity: 1 }) }).then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(loadCart).catch(function () { ua.disabled = false; }); return; }
+      var uq = e.target.closest("[data-up-quick]"); if (uq) { drawer.close(); openQuick(uq.dataset.upQuick); return; }
       var b = e.target.closest("[data-line]"); if (!b) return;
       fetch("/cart/change.js", { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify({ id: b.dataset.line, quantity: parseInt(b.dataset.q, 10) }) })
         .then(function (r) { return r.json(); }).then(function (c) {
