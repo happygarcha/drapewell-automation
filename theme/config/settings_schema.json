@@ -8,6 +8,18 @@
     "theme_support_url": "https://github.com/happygarcha/drapewell-automation/issues"
   },
   {
+    "name": "Header",
+    "settings": [
+      {
+        "type": "text",
+        "id": "announcement",
+        "label": "Announcement bar",
+        "info": "Short message shown at the top left of every page. Leave empty to hide it. Only state things that are true for every order.",
+        "default": "Delivery in 13–25 days · Ships to Canada"
+      }
+    ]
+  },
+  {
     "name": "Cart",
     "settings": [
       {

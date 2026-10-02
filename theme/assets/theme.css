@@ -550,3 +550,17 @@ dialog.cart { max-width: 100vw; }
 .up-go { min-height: 44px; padding: 0 var(--s5); border-radius: 999px; border: 0; background: var(--neon-c); color: oklch(0.14 0.025 285); font: inherit; font-weight: 700; cursor: pointer; }
 .up-go:disabled { opacity: 0.5; }
 @media (prefers-reduced-motion: reduce) { .up-add span { transition: none; } .up.open .up-pick { animation: none; } }
+
+/* ---------- top bar: announcement left, account and cart top right (like most stores) ---------- */
+:root { --bar: 60px; }
+.topbar { position: sticky; top: 0; z-index: 40; display: flex; align-items: center; justify-content: space-between; gap: var(--s4); min-height: var(--bar); padding: var(--s2) var(--s4); background: oklch(0.14 0.03 285 / 0.72); backdrop-filter: blur(18px) saturate(1.3); border-bottom: 1px solid var(--line); }
+.announce { margin: 0; min-width: 0; font-size: 13px; line-height: 20px; color: var(--text-soft); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.topbar-actions { display: flex; align-items: center; gap: var(--s2); margin-left: auto; }
+.icon-btn { display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--line); color: var(--text); transition: border-color 0.3s; }
+.icon-btn:hover, .icon-btn:focus-visible { border-color: var(--neon-b); }
+.topbar .cart-btn { width: auto; gap: var(--s2); justify-content: flex-start; min-height: 44px; padding: 0 var(--s4) 0 var(--s3); border-radius: 999px; white-space: nowrap; }
+.topbar .cart-btn svg { flex: none; }
+.cart-total { font-weight: 500; color: var(--text-soft); font-size: 13px; }
+@media (max-width: 559px) { .cart-total, .cart-label { display: none; } .topbar .cart-btn { padding: 0 var(--s3); } .announce { font-size: 12px; } }
+@media (min-width: 1100px) { .side { top: calc(var(--bar) + var(--s4)); max-height: calc(100vh - var(--bar) - var(--s8)); } }
+@media (forced-colors: active) { .topbar { border-bottom: 1px solid CanvasText; } }

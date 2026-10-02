@@ -38,7 +38,7 @@
   var drawer = $("#cart-drawer");
   var cart = { items: [], total_price: 0, item_count: 0 };
   var lastCount = null;
-  function paintCount() { $$("[data-cart-count]").forEach(function (el) { el.textContent = cart.item_count; if (lastCount !== null && cart.item_count > lastCount && !reduce) {
+  function paintCount() { $$("[data-cart-total]").forEach(function (el) { el.textContent = money(cart.total_price); }); $$("[data-cart-count]").forEach(function (el) { el.textContent = cart.item_count; if (lastCount !== null && cart.item_count > lastCount && !reduce) {
         if (mo) { Mo.animate(el, { scale: 1.5 }, { duration: 0.12, ease: "easeOut" }).finished.then(function () { Mo.animate(el, { scale: 1 }, { type: "spring", stiffness: 380, damping: 14 }); }); }
         else { el.classList.remove("bump"); void el.offsetWidth; el.classList.add("bump"); }
       } }); lastCount = cart.item_count; }
