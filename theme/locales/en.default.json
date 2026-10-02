@@ -26,7 +26,12 @@
     "shipping_note": "Shipping and taxes are calculated at checkout.",
     "not_found": "Page not found",
     "not_found_body": "That page does not exist, or it has moved.",
-    "back_to_top": "Back to top"
+    "back_to_top": "Back to top",
+    "news_title": "Get offers and new arrivals",
+    "news_placeholder": "Email address",
+    "news_button": "Sign up",
+    "news_consent": "Optional. By signing up you agree to receive marketing emails from us. Unsubscribe at any time with the link in each email.",
+    "news_thanks": "Thanks for signing up."
   },
   "home": {
     "featured": "Featured",

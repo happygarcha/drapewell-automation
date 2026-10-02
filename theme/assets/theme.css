@@ -674,3 +674,17 @@ body:has(.sticky-atc:not([hidden])) .to-top { bottom: calc(max(var(--s4), env(sa
 .nf-search input { width: 100%; }
 .nf-go { margin: 0; }
 @media (forced-colors: active) { .nf-code { background: none; color: CanvasText; filter: none; } }
+
+/* policy links + newsletter signup */
+.pol-links { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--s1) var(--s4); }
+.pol-links a { color: var(--text-soft); font-size: 12px; line-height: 16px; text-decoration: underline; text-underline-offset: 3px; }
+.pol-links a:hover { color: var(--text); }
+.site-foot .pol-links a { font-size: 13px; line-height: 24px; padding-block: var(--s1); }
+.cart .pol-links { margin-top: var(--s1); }
+.news { display: grid; gap: var(--s2); max-width: 460px; }
+.news label { font-weight: 600; }
+.news-row { display: flex; gap: var(--s2); }
+.news-row input { flex: 1; min-width: 0; height: 48px; padding: 0 var(--s4); background: var(--surface); color: var(--text); border: 1px solid var(--line); border-radius: var(--r-sm); font: inherit; }
+.news-row input:focus { outline: none; border-color: var(--neon-b); box-shadow: 0 0 0 4px oklch(0.86 0.17 200 / 0.18); }
+.news-ok { color: var(--neon-c); }
+.news-err { color: oklch(0.75 0.19 25); }

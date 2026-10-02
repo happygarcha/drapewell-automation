@@ -1,0 +1,6 @@
+{%- comment -%} Links to the store policies set up in Shopify admin (Settings > Policies). {%- endcomment -%}
+{%- if shop.policies.size > 0 -%}
+  <ul class="pol-links">
+    {%- for policy in shop.policies -%}<li><a href="{{ policy.url }}">{{ policy.title }}</a></li>{%- endfor -%}
+  </ul>
+{%- endif -%}

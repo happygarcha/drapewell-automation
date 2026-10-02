@@ -20,6 +20,7 @@
     {%- endif -%}
       <div class="sub"><span>{{ 'general.subtotal' | t }}</span><span id="cart-sub">{{ cart.total_price | money }}</span></div>
       <p class="fine">{{ 'general.shipping_note' | t }}</p>
+    {% render 'policy-links' %}
       <a class="co" id="cart-co" href="{{ routes.cart_url }}">{{ 'general.checkout' | t }}</a>
       <button type="button" class="keep" data-close-cart>{{ 'general.keep_shopping' | t }}</button>
     </footer>

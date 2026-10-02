@@ -115,6 +115,18 @@
         {%- endfor -%}
       </ul>
     </nav>
+    {%- form 'customer', class: 'news' -%}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      <label for="news-email">{{ 'general.news_title' | t }}</label>
+      <div class="news-row">
+        <input id="news-email" type="email" name="contact[email]" required autocomplete="email" placeholder="{{ 'general.news_placeholder' | t }}">
+        <button type="submit" class="btn">{{ 'general.news_button' | t }}</button>
+      </div>
+      <p class="fine">{{ 'general.news_consent' | t }}</p>
+      {%- if form.posted_successfully? -%}<p class="fine news-ok" role="status">{{ 'general.news_thanks' | t }}</p>{%- endif -%}
+      {%- if form.errors -%}<p class="fine news-err" role="alert">{{ form.errors | default_errors }}</p>{%- endif -%}
+    {%- endform -%}
+    {% render 'policy-links' %}
     <p class="fine">&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}</p>
   </footer>
 
