@@ -505,6 +505,35 @@
     }
   }
 
+  /* ---------- search page: result count rolls up, the searched words are highlighted, empty state icon bobs ---------- */
+  var srchLine = $(".srch-line");
+  if (mo && srchLine) {
+    var cntEl = $("[data-count]", srchLine), cntTo = parseInt(cntEl && cntEl.textContent, 10);
+    if (cntEl && cntTo > 0) Mo.animate(0, cntTo, { duration: Math.min(1.2, 0.4 + cntTo * 0.02), ease: [0.2, 0.7, 0.2, 1], delay: 0.3, onUpdate: function (v) { cntEl.textContent = Math.round(v); } }).finished.then(function () { cntEl.textContent = cntTo; });
+    var qEl = $("[data-q]", srchLine);
+    if (qEl) { qEl.style.setProperty("--qu", "0"); Mo.animate(qEl, { "--qu": 1 }, { duration: 0.8, ease: [0.2, 0.7, 0.2, 1], delay: 0.6 }); }
+    /* highlight the searched words inside the product names, with a marker sweep */
+    var words = (qEl ? qEl.textContent : "").toLowerCase().split(/\s+/).filter(function (w) { return w.length > 1; }).slice(0, 5);
+    if (words.length) {
+      var rx = new RegExp("(" + words.map(function (w) { return w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }).join("|") + ")", "ig");
+      $$(".card .t").forEach(function (t) {
+        var txt = t.textContent; if (!rx.test(txt)) { rx.lastIndex = 0; return; } rx.lastIndex = 0;
+        var frag = document.createDocumentFragment();
+        txt.split(rx).forEach(function (part, i) { if (i % 2) { var m = document.createElement("mark"); m.textContent = part; frag.appendChild(m); } else if (part) frag.appendChild(document.createTextNode(part)); });
+        t.textContent = ""; t.appendChild(frag);
+      });
+      requestAnimationFrame(function () { $$(".card .t mark").forEach(function (m, i) { setTimeout(function () { m.classList.add("on"); }, 500 + Math.min(i, 12) * 60); }); });
+    }
+  }
+  var srchIco = $(".srch-ico");
+  if (mo && srchIco) Mo.animate(srchIco, { translate: ["0px -6px", "0px 6px"], rotate: [-6, 6] }, { duration: 1.6, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" });
+  /* the sidebar search box lifts a little when focused */
+  var srchIn = $(".side .search input");
+  if (mo && srchIn) {
+    srchIn.addEventListener("focus", function () { Mo.animate(srchIn, { scale: 1.03 }, { type: "spring", stiffness: 380, damping: 20 }); });
+    srchIn.addEventListener("blur", function () { Mo.animate(srchIn, { scale: 1 }, { type: "spring", stiffness: 380, damping: 24 }); });
+  }
+
   /* press feedback: a quick spring squash on buttons, chips and thumbnails (delegated, so it also covers the cart drawer and quick view) */
   if (mo) {
     var PRESS = ".btn, .cart-btn, .to-top, .up-add, .chipb span, .thumbs button, .hero-dots button, [data-hero-prev], [data-hero-next], .q button";

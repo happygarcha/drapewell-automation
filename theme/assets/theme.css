@@ -653,3 +653,12 @@ body:has(.sticky-atc:not([hidden])) .to-top { bottom: calc(max(var(--s4), env(sa
   .pager a:hover, .pager a:focus-visible { translate: 0 -3px; border-color: var(--neon-b); }
 }
 @media (prefers-reduced-motion: reduce) { .pager a { transition: none; } .pager a:hover { translate: none; } }
+
+/* search page */
+.srch-line .q { background: linear-gradient(var(--neon-b), var(--neon-b)) left bottom / calc(var(--qu, 1) * 100%) 2px no-repeat; padding-bottom: 2px; color: var(--text); }
+.card .t mark { color: inherit; background: linear-gradient(oklch(0.9 0.22 130 / 0.35), oklch(0.9 0.22 130 / 0.35)) left center / 100% 100% no-repeat; border-radius: 3px; padding: 0 2px; }
+.mo .card .t mark { background-size: 0% 100%; transition: background-size 0.6s var(--ease); }
+.mo .card .t mark.on { background-size: 100% 100%; }
+.empty-state { display: grid; justify-items: center; gap: var(--s3); }
+.empty-state .srch-ico { color: var(--neon-b); }
+@media (forced-colors: active) { .card .t mark { background: Mark; color: MarkText; } }
