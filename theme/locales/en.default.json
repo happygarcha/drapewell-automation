@@ -41,12 +41,12 @@
   "home": {
     "featured": "Featured",
     "discover": "Discover the {{ room }} edit: pieces chosen to work together.",
-    "open": "Open piece",
-    "prev": "Previous piece",
-    "next": "Next piece",
+    "open": "Shop now",
+    "prev": "Previous slide",
+    "next": "Next slide",
     "pause": "Pause slideshow",
     "play": "Play slideshow",
-    "show": "Show piece",
+    "show": "Go to slide",
     "pieces": "pieces"
   },
   "collection": {
