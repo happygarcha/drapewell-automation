@@ -358,7 +358,7 @@
   }
 
   /* ---------- scroll reveal for cards, image shimmer, magnetic buttons ---------- */
-  var cards = $$(".card");
+  function observeCards(cards) {
   if ("IntersectionObserver" in window && mo && Mo.inView) {
     /* Motion: cards spring up with a stagger across whatever batch scrolls into view together */
     var queue = [], raf = 0;
@@ -380,6 +380,8 @@
     var io = new IntersectionObserver(function (entries) { entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } }); }, { rootMargin: "0px 0px -6% 0px" });
     cards.forEach(function (c, i) { c.style.setProperty("--d", i % 6); io.observe(c); });
   } else { cards.forEach(function (c) { c.classList.add("in"); }); }
+  }
+  observeCards($$(".card"));
 
   function markLoaded(img) { var ph = img.closest(".ph"); if (ph) ph.classList.add("ld"); }
   $$(".ph img").forEach(function (img) { if (img.complete) markLoaded(img); });
@@ -505,14 +507,22 @@
     }
   }
 
-  /* ---------- secure checkout strip: lock pulses once, payment icons pop in one by one ---------- */
+  /* ---------- secure checkout strip: top line draws, lock pops and glows, icons pop in then catch a sheen, facts slide up ---------- */
   $$(".co-strip").forEach(function (strip) {
     if (!mo || !Mo.inView) return;
-    var icons = $$(".co-pay li", strip), lock = $(".co-secure svg", strip);
-    icons.forEach(function (el) { el.style.opacity = "0"; });
+    var icons = $$(".co-pay li", strip), lock = $(".co-secure svg", strip), word = $(".co-secure span", strip), facts = $$(".co-facts li", strip);
+    strip.style.setProperty("--ul", "0");
+    icons.concat(facts).forEach(function (el) { el.style.opacity = "0"; });
+    if (word) word.style.opacity = "0";
     Mo.inView(strip, function () {
-      if (lock) Mo.animate(lock, { scale: [1, 1.35, 1] }, { duration: 0.6, delay: 0.1 });
-      icons.forEach(function (el, i) { enter(el, { opacity: "0", scale: "0.6" }, { opacity: 1, scale: [0.6, 1] }, ["opacity", "scale"], 0.12 + i * 0.05, { stiffness: 320, damping: 18 }); });
+      Mo.animate(strip, { "--ul": 1 }, { duration: 0.8, ease: [0.2, 0.7, 0.2, 1] });
+      if (lock) { enter(lock, { scale: "0.3", rotate: "-25deg" }, { scale: [0.3, 1], rotate: [-25, 0] }, ["scale", "rotate"], 0.1, { stiffness: 320, damping: 12 }); strip.classList.add("lit"); }
+      if (word) enter(word, { opacity: "0", translate: "-8px 0px" }, { opacity: 1, translate: ["-8px 0px", "0px 0px"] }, ["opacity", "translate"], 0.2);
+      icons.forEach(function (el, i) {
+        enter(el, { opacity: "0", scale: "0.5", rotate: "-8deg" }, { opacity: 1, scale: [0.5, 1], rotate: [-8, 0] }, ["opacity", "scale", "rotate"], 0.3 + i * 0.06, { stiffness: 320, damping: 15 });
+        Mo.animate(el, { "--sh": [-120, 120] }, { duration: 0.8, delay: 0.9 + i * 0.1, ease: "easeInOut" });
+      });
+      facts.forEach(function (el, i) { enter(el, { opacity: "0", translate: "0px 10px" }, { opacity: 1, translate: ["0px 10px", "0px 0px"] }, ["opacity", "translate"], 0.55 + icons.length * 0.04 + i * 0.12); });
     }, { margin: "0px 0px -4% 0px" });
   });
 
@@ -537,6 +547,7 @@
   }
 
   /* ---------- search page: result count rolls up, the searched words are highlighted, empty state icon bobs ---------- */
+  function searchEnter() {
   var srchLine = $(".srch-line");
   if (mo && srchLine) {
     var cntEl = $("[data-count]", srchLine), cntTo = parseInt(cntEl && cntEl.textContent, 10);
@@ -558,6 +569,8 @@
   }
   var srchIco = $(".srch-ico");
   if (mo && srchIco) Mo.animate(srchIco, { translate: ["0px -6px", "0px 6px"], rotate: [-6, 6] }, { duration: 1.6, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" });
+  }
+  searchEnter();
   /* the sidebar search box lifts a little when focused */
   var srchIn = $(".side .search input");
   if (mo && srchIn) {
@@ -565,9 +578,47 @@
     srchIn.addEventListener("blur", function () { Mo.animate(srchIn, { scale: 1 }, { type: "spring", stiffness: 380, damping: 24 }); });
   }
 
+  /* ---------- live search: only the results container is replaced, clearing the box brings back the default look ---------- */
+  var sForm = $(".side .search"), sIn = sForm && $("input[name=q]", sForm), sMain = $("#main");
+  if (sForm && sIn && sMain && window.fetch && window.DOMParser && history.pushState && window.AbortController) {
+    var isSearchPath = function () { return /\/search\/?$/.test(location.pathname); };
+    var onSearch = isSearchPath(), sCtl = null, sTimer = 0, sLast = onSearch ? sIn.value.trim() : null, sHref = location.href.split("#")[0];
+    var sUrl = function (q) { return sForm.action.split("?")[0] + (q ? "?q=" + encodeURIComponent(q) + "&type=product" : ""); };
+    var swapIn = function (html, url, how, top) {
+      var doc = new DOMParser().parseFromString(html, "text/html"), nMain = doc.querySelector("#main");
+      if (!nMain) { location.href = url; return; }
+      var cur = $(".shopify-section", sMain), nxt = $(".shopify-section", nMain);
+      if (cur && nxt && cur.id === nxt.id) cur.innerHTML = nxt.innerHTML; else sMain.innerHTML = nMain.innerHTML;
+      if (how === "push") history.pushState({ ls: 1 }, "", url); else history.replaceState({ ls: 1 }, "", url);
+      sHref = location.href.split("#")[0];
+      document.title = doc.title; onSearch = true;
+      $$(".ph img", sMain).forEach(function (img) { if (img.complete) markLoaded(img); });
+      observeCards($$(".card", sMain)); searchEnter();
+      sMain.removeAttribute("aria-busy"); sForm.removeAttribute("data-busy");
+      if (top) window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+    };
+    var runSearch = function (q, top) {
+      clearTimeout(sTimer); if (sCtl) sCtl.abort(); sCtl = new AbortController();
+      sLast = q; sMain.setAttribute("aria-busy", "true"); sForm.setAttribute("data-busy", "");
+      var url = sUrl(q), how = isSearchPath() ? "replace" : "push";
+      fetch(url, { signal: sCtl.signal, credentials: "same-origin" })
+        .then(function (r) { if (!r.ok) throw new Error("search " + r.status); return r.text(); })
+        .then(function (html) { swapIn(html, url, how, top); })
+        .catch(function (e) { if (e && e.name === "AbortError") return; location.href = url; });
+    };
+    sForm.addEventListener("submit", function (e) { e.preventDefault(); runSearch(sIn.value.trim(), !onSearch); });
+    sIn.addEventListener("input", function () {
+      if (!onSearch) return;
+      var q = sIn.value.trim(); clearTimeout(sTimer);
+      if (q === sLast || (q && q.length < 2)) return;
+      sTimer = setTimeout(function () { runSearch(q, false); }, q ? 320 : 0);
+    });
+    window.addEventListener("popstate", function () { if (location.href.split("#")[0] !== sHref) location.reload(); });
+  }
+
   /* press feedback: a quick spring squash on buttons, chips and thumbnails (delegated, so it also covers the cart drawer and quick view) */
   if (mo) {
-    var PRESS = ".btn, .cart-btn, .to-top, .up-add, .chipb span, .thumbs button, .hero-dots button, [data-hero-prev], [data-hero-next], .q button";
+    var PRESS = ".btn, .cart-btn, .to-top, .up-add, .search-go, .chipb span, .thumbs button, .hero-dots button, [data-hero-prev], [data-hero-next], .q button";
     var held = null;
     var release = function () { if (!held) return; var el = held; held = null; Mo.animate(el, { scale: 1 }, { type: "spring", stiffness: 520, damping: 14 }); };
     document.addEventListener("pointerdown", function (e) {

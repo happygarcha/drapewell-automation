@@ -697,3 +697,26 @@ body:has(.sticky-atc:not([hidden])) .to-top { bottom: calc(max(var(--s4), env(sa
 .co-ico { width: 38px; height: 24px; display: block; }
 .co-facts { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; font-size: 12px; line-height: 16px; color: var(--text-soft); }
 .cart .co-strip { margin-bottom: var(--s2); }
+
+/* search go button + live search states */
+.search { position: relative; }
+.search input { padding-right: 56px; }
+.search-go { position: absolute; right: 4px; top: 4px; width: 40px; height: 40px; display: grid; place-items: center; border: 0; border-radius: 8px; background: linear-gradient(135deg, var(--neon-a), var(--neon-b)); color: oklch(0.15 0.02 285); cursor: pointer; transition: opacity 0.25s, filter 0.2s; }
+.search-go svg { transition: translate 0.3s var(--spring); }
+.search:has(input:placeholder-shown) .search-go { opacity: 0.6; }
+.search-go:focus-visible { outline: 2px solid var(--neon-c); outline-offset: 2px; }
+@media (hover: hover) { .search-go:hover { filter: brightness(1.12); } .search-go:hover svg { translate: 3px 0; } }
+.search[data-busy]::after { content: ""; position: absolute; left: 0; right: 0; bottom: -5px; height: 2px; border-radius: 2px; background: linear-gradient(90deg, transparent, var(--neon-b), transparent) -50% 0 / 40% 100% no-repeat; animation: sbusy 1s linear infinite; }
+@keyframes sbusy { to { background-position: 150% 0; } }
+#main[aria-busy="true"] .shopify-section { opacity: 0.55; transition: opacity 0.2s; }
+@media (prefers-reduced-motion: reduce) { .search[data-busy]::after { animation: none; } .search-go, .search-go svg { transition: none; } }
+
+/* checkout strip motion (html.mo) */
+.co-strip { position: relative; padding-top: var(--s3); }
+.mo .co-strip::before { content: ""; position: absolute; top: 0; left: 10%; right: 10%; height: 2px; border-radius: 2px; background: linear-gradient(90deg, transparent, var(--neon-b), var(--neon-c), transparent); transform-origin: center; transform: scaleX(var(--ul, 1)); }
+.mo .co-strip.lit .co-secure svg { animation: lockglow 3.6s ease-in-out 1.2s infinite; }
+@keyframes lockglow { 0%, 70%, 100% { filter: none; } 80% { filter: drop-shadow(0 0 6px var(--neon-c)); } }
+.mo .co-pay li { position: relative; overflow: hidden; transition: translate 0.3s var(--spring); }
+.mo .co-pay li::after { content: ""; position: absolute; inset: 0; background: linear-gradient(105deg, transparent 35%, oklch(1 0 0 / 0.9) 50%, transparent 65%); translate: calc(var(--sh, -120) * 1%) 0; pointer-events: none; }
+@media (hover: hover) { .mo .co-pay li:hover { translate: 0 -3px; } }
+@media (prefers-reduced-motion: reduce) { .mo .co-strip.lit .co-secure svg { animation: none; } }

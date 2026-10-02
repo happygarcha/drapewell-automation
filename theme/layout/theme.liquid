@@ -42,6 +42,7 @@
         <label class="sr-only" for="q">{{ 'general.search' | t }}</label>
         <input id="q" type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'general.search' | t }}" autocomplete="off">
         <input type="hidden" name="type" value="product">
+        <button class="search-go" type="submit" aria-label="{{ 'general.search_go' | t }}"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
       </form>
       <nav aria-label="{{ 'general.rooms' | t }}">
         <p class="eyebrow">{{ 'general.rooms' | t }}</p>
