@@ -18,17 +18,5 @@
         "default": "Ships to Canada & US · 10–25 day delivery"
       }
     ]
-  },
-  {
-    "name": "Cart",
-    "settings": [
-      {
-        "type": "number",
-        "id": "free_shipping_threshold",
-        "label": "Free shipping threshold",
-        "info": "Cart total (in store currency) that earns free shipping. Leave empty or 0 to hide the progress bar. Only set this to a threshold you really offer.",
-        "default": 0
-      }
-    ]
   }
 ]
