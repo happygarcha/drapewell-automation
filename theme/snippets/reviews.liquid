@@ -1,0 +1,10 @@
+{%- comment -%}
+  Reviews block. Uses Judge.me (installed on the store): the widget div is Judge.me's documented placement and the
+  metafield prints its server-rendered copy when available. If Judge.me's script is not loaded (app embed off in the
+  theme editor) the section shows a short note instead of a blank space. No placeholder or invented reviews.
+{%- endcomment -%}
+<section class="reviews" id="reviews" aria-labelledby="reviews-h" data-reviews>
+  <h2 id="reviews-h" class="eyebrow">{{ 'product.reviews' | t }}</h2>
+  <div id="judgeme_product_reviews" class="jdgm-widget jdgm-review-widget" data-id="{{ product.id }}">{{ product.metafields.judgeme.widget }}</div>
+  <p class="reviews-soon" data-reviews-soon hidden>{{ 'product.reviews_soon' | t }}</p>
+</section>

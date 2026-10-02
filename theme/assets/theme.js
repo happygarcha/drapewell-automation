@@ -368,5 +368,8 @@
     }, { passive: true });
     ["pointerup", "pointercancel", "dragend"].forEach(function (t) { document.addEventListener(t, release, { passive: true }); });
   }
+  /* reviews: if Judge.me's script never drew its widget, say so instead of leaving a blank block */
+  var rv = $("[data-reviews]");
+  if (rv) addEventListener("load", function () { setTimeout(function () { var w = $("#judgeme_product_reviews", rv), note = $("[data-reviews-soon]", rv); if (w && note && !w.children.length) note.hidden = false; }, 3500); });
   document.addEventListener("error", function (e) { if (e.target.tagName === "IMG") e.target.style.visibility = "hidden"; }, true);
 })();

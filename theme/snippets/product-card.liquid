@@ -12,6 +12,7 @@
       {%- endif -%}
     </figure>
     <span class="t">{{ product.title }}</span>
+    {% render 'rating-stars', product: product %}
     <span class="p">{% render 'price', product: product %}</span>
   </a>
   {%- if product.available -%}

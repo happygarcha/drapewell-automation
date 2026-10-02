@@ -589,3 +589,21 @@ dialog.cart { max-width: 100vw; }
 .trust-note { margin: 0; font-size: 13px; line-height: 20px; color: var(--text-soft); }
 .trust-note a { color: var(--text); text-underline-offset: 3px; }
 @media (prefers-reduced-motion: reduce) { .size-guide summary::after { transition: none; } }
+
+/* ---------- star ratings and reviews (real review data only) ---------- */
+.rating { display: inline-flex; align-items: center; gap: var(--s2); font-size: 13px; line-height: 20px; color: var(--text-soft); text-decoration: none; }
+a.rating:hover .rating-n, a.rating:focus-visible .rating-n { color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
+.card .rating { padding: 0 var(--s2); }
+.stars { --r: 0%; display: inline-block; font-size: 15px; letter-spacing: 1px; line-height: 1; }
+.stars > span { background: linear-gradient(90deg, var(--neon-c) var(--r), oklch(1 0 0 / 0.2) var(--r)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+@media (forced-colors: active) { .stars > span { color: CanvasText; background: none; } }
+.reviews { display: grid; gap: var(--s4); margin-top: var(--s8); padding-top: var(--s6); border-top: 1px solid var(--line); scroll-margin-top: calc(var(--bar) + var(--s4)); }
+.reviews-soon { margin: 0; color: var(--text-soft); font-size: 14px; }
+/* Judge.me ships a light theme; bring its widget onto the dark background */
+.jdgm-widget, .jdgm-rev-widg, .jdgm-rev-widg * { color: var(--text) !important; }
+.jdgm-rev-widg { background: transparent !important; border: 0 !important; padding: 0 !important; margin: 0 !important; }
+.jdgm-rev-widg a, .jdgm-link-text { color: var(--neon-b) !important; }
+.jdgm-star { color: var(--neon-c) !important; }
+.jdgm-rev-widg__summary-text, .jdgm-rev__timestamp, .jdgm-rev__prod-link-prefix { color: var(--text-soft) !important; }
+.jdgm-write-rev-link, .jdgm-rev-widg .jdgm-btn { border-radius: 999px !important; background: var(--surface-2) !important; border: 1px solid var(--line) !important; }
+.jdgm-rev { border-color: var(--line) !important; }
