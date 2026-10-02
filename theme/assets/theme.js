@@ -42,17 +42,40 @@
         if (mo) { Mo.animate(el, { scale: 1.5 }, { duration: 0.12, ease: "easeOut" }).finished.then(function () { Mo.animate(el, { scale: 1 }, { type: "spring", stiffness: 380, damping: 14 }); }); }
         else { el.classList.remove("bump"); void el.offsetWidth; el.classList.add("bump"); }
       } }); lastCount = cart.item_count; }
+  var cartAnimTotal = null, cartQty = {};
   function paintCart() {
     paintCount();
     if (!drawer) return;
     var box = $("#cart-lines", drawer);
     box.innerHTML = cart.items.length ? cart.items.map(function (l, idx) {
-      return '<div class="line" style="--n:' + idx + '"><div class="th">' + (l.image ? '<img src="' + esc(l.image.replace(/(\.[a-z]+)(\?|$)/i, "_160x$1$2")) + '" alt="" loading="lazy">' : "") + '</div>' +
+      return '<div class="line" data-key="' + esc(l.key) + '" style="--n:' + idx + '"><div class="th">' + (l.image ? '<img src="' + esc(l.image.replace(/(\.[a-z]+)(\?|$)/i, "_160x$1$2")) + '" alt="" loading="lazy">' : "") + '</div>' +
         '<div class="d"><a href="' + esc(l.url) + '">' + esc(l.product_title) + '</a>' + (l.variant_title && l.variant_title !== "Default Title" ? "<span>" + esc(l.variant_title) + "</span>" : "") +
         '<div class="q"><button type="button" data-line="' + l.key + '" data-q="' + (l.quantity - 1) + '" aria-label="Fewer">−</button><output>' + l.quantity + '</output><button type="button" data-line="' + l.key + '" data-q="' + (l.quantity + 1) + '" aria-label="More">+</button><button type="button" class="rm" data-line="' + l.key + '" data-q="0">Remove</button></div></div>' +
         '<div class="pr">' + money(l.final_line_price) + "</div></div>";
     }).join("") : '<p class="empty">Your cart is empty.</p>';
-    $("#cart-sub", drawer).textContent = money(cart.total_price);
+    var subEl = $("#cart-sub", drawer);
+    if (mo && drawer.open && cartAnimTotal !== null && cartAnimTotal !== cart.total_price) {
+      var fromT = cartAnimTotal, toT = cart.total_price;
+      Mo.animate(fromT, toT, { duration: 0.55, ease: [0.2, 0.7, 0.2, 1], onUpdate: function (v) { subEl.textContent = money(Math.round(v)); } }).finished.then(function () { subEl.textContent = money(toT); });
+      Mo.animate(subEl, { scale: [1.12, 1] }, { type: "spring", stiffness: 340, damping: 16 });
+    } else subEl.textContent = money(cart.total_price);
+    cartAnimTotal = cart.total_price;
+    if (mo && drawer.open) {
+      var seen = {};
+      $$(".line", drawer).forEach(function (ln) {
+        var k = ln.dataset.key, q = parseInt($("output", ln).textContent, 10); seen[k] = q;
+        if (!(k in cartQty)) enter(ln, { opacity: "0", translate: "36px 0px" }, { opacity: 1, translate: ["36px 0px", "0px 0px"] }, ["opacity", "translate"], 0, { stiffness: 210, damping: 22 });
+        else if (cartQty[k] !== q) {
+          var dir = q > cartQty[k] ? 1 : -1;
+          Mo.animate($("output", ln), { opacity: [0.2, 1], translate: ["0px " + dir * 10 + "px", "0px 0px"] }, { type: "spring", stiffness: 420, damping: 24 });
+          Mo.animate($(".pr", ln), { opacity: [0.3, 1], translate: ["0px 8px", "0px 0px"] }, { type: "spring", stiffness: 300, damping: 22 });
+        }
+      });
+      cartQty = seen;
+      var emp = $(".empty", drawer); if (emp) Mo.animate(emp, { opacity: [0, 1], scale: [0.9, 1] }, { type: "spring", stiffness: 260, damping: 18 });
+    } else {
+      cartQty = {}; $$(".line", drawer).forEach(function (ln) { cartQty[ln.dataset.key] = parseInt($("output", ln).textContent, 10); });
+    }
     var ship = $(".ship", drawer);
     if (ship) {
       var goal = parseInt(ship.dataset.free, 10) || 0, left = goal - cart.total_price;
@@ -65,7 +88,7 @@
     paintUpsell();
   }
   /* ---------- cart upsell: Shopify's related-product recommendations for the newest cart item ---------- */
-  var upCache = {};
+  var upCache = {}, upSig = "";
   function renderUp(list) {
     var sec = $("#cart-up"), ul = $("#cart-up-list"); if (!sec || !ul) return;
     var inCart = cart.items.map(function (i) { return i.product_id; });
@@ -82,6 +105,9 @@
       return '<li class="up"><a class="up-th" href="' + esc(p.url) + '"><span class="ph">' + (p.featured_image ? '<img src="' + esc(qimg(p.featured_image, 160)) + '" alt="" loading="lazy">' : "") + '</span></a>' +
         '<div class="up-d"><a href="' + esc(p.url) + '">' + esc(p.title) + '</a><span>' + money(p.price) + "</span></div>" + btn + pick + "</li>";
     }).join("");
+    var sig = show.map(function (p) { return p.id; }).join(",");
+    if (mo && drawer && drawer.open && sig && sig !== upSig) $$(".up", ul).forEach(function (li, i) { enter(li, { opacity: "0", translate: "0px 14px" }, { opacity: 1, translate: ["0px 14px", "0px 0px"] }, ["opacity", "translate"], 0.1 + i * 0.08); });
+    upSig = sig;
   }
   function paintUpsell() {
     var sec = $("#cart-up"); if (!sec) return;
@@ -100,6 +126,13 @@
       lines.forEach(function (l) { l.style.opacity = "0"; l.style.translate = "28px 0px"; });
       drawer.showModal();
       lines.forEach(function (l, i) { enter(l, { opacity: "0", translate: "28px 0px" }, { opacity: 1, translate: ["28px 0px", "0px 0px"] }, ["opacity", "translate"], 0.12 + i * 0.07); });
+      if (mo) {
+        var hd = $(".cart-in header", drawer);
+        if (hd) enter(hd, { opacity: "0", translate: "0px -12px" }, { opacity: 1, translate: ["0px -12px", "0px 0px"] }, ["opacity", "translate"], 0.08);
+        $$(".cart-in footer > *", drawer).forEach(function (el, i) { enter(el, { opacity: "0", translate: "0px 16px" }, { opacity: 1, translate: ["0px 16px", "0px 0px"] }, ["opacity", "translate"], 0.2 + i * 0.05); });
+        $$(".up", drawer).forEach(function (li, i) { enter(li, { opacity: "0", translate: "0px 14px" }, { opacity: 1, translate: ["0px 14px", "0px 0px"] }, ["opacity", "translate"], 0.4 + i * 0.08); });
+        var emp0 = $(".empty", drawer); if (emp0) Mo.animate(emp0, { opacity: [0, 1], scale: [0.92, 1] }, { type: "spring", stiffness: 240, damping: 18, delay: 0.15 });
+      }
     }); }
   if (drawer) {
     drawer.addEventListener("click", function (e) {
@@ -111,12 +144,17 @@
       var uc = e.target.closest("[data-up-confirm]");
       if (uc) { var sv = $("select", uc.closest(".up")); if (!sv || !sv.value) return; uc.disabled = true; fetch("/cart/add.js", { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify({ id: sv.value, quantity: 1 }) }).then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(loadCart).catch(function () { uc.disabled = false; }); return; }
       var b = e.target.closest("[data-line]"); if (!b) return;
-      fetch("/cart/change.js", { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify({ id: b.dataset.line, quantity: parseInt(b.dataset.q, 10) }) })
-        .then(function (r) { return r.json(); }).then(function (c) {
-          cart = c; paintCart();
-          /* emptied the cart: let the message show for a beat, then slide the drawer away */
-          if (!c.items.length) setTimeout(function () { if (!cart.items.length && drawer.open) drawer.close(); }, reduce ? 400 : 1100);
-        });
+      var sendChange = function () {
+        fetch("/cart/change.js", { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify({ id: b.dataset.line, quantity: parseInt(b.dataset.q, 10) }) })
+          .then(function (r) { return r.json(); }).then(function (c) {
+            cart = c; paintCart();
+            /* emptied the cart: let the message show for a beat, then slide the drawer away */
+            if (!c.items.length) setTimeout(function () { if (!cart.items.length && drawer.open) drawer.close(); }, reduce ? 400 : 1100);
+          });
+      };
+      var gone = b.closest(".line");
+      if (mo && gone && b.dataset.q === "0") { var go = function () { sendChange(); }; Mo.animate(gone, { opacity: 0, translate: "48px 0px" }, { duration: 0.24, ease: [0.4, 0, 1, 1] }).finished.then(go, go); }
+      else sendChange();
     });
   }
   /* upsell: show the chosen variant's own picture in the row */

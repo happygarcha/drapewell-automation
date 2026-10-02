@@ -640,3 +640,6 @@ body:has(.sticky-atc:not([hidden])) .to-top { bottom: calc(max(var(--s4), env(sa
 
 /* product page: Motion drives the info column entrance (html.mo) */
 .mo .buy.stagger > * { animation: none; }
+
+/* cart drawer: Motion drives the suggestion rows (html.mo) */
+.mo .up { animation: none; }
