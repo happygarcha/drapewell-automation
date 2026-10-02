@@ -42,29 +42,19 @@
   <h2>{{ section.settings.feed_title }}</h2>
 </header>
 
-{%- paginate collections.all.products by section.settings.per_page -%}
-  <div class="feed" id="feed">
-    {%- for product in collections.all.products -%}
-      {% render 'product-card', product: product, index: forloop.index0 %}
-    {%- endfor -%}
-  </div>
-  {%- if paginate.pages > 1 -%}
-    <nav class="pager" aria-label="{{ 'general.pagination' | t }}">
-      {%- if paginate.previous -%}<a href="{{ paginate.previous.url }}">‹</a>{%- endif -%}
-      {%- for part in paginate.parts -%}
-        {%- if part.is_link -%}<a href="{{ part.url }}">{{ part.title }}</a>{%- elsif part.title == paginate.current_page -%}<span class="cur" aria-current="page">{{ part.title }}</span>{%- else -%}<span>{{ part.title }}</span>{%- endif -%}
-      {%- endfor -%}
-      {%- if paginate.next -%}<a href="{{ paginate.next.url }}">›</a>{%- endif -%}
-    </nav>
-  {%- endif -%}
-{%- endpaginate -%}
+{%- comment -%} A short, fixed feed. Every product lives in its room (left menu); the homepage never lists the whole catalogue or paginates. {%- endcomment -%}
+<div class="feed" id="feed">
+  {%- for product in collections.all.products limit: section.settings.count -%}
+    {% render 'product-card', product: product, index: forloop.index0 %}
+  {%- endfor -%}
+</div>
 
 {% schema %}
 {
   "name": "Discover home",
   "settings": [
-    { "type": "text", "id": "feed_title", "label": "Feed title", "default": "All rooms" },
-    { "type": "range", "id": "per_page", "min": 8, "max": 48, "step": 4, "default": 24, "label": "Products per page" }
+    { "type": "text", "id": "feed_title", "label": "Feed title", "default": "Featured" },
+    { "type": "range", "id": "count", "min": 4, "max": 24, "step": 4, "default": 8, "label": "Products shown on the homepage" }
   ],
   "presets": [{ "name": "Discover home" }]
 }
