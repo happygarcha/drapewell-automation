@@ -2,7 +2,7 @@
   Star rating from real review data only. Reads Judge.me's badge metafield (product.metafields.judgeme.badge)
   or the standard product.metafields.reviews.rating / rating_count pair. Prints nothing when a product has no reviews,
   so no stars are ever shown that customers did not give.
-  Usage: render 'rating-stars', product: product, link: '#reviews' (link optional)
+  Usage: render 'rating-stars', product: product, link: '#reviews' (link optional), empty: true (draw five empty stars when there are no reviews yet)
 {%- endcomment -%}
 {%- assign rv_count = 0 -%}
 {%- assign rv_avg = 0 -%}
@@ -22,4 +22,6 @@
     <span class="stars" style="--r: {{ rv_pct }}%" role="img" aria-label="{{ rv_label | escape }}"><span aria-hidden="true">★★★★★</span></span>
     <span class="rating-n" aria-hidden="true">{{ rv_shown }} ({{ rv_count }})</span>
   {%- if link != blank -%}</a>{%- else -%}</span>{%- endif -%}
+{%- elsif empty -%}
+  <span class="rating is-empty"><span class="stars" style="--r: 0%" aria-hidden="true"><span>★★★★★</span></span><span class="rating-n">{{ 'product.no_reviews' | t }}</span></span>
 {%- endif -%}

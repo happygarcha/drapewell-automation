@@ -69,7 +69,10 @@
     "refund_policy": "Refund policy",
     "reviews": "Customer reviews",
     "reviews_soon": "Reviews will show here once customers have shared them.",
-    "rating_label": "Rated {{ rating }} out of 5 from {{ count }} reviews"
+    "rating_label": "Rated {{ rating }} out of 5 from {{ count }} reviews",
+    "no_reviews": "No reviews yet",
+    "be_first": "Be the first to review this product.",
+    "write_review": "Write a review"
   },
   "cart": {
     "empty": "Your cart is empty.",

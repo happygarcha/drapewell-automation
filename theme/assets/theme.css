@@ -607,3 +607,9 @@ a.rating:hover .rating-n, a.rating:focus-visible .rating-n { color: var(--text);
 .jdgm-rev-widg__summary-text, .jdgm-rev__timestamp, .jdgm-rev__prod-link-prefix { color: var(--text-soft) !important; }
 .jdgm-write-rev-link, .jdgm-rev-widg .jdgm-btn { border-radius: 999px !important; background: var(--surface-2) !important; border: 1px solid var(--line) !important; }
 .jdgm-rev { border-color: var(--line) !important; }
+
+.rv-head { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s3) var(--s4); }
+.rv-head .stars { font-size: 20px; }
+.rv-first { margin: 0; font-weight: 600; }
+.rv-write[hidden] { display: none; }
+.reviews.is-empty .jdgm-rev-widg__header, .reviews.is-empty .jdgm-rev-widg__summary { display: none !important; }

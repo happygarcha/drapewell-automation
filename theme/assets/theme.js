@@ -370,6 +370,18 @@
   }
   /* reviews: if Judge.me's script never drew its widget, say so instead of leaving a blank block */
   var rv = $("[data-reviews]");
-  if (rv) addEventListener("load", function () { setTimeout(function () { var w = $("#judgeme_product_reviews", rv), note = $("[data-reviews-soon]", rv); if (w && note && !w.children.length) note.hidden = false; }, 3500); });
+  if (rv) {
+    var wbtn = $("[data-write-review]", rv);
+    var jmLink = function () { return $(".jdgm-write-rev-link", rv) || $(".jdgm-write-rev-link"); };
+    var reveal = function () { if (wbtn && jmLink()) wbtn.hidden = false; };
+    if (wbtn) {
+      wbtn.addEventListener("click", function () {
+        var l = jmLink(); if (!l) return; l.click();
+        setTimeout(function () { var f = $(".jdgm-form-wrapper, .jdgm-form", rv); if (f) f.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" }); }, 250);
+      });
+      addEventListener("load", function () { reveal(); setTimeout(reveal, 1500); setTimeout(reveal, 4000); });
+    }
+  }
+  if (rv) addEventListener("load", function () { setTimeout(function () { var w = $("#judgeme_product_reviews", rv), note = $("[data-reviews-soon]", rv); if (w && note && !w.children.length) { note.hidden = false; } }, 3500); });
   document.addEventListener("error", function (e) { if (e.target.tagName === "IMG") e.target.style.visibility = "hidden"; }, true);
 })();
