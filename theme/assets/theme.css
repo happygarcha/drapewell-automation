@@ -298,6 +298,8 @@ a.card { text-decoration: none; }
 /* cards: scroll reveal (JS adds .in) with stagger, and a shimmer while photos load */
 .js .card { animation: none; opacity: 0; translate: 0 28px; transition: opacity 0.8s var(--ease), translate 0.9s var(--ease), transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.3s; transition-delay: calc(var(--d, 0) * 60ms), calc(var(--d, 0) * 60ms), 0s, 0s, 0s; }
 .js .card.in { opacity: 1; translate: 0 0; }
+/* with Motion loaded (html.mo) the spring drives opacity and translate, CSS keeps the hover transitions */
+.mo.js .card { transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.3s; transition-delay: 0s; }
 .js .ph:not(.ld)::after { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(110deg, transparent 30%, oklch(1 0 0 / 0.14) 50%, transparent 70%); background-size: 200% 100%; animation: shimmer 1.6s linear infinite; pointer-events: none; }
 .ph.ld::after { content: none; }
 .js .ph img { opacity: 0; transition: opacity 0.7s var(--ease), scale 0.8s var(--ease); }

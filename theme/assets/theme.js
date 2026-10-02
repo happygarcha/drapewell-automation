@@ -295,7 +295,24 @@
 
   /* ---------- scroll reveal for cards, image shimmer, magnetic buttons ---------- */
   var cards = $$(".card");
-  if ("IntersectionObserver" in window && !reduce) {
+  var Mo = window.Motion;
+  if ("IntersectionObserver" in window && !reduce && Mo && Mo.inView && Mo.animate) {
+    /* Motion: cards spring up with a stagger across whatever batch scrolls into view together */
+    document.documentElement.classList.add("mo");
+    var queue = [], raf = 0;
+    var flush = function () {
+      raf = 0;
+      queue.splice(0).forEach(function (el, i) {
+        Mo.animate(el, { opacity: [0, 1], translate: ["0 28px", "0 0"] }, { type: "spring", stiffness: 170, damping: 21, delay: Math.min(i, 7) * 0.06 })
+          .finished.then(function () { el.classList.add("in"); el.style.opacity = ""; el.style.translate = ""; }, function () { el.classList.add("in"); });
+      });
+    };
+    Mo.inView(cards, function (el) {
+      if (el.motionSeen) return;
+      el.motionSeen = true; queue.push(el);
+      if (!raf) raf = requestAnimationFrame(flush);
+    }, { margin: "0px 0px -6% 0px" });
+  } else if ("IntersectionObserver" in window && !reduce) {
     var io = new IntersectionObserver(function (entries) { entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } }); }, { rootMargin: "0px 0px -6% 0px" });
     cards.forEach(function (c, i) { c.style.setProperty("--d", i % 6); io.observe(c); });
   } else { cards.forEach(function (c) { c.classList.add("in"); }); }
