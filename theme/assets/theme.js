@@ -385,6 +385,61 @@
     }
   }
 
+  /* ---------- product page motion: info column, gallery, price and quantity ticks, add-to-cart pop, size guide, trust row ---------- */
+  var pdpEl = $("[data-product]");
+  if (mo && pdpEl) {
+    $$(".buy.stagger > *").forEach(function (el, i) {
+      enter(el, { opacity: "0", translate: "0px 22px" }, { opacity: 1, translate: ["0px 22px", "0px 0px"] }, ["opacity", "translate"], 0.1 + i * 0.07, { stiffness: 150, damping: 20 });
+    });
+    var pm = $("[data-main-image] img");
+    if (pm) {
+      Mo.animate(pm, { scale: [1.08, 1] }, { duration: 1.1, ease: [0.2, 0.7, 0.2, 1] });
+      new MutationObserver(function () { Mo.animate(pm, { scale: [1.05, 1] }, { duration: 0.7, ease: [0.2, 0.7, 0.2, 1] }); }).observe(pm, { attributes: true, attributeFilter: ["src"] });
+    }
+    $$(".thumbs li").forEach(function (li, i) { enter(li, { opacity: "0", translate: "0px 14px" }, { opacity: 1, translate: ["0px 14px", "0px 0px"] }, ["opacity", "translate"], 0.35 + i * 0.05); });
+    /* the price (and the sticky bar's price) nudge up when a different variant is chosen */
+    [$("[data-price]"), $("[data-sticky-price]")].forEach(function (el) {
+      if (!el) return;
+      new MutationObserver(function () { Mo.animate(el, { opacity: [0.25, 1], translate: ["0px 10px", "0px 0px"] }, { type: "spring", stiffness: 260, damping: 22 }); }).observe(el, { childList: true, characterData: true, subtree: true });
+    });
+    /* the quantity number rolls up or down */
+    var qo = $("[data-qty-out]");
+    if (qo) {
+      var lastQ = parseInt(qo.textContent, 10) || 1;
+      new MutationObserver(function () {
+        var n = parseInt(qo.textContent, 10) || lastQ, dir = n >= lastQ ? 1 : -1; lastQ = n;
+        Mo.animate(qo, { opacity: [0.2, 1], translate: ["0px " + dir * 10 + "px", "0px 0px"] }, { type: "spring", stiffness: 420, damping: 24 });
+      }).observe(qo, { childList: true, characterData: true, subtree: true });
+    }
+    /* add to cart: the button pops when it turns to "Added" */
+    var ab = $("[data-add]");
+    if (ab) {
+      var wasOk = false;
+      new MutationObserver(function () {
+        var ok = ab.classList.contains("is-ok"); if (ok && !wasOk) Mo.animate(ab, { scale: 1.07 }, { duration: 0.12, ease: "easeOut" }).finished.then(function () { Mo.animate(ab, { scale: 1 }, { type: "spring", stiffness: 380, damping: 13 }); });
+        wasOk = ok;
+      }).observe(ab, { attributes: true, attributeFilter: ["class"] });
+    }
+    /* size guide: its contents ease in when it opens */
+    $$(".size-guide").forEach(function (d) {
+      d.addEventListener("toggle", function () {
+        if (!d.open) return; var body = $(".sg-body", d); if (body) Mo.animate(body, { opacity: [0, 1], translate: ["0px -10px", "0px 0px"] }, { type: "spring", stiffness: 240, damping: 24 });
+      });
+    });
+    /* trust row, reviews and the recently viewed row spring in as they scroll into view */
+    if (Mo.inView) {
+      var trust = $$(".trust-list li");
+      if (trust.length) { trust.forEach(function (el) { el.style.opacity = "0"; }); Mo.inView(".trust-list", function () { trust.forEach(function (el, i) { enter(el, { opacity: "0", translate: "0px 16px" }, { opacity: 1, translate: ["0px 16px", "0px 0px"] }, ["opacity", "translate"], i * 0.08); }); }, { margin: "0px 0px -8% 0px" }); }
+      var rvw = $("[data-reviews]");
+      if (rvw) { rvw.style.opacity = "0"; Mo.inView(rvw, function () { enter(rvw, { opacity: "0", translate: "0px 18px" }, { opacity: 1, translate: ["0px 18px", "0px 0px"] }, ["opacity", "translate"], 0); }, { margin: "0px 0px -6% 0px" }); }
+    }
+    var recRow = $("[data-recent-row]");
+    if (recRow) new MutationObserver(function () {
+      if (recRow.dataset.in) return; recRow.dataset.in = "1";
+      Array.prototype.slice.call(recRow.children).forEach(function (el, i) { enter(el, { opacity: "0", translate: "0px 14px" }, { opacity: 1, translate: ["0px 14px", "0px 0px"] }, ["opacity", "translate"], i * 0.06); });
+    }).observe(recRow, { childList: true });
+  }
+
   /* press feedback: a quick spring squash on buttons, chips and thumbnails (delegated, so it also covers the cart drawer and quick view) */
   if (mo) {
     var PRESS = ".btn, .cart-btn, .to-top, .up-add, .chipb span, .thumbs button, .hero-dots button, [data-hero-prev], [data-hero-next], .q button";

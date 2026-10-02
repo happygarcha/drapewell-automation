@@ -637,3 +637,6 @@ body:has(.sticky-atc:not([hidden])) .to-top { bottom: calc(max(var(--s4), env(sa
   .mini-link:hover .ph img, .mini-link:focus-visible .ph img { scale: 1.1; }
 }
 @media (prefers-reduced-motion: reduce) { .mini-link, .mini-link .ph img { transition: none; } .mini-link:hover { translate: none; } .mini-link:hover .ph img { scale: 1; } }
+
+/* product page: Motion drives the info column entrance (html.mo) */
+.mo .buy.stagger > * { animation: none; }
