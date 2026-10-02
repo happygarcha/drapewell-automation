@@ -102,9 +102,11 @@ a { color: inherit; }
 @media (min-width: 760px) { .feed { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 @media (min-width: 1500px) { .feed { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 .card { position: relative; display: grid; gap: var(--s3); padding: var(--s2) var(--s2) var(--s4); background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); text-align: left; color: inherit; font: inherit; cursor: pointer; transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: transform 0.4s var(--ease), border-color 0.3s, box-shadow 0.4s var(--ease); animation: in 0.7s var(--ease) both; animation-delay: calc(var(--i, 0) * 40ms); }
+@property --ga { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+@keyframes glowspin { to { --ga: 360deg; } }
 @keyframes in { from { opacity: 0; translate: 0 16px; } to { opacity: 1; translate: 0 0; } }
 .card::before { content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1px; pointer-events: none; opacity: 0; transition: opacity 0.4s;
-  background: radial-gradient(240px circle at var(--mx, 50%) var(--my, 0%), var(--neon-a), var(--neon-b) 55%, transparent 75%); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
+  background: conic-gradient(from var(--ga), transparent 0 45%, var(--neon-a), var(--neon-b) 72%, var(--neon-c) 86%, transparent 96%); animation: glowspin 7s linear infinite; -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
 @media (hover: hover) { .card:hover { box-shadow: 0 24px 48px -24px oklch(0.72 0.27 340 / 0.45); } .card:hover::before { opacity: 1; } }
 .card .ph { aspect-ratio: 4 / 5; border-radius: var(--r-sm); }
 .card.wide { grid-column: span 2; }
@@ -720,3 +722,5 @@ body:has(.sticky-atc:not([hidden])) .to-top { bottom: calc(max(var(--s4), env(sa
 .mo .co-pay li::after { content: ""; position: absolute; inset: 0; background: linear-gradient(105deg, transparent 35%, oklch(1 0 0 / 0.9) 50%, transparent 65%); translate: calc(var(--sh, -120) * 1%) 0; pointer-events: none; }
 @media (hover: hover) { .mo .co-pay li:hover { translate: 0 -3px; } }
 @media (prefers-reduced-motion: reduce) { .mo .co-strip.lit .co-secure svg { animation: none; } }
+
+@media (prefers-reduced-motion: reduce) { .card::before { animation: none; } }
