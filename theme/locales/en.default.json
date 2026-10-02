@@ -25,7 +25,8 @@
     "none_under": "Nothing under this price right now.",
     "shipping_note": "Shipping and taxes are calculated at checkout.",
     "not_found": "Page not found",
-    "not_found_body": "That page does not exist, or it has moved."
+    "not_found_body": "That page does not exist, or it has moved.",
+    "back_to_top": "Back to top"
   },
   "home": {
     "featured": "Featured",

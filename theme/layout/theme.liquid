@@ -122,6 +122,10 @@
     <div class="quick-in" id="quick-in"></div>
   </dialog>
 
+  <button type="button" class="to-top" data-to-top aria-label="{{ 'general.back_to_top' | t }}" tabindex="-1" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>
+  </button>
+
   {% render 'cart-drawer' %}
   <script src="{{ 'motion.js' | asset_url }}" defer></script>
   <script src="{{ 'theme.js' | asset_url }}" defer></script>

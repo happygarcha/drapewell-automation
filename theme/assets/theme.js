@@ -358,7 +358,7 @@
   }
   /* press feedback: a quick spring squash on buttons, chips and thumbnails (delegated, so it also covers the cart drawer and quick view) */
   if (mo) {
-    var PRESS = ".btn, .cart-btn, .up-add, .chipb span, .thumbs button, .hero-dots button, [data-hero-prev], [data-hero-next], .q button";
+    var PRESS = ".btn, .cart-btn, .to-top, .up-add, .chipb span, .thumbs button, .hero-dots button, [data-hero-prev], [data-hero-next], .q button";
     var held = null;
     var release = function () { if (!held) return; var el = held; held = null; Mo.animate(el, { scale: 1 }, { type: "spring", stiffness: 520, damping: 14 }); };
     document.addEventListener("pointerdown", function (e) {
@@ -368,6 +368,23 @@
     }, { passive: true });
     ["pointerup", "pointercancel", "dragend"].forEach(function (t) { document.addEventListener(t, release, { passive: true }); });
   }
+  /* back to top: appears once the visitor has scrolled well past the first screen */
+  var toTop = $("[data-to-top]");
+  if (toTop) {
+    var tt = false, ttShow = false;
+    var ttCheck = function () {
+      tt = false; var on = (window.scrollY || document.documentElement.scrollTop) > window.innerHeight * 0.8;
+      if (on === ttShow) return; ttShow = on; toTop.classList.toggle("show", on);
+      toTop.tabIndex = on ? 0 : -1; if (on) toTop.removeAttribute("aria-hidden"); else toTop.setAttribute("aria-hidden", "true");
+    };
+    addEventListener("scroll", function () { if (!tt) { tt = true; requestAnimationFrame(ttCheck); } }, { passive: true });
+    ttCheck();
+    toTop.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+      var m = $("#main"); if (m) { m.tabIndex = -1; m.focus({ preventScroll: true }); }
+    });
+  }
+
   /* reviews: if Judge.me's script never drew its widget, say so instead of leaving a blank block */
   var rv = $("[data-reviews]");
   if (rv) {
