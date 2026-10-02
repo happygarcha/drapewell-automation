@@ -1,11 +1,6 @@
 {%- liquid
   assign current = product.selected_or_first_available_variant
 -%}
-<nav class="crumbs fine" aria-label="Breadcrumb">
-  <a href="{{ routes.root_url }}">{{ shop.name }}</a>
-  {%- if collection != blank %} / <a href="{{ collection.url }}">{{ collection.title }}</a>{% endif %}
-</nav>
-
 <div class="pdp" data-product>
   <div class="gallery">
     <figure class="ph tall" data-main-image style="view-transition-name: pv-{{ product.handle }}">
