@@ -42,6 +42,7 @@
           </fieldset>
         {%- endfor -%}
       {%- endunless -%}
+      {% render 'size-guide', product: product %}
       <div class="addrow">
         <div class="stepper" role="group" aria-label="{{ 'product.quantity' | t }}">
           <button type="button" data-qty-less aria-label="{{ 'product.fewer' | t }}">−</button>
@@ -53,6 +54,8 @@
       </div>
       <p class="msg" data-msg role="status" aria-live="polite"></p>
     {%- endform -%}
+
+    {% render 'trust-row' %}
 
     {%- if product.description != blank -%}<div class="desc">{{ product.description }}</div>{%- endif -%}
   </div>

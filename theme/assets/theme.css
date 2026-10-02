@@ -564,3 +564,28 @@ dialog.cart { max-width: 100vw; }
 @media (max-width: 559px) { .cart-total, .cart-label { display: none; } .topbar .cart-btn { padding: 0 var(--s3); } .announce { font-size: 12px; } }
 @media (min-width: 1100px) { .side { top: calc(var(--bar) + var(--s4)); max-height: calc(100vh - var(--bar) - var(--s8)); } }
 @media (forced-colors: active) { .topbar { border-bottom: 1px solid CanvasText; } }
+
+/* ---------- product page: size guide and trust row ---------- */
+.size-guide { border: 1px solid var(--line); border-radius: var(--r-sm); background: var(--surface); }
+.size-guide summary { display: flex; align-items: center; justify-content: space-between; min-height: 48px; padding: 0 var(--s4); cursor: pointer; font-weight: 600; list-style: none; }
+.size-guide summary::-webkit-details-marker { display: none; }
+.size-guide summary::after { content: "+"; font-size: 20px; line-height: 1; color: var(--neon-b); transition: rotate 0.3s var(--ease); }
+.size-guide[open] summary::after { rotate: 45deg; }
+.size-guide summary:focus-visible { outline: 2px solid var(--neon-b); outline-offset: 2px; border-radius: var(--r-sm); }
+.sg-body { display: grid; gap: var(--s4); padding: 0 var(--s4) var(--s4); }
+.sg-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.sg-table th, .sg-table td { padding: var(--s2) var(--s3); text-align: left; border-bottom: 1px solid var(--line); }
+.sg-table thead th { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-soft); }
+.sg-table tbody th { font-weight: 600; }
+.sg-table td { color: var(--text-soft); white-space: nowrap; }
+.sg-tips { margin: 0; padding-left: var(--s5); display: grid; gap: var(--s2); font-size: 14px; color: var(--text-soft); }
+
+.trust { display: grid; gap: var(--s3); margin-top: var(--s4); }
+.trust-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s3); }
+.trust-list li { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--s3); align-items: start; padding: var(--s3) var(--s4); border: 1px solid var(--line); border-radius: var(--r-sm); background: var(--surface); }
+.trust-list svg { color: var(--neon-b); margin-top: 2px; }
+.trust-list strong { display: block; font-size: 14px; }
+.trust-list span { display: block; font-size: 13px; line-height: 20px; color: var(--text-soft); }
+.trust-note { margin: 0; font-size: 13px; line-height: 20px; color: var(--text-soft); }
+.trust-note a { color: var(--text); text-underline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .size-guide summary::after { transition: none; } }
