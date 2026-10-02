@@ -478,6 +478,33 @@
     }).observe(recRow, { childList: true });
   }
 
+  /* ---------- collection, rooms and search pages: heading words rise, accent bar draws, sort bar and pager spring in ---------- */
+  var pgHead = $(".page-head");
+  if (mo && pgHead) {
+    var pgH1 = $("h1", pgHead);
+    if (pgH1 && !pgH1.children.length && pgH1.textContent.trim().length < 90) {
+      var pgTxt = pgH1.textContent.trim().replace(/\s+/g, " "), words = pgTxt.split(" "), srSpan = document.createElement("span");
+      pgH1.textContent = ""; srSpan.className = "sr-only"; srSpan.textContent = pgTxt; pgH1.appendChild(srSpan);
+      words.forEach(function (w, i) {
+        var outer = document.createElement("span"), inner = document.createElement("span");
+        outer.className = "w"; outer.setAttribute("aria-hidden", "true"); inner.textContent = w; outer.appendChild(inner); pgH1.appendChild(outer);
+        if (i < words.length - 1) pgH1.appendChild(document.createTextNode(" "));
+        enter(inner, { translate: "0px 115%" }, { translate: ["0px 115%", "0px 0px"] }, ["translate"], 0.05 + i * 0.07, { stiffness: 170, damping: 20 });
+      });
+      pgHead.style.setProperty("--ul", "0");
+      Mo.animate(pgHead, { "--ul": 1 }, { duration: 0.9, ease: [0.2, 0.7, 0.2, 1], delay: 0.25 });
+    }
+    [$(".prose", pgHead), $(".sortbar", pgHead)].forEach(function (el, i) {
+      if (el) enter(el, { opacity: "0", translate: "0px 14px" }, { opacity: 1, translate: ["0px 14px", "0px 0px"] }, ["opacity", "translate"], 0.3 + i * 0.1);
+    });
+    var emptySt = $(".empty-state"); if (emptySt) enter(emptySt, { opacity: "0", translate: "0px 18px" }, { opacity: 1, translate: ["0px 18px", "0px 0px"] }, ["opacity", "translate"], 0.3);
+    var pagerEl = $(".pager");
+    if (pagerEl && Mo.inView) {
+      var pgKids = Array.prototype.slice.call(pagerEl.children); pgKids.forEach(function (el) { el.style.opacity = "0"; });
+      Mo.inView(pagerEl, function () { pgKids.forEach(function (el, i) { enter(el, { opacity: "0", translate: "0px 14px" }, { opacity: 1, translate: ["0px 14px", "0px 0px"] }, ["opacity", "translate"], i * 0.05); }); }, { margin: "0px 0px -6% 0px" });
+    }
+  }
+
   /* press feedback: a quick spring squash on buttons, chips and thumbnails (delegated, so it also covers the cart drawer and quick view) */
   if (mo) {
     var PRESS = ".btn, .cart-btn, .to-top, .up-add, .chipb span, .thumbs button, .hero-dots button, [data-hero-prev], [data-hero-next], .q button";

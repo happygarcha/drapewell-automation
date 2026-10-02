@@ -643,3 +643,13 @@ body:has(.sticky-atc:not([hidden])) .to-top { bottom: calc(max(var(--s4), env(sa
 
 /* cart drawer: Motion drives the suggestion rows (html.mo) */
 .mo .up { animation: none; }
+
+/* collection, rooms and search pages */
+.page-head h1 .w { display: inline-block; overflow: hidden; vertical-align: bottom; padding-bottom: 0.14em; margin-bottom: -0.14em; }
+.page-head h1 .w > span { display: inline-block; }
+.mo .page-head h1::after { content: ""; display: block; width: 64px; height: 4px; margin-top: var(--s3); border-radius: 2px; background: linear-gradient(90deg, var(--neon-a), var(--neon-b), var(--neon-c)); transform-origin: left; transform: scaleX(var(--ul, 1)); }
+@media (hover: hover) {
+  .pager a { transition: translate 0.4s var(--spring), border-color 0.3s, background-color 0.2s; }
+  .pager a:hover, .pager a:focus-visible { translate: 0 -3px; border-color: var(--neon-b); }
+}
+@media (prefers-reduced-motion: reduce) { .pager a { transition: none; } .pager a:hover { translate: none; } }

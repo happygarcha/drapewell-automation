@@ -9,7 +9,7 @@
 <section class="reviews{% unless rv_has %} is-empty{% endunless %}" id="reviews" aria-labelledby="reviews-h" data-reviews>
   <h2 id="reviews-h" class="eyebrow">{{ 'product.reviews' | t }}</h2>
   <div class="rv-head">
-    {% render 'rating-stars', product: product, empty: true %}
+    {% render 'rating-stars', product: product, show_empty: true %}
     {%- unless rv_has -%}<p class="rv-first">{{ 'product.be_first' | t }}</p>{%- endunless -%}
     <button type="button" class="btn rv-write" data-write-review hidden>{{ 'product.write_review' | t }}</button>
   </div>
