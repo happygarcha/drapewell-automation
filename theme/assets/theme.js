@@ -5,6 +5,16 @@
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
   var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   var fine = matchMedia("(hover: hover) and (pointer: fine)").matches;
+  /* Motion (vanilla build of Framer Motion, assets/motion.js): springs for entrances and presses. CSS stays as the fallback. */
+  var Mo = window.Motion, mo = !!(Mo && Mo.animate && !reduce);
+  if (mo) document.documentElement.classList.add("mo");
+  function clearStyle(el, props) { props.forEach(function (p) { el.style.removeProperty(p); }); }
+  function enter(el, from, to, props, delay, spring) {
+    /* set the start values first so there is no flash, then spring to the end values and hand control back to CSS */
+    Object.keys(from).forEach(function (k) { el.style.setProperty(k, from[k]); });
+    var done = function () { clearStyle(el, props); };
+    Mo.animate(el, to, Object.assign({ type: "spring", stiffness: 170, damping: 21, delay: delay || 0 }, spring || {})).finished.then(done, done);
+  }
   var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
   var money = function (cents) {
     try { return new Intl.NumberFormat(document.documentElement.lang || undefined, { style: "currency", currency: (window.Shopify && Shopify.currency && Shopify.currency.active) || "CAD" }).format(cents / 100); }
@@ -28,7 +38,10 @@
   var drawer = $("#cart-drawer");
   var cart = { items: [], total_price: 0, item_count: 0 };
   var lastCount = null;
-  function paintCount() { $$("[data-cart-count]").forEach(function (el) { el.textContent = cart.item_count; if (lastCount !== null && cart.item_count > lastCount && !reduce) { el.classList.remove("bump"); void el.offsetWidth; el.classList.add("bump"); } }); lastCount = cart.item_count; }
+  function paintCount() { $$("[data-cart-count]").forEach(function (el) { el.textContent = cart.item_count; if (lastCount !== null && cart.item_count > lastCount && !reduce) {
+        if (mo) { Mo.animate(el, { scale: 1.5 }, { duration: 0.12, ease: "easeOut" }).finished.then(function () { Mo.animate(el, { scale: 1 }, { type: "spring", stiffness: 380, damping: 14 }); }); }
+        else { el.classList.remove("bump"); void el.offsetWidth; el.classList.add("bump"); }
+      } }); lastCount = cart.item_count; }
   function paintCart() {
     paintCount();
     if (!drawer) return;
@@ -81,7 +94,13 @@
       .catch(function () {});
   }
   function loadCart() { return fetch("/cart.js", { headers: { Accept: "application/json" } }).then(function (r) { return r.json(); }).then(function (c) { cart = c; paintCart(); return c; }).catch(function () {}); }
-  function openCart() {  /* also exposed for quick view */ if (!drawer || !drawer.showModal) { location.href = "/cart"; return; } loadCart().then(function () { if (!drawer.open) drawer.showModal(); }); }
+  function openCart() {  /* also exposed for quick view */ if (!drawer || !drawer.showModal) { location.href = "/cart"; return; } loadCart().then(function () {
+      if (drawer.open) return;
+      var lines = mo ? $$(".line", drawer) : [];
+      lines.forEach(function (l) { l.style.opacity = "0"; l.style.translate = "28px 0px"; });
+      drawer.showModal();
+      lines.forEach(function (l, i) { enter(l, { opacity: "0", translate: "28px 0px" }, { opacity: 1, translate: ["28px 0px", "0px 0px"] }, ["opacity", "translate"], 0.12 + i * 0.07); });
+    }); }
   if (drawer) {
     drawer.addEventListener("click", function (e) {
       if (e.target === drawer || e.target.closest("[data-close-cart]")) return drawer.close();
@@ -259,11 +278,18 @@
   if (hero) {
     var slides = $$(".slide", hero), dots = $$("[data-go]", hero), bar = $("[data-hero-prog]", hero), pauseBtn = $("[data-hero-pause]", hero);
     var cur = 0, timer = 0, paused = false;
+    function enterSlide(sl) {
+      var copy = $$(".hero-copy.stagger > *", sl), art = $(".hero-art .ph", sl), price = $(".hero-price", sl);
+      copy.forEach(function (el, i) { enter(el, { opacity: "0", translate: "0px 22px" }, { opacity: 1, translate: ["0px 22px", "0px 0px"] }, ["opacity", "translate"], 0.15 + i * 0.09, { stiffness: 150, damping: 20 }); });
+      if (price) enter(price, { opacity: "0", translate: "0px 10px" }, { opacity: 1, translate: ["0px 10px", "0px 0px"] }, ["opacity", "translate"], 0.55);
+      if (art) enter(art, { opacity: "0", "--hs": "0.9", "--hr": "3" }, { opacity: 1, "--hs": 1, "--hr": 0 }, ["opacity", "--hs", "--hr"], 0.1, { stiffness: 90, damping: 16 });
+    }
     function show(i) {
       if (!slides.length) return; cur = (i + slides.length) % slides.length;
       slides.forEach(function (s, k) { var on = k === cur; s.classList.toggle("is-active", on); if (on) s.removeAttribute("aria-hidden"); else s.setAttribute("aria-hidden", "true"); $$("a", s).forEach(function (a) { a.tabIndex = on ? 0 : -1; }); });
       dots.forEach(function (d, k) { d.setAttribute("aria-pressed", String(k === cur)); });
       hero.style.setProperty("--hue", slides[cur].dataset.hue);
+      if (mo) enterSlide(slides[cur]);
       if (bar) { bar.classList.remove("run"); void bar.offsetWidth; if (!reduce) bar.classList.add("run"); }
     }
     function start() { clearInterval(timer); if (paused || document.hidden || slides.length < 2) return; timer = setInterval(function () { show(cur + 1); }, reduce ? 9000 : 7000); }
@@ -295,15 +321,13 @@
 
   /* ---------- scroll reveal for cards, image shimmer, magnetic buttons ---------- */
   var cards = $$(".card");
-  var Mo = window.Motion;
-  if ("IntersectionObserver" in window && !reduce && Mo && Mo.inView && Mo.animate) {
+  if ("IntersectionObserver" in window && mo && Mo.inView) {
     /* Motion: cards spring up with a stagger across whatever batch scrolls into view together */
-    document.documentElement.classList.add("mo");
     var queue = [], raf = 0;
     var flush = function () {
       raf = 0;
       queue.splice(0).forEach(function (el, i) {
-        Mo.animate(el, { opacity: [0, 1], translate: ["0 28px", "0 0"] }, { type: "spring", stiffness: 170, damping: 21, delay: Math.min(i, 7) * 0.06 })
+        Mo.animate(el, { opacity: [0, 1], translate: ["0px 28px", "0px 0px"] }, { type: "spring", stiffness: 170, damping: 21, delay: Math.min(i, 7) * 0.06 })
           .finished.then(function () { el.classList.add("in"); el.style.opacity = ""; el.style.translate = ""; }, function () { el.classList.add("in"); });
       });
     };
@@ -331,6 +355,18 @@
         if (Math.hypot(dx, dy) < reach) el.style.translate = (dx * 0.16).toFixed(1) + "px " + (dy * 0.24).toFixed(1) + "px"; else if (el.style.translate) el.style.translate = "";
       });
     }, { passive: true });
+  }
+  /* press feedback: a quick spring squash on buttons, chips and thumbnails (delegated, so it also covers the cart drawer and quick view) */
+  if (mo) {
+    var PRESS = ".btn, .cart-btn, .up-add, .chipb span, .thumbs button, .hero-dots button, [data-hero-prev], [data-hero-next], .q button";
+    var held = null;
+    var release = function () { if (!held) return; var el = held; held = null; Mo.animate(el, { scale: 1 }, { type: "spring", stiffness: 520, damping: 14 }); };
+    document.addEventListener("pointerdown", function (e) {
+      var el = e.target.closest && e.target.closest(PRESS);
+      if (!el || el.disabled || el.getAttribute("aria-disabled") === "true") return;
+      held = el; Mo.animate(el, { scale: 0.94 }, { type: "spring", stiffness: 700, damping: 28 });
+    }, { passive: true });
+    ["pointerup", "pointercancel", "dragend"].forEach(function (t) { document.addEventListener(t, release, { passive: true }); });
   }
   document.addEventListener("error", function (e) { if (e.target.tagName === "IMG") e.target.style.visibility = "hidden"; }, true);
 })();

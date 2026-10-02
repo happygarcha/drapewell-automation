@@ -299,6 +299,11 @@ a.card { text-decoration: none; }
 .js .card { animation: none; opacity: 0; translate: 0 28px; transition: opacity 0.8s var(--ease), translate 0.9s var(--ease), transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.3s; transition-delay: calc(var(--d, 0) * 60ms), calc(var(--d, 0) * 60ms), 0s, 0s, 0s; }
 .js .card.in { opacity: 1; translate: 0 0; }
 /* with Motion loaded (html.mo) the spring drives opacity and translate, CSS keeps the hover transitions */
+/* Motion drives the hero entrance, cart lines, cart count and button presses (html.mo); CSS keeps the resting state */
+.mo .slide .hero-copy.stagger > *, .mo .slide .hero-price { opacity: 1; translate: 0 0; transition: none; }
+.mo .slide .hero-art .ph, .mo .slide.is-active .hero-art .ph { opacity: 1; scale: var(--hs, 1); rotate: calc(var(--hr, 0) * 1deg); transition: none; }
+.mo dialog.cart[open] .line { animation: none; }
+.mo .btn.primary:active:not(:disabled), .mo .co:active { scale: 1; }
 .mo.js .card { transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.3s; transition-delay: 0s; }
 .js .ph:not(.ld)::after { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(110deg, transparent 30%, oklch(1 0 0 / 0.14) 50%, transparent 70%); background-size: 200% 100%; animation: shimmer 1.6s linear infinite; pointer-events: none; }
 .ph.ld::after { content: none; }
