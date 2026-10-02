@@ -622,3 +622,18 @@ a.rating:hover .rating-n, a.rating:focus-visible .rating-n { color: var(--text);
 body:has(.sticky-atc:not([hidden])) .to-top { bottom: calc(max(var(--s4), env(safe-area-inset-bottom)) + 72px); }
 @media (prefers-reduced-motion: reduce) { .to-top { transition: none; translate: 0 0; } }
 @media (forced-colors: active) { .to-top { border-color: CanvasText; background: Canvas; } }
+
+/* ---------- homepage motion extras (html.mo = Motion loaded and motion allowed) ---------- */
+.mo .hero-glow { translate: 0 calc(var(--hp, 0) * 80px); }
+.mo .slide .hero-art { translate: 0 calc(var(--hp, 0) * -36px); }
+.mo .slide .hero-copy { translate: 0 calc(var(--hp, 0) * -18px); opacity: calc(1 - var(--hp, 0) * 0.6); }
+.mo .feed-head h2 { animation: none; background-size: 0 4px; }
+.mo .feed-head.in h2 { background-size: 64px 4px; transition: background-size 1s var(--ease) 0.25s; }
+@media (hover: hover) {
+  .mini .ph { overflow: hidden; }
+  .mini-link { transition: translate 0.45s var(--spring); }
+  .mini-link:hover, .mini-link:focus-visible { translate: 4px 0; }
+  .mini-link .ph img { transition: scale 0.6s var(--ease); }
+  .mini-link:hover .ph img, .mini-link:focus-visible .ph img { scale: 1.1; }
+}
+@media (prefers-reduced-motion: reduce) { .mini-link, .mini-link .ph img { transition: none; } .mini-link:hover { translate: none; } .mini-link:hover .ph img { scale: 1; } }

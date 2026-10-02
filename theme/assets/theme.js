@@ -327,6 +327,8 @@
     var flush = function () {
       raf = 0;
       queue.splice(0).forEach(function (el, i) {
+        var cim = el.querySelector(".ph img");
+        if (cim) Mo.animate(cim, { scale: [1.12, 1] }, { duration: 1, ease: [0.2, 0.7, 0.2, 1], delay: Math.min(i, 7) * 0.06 });
         Mo.animate(el, { opacity: [0, 1], translate: ["0px 28px", "0px 0px"] }, { type: "spring", stiffness: 170, damping: 21, delay: Math.min(i, 7) * 0.06 })
           .finished.then(function () { el.classList.add("in"); el.style.opacity = ""; el.style.translate = ""; }, function () { el.classList.add("in"); });
       });
@@ -356,6 +358,33 @@
       });
     }, { passive: true });
   }
+  /* ---------- homepage motion: hero parallax, feed and footer entrances, top bar drop-in, heading reveal ---------- */
+  if (mo) {
+    var heroEl = $("[data-hero]");
+    if (heroEl) {
+      var hp = 0, hraf = 0;
+      var hpaint = function () {
+        hraf = 0; var r = heroEl.getBoundingClientRect(), p = Math.min(1, Math.max(0, -r.top / Math.max(1, r.height)));
+        if (Math.abs(p - hp) > 0.002) { hp = p; heroEl.style.setProperty("--hp", p.toFixed(3)); }
+      };
+      addEventListener("scroll", function () { if (!hraf) hraf = requestAnimationFrame(hpaint); }, { passive: true });
+      hpaint();
+    }
+    var bar = $("[data-topbar]");
+    if (bar) enter(bar, { translate: "0px -100%", opacity: "0" }, { translate: ["0px -100%", "0px 0px"], opacity: 1 }, ["translate", "opacity"], 0.05, { stiffness: 190, damping: 24 });
+    $$(".side.right .mini li").forEach(function (li, i) {
+      enter(li, { opacity: "0", translate: "24px 0px" }, { opacity: 1, translate: ["24px 0px", "0px 0px"] }, ["opacity", "translate"], 0.55 + i * 0.06);
+    });
+    if (Mo.inView) {
+      var fh = $(".feed-head");
+      if (fh) Mo.inView(fh, function () { fh.classList.add("in"); enter($("h2", fh), { opacity: "0", translate: "0px 18px" }, { opacity: 1, translate: ["0px 18px", "0px 0px"] }, ["opacity", "translate"], 0, { stiffness: 150, damping: 20 }); });
+      var foot = $(".site-foot");
+      if (foot) Mo.inView(foot, function () {
+        $$("li, .fine", foot).forEach(function (el, i) { enter(el, { opacity: "0", translate: "0px 12px" }, { opacity: 1, translate: ["0px 12px", "0px 0px"] }, ["opacity", "translate"], i * 0.05); });
+      }, { margin: "0px 0px -8% 0px" });
+    }
+  }
+
   /* press feedback: a quick spring squash on buttons, chips and thumbnails (delegated, so it also covers the cart drawer and quick view) */
   if (mo) {
     var PRESS = ".btn, .cart-btn, .to-top, .up-add, .chipb span, .thumbs button, .hero-dots button, [data-hero-prev], [data-hero-next], .q button";
