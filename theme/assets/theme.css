@@ -662,3 +662,15 @@ body:has(.sticky-atc:not([hidden])) .to-top { bottom: calc(max(var(--s4), env(sa
 .empty-state { display: grid; justify-items: center; gap: var(--s3); }
 .empty-state .srch-ico { color: var(--neon-b); }
 @media (forced-colors: active) { .card .t mark { background: Mark; color: MarkText; } }
+
+/* 404 page */
+.nf { display: grid; justify-items: center; text-align: center; gap: var(--s4); padding: var(--s8) 0; }
+.nf .page-head { text-align: center; }
+.nf-code { display: flex; gap: var(--s2); font-size: clamp(5rem, 22vw, 11rem); font-weight: 800; line-height: 1; margin: 0; letter-spacing: -0.04em; translate: var(--nx, 0px) var(--ny, 0px); background: linear-gradient(90deg, var(--neon-a), var(--neon-b), var(--neon-c)); -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 0 24px oklch(0.8 0.2 200 / 0.35)); }
+.nf-d { display: inline-block; }
+.nf-o { width: 0.8em; display: inline-grid; place-items: center; color: var(--neon-b); -webkit-text-fill-color: currentColor; }
+.nf-o svg { width: 100%; height: auto; }
+.nf-search { width: min(100%, 420px); }
+.nf-search input { width: 100%; }
+.nf-go { margin: 0; }
+@media (forced-colors: active) { .nf-code { background: none; color: CanvasText; filter: none; } }

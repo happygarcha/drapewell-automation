@@ -505,6 +505,26 @@
     }
   }
 
+  /* ---------- 404 page: digits drop in, the magnifier drifts looking around, search box and button spring up ---------- */
+  var nf = $(".nf");
+  if (mo && nf) {
+    $$(".nf-d", nf).forEach(function (d, i) { enter(d, { opacity: "0", translate: "0px -60px", rotate: String(i === 1 ? 0 : (i ? 8 : -8)) }, { opacity: 1, translate: ["0px -60px", "0px 0px"], rotate: [i === 1 ? 0 : (i ? 8 : -8), 0] }, ["opacity", "translate", "rotate"], 0.05 + i * 0.12, { stiffness: 150, damping: 11 }); });
+    var nfIco = $(".nf-o svg", nf);
+    if (nfIco) Mo.animate(nfIco, { translate: ["-10px -6px", "10px 6px"], rotate: [-12, 12] }, { duration: 2.2, repeat: Infinity, repeatType: "reverse", ease: "easeInOut", delay: 0.9 });
+    [$(".nf-search", nf), $(".nf-go", nf)].forEach(function (el, i) { if (el) enter(el, { opacity: "0", translate: "0px 16px" }, { opacity: 1, translate: ["0px 16px", "0px 0px"] }, ["opacity", "translate"], 0.55 + i * 0.1); });
+    var nfIn = $(".nf-search input", nf);
+    if (nfIn) {
+      nfIn.addEventListener("focus", function () { Mo.animate(nfIn, { scale: 1.03 }, { type: "spring", stiffness: 380, damping: 20 }); });
+      nfIn.addEventListener("blur", function () { Mo.animate(nfIn, { scale: 1 }, { type: "spring", stiffness: 380, damping: 24 }); });
+    }
+    /* the digits lean toward the pointer */
+    var nfCode = $(".nf-code", nf);
+    if (nfCode && window.matchMedia("(hover: hover)").matches) window.addEventListener("pointermove", function (e) {
+      var x = (e.clientX / window.innerWidth - 0.5) * 2, y = (e.clientY / window.innerHeight - 0.5) * 2;
+      Mo.animate(nfCode, { "--nx": x * 10 + "px", "--ny": y * 6 + "px" }, { type: "spring", stiffness: 90, damping: 18 });
+    }, { passive: true });
+  }
+
   /* ---------- search page: result count rolls up, the searched words are highlighted, empty state icon bobs ---------- */
   var srchLine = $(".srch-line");
   if (mo && srchLine) {
