@@ -22,6 +22,7 @@
     {% render 'policy-links' %}
     <button type="submit" name="update" class="btn block">{{ 'cart.update' | t }}</button>
     <button type="submit" name="checkout" class="btn primary block">{{ 'general.checkout' | t }}</button>
+    {% render 'checkout-strip' %}
   </form>
 {%- endif -%}
 {% schema %}

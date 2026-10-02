@@ -505,6 +505,17 @@
     }
   }
 
+  /* ---------- secure checkout strip: lock pulses once, payment icons pop in one by one ---------- */
+  $$(".co-strip").forEach(function (strip) {
+    if (!mo || !Mo.inView) return;
+    var icons = $$(".co-pay li", strip), lock = $(".co-secure svg", strip);
+    icons.forEach(function (el) { el.style.opacity = "0"; });
+    Mo.inView(strip, function () {
+      if (lock) Mo.animate(lock, { scale: [1, 1.35, 1] }, { duration: 0.6, delay: 0.1 });
+      icons.forEach(function (el, i) { enter(el, { opacity: "0", scale: "0.6" }, { opacity: 1, scale: [0.6, 1] }, ["opacity", "scale"], 0.12 + i * 0.05, { stiffness: 320, damping: 18 }); });
+    }, { margin: "0px 0px -4% 0px" });
+  });
+
   /* ---------- 404 page: digits drop in, the magnifier drifts looking around, search box and button spring up ---------- */
   var nf = $(".nf");
   if (mo && nf) {

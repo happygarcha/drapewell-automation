@@ -688,3 +688,12 @@ body:has(.sticky-atc:not([hidden])) .to-top { bottom: calc(max(var(--s4), env(sa
 .news-row input:focus { outline: none; border-color: var(--neon-b); box-shadow: 0 0 0 4px oklch(0.86 0.17 200 / 0.18); }
 .news-ok { color: var(--neon-c); }
 .news-err { color: oklch(0.75 0.19 25); }
+
+/* secure checkout strip */
+.co-strip { display: grid; gap: var(--s3); justify-items: center; text-align: center; margin-top: var(--s2); }
+.co-secure { display: inline-flex; align-items: center; gap: var(--s2); margin: 0; font-size: 13px; font-weight: 600; color: var(--neon-c); }
+.co-pay { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: var(--s2); }
+.co-pay li { display: flex; padding: 3px 4px; background: oklch(1 0 0 / 0.92); border-radius: 5px; }
+.co-ico { width: 38px; height: 24px; display: block; }
+.co-facts { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; font-size: 12px; line-height: 16px; color: var(--text-soft); }
+.cart .co-strip { margin-bottom: var(--s2); }
