@@ -582,8 +582,8 @@
   var sForm = $(".side .search"), sIn = sForm && $("input[name=q]", sForm), sMain = $("#main");
   if (sForm && sIn && sMain && window.fetch && window.DOMParser && history.pushState && window.AbortController) {
     var isSearchPath = function () { return /\/search\/?$/.test(location.pathname); };
-    var onSearch = isSearchPath(), sCtl = null, sTimer = 0, sLast = onSearch ? sIn.value.trim() : null, sHref = location.href.split("#")[0];
-    var sUrl = function (q) { return sForm.action.split("?")[0] + (q ? "?q=" + encodeURIComponent(q) + "&type=product" : ""); };
+    var onSearch = isSearchPath(), sSort = ($("#sort_by", sMain) || {}).value || "relevance", sCtl = null, sTimer = 0, sLast = onSearch ? sIn.value.trim() : null, sHref = location.href.split("#")[0];
+    var sUrl = function (q) { return sForm.action.split("?")[0] + (q ? "?q=" + encodeURIComponent(q) + "&type=product" + (sSort && sSort !== "relevance" ? "&sort_by=" + encodeURIComponent(sSort) : "") : ""); };
     var swapIn = function (html, url, how, top) {
       var doc = new DOMParser().parseFromString(html, "text/html"), nMain = doc.querySelector("#main");
       if (!nMain) { location.href = url; return; }
@@ -607,6 +607,11 @@
         .catch(function (e) { if (e && e.name === "AbortError") return; location.href = url; });
     };
     sForm.addEventListener("submit", function (e) { e.preventDefault(); runSearch(sIn.value.trim(), !onSearch); });
+    /* the sort menu inside the results: re-runs the same search with the chosen order */
+    sMain.addEventListener("change", function (e) {
+      var sel = e.target.closest && e.target.closest("select[name=sort_by]"); if (!sel || !sel.closest(".sortbar")) return;
+      sSort = sel.value; runSearch(sIn.value.trim() || ($("[data-q]", sMain) || {}).textContent || "", false);
+    });
     sIn.addEventListener("input", function () {
       if (!onSearch) return;
       var q = sIn.value.trim(); clearTimeout(sTimer);
@@ -614,6 +619,8 @@
       sTimer = setTimeout(function () { runSearch(q, false); }, q ? 320 : 0);
     });
     window.addEventListener("popstate", function () { if (location.href.split("#")[0] !== sHref) location.reload(); });
+  } else {
+    document.addEventListener("change", function (e) { var sel = e.target.closest && e.target.closest(".sortbar select"); if (sel && sel.form && !sel.hasAttribute("onchange")) sel.form.submit(); });
   }
 
   /* press feedback: a quick spring squash on buttons, chips and thumbnails (delegated, so it also covers the cart drawer and quick view) */

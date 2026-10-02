@@ -94,6 +94,11 @@
   "search": {
     "results": "results for",
     "none": "Nothing matches that search. Try another word.",
-    "prompt": "Type a product name in the search box."
+    "prompt": "Type a product name in the search box.",
+    "sort": "Sort results",
+    "sort_relevance": "Relevance",
+    "sort_price_asc": "Price: low to high",
+    "sort_price_desc": "Price: high to low",
+    "sort_newest": "Newest first"
   }
 }
