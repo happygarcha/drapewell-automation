@@ -2,7 +2,7 @@
   "general": {
     "skip": "Skip to content",
     "search": "Search products",
-    "rooms": "Rooms",
+    "rooms": "Shop by room",
     "back_home": "Back to home",
     "quick_view": "Quick view",
     "keep_shopping": "Continue shopping",
@@ -11,7 +11,7 @@
     "upsell_choose": "Choose an option",
     "recent": "Recently viewed",
     "free_ship_left": "away from free shipping",
-    "free_ship_done": "You have free shipping",
+    "free_ship_done": "You've unlocked free shipping",
     "sections": "Show sections",
     "footer_nav": "Footer",
     "cart": "Cart",
@@ -25,7 +25,7 @@
     "none_under": "Nothing under this price right now.",
     "shipping_note": "Shipping and taxes are calculated at checkout.",
     "not_found": "Page not found",
-    "not_found_body": "That page does not exist, or it has moved.",
+    "not_found_body": "We can't find that page. It may have moved or no longer exists.",
     "back_to_top": "Back to top",
     "news_title": "Get offers and new arrivals",
     "news_placeholder": "Email address",
@@ -40,14 +40,14 @@
   },
   "home": {
     "featured": "Featured",
-    "discover": "Discover the {{ room }} edit: pieces chosen to work together.",
+    "discover": "Shop {{ room }}: products chosen to look good together.",
     "open": "Shop now",
     "prev": "Previous slide",
     "next": "Next slide",
     "pause": "Pause slideshow",
     "play": "Play slideshow",
     "show": "Go to slide",
-    "pieces": "pieces"
+    "pieces": "products"
   },
   "collection": {
     "sort": "Sort products",
@@ -56,8 +56,8 @@
   "product": {
     "add": "Add to cart",
     "quantity": "Quantity",
-    "fewer": "Fewer",
-    "more": "More",
+    "fewer": "Decrease quantity",
+    "more": "Increase quantity",
     "photo": "Photo",
     "choose": "Choose",
     "unavailable": "That combination is not available.",
@@ -87,14 +87,15 @@
   },
   "cart": {
     "empty": "Your cart is empty.",
-    "continue": "Back to the rooms",
+    "continue": "Continue shopping",
     "remove": "Remove",
     "update": "Update cart"
   },
   "search": {
     "results": "results for",
-    "none": "Nothing matches that search. Try another word.",
-    "prompt": "Type a product name in the search box.",
+    "result_one": "result for",
+    "none": "No products match that search. Try a different word.",
+    "prompt": "Start typing to find a product.",
     "sort": "Sort results",
     "sort_relevance": "Relevance",
     "sort_price_asc": "Price: low to high",

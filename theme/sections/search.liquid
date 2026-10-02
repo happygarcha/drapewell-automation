@@ -1,4 +1,4 @@
-<header class="page-head"><div><h1>{{ 'general.search' | t }}</h1>{% if search.performed %}<p class="srch-line"><span data-count>{{ search.results_count }}</span> {{ 'search.results' | t }} “<span class="q" data-q>{{ search.terms | escape }}</span>”</p>{% endif %}</div>
+<header class="page-head"><div><h1>{{ 'general.search' | t }}</h1>{% if search.performed %}<p class="srch-line"><span data-count>{{ search.results_count }}</span> {% if search.results_count == 1 %}{{ 'search.result_one' | t }}{% else %}{{ 'search.results' | t }}{% endif %} “<span class="q" data-q>{{ search.terms | escape }}</span>”</p>{% endif %}</div>
   {%- if search.performed and search.results_count > 1 -%}
     <form class="sortbar" method="get" action="{{ routes.search_url }}">
       <input type="hidden" name="q" value="{{ search.terms | escape }}">
