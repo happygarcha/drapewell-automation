@@ -715,3 +715,6 @@ body:has(.sticky-atc:not([hidden])) .to-top { bottom: calc(max(var(--s4), env(sa
 @media (prefers-reduced-motion: reduce) { .mo .co-strip.lit .co-secure svg { animation: none; } }
 
 @media (prefers-reduced-motion: reduce) { .card::before { animation: none; } }
+
+/* side feeds: "Good to know" box on pages without a product context */
+.good-list { list-style: none; margin: 0 0 var(--s3); padding: 0; display: grid; gap: var(--s2); font-size: 14px; line-height: 20px; color: var(--text-soft); }

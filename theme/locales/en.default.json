@@ -21,6 +21,8 @@
     "sold_out": "Sold out",
     "pagination": "Pagination",
     "none_under": "Nothing under this price right now.",
+    "feed_new_in": "New in {{ name }}",
+    "good_to_know": "Good to know",
     "shipping_note": "Shipping and taxes are calculated at checkout.",
     "not_found": "Page not found",
     "not_found_body": "We can't find that page. It may have moved or no longer exists.",
