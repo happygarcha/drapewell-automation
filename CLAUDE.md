@@ -43,7 +43,7 @@ Rules for using agents:
 - Keep themes from drifting: deploy as a FULL SYNC. Upload every file under `theme/` (not just the changed ones), then read every file's size back and compare with the repo. Report any mismatch.
 - Do not overwrite what the editor or apps own:
   - `config/settings_data.json` (theme editor settings and app embeds): never upload it.
-  - GemPages files: `layout/theme.gempages.*`, `assets/gp-global.css`, `sections/gp-variant-selected.liquid`, `snippets/gp-head.liquid`, `templates/*.gp-template-*.json`: leave as they are.
-  - `locales/en.default.json`: merge. Start from the target theme's current file, apply the repo keys on top, and keep keys the repo does not have (for example the `gempages` block).
+  - GemPages was uninstalled by the owner on 2026-10-03; it was never part of our theme. Its leftover files are inert: `layout/theme.gempages.*`, `assets/gp-global.css`, `sections/gp-variant-selected.liquid`, `snippets/gp-head.liquid`, `templates/*.gp-template-bk-*.json`. Delete them from the staging copy in a full sync (never from the published theme), and drop the `gempages` block when merging `locales/en.default.json`.
+  - `locales/en.default.json`: merge. Start from the target theme's current file, apply the repo keys on top, and keep any other keys the repo does not have, except the old `gempages` block.
 - Preferred workflow: the owner duplicates the live theme (so editor settings and apps carry over); the full sync goes onto that copy; the owner previews and publishes it. The previously live theme becomes the next staging copy.
 - Log every deploy in `docs/deploys.md` (date, commit, theme name and id).
