@@ -35,3 +35,15 @@ Not relevant to this store (never use): the Chinese-platform agents (Baidu, Bili
 Rules for using agents:
 - Name the agent in the task. Give it the specific data it needs; do not hand over whole files or long histories.
 - Agents write advice and drafts. They never publish, change prices, spend money or deploy; the main session does that after the owner approves.
+
+# Theme deploys (read before touching any Shopify theme)
+
+- Source of truth: the `theme/` folder on `main`. Shopify themes are only deploy targets. Every fix is committed here first; a theme has a fix only after it has been uploaded to it.
+- Never write to the published (MAIN) theme. Before every upload, query the target theme and check `role` is UNPUBLISHED. The owner publishes themes; the harness blocks writes to MAIN.
+- Keep themes from drifting: deploy as a FULL SYNC. Upload every file under `theme/` (not just the changed ones), then read every file's size back and compare with the repo. Report any mismatch.
+- Do not overwrite what the editor or apps own:
+  - `config/settings_data.json` (theme editor settings and app embeds): never upload it.
+  - GemPages files: `layout/theme.gempages.*`, `assets/gp-global.css`, `sections/gp-variant-selected.liquid`, `snippets/gp-head.liquid`, `templates/*.gp-template-*.json`: leave as they are.
+  - `locales/en.default.json`: merge. Start from the target theme's current file, apply the repo keys on top, and keep keys the repo does not have (for example the `gempages` block).
+- Preferred workflow: the owner duplicates the live theme (so editor settings and apps carry over); the full sync goes onto that copy; the owner previews and publishes it. The previously live theme becomes the next staging copy.
+- Log every deploy in `docs/deploys.md` (date, commit, theme name and id).
