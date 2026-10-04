@@ -1,8 +1,16 @@
 {%- comment -%} Usage: render 'product-card', product: product, index: forloop.index0 {%- endcomment -%}
 <div class="cell">
   <a class="card" href="{{ product.url }}" style="--i: {{ index | default: 0 | at_most: 14 }}">
-    {%- assign room = product.collections | first -%}
-    {%- if room != blank -%}<span class="chip">{{ room.title }}</span>{%- endif -%}
+    {%- comment -%} Room chip: the product's own room (never Home page, Seasonal or Gifts), and not on collection pages where every card is the same room. {%- endcomment -%}
+    {%- assign room_chip = '' -%}
+    {%- unless request.page_type == 'collection' -%}
+      {%- for c in product.collections -%}
+        {%- if room_chip == '' and c.handle != 'frontpage' and c.handle != 'seasonal' and c.handle != 'gifts-under-25' and c.handle != 'halloween' and c.handle != 'all' -%}
+          {%- assign room_chip = c.title -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endunless -%}
+    {%- if room_chip != '' -%}<span class="chip">{{ room_chip }}</span>{%- endif -%}
     <figure class="ph" style="view-transition-name: pv-{{ product.handle }}">
       {%- if product.featured_image -%}
         {{ product.featured_image | image_url: width: 700 | image_tag: loading: 'lazy', widths: '300, 500, 700', sizes: '(min-width: 1500px) 20vw, (min-width: 760px) 24vw, 46vw', alt: product.featured_image.alt | default: product.title }}
