@@ -18,5 +18,16 @@
         "default": "Ships to Canada & US · 10–25 day delivery"
       }
     ]
+  },
+  {
+    "name": "Social media",
+    "settings": [
+      { "type": "header", "content": "Footer icons" },
+      { "type": "url", "id": "social_facebook", "label": "Facebook page link" },
+      { "type": "url", "id": "social_instagram", "label": "Instagram profile link" },
+      { "type": "url", "id": "social_pinterest", "label": "Pinterest profile link" },
+      { "type": "url", "id": "social_tiktok", "label": "TikTok profile link" },
+      { "type": "url", "id": "social_youtube", "label": "YouTube channel link" }
+    ]
   }
 ]
