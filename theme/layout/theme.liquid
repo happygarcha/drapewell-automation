@@ -38,7 +38,7 @@
   <div class="shell">
     <aside class="side left" aria-label="Browse">
       <a class="brand" href="{{ routes.root_url }}">{{ shop.name }}</a>
-      <form class="search" action="{{ routes.search_url }}" method="get" role="search">
+      <form class="search" action="{{ routes.search_url }}" method="get" role="search" data-hint="{{ 'search.hint' | t }}">
         <label class="sr-only" for="q">{{ 'general.search' | t }}</label>
         <input id="q" type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'general.search' | t }}" autocomplete="off">
         <input type="hidden" name="type" value="product">
