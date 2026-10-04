@@ -729,6 +729,9 @@ body:has(.sticky-atc:not([hidden])) .to-top { bottom: calc(max(var(--s4), env(sa
 
 /* search go button + live search states */
 .search { position: relative; }
+.search.hint input { border-color: var(--neon-b); box-shadow: 0 0 0 4px oklch(0.86 0.17 200 / 0.28); animation: hintpulse 1.1s ease-in-out 2; }
+@keyframes hintpulse { 50% { box-shadow: 0 0 0 8px oklch(0.86 0.17 200 / 0.12); } }
+@media (prefers-reduced-motion: reduce) { .search.hint input { animation: none; } }
 .search input { padding-right: 56px; }
 .search-go { position: absolute; right: 4px; top: 4px; width: 40px; height: 40px; display: grid; place-items: center; border: 0; border-radius: 8px; background: linear-gradient(135deg, var(--neon-a), var(--neon-b)); color: oklch(0.15 0.02 285); cursor: pointer; transition: opacity 0.25s, filter 0.2s; }
 .search-go svg { transition: translate 0.3s var(--spring); }

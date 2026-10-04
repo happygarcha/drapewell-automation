@@ -597,6 +597,12 @@
         .then(function (html) { swapIn(html, url, how, top); })
         .catch(function (e) { if (e && e.name === "AbortError") return; location.href = url; });
     };
+    /* landing on the search page (e.g. from the footer Search link): put the cursor in the search box and flag it */
+    if (isSearchPath() && !sIn.value.trim()) {
+      try { sIn.focus({ preventScroll: true }); } catch (err) { sIn.focus(); }
+      sForm.classList.add("hint");
+      setTimeout(function () { sForm.classList.remove("hint"); }, 3200);
+    }
     sForm.addEventListener("submit", function (e) { e.preventDefault(); runSearch(sIn.value.trim(), !onSearch); });
     /* the sort menu inside the results: re-runs the same search with the chosen order */
     sMain.addEventListener("change", function (e) {
