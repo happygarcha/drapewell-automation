@@ -601,7 +601,7 @@
     if (isSearchPath() && !sIn.value.trim()) {
       try { sIn.focus({ preventScroll: true }); } catch (err) { sIn.focus(); }
       sForm.classList.add("hint");
-      setTimeout(function () { sForm.classList.remove("hint"); }, 3200);
+      sIn.addEventListener("input", function () { sForm.classList.remove("hint"); }, { once: true });
     }
     sForm.addEventListener("submit", function (e) { e.preventDefault(); runSearch(sIn.value.trim(), !onSearch); });
     /* the sort menu inside the results: re-runs the same search with the chosen order */
