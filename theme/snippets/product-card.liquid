@@ -1,5 +1,5 @@
 {%- comment -%} Usage: render 'product-card', product: product, index: forloop.index0 {%- endcomment -%}
-<div class="cell">
+<div class="cell" data-price="{{ product.price }}" data-title="{{ product.title | escape }}" data-new="{{ product.published_at | date: '%s' }}">
   <a class="card" href="{{ product.url }}" style="--i: {{ index | default: 0 | at_most: 14 }}">
     <figure class="ph" style="view-transition-name: pv-{{ product.handle }}">
       {%- if product.featured_image -%}

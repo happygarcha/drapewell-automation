@@ -40,6 +40,17 @@
 
 <header class="feed-head">
   <h2>{{ section.settings.feed_title }}</h2>
+  <div class="sortbar">
+    <label class="sr-only" for="home_sort">{{ 'collection.sort' | t }}</label>
+    <select id="home_sort" data-home-sort>
+      <option value="featured">{{ 'general.sort_featured' | t }}</option>
+      <option value="new">{{ 'general.sort_new' | t }}</option>
+      <option value="price_asc">{{ 'general.sort_price_asc' | t }}</option>
+      <option value="price_desc">{{ 'general.sort_price_desc' | t }}</option>
+      <option value="az">{{ 'general.sort_az' | t }}</option>
+      <option value="za">{{ 'general.sort_za' | t }}</option>
+    </select>
+  </div>
 </header>
 
 {%- comment -%} A short, fixed feed. Every product lives in its room (left menu); the homepage never lists the whole catalogue or paginates. {%- endcomment -%}

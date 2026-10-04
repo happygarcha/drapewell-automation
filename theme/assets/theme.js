@@ -658,5 +658,23 @@
     }
   }
   if (rv) addEventListener("load", function () { setTimeout(function () { var w = $("#judgeme_product_reviews", rv), note = $("[data-reviews-soon]", rv); if (w && note && !w.children.length) { note.hidden = false; } }, 3500); });
+  /* homepage feed: sort the products shown (collection and search pages sort on the server) */
+  var homeSort = $("[data-home-sort]"), homeFeed = $("#feed");
+  if (homeSort && homeFeed) {
+    var homeCells = $$(".cell", homeFeed);
+    homeCells.forEach(function (c, i) { c.setAttribute("data-i", i); });
+    var num = function (el, k) { return Number(el.getAttribute("data-" + k)) || 0; };
+    var homeBy = {
+      featured: function (a, b) { return num(a, "i") - num(b, "i"); },
+      "new": function (a, b) { return num(b, "new") - num(a, "new"); },
+      price_asc: function (a, b) { return num(a, "price") - num(b, "price"); },
+      price_desc: function (a, b) { return num(b, "price") - num(a, "price"); },
+      az: function (a, b) { return a.getAttribute("data-title").localeCompare(b.getAttribute("data-title")); },
+      za: function (a, b) { return b.getAttribute("data-title").localeCompare(a.getAttribute("data-title")); }
+    };
+    homeSort.addEventListener("change", function () {
+      homeCells.slice().sort(homeBy[homeSort.value] || homeBy.featured).forEach(function (c) { homeFeed.appendChild(c); });
+    });
+  }
   document.addEventListener("error", function (e) { if (e.target.tagName === "IMG") e.target.style.visibility = "hidden"; }, true);
 })();
