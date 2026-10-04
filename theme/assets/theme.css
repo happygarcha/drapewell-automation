@@ -674,6 +674,11 @@ body:has(.sticky-atc:not([hidden])) .to-top { bottom: calc(max(var(--s4), env(sa
 .pol-links a:hover { color: var(--text); }
 .site-foot .pol-links a { font-size: 13px; line-height: 24px; padding-block: var(--s1); }
 .cart .pol-links { margin-top: var(--s1); }
+.site-foot { justify-items: center; text-align: center; }
+.site-foot nav { width: 100%; }
+.site-foot .foot-links, .site-foot .pol-links { justify-content: center; }
+.site-foot .news { width: 100%; margin-inline: auto; }
+.site-foot .news-row { justify-content: center; }
 .news { display: grid; gap: var(--s2); max-width: 460px; }
 .news label { font-weight: 600; }
 .news-row { display: flex; gap: var(--s2); }
