@@ -1,26 +1,39 @@
-{%- comment -%} Hero slides come from your main menu: one slide per collection link, showing its first product. {%- endcomment -%}
+{%- comment -%} Hero slides: newest products by default. In the theme editor you can switch to a collection (for example a Best sellers collection once there are sales) or to one slide per room. {%- endcomment -%}
 <section class="hero" id="hero" aria-label="{{ 'home.featured' | t }}" data-hero>
   <div class="hero-glow" aria-hidden="true"></div>
   <div class="slides" id="slides">
     {%- assign n = 0 -%}
-    {%- for link in linklists['main-menu'].links -%}
-      {%- if link.type == 'collection_link' and link.object != blank and link.object.products.size > 0 and n < 6 -%}
-        {%- assign product = link.object.products.first -%}
-        <article class="slide{% if n == 0 %} is-active{% endif %}" data-hue="{{ n | times: 61 | plus: 340 | modulo: 360 }}" data-slide="{{ n }}"{% if n != 0 %} aria-hidden="true"{% endif %}>
-          <div class="hero-copy stagger">
-            <p class="eyebrow">{{ link.title }}</p>
-            {%- if n == 0 -%}<h1 class="hero-h">{{ product.title }}</h1>{%- else -%}<h2 class="hero-h">{{ product.title }}</h2>{%- endif -%}
-            <p class="hero-sub">{{ 'home.discover' | t: room: link.title }}</p>
-            <div class="hero-actions"><a class="btn primary" href="{{ product.url }}"{% if n != 0 %} tabindex="-1"{% endif %}>{{ 'home.open' | t }}</a></div>
-          </div>
-          <div class="hero-art">
-            <figure class="ph">{% if product.featured_image %}{{ product.featured_image | image_url: width: 900 | image_tag: loading: 'eager', fetchpriority: 'high', widths: '400, 600, 900', sizes: '(min-width: 760px) 28vw, 70vw', alt: '' }}{% endif %}</figure>
-            <p class="hero-price">{% render 'price', product: product %}</p>
-          </div>
-        </article>
-        {%- assign n = n | plus: 1 -%}
-      {%- endif -%}
-    {%- endfor -%}
+    {%- assign source = section.settings.slide_source -%}
+    {%- if source == 'collection' and section.settings.slide_collection != blank -%}
+      {%- for product in section.settings.slide_collection.products -%}
+        {%- if n < section.settings.slide_count and product.available and product.featured_image -%}
+          {%- assign sub_text = 'home.discover_pick' | t -%}
+          {%- render 'hero-slide', product: product, label: section.settings.slide_collection.title, sub: sub_text, n: n -%}
+          {%- assign n = n | plus: 1 -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- elsif source == 'rooms' -%}
+      {%- for link in linklists['main-menu'].links -%}
+        {%- if link.type == 'collection_link' and link.object != blank and link.object.products.size > 0 and n < section.settings.slide_count -%}
+          {%- assign product = link.object.products.first -%}
+          {%- assign sub_text = 'home.discover' | t: room: link.title -%}
+          {%- render 'hero-slide', product: product, label: link.title, sub: sub_text, n: n -%}
+          {%- assign n = n | plus: 1 -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+    {%- comment -%} Default (and fallback when the chosen source is empty): the newest products. {%- endcomment -%}
+    {%- if n == 0 -%}
+      {%- assign newest = collections.all.products | sort: 'created_at' | reverse -%}
+      {%- for product in newest -%}
+        {%- if n < section.settings.slide_count and product.available and product.featured_image -%}
+          {%- assign label_text = 'home.new_label' | t -%}
+          {%- assign sub_text = 'home.discover_new' | t -%}
+          {%- render 'hero-slide', product: product, label: label_text, sub: sub_text, n: n -%}
+          {%- assign n = n | plus: 1 -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
   </div>
 
   {%- if n > 1 -%}
@@ -65,6 +78,13 @@
   "name": "Discover home",
   "settings": [
     { "type": "text", "id": "feed_title", "label": "Feed title", "default": "Featured" },
+    { "type": "select", "id": "slide_source", "label": "Slideshow shows", "default": "new", "options": [
+      { "value": "new", "label": "Newest products (automatic)" },
+      { "value": "collection", "label": "A collection (e.g. Best sellers)" },
+      { "value": "rooms", "label": "One slide per room (main menu)" }
+    ] },
+    { "type": "collection", "id": "slide_collection", "label": "Collection for the slideshow" },
+    { "type": "range", "id": "slide_count", "min": 3, "max": 8, "step": 1, "default": 5, "label": "Number of slides" },
     { "type": "range", "id": "count", "min": 4, "max": 24, "step": 4, "default": 8, "label": "Products shown on the homepage" }
   ],
   "presets": [{ "name": "Discover home" }]

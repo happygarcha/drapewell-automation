@@ -4,5 +4,5 @@
 {%- else -%}
   {%- if product.price_varies -%}{{ 'general.from' | t }} {% endif -%}
   {{ product.price | money }}
-  {%- if product.compare_at_price > product.price and product.price_varies == false -%}<s class="was">{{ product.compare_at_price | money }}</s>{%- endif -%}
+  {%- if product.compare_at_price > product.price and product.price_varies == false -%}<s class="was">{{ product.compare_at_price | money }}</s><span class="off">-{{ product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price }}%</span>{%- endif -%}
 {%- endif -%}

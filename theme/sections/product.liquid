@@ -20,7 +20,7 @@
     <p class="eyebrow">{{ product.type | default: product.vendor }}</p>
     <h1>{{ product.title }}</h1>
     {% render 'rating-stars', product: product, link: '#reviews' %}
-    <p class="p-price" data-price>{{ current.price | money }}{% if current.compare_at_price > current.price %}<s class="was">{{ current.compare_at_price | money }}</s>{% endif %}</p>
+    <p class="p-price" data-price>{{ current.price | money }}{% if current.compare_at_price > current.price %}<s class="was">{{ current.compare_at_price | money }}</s><span class="off">-{{ current.compare_at_price | minus: current.price | times: 100 | divided_by: current.compare_at_price }}%</span>{% endif %}</p>
 
     {%- form 'product', product, id: 'product-form' -%}
       <input type="hidden" name="id" value="{{ current.id }}" data-variant-id>

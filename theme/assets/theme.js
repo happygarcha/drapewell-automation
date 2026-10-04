@@ -174,7 +174,7 @@
       var complete = vals.filter(Boolean).length === need;
       var v = complete ? find(vals) : null;
       if (!need) v = data.variants[0];
-      if (v) { idInput.value = v.id; priceEl.textContent = money(v.price) + (v.compare_at_price > v.price ? "" : ""); addBtn.disabled = !v.available; addBtn.textContent = v.available ? addLabel : "Sold out"; msg.textContent = v.available ? "" : "Sold out."; }
+      if (v) { idInput.value = v.id; priceEl.innerHTML = money(v.price) + (v.compare_at_price > v.price ? '<s class="was">' + money(v.compare_at_price) + '</s><span class="off">-' + Math.floor((v.compare_at_price - v.price) * 100 / v.compare_at_price) + "%</span>" : ""); addBtn.disabled = !v.available; addBtn.textContent = v.available ? addLabel : "Sold out"; msg.textContent = v.available ? "" : "Sold out."; }
       else { addBtn.disabled = !complete ? false : true; msg.textContent = complete ? "That combination is not available." : ""; if (complete) addBtn.disabled = true; }
       /* dim values that no variant offers given the other choices */
       $$(".opt-group", form).forEach(function (g, gi) {
@@ -322,7 +322,7 @@
       if (mo) enterSlide(slides[cur]);
       if (bar) { bar.classList.remove("run"); void bar.offsetWidth; if (!reduce) bar.classList.add("run"); }
     }
-    function start() { clearInterval(timer); if (paused || document.hidden || slides.length < 2) return; timer = setInterval(function () { show(cur + 1); }, reduce ? 9000 : 7000); }
+    function start() { clearInterval(timer); if (paused || document.hidden || slides.length < 2) return; timer = setInterval(function () { show(cur + 1); }, reduce ? 8000 : 6000); }
     function go(n) { show(n); start(); }
     dots.forEach(function (d) { d.addEventListener("click", function () { go(parseInt(d.dataset.go, 10)); }); });
     var prev = $("[data-hero-prev]", hero), next = $("[data-hero-next]", hero);
@@ -333,8 +333,6 @@
     hero.addEventListener("touchend", function (e) { var t = e.changedTouches[0], dx = t.clientX - sx, dy = t.clientY - sy; if (Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy) * 1.4) go(cur + (dx < 0 ? 1 : -1)); }, { passive: true });
     document.addEventListener("visibilitychange", start);
     hero.addEventListener("pointermove", function (e) { if (reduce) return; var r = hero.getBoundingClientRect(); hero.style.setProperty("--px", ((e.clientX - r.left) / r.width - 0.5).toFixed(3)); hero.style.setProperty("--py", ((e.clientY - r.top) / r.height - 0.5).toFixed(3)); hero.style.setProperty("--gx", (((e.clientX - r.left) / r.width) * 100).toFixed(0) + "%"); hero.style.setProperty("--gy", (((e.clientY - r.top) / r.height) * 100).toFixed(0) + "%"); }, { passive: true });
-    hero.addEventListener("pointerenter", function (e) { if (e.pointerType === "mouse") clearInterval(timer); });
-    hero.addEventListener("pointerleave", function (e) { if (e.pointerType === "mouse") start(); });
     show(0); start();
   }
 

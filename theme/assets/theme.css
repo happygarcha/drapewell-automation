@@ -86,7 +86,7 @@ a { color: inherit; }
 .hero-price { margin: 0; font-family: var(--display); font-stretch: 112%; font-weight: 800; font-size: 24px; line-height: 32px; }
 .hero-bar { position: absolute; left: var(--s8); right: var(--s8); bottom: var(--s4); height: 4px; border-radius: 2px; background: oklch(1 0 0 / 0.14); overflow: hidden; }
 .hero-bar i { display: block; height: 100%; width: 100%; transform-origin: left; transform: scaleX(0); background: var(--text); }
-.hero-bar i.run { animation: prog 7s linear forwards; }
+.hero-bar i.run { animation: prog 6s linear forwards; }
 @keyframes prog { to { transform: scaleX(1); } }
 
 /* photo placeholder: moody gradient from the product tint, covered by the photo when it loads */
@@ -765,3 +765,7 @@ body:has(.sticky-atc:not([hidden])) .to-top { bottom: calc(max(var(--s4), env(sa
 
 /* side feeds: "Good to know" box on pages without a product context */
 .good-list { list-style: none; margin: 0 0 var(--s3); padding: 0; display: grid; gap: var(--s2); font-size: 14px; line-height: 20px; color: var(--text-soft); }
+
+/* percent-off badge next to the struck-through price */
+.was { margin-inline-start: var(--s2); }
+.off { display: inline-block; margin-inline-start: var(--s2); padding: 2px 8px; border-radius: 999px; font-size: 0.6em; font-weight: 800; line-height: 1.5; vertical-align: middle; letter-spacing: 0.02em; background: oklch(0.72 0.2 350); color: oklch(0.15 0.03 285); }
