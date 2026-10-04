@@ -730,6 +730,7 @@ body:has(.sticky-atc:not([hidden])) .to-top { bottom: calc(max(var(--s4), env(sa
 /* search go button + live search states */
 .search { position: relative; }
 /* shown when someone lands on the search page: the box pulses and a bubble says where to type, until they type */
+.search.hint { margin-bottom: 56px; }
 .search.hint input { border-color: var(--neon-b); box-shadow: 0 0 0 3px oklch(0.86 0.17 200 / 0.6), 0 0 26px oklch(0.86 0.17 200 / 0.5); animation: hintpulse 1.3s ease-in-out infinite; }
 @keyframes hintpulse {
   0%, 100% { box-shadow: 0 0 0 3px oklch(0.86 0.17 200 / 0.6), 0 0 12px oklch(0.86 0.17 200 / 0.3); }
