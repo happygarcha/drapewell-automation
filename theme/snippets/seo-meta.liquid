@@ -1,0 +1,122 @@
+{%- comment -%}
+  Social preview tags and structured data. Only facts the store already shows: the product's own title, description, images, price and stock,
+  and the business details published on the Contact page. No ratings or reviews are output (none exist yet).
+{%- endcomment -%}
+<meta property="og:site_name" content="{{ shop.name | escape }}">
+<meta property="og:url" content="{{ canonical_url }}">
+<meta property="og:title" content="{{ page_title | escape }}">
+{%- if page_description != blank -%}<meta property="og:description" content="{{ page_description | escape }}">{%- endif -%}
+{%- if template contains 'product' -%}
+  <meta property="og:type" content="product">
+  {%- if product.featured_image -%}<meta property="og:image" content="{{ product.featured_image | image_url: width: 1200 | prepend: 'https:' | replace: 'https:https:', 'https:' }}">{%- endif -%}
+  <meta property="product:price:amount" content="{{ product.price | divided_by: 100.0 }}">
+  <meta property="product:price:currency" content="{{ cart.currency.iso_code }}">
+{%- else -%}
+  <meta property="og:type" content="website">
+  {%- if collection.image -%}<meta property="og:image" content="{{ collection.image | image_url: width: 1200 | prepend: 'https:' | replace: 'https:https:', 'https:' }}">
+  {%- elsif collection.products.first.featured_image -%}<meta property="og:image" content="{{ collection.products.first.featured_image | image_url: width: 1200 | prepend: 'https:' | replace: 'https:https:', 'https:' }}">
+  {%- elsif request.page_type == 'index' and collections.all.products.first.featured_image -%}<meta property="og:image" content="{{ collections.all.products.first.featured_image | image_url: width: 1200 | prepend: 'https:' | replace: 'https:https:', 'https:' }}">{%- endif -%}
+{%- endif -%}
+<meta name="twitter:card" content="summary_large_image">
+
+{%- if request.page_type == 'index' -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": {{ shop.url | append: '/#organization' | json }},
+      "name": {{ shop.name | json }},
+      "url": {{ shop.url | json }},
+      "email": "happygarcha2018@hotmail.com",
+      "telephone": "+1-604-226-9941",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "12088 75A Ave",
+        "addressLocality": "Surrey",
+        "addressRegion": "BC",
+        "postalCode": "V3W 1Y4",
+        "addressCountry": "CA"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer support",
+        "email": "happygarcha2018@hotmail.com",
+        "telephone": "+1-604-226-9941",
+        "areaServed": ["CA", "US"],
+        "availableLanguage": "English",
+        "hoursAvailable": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "09:00",
+          "closes": "17:00"
+        }
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": {{ shop.url | append: '/#website' | json }},
+      "url": {{ shop.url | json }},
+      "name": {{ shop.name | json }},
+      "publisher": { "@id": {{ shop.url | append: '/#organization' | json }} },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {{ shop.url | append: routes.search_url | append: '?q={search_term_string}' | json }},
+        "query-input": "required name=search_term_string"
+      }
+    }
+  ]
+}
+</script>
+{%- endif -%}
+
+{%- if page.handle == 'about' -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Where is Drapewell based?", "acceptedAnswer": { "@type": "Answer", "text": "Drapewell is an online store based in Surrey, British Columbia, Canada. Our address is 12088 75A Ave, Surrey, BC V3W 1Y4." } },
+    { "@type": "Question", "name": "What does Drapewell sell?", "acceptedAnswer": { "@type": "Answer", "text": "Home textiles and decor (shower curtains, bath mats, towels, rugs, table runners, wall art, Christmas and autumn decor), outdoors items, pet supplies, desk and hobby items, and fashion accessories." } },
+    { "@type": "Question", "name": "Where do you ship, and what currency are prices in?", "acceptedAnswer": { "@type": "Answer", "text": "We ship to Canada and the United States. All prices are in Canadian dollars (CAD)." } },
+    { "@type": "Question", "name": "How much is shipping?", "acceptedAnswer": { "@type": "Answer", "text": "Shipping is calculated by weight at checkout. Rates start from CA$9.99 for Canada and CA$12.99 for the United States." } },
+    { "@type": "Question", "name": "How long does delivery take?", "acceptedAnswer": { "@type": "Answer", "text": "Orders are processed in 3-5 calendar days. Estimated delivery is 13-25 days to Canada and 10-20 days to the United States, with tracking." } },
+    { "@type": "Question", "name": "Will I pay import duties on a US order?", "acceptedAnswer": { "@type": "Answer", "text": "Import duties for US orders are included in the shipping charge." } },
+    { "@type": "Question", "name": "Can I return or exchange an item?", "acceptedAnswer": { "@type": "Answer", "text": "We do not accept change-of-mind returns or exchanges. If an item arrives damaged, defective or incorrect, or is lost, contact us within 30 days of delivery for a replacement or refund. Please do not mail items back unless we give you written instructions. Approved refunds go to the original payment method within 5 business days of approval." } },
+    { "@type": "Question", "name": "How do I contact Drapewell, and when is support available?", "acceptedAnswer": { "@type": "Answer", "text": "Email happygarcha2018@hotmail.com or call 604-226-9941. Support hours are Monday to Friday, 9:00 AM to 5:00 PM Pacific. We may also reply outside these hours, and we reply within 1 business day." } }
+  ]
+}
+</script>
+{%- endif -%}
+
+{%- if template contains 'product' and product != blank -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": {{ product.title | json }},
+  "description": {{ product.description | strip_html | strip_newlines | truncate: 480 | json }},
+  "url": {{ canonical_url | json }},
+  "sku": {{ product.selected_or_first_available_variant.sku | json }},
+  "brand": { "@type": "Brand", "name": {{ product.vendor | default: shop.name | json }} },
+  "image": [
+    {%- for image in product.images limit: 6 -%}{{ image | image_url: width: 1200 | prepend: 'https:' | replace: 'https:https:', 'https:' | json }}{% unless forloop.last %}, {% endunless %}{%- endfor -%}
+  ],
+  "offers": [
+    {%- for variant in product.variants -%}
+    {
+      "@type": "Offer",
+      "url": {{ shop.url | append: product.url | append: '?variant=' | append: variant.id | json }},
+      "sku": {{ variant.sku | json }},
+      "price": {{ variant.price | divided_by: 100.0 | json }},
+      "priceCurrency": {{ cart.currency.iso_code | json }},
+      "availability": "{% if variant.available %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}",
+      "itemCondition": "https://schema.org/NewCondition",
+      "seller": { "@type": "Organization", "name": {{ shop.name | json }} }
+    }{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+  ]
+}
+</script>
+{%- endif -%}
