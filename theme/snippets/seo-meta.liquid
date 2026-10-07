@@ -20,6 +20,7 @@
 <meta name="twitter:card" content="summary_large_image">
 
 {%- if request.page_type == 'index' -%}
+{%- capture search_target -%}{{ shop.url }}{{ routes.search_url }}?q={search_term_string}{%- endcapture -%}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -62,7 +63,7 @@
       "publisher": { "@id": {{ shop.url | append: '/#organization' | json }} },
       "potentialAction": {
         "@type": "SearchAction",
-        "target": {{ shop.url | append: routes.search_url | append: '?q={search_term_string}' | json }},
+        "target": {{ search_target | json }},
         "query-input": "required name=search_term_string"
       }
     }
