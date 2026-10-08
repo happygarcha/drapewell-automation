@@ -14,7 +14,9 @@ Method: one standard web search per product restricted to amazon.ca / walmart.ca
 | Retro faux suede tote | 25.99 | 35.98-40.98 | 17-25 | 1.6-1.8 | FAIL |
 | Foldable cat play tunnel | 25.99 | 35.98-40.98 | 10-13 | 3+ | FAIL |
 | Jellyfish diamond painting kit | 25.99 | 35.98-40.98 | 14-18 | 2.2-2.6 | FAIL |
-| Wooden keyboard wrist rest | 25.99 | 35.98-40.98 | 20-31 (typical ~25) | 1.4-1.6 | PASS (provisional, borderline) |
+| Wooden keyboard wrist rest | 25.99 | 40.98 (314 g, band 14.99) | 20-31 (typical ~25) | 1.64 | FAIL (borderline; corrected after reading the real weight) |
 | Double-sided jacquard star scarf | 25.99 | n/a | n/a | n/a | DROPPED (print resembles a luxury-brand monogram); archived |
 
 Ubersuggest was not run; CJ freight was not re-quoted today (report quotes used).
+
+Actual weight bands (Canada): <=300 g 9.99; <=600 g 14.99. Real checkouts: horse 35.98, raffia 35.98, sedge 41.98, towel 35.98 (Sea Life 300 g), stool 35.98 (small) / 40.98 (large), brush 36.98, eye mask 35.98, tote 40.98, tunnel 40.98, diamond kit 40.98, wrist rest 40.98.
