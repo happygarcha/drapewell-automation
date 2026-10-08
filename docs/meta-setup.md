@@ -33,3 +33,17 @@ No campaign, ad set or ad exists. Nothing has been spent.
 - 2026-10-08 15:34 PT: pixel first fired (browser and server side). Event-count stats were still empty at 15:35 (reporting lag). Re-check event types (PageView, ViewContent, AddToCart) later.
 
 - 2026-10-08 15:39 PT: Business Settings > Ad accounts lists exactly one ad account, 70063950 (opportunity score 100, one person with full access: the owner). The page URL shows selected_asset_id=6002682012025 for it, so 6002682012025 is the same asset, not a second account. Open check 3 closed.
+
+## Connection audit 2026-10-08 (read via Meta Ads tools)
+| Link | Result |
+|---|---|
+| Ad account 70063950 -> business Drapewell | Connected, ACTIVE, payment method on file, CAD |
+| Page Aappo (1180605065142566) -> business and ad account | Connected (lead-ad terms not accepted; only matters for lead ads) |
+| Instagram account -> ad account | NONE linked. Ads would run on Facebook only until an Instagram account is connected |
+| Pixel 1633661854815014 -> ad account | Connected; fired 15:34 PT |
+| Pixel -> catalog 3340274306160323 (event source) | Connected |
+| Catalog -> Shopify (partner integration) | Connected; last sync succeeded 15:31 PT; next sync 2026-10-09 12:19 PT; no errors; webhooks not registered, so changes sync on a schedule, not instantly |
+| Catalog -> ad account (recommended catalog, set 2606518563116698) | Connected |
+| Second ad account 975647715581430 | Outside the business, no payment method. Not used |
+| Commerce / Shops review | Pending (Meta says up to 4 weeks). Not needed for ads |
+| Business verification, domain verification | Not checked. Domain verification needs a custom domain (deferred by the owner) |
