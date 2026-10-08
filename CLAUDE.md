@@ -47,3 +47,17 @@ Rules for using agents:
   - `locales/en.default.json`: merge. Start from the target theme's current file, apply the repo keys on top, and keep any other keys the repo does not have, except the old `gempages` block.
 - Preferred workflow: the owner duplicates the live theme (so editor settings and apps carry over); the full sync goes onto that copy; the owner previews and publishes it. The previously live theme becomes the next staging copy.
 - Log every deploy in `docs/deploys.md` (date, commit, theme name and id).
+
+# Product publish gate (owner rule, set 2026-10-08)
+
+When the owner says to make products active or publish them on the website, EVERY product goes through all of the checks below first, each time, with no exceptions and without asking again. A product that fails stays DRAFT; report why and what would fix it. Nothing here replaces the owner's approval to publish: the owner's "publish" starts the gate, and only products that pass go live.
+
+1. SEO audit: unique title (about 45-70 chars), SEO title (60 or fewer), meta description (130-155, no run-together words), tags and product type, alt text that describes each image (not just "view 1"), the page is not noindex, and it sits in the right collection. Keyword demand: run Ubersuggest when quota allows and say plainly when it was unavailable. Use claude-seo:seo-ecommerce and claude-seo:seo-page or the matching agent for the check.
+2. Technical audit: every image is READY and has no visible logo or watermark (view the photos), weight is set on every variant, variants are in the "CJ Dropshipping Fulfillment" delivery profile, inventory is active at the cjdropshipping location, SKU and CJ pid tag are present, price and CAD profit were re-checked against a fresh CJ freight quote, and the page loads (HTTP 200) with valid markup. Use claude-seo:seo-technical.
+3. Schema: the Product JSON-LD on the page parses, offers carry the right CAD price and availability, shipping and return data are present (once the theme that carries them is live), and no ratings or reviews are invented. Use claude-seo:seo-schema.
+4. Copywriting: original text (no copied supplier copy), no brand or trademark names, no health, skin, medical or performance claims, every claim traceable to the CJ data, honest size/material/what's-included lines, and the shipping sentence. Use marketing:content-creation or the marketing-seo-specialist agent for drafting only.
+5. GEO / AI-search readiness: plain factual answers a citation engine can lift (what it is, size, material, what's included, who it suits, delivery and returns), consistent store facts, no unverifiable superlatives. Use claude-seo:seo-geo.
+
+Also before publishing: check the competitor price for the item shipped to Canada (checkout total within about 1.5x the typical total) and record the result as checked or not checked; never invent competitor prices, demand or sales figures.
+
+Report each product as PASS or FAIL against the five checks, in one table, before and after publishing. Publish only the PASS products to the sales channels (Online Store, Google & YouTube, Pinterest, Microsoft Copilot, Meta AI and Muse, Shopify Collective). Log what was published and when in `reports/`.
