@@ -29,3 +29,5 @@ No campaign, ad set or ad exists. Nothing has been spent.
 - Pixel 1633661854815014 now appears under ad account 70063950 (connected).
 - Catalog 3340274306160323 now shows 64 products and 16 product sets, matching the 64 live products.
 - Pixel still shows no last-fired time (no events yet). Next step: browse the storefront as a visitor, then re-check.
+
+- 2026-10-08 15:34 PT: pixel first fired (browser and server side). Event-count stats were still empty at 15:35 (reporting lag). Re-check event types (PageView, ViewContent, AddToCart) later.
