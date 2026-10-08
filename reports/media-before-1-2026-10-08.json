@@ -1,0 +1,227 @@
+[
+ {
+  "handle": "anti-mildew-shower-curtain",
+  "product_id": "gid://shopify/Product/10625233486133",
+  "media": [
+   {
+    "id": "gid://shopify/MediaImage/56055328506165",
+    "alt": "Frosted clear shower curtain hanging in a bathroom with a window",
+    "url": "https://cdn.shopify.com/s/files/1/1010/9399/8901/files/1575198812892.jpg?v=1785308308",
+    "position": 1,
+    "variant_ids": []
+   },
+   {
+    "id": "gid://shopify/MediaImage/56055328538933",
+    "alt": "Clear shower curtain with metal rings on a white background, 3pc label",
+    "url": "https://cdn.shopify.com/s/files/1/1010/9399/8901/files/e0464267-3bca-4616-bad9-ce254aca24ba.jpg?v=1785308308",
+    "position": 2,
+    "variant_ids": [
+     "gid://shopify/ProductVariant/53224537391413"
+    ]
+   },
+   {
+    "id": "gid://shopify/MediaImage/56055328571701",
+    "alt": "Clear shower curtain with metal rings on a white background",
+    "url": "https://cdn.shopify.com/s/files/1/1010/9399/8901/files/924707091032.jpg?v=1785308308",
+    "position": 3,
+    "variant_ids": [
+     "gid://shopify/ProductVariant/53224537424181",
+     "gid://shopify/ProductVariant/53224537456949"
+    ]
+   },
+   {
+    "id": "gid://shopify/MediaImage/56055328604469",
+    "alt": "Clear shower curtain hanging in front of a window and sink",
+    "url": "https://cdn.shopify.com/s/files/1/1010/9399/8901/files/3891543845412.jpg?v=1785308308",
+    "position": 4,
+    "variant_ids": []
+   },
+   {
+    "id": "gid://shopify/MediaImage/56055328637237",
+    "alt": "Clear shower curtain over a freestanding bathtub in a teal bathroom",
+    "url": "https://cdn.shopify.com/s/files/1/1010/9399/8901/files/1197625731904.jpg?v=1785308308",
+    "position": 5,
+    "variant_ids": []
+   },
+   {
+    "id": "gid://shopify/MediaImage/56055328670005",
+    "alt": "Clear shower curtain beside a bathtub and small plant",
+    "url": "https://cdn.shopify.com/s/files/1/1010/9399/8901/files/3295024030525.jpg?v=1785308308",
+    "position": 6,
+    "variant_ids": []
+   },
+   {
+    "id": "gid://shopify/MediaImage/56055328702773",
+    "alt": "Close-up of clear pebble-pattern shower curtain header, rings and rod",
+    "url": "https://cdn.shopify.com/s/files/1/1010/9399/8901/files/1084284314374.jpg?v=1785308309",
+    "position": 7,
+    "variant_ids": [
+     "gid://shopify/ProductVariant/53224537325877",
+     "gid://shopify/ProductVariant/53224537358645"
+    ]
+   }
+  ]
+ },
+ {
+  "handle": "4d-mesh-bath-pillow-with-suction-cups-machine-washable-bathtub-neck-and-back-support",
+  "product_id": "gid://shopify/Product/15396346528053",
+  "media": [
+   {
+    "id": "gid://shopify/MediaImage/57339106001205",
+    "alt": "White 4D mesh bath pillow close-up with fabric feature labels",
+    "url": "https://cdn.shopify.com/s/files/1/1010/9399/8901/files/68904bd3-6d7e-4f53-9d96-f6fa11b1a5b1_trans.jpg?v=1790986932",
+    "position": 1,
+    "variant_ids": []
+   },
+   {
+    "id": "gid://shopify/MediaImage/57339106033973",
+    "alt": "White mesh bath pillow resting on a bathtub edge with bath foam",
+    "url": "https://cdn.shopify.com/s/files/1/1010/9399/8901/files/5b516f2c-ca1b-41af-867f-49709b007efb.jpg?v=1790986932",
+    "position": 2,
+    "variant_ids": [
+     "gid://shopify/ProductVariant/67617281835317"
+    ]
+   },
+   {
+    "id": "gid://shopify/MediaImage/57339106066741",
+    "alt": "White mesh bath pillow hanging beside a washing machine with care labels",
+    "url": "https://cdn.shopify.com/s/files/1/1010/9399/8901/files/282a64c1-7ff8-4910-9926-8d3a7108f913_trans.jpg?v=1790986932",
+    "position": 3,
+    "variant_ids": []
+   },
+   {
+    "id": "gid://shopify/MediaImage/57339106099509",
+    "alt": "Dark grey mesh bath pillow laid flat with hanging loop",
+    "url": "https://cdn.shopify.com/s/files/1/1010/9399/8901/files/8c23f138-dab8-4d97-80d3-6e7ee736d22d.jpg?v=1790986932",
+    "position": 4,
+    "variant_ids": [
+     "gid://shopify/ProductVariant/67617281868085"
+    ]
+   },
+   {
+    "id": "gid://shopify/MediaImage/57339106132277",
+    "alt": "Person relaxing in a bathtub with a white mesh bath pillow behind the head",
+    "url": "https://cdn.shopify.com/s/files/1/1010/9399/8901/files/c0c24f27-68d6-4ccb-969f-975195cc01bd_trans.jpg?v=1790986932",
+    "position": 5,
+    "variant_ids": []
+   },
+   {
+    "id": "gid://shopify/MediaImage/57339106165045",
+    "alt": "White mesh bath pillow in a bathtub with foam and red petals",
+    "url": "https://cdn.shopify.com/s/files/1/1010/9399/8901/files/eae0582d-3967-4141-a038-1636b93b7348.jpg?v=1790986932",
+    "position": 6,
+    "variant_ids": []
+   },
+   {
+    "id": "gid://shopify/MediaImage/57339106197813",
+    "alt": "Close-up of white mesh bath pillow top cushion and textured fabric",
+    "url": "https://cdn.shopify.com/s/files/1/1010/9399/8901/files/f764d97b-00db-4da5-a0fe-e51249800f8f.jpg?v=1790986932",
+    "position": 7,
+    "variant_ids": []
+   }
+  ]
+ },
+ {
+  "handle": "cardinal-christmas-fleece-blanket-soft-flannel-throw-150-200-cm",
+  "product_id": "gid://shopify/Product/15399147766069",
+  "media": [
+   {
+    "id": "gid://shopify/MediaImage/57351826768181",
+    "alt": "Red fleece blanket with cardinal and wreath text design draped on a chair",
+    "url": "https://cdn.shopify.com/s/files/1/1010/9399/8901/files/ecfd617d-3129-4b2c-bafc-5bd01d346a89.jpg?v=1791087612",
+    "position": 1,
+    "variant_ids": []
+   },
+   {
+    "id": "gid://shopify/MediaImage/57351826800949",
+    "alt": "Woman holding up a red fleece blanket with cardinal design",
+    "url": "https://cdn.shopify.com/s/files/1/1010/9399/8901/files/27b57fe0-b8f0-41cc-9368-8dae19b5d2e0.jpg?v=1791087613",
+    "position": 2,
+    "variant_ids": []
+   },
+   {
+    "id": "gid://shopify/MediaImage/57351826833717",
+    "alt": "Red cardinal fleece blanket spread on a bed",
+    "url": "https://cdn.shopify.com/s/files/1/1010/9399/8901/files/1f35b1ef-e78f-4f60-86ef-ae43aa972704.jpg?v=1791087613",
+    "position": 3,
+    "variant_ids": []
+   },
+   {
+    "id": "gid://shopify/MediaImage/57351826866485",
+    "alt": "Woman wrapped in a red cardinal fleece blanket on a sofa",
+    "url": "https://cdn.shopify.com/s/files/1/1010/9399/8901/files/fdd34bd6-41b0-4245-8750-eeb1ec2aa9a2.jpg?v=1791087613",
+    "position": 4,
+    "variant_ids": []
+   },
+   {
+    "id": "gid://shopify/MediaImage/57351826899253",
+    "alt": "Folded red cardinal fleece blanket on white",
+    "url": "https://cdn.shopify.com/s/files/1/1010/9399/8901/files/a6436aed-659e-4c79-8ca0-dc17281b490e.jpg?v=1791087613",
+    "position": 5,
+    "variant_ids": []
+   },
+   {
+    "id": "gid://shopify/MediaImage/57351826932021",
+    "alt": "Close-up of soft white fleece fabric on a wooden tray",
+    "url": "https://cdn.shopify.com/s/files/1/1010/9399/8901/files/1da83773-c014-4e00-bde4-f402365a3307.jpg?v=1791087612",
+    "position": 6,
+    "variant_ids": []
+   },
+   {
+    "id": "gid://shopify/MediaImage/57351826964789",
+    "alt": "Fleece blanket features graphic with soft microfibre close-ups",
+    "url": "https://cdn.shopify.com/s/files/1/1010/9399/8901/files/7bb0c0a3-0135-433c-b6c1-2b18b179f808.jpg?v=1791087612",
+    "position": 7,
+    "variant_ids": []
+   },
+   {
+    "id": "gid://shopify/MediaImage/57351826997557",
+    "alt": "Red cardinal fleece blanket with 150 x 200 cm size labels",
+    "url": "https://cdn.shopify.com/s/files/1/1010/9399/8901/files/5a2f91a0-0774-4d1a-8ddb-b3cc3612c4cb.jpg?v=1791087613",
+    "position": 8,
+    "variant_ids": []
+   }
+  ]
+ },
+ {
+  "handle": "absorbent-non-slip-door-mat-latex-backing-grey",
+  "product_id": "gid://shopify/Product/15399147897141",
+  "media": [
+   {
+    "id": "gid://shopify/MediaImage/57351839121717",
+    "alt": "Grey textured door mat on a wood floor with muddy footprints and shoes",
+    "url": "https://cdn.shopify.com/s/files/1/1010/9399/8901/files/2341995055540.jpg?v=1791087650",
+    "position": 1,
+    "variant_ids": []
+   },
+   {
+    "id": "gid://shopify/MediaImage/57351839154485",
+    "alt": "Grey shaggy door mat on a white floor",
+    "url": "https://cdn.shopify.com/s/files/1/1010/9399/8901/files/1841549531506.png?v=1791087651",
+    "position": 2,
+    "variant_ids": []
+   },
+   {
+    "id": "gid://shopify/MediaImage/57351839187253",
+    "alt": "Dark grey door mat with white slippers, labelled 60 x 90",
+    "url": "https://cdn.shopify.com/s/files/1/1010/9399/8901/files/708044320894.jpg?v=1791087651",
+    "position": 3,
+    "variant_ids": []
+   },
+   {
+    "id": "gid://shopify/MediaImage/57351839220021",
+    "alt": "Grey door mat with a person's shoe and muddy footprints on a wood floor",
+    "url": "https://cdn.shopify.com/s/files/1/1010/9399/8901/files/1664110975152.png?v=1791087651",
+    "position": 4,
+    "variant_ids": []
+   },
+   {
+    "id": "gid://shopify/MediaImage/57351839252789",
+    "alt": "Dark grey door mat with white slippers, labelled 60 x 150",
+    "url": "https://cdn.shopify.com/s/files/1/1010/9399/8901/files/14159347206199.jpg?v=1791087651",
+    "position": 5,
+    "variant_ids": []
+   }
+  ]
+ }
+]
