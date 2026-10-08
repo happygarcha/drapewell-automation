@@ -1,6 +1,7 @@
 {%- liquid
   assign current = product.selected_or_first_available_variant
 -%}
+{% render 'breadcrumbs' %}
 <div class="pdp" data-product>
   <div class="gallery">
     <figure class="ph tall" data-main-image style="view-transition-name: pv-{{ product.handle }}">
@@ -21,6 +22,8 @@
     <h1>{{ product.title }}</h1>
     {% render 'rating-stars', product: product, link: '#reviews' %}
     <p class="p-price" data-price>{{ current.price | money }}{% if current.compare_at_price > current.price %}<s class="was">{{ current.compare_at_price | money }}</s><span class="off">-{{ current.compare_at_price | minus: current.price | times: 100 | divided_by: current.compare_at_price }}%</span>{% endif %}</p>
+    {%- if product.price_varies -%}<p class="fine price-note">{{ 'product.price_varies' | t }}</p>{%- endif -%}
+    {% render 'ship-estimate', weight: current.weight, scope: 'item' %}
 
     {%- form 'product', product, id: 'product-form' -%}
       <input type="hidden" name="id" value="{{ current.id }}" data-variant-id>

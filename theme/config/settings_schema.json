@@ -15,7 +15,7 @@
         "id": "announcement",
         "label": "Announcement bar",
         "info": "Short message shown at the top left of every page. Leave empty to hide it. Only state things that are true for every order.",
-        "default": "Ships to Canada & US · 10–25 day delivery"
+        "default": "Ships to Canada & US · 13–25 day delivery · shipping from CA$9.99"
       }
     ]
   },

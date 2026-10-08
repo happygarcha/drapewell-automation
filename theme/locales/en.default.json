@@ -29,7 +29,7 @@
     "none_under": "Nothing under this price right now.",
     "feed_new_in": "New in {{ name }}",
     "good_to_know": "Good to know",
-    "shipping_note": "Shipping and taxes are calculated at checkout.",
+    "shipping_note": "Estimated shipping is shown above. Taxes are added at checkout.",
     "not_found": "Page not found",
     "not_found_body": "We can't find that page. It may have moved or no longer exists.",
     "back_to_top": "Back to top",
@@ -43,7 +43,8 @@
     "search_go": "Search",
     "accepted_payments": "Accepted payment methods",
     "co_delivery": "Canada 13–25 days · United States 10–20 days",
-    "co_tracking": "Tracking on every order · Import duties included on US orders"
+    "co_tracking": "Tracking on every order · Import duties included on US orders",
+    "home_crumb": "Home"
   },
   "home": {
     "featured": "Featured",
@@ -57,7 +58,11 @@
     "pause": "Pause slideshow",
     "play": "Play slideshow",
     "show": "Go to slide",
-    "pieces": "products"
+    "pieces": "products",
+    "intro_h": "Home decor and everyday finds, shipped across Canada and the U.S.",
+    "intro_p1": "Drapewell is an online store based in Surrey, British Columbia. We sell home textiles and decor, pet supplies, outdoors items, desk and hobby finds and fashion accessories.",
+    "intro_p2": "Orders are made and dispatched by our supplier partners and ship with tracking. Shipping is calculated by weight and starts from CA$9.99 to Canada. Estimated delivery is 13–25 days to Canada and 10–20 days to the U.S., counted from the day you order.",
+    "intro_link": "Read our shipping policy"
   },
   "collection": {
     "sort": "Sort products",
@@ -93,7 +98,8 @@
     "rating_label": "Rated {{ rating }} out of 5 from {{ count }} reviews",
     "no_reviews": "No reviews yet",
     "be_first": "Be the first to review this product.",
-    "write_review": "Write a review"
+    "write_review": "Write a review",
+    "price_varies": "Price depends on the option you choose."
   },
   "cart": {
     "empty": "Your cart is empty.",
@@ -112,5 +118,14 @@
     "sort_price_asc": "Price: low to high",
     "sort_price_desc": "Price: high to low",
     "sort_newest": "Newest first"
+  },
+  "ship_estimate": {
+    "item_label": "Shipping for this item:",
+    "cart_label": "Estimated shipping for your cart:",
+    "to_canada": "to Canada",
+    "to_us": "to the U.S.",
+    "item_note": "Taxes extra. Shipping is by weight, so adding items changes the total. The final amount is shown at checkout before you pay.",
+    "cart_note": "Taxes extra. The final amount is shown at checkout before you pay.",
+    "from": "Shipping starts from CA$9.99 to Canada and CA$12.99 to the U.S., calculated by weight. The exact amount is shown at checkout before you pay."
   }
 }

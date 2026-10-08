@@ -3,7 +3,10 @@
   <a class="card" href="{{ product.url }}" style="--i: {{ index | default: 0 | at_most: 14 }}">
     <figure class="ph" style="view-transition-name: pv-{{ product.handle }}">
       {%- if product.featured_image -%}
-        {{ product.featured_image | image_url: width: 700 | image_tag: loading: 'lazy', widths: '300, 500, 700', sizes: '(min-width: 1500px) 20vw, (min-width: 760px) 24vw, 46vw', alt: product.featured_image.alt | default: product.title }}
+        {%- assign card_eager = index | default: 99 | at_most: 99 -%}
+        {%- if card_eager < 4 -%}{%- assign card_loading = 'eager' -%}{%- else -%}{%- assign card_loading = 'lazy' -%}{%- endif -%}
+        {%- if card_eager == 0 -%}{%- assign card_prio = 'high' -%}{%- else -%}{%- assign card_prio = 'auto' -%}{%- endif -%}
+        {{ product.featured_image | image_url: width: 700 | image_tag: loading: card_loading, fetchpriority: card_prio, widths: '300, 500, 700', sizes: '(min-width: 1500px) 20vw, (min-width: 760px) 24vw, 46vw', alt: product.featured_image.alt | default: product.title }}
       {%- endif -%}
       {%- if product.images.size > 1 -%}
         {{ product.images[1] | image_url: width: 500 | image_tag: loading: 'lazy', class: 'alt', widths: '300, 500', sizes: '(min-width: 1500px) 20vw, (min-width: 760px) 24vw, 46vw', alt: '' }}

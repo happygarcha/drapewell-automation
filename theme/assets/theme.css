@@ -769,3 +769,14 @@ body:has(.sticky-atc:not([hidden])) .to-top { bottom: calc(max(var(--s4), env(sa
 /* percent-off badge next to the struck-through price */
 .was { margin-inline-start: var(--s2); }
 .off { display: inline-block; margin-inline-start: var(--s2); padding: 2px 8px; border-radius: 999px; font-size: 0.6em; font-weight: 800; line-height: 1.5; vertical-align: middle; letter-spacing: 0.02em; background: oklch(0.72 0.2 350); color: oklch(0.15 0.03 285); }
+
+/* ---- shipping estimate, breadcrumbs, home intro, express wallets (added 2026-10-08) ---- */
+.ship-est { margin: 0 0 var(--s4); padding: var(--s3) var(--s4); border: 1px solid var(--line); border-radius: var(--r-sm); background: var(--surface); font-size: 13px; line-height: 20px; color: var(--text-soft); }
+.ship-est strong { color: var(--text); }
+.price-note { margin: calc(var(--s3) * -1) 0 var(--s3); }
+.intro { margin: var(--s8) 0 var(--s4); max-width: 72ch; }
+.intro h1 { margin: 0 0 var(--s3); font-size: 22px; line-height: 30px; }
+.intro p { margin: 0 0 var(--s3); font-size: 14px; line-height: 22px; color: var(--text-soft); }
+.intro a { color: var(--text); text-underline-offset: 3px; }
+.wallets { margin-top: var(--s3); }
+.reviews.is-empty .jdgm-histogram, .reviews.is-empty .jdgm-rev-widg__summary-text { display: none !important; }

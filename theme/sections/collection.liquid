@@ -1,3 +1,4 @@
+{% render 'breadcrumbs' %}
 <header class="page-head">
   <div>
     <h1>{{ collection.title }}</h1>
@@ -39,6 +40,6 @@
 {% schema %}
 {
   "name": "Collection",
-  "settings": [{ "type": "range", "id": "per_page", "min": 8, "max": 48, "step": 4, "default": 24, "label": "Products per page" }]
+  "settings": [{ "type": "range", "id": "per_page", "min": 8, "max": 48, "step": 4, "default": 16, "label": "Products per page" }]
 }
 {% endschema %}

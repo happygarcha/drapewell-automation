@@ -169,11 +169,20 @@
     function selected() { var vals = []; $$("[data-option]:checked", form).forEach(function (r) { vals[parseInt(r.dataset.option, 10) - 1] = r.value; }); return vals; }
     function find(vals) { return data.variants.filter(function (v) { return vals.every(function (x, i) { return x === undefined || v.options[i] === x; }); })[0]; }
     function swapMain(url) { var main = $("[data-main-image] img"), fig = $("[data-main-image]"); if (!main) return; if (reduce) { main.removeAttribute("srcset"); main.src = url; return; } fig.classList.add("swap"); setTimeout(function () { main.removeAttribute("srcset"); main.src = url; fig.classList.remove("swap"); }, 220); }
+    var shipEl = $("[data-ship]");
+    function shipBand(list, g) { var out = null; String(list || "").split(",").some(function (pair) { var p = pair.split(":"); if (g <= parseFloat(p[0])) { out = p[1]; return true; } return false; }); return out; }
+    function shipFor(g) {
+      if (!shipEl || !(g > 0)) return;
+      var ca = shipBand(shipEl.dataset.shipCa, g), us = shipBand(shipEl.dataset.shipUs, g);
+      var strong = shipEl.querySelectorAll("strong");
+      if (ca && us && strong.length === 2) { strong[0].textContent = "CA$" + ca; strong[1].textContent = "CA$" + us; }
+    }
     function sync() {
       var vals = selected(); var need = data.options.length;
       var complete = vals.filter(Boolean).length === need;
       var v = complete ? find(vals) : null;
       if (!need) v = data.variants[0];
+      if (v) { shipFor(v.weight); }
       if (v) { idInput.value = v.id; priceEl.innerHTML = money(v.price) + (v.compare_at_price > v.price ? '<s class="was">' + money(v.compare_at_price) + '</s><span class="off">-' + Math.floor((v.compare_at_price - v.price) * 100 / v.compare_at_price) + "%</span>" : ""); addBtn.disabled = !v.available; addBtn.textContent = v.available ? addLabel : "Sold out"; msg.textContent = v.available ? "" : "Sold out."; }
       else { addBtn.disabled = !complete ? false : true; msg.textContent = complete ? "That combination is not available." : ""; if (complete) addBtn.disabled = true; }
       /* dim values that no variant offers given the other choices */
