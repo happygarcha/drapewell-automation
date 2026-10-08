@@ -81,3 +81,6 @@ Photos from the 4 photo reviews; title and meta read from the live pages after t
 | waterproof-snow-gaiters-pair-for-hiking-and-winter-walks | FAIL | 57 | 140 |  |
 | womens-pu-crossbody-bag-small-flap-bag-18-x-7-x-12-cm | FAIL | 57 | 131 |  |
 | woven-cotton-rope-storage-basket-43-x-33-cm-6-colours | FAIL | 56 | 134 |  |
+
+## Update 2026-10-08 (owner approved)
+Eight live products with another seller's branding or unusable photos were moved to DRAFT: tie-dye toilet set, foldable cat tent bed, maple-leaf wreath, tea towel set, Christmas shower curtain, crochet fawn kit, PU crossbody bag, stadium seat cushion. Earlier the same day: pet carrier, pillowcases, snowflake cushion, snow gaiters and rope basket were drafted. Live catalogue is now 64 products (72 - 8). They can return once they have clean photos and pass the gate and competitor check.
