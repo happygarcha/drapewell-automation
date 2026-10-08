@@ -31,3 +31,5 @@ No campaign, ad set or ad exists. Nothing has been spent.
 - Pixel still shows no last-fired time (no events yet). Next step: browse the storefront as a visitor, then re-check.
 
 - 2026-10-08 15:34 PT: pixel first fired (browser and server side). Event-count stats were still empty at 15:35 (reporting lag). Re-check event types (PageView, ViewContent, AddToCart) later.
+
+- 2026-10-08 15:39 PT: Business Settings > Ad accounts lists exactly one ad account, 70063950 (opportunity score 100, one person with full access: the owner). The page URL shows selected_asset_id=6002682012025 for it, so 6002682012025 is the same asset, not a second account. Open check 3 closed.
