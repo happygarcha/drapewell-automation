@@ -16,7 +16,7 @@ Note: for 4 products an seo.description-only update briefly blanked seo.title; i
 - boho-macrame-leaf-wall-hanging...: title 90 -> 59; delivery paragraph.
 - book-shaped-wooden-pen-holder...: removed "high-quality".
 - botanical-coastal-boho-peva-shower-curtain: removed durability/moisture-performance claims; delivery paragraph.
-- botanical-watercolour-shower-curtain: meta 161 -> 156 (was over 155; still 1 char over, see below); removed waterproof/mildew/dries-fast claims.
+- botanical-watercolour-shower-curtain: meta 161 -> 148; removed waterproof/mildew/dries-fast claims.
 - cardinal-christmas-fleece-blanket...: removed "against the skin"; delivery paragraph.
 - chenille-jacquard-tassel-table-runner: removed "never peels or fades".
 - christmas-linen-kitchen-apron...: title 77 -> 60; delivery paragraph.
