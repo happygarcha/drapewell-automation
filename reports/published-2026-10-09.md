@@ -66,3 +66,6 @@ Women's Glitter Evening Bag (15399510999349) set ACTIVE at CA$15.99, published t
 - Snowflake cushion cover: crown logo on all 7 photos plus smeared text and a "4PCS" label. Needs photo rework. Profit 12.94 (thin).
 - Rope basket: "MiniArk" hang tag visible in 6 photos (blurrable). Needs blur plus reprice (suggested 17.99, checkout 42.98, profit about 14).
 - Pillowcase set: Xinjiang cotton badge on all 12 photos.
+
+## Batch 4 (published)
+- Woven cotton rope storage basket 43 x 33 cm: MiniArk hang tag blurred out of 7 photos (6 colour photos plus the stack photo), photos re-linked (Beige now shows the beige stack photo), repriced 22.99 to 17.99 (checkout 42.98, profit about CA$14), cj tag added. HTTP 200, JSON-LD OK.
