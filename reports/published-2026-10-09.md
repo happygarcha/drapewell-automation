@@ -13,3 +13,6 @@ Deleted photos 3 and 4 (MediaImage 57436481552693, 57436481585461); two photos r
 
 ## Watch case, owner chose option 2 again (2026-10-09)
 Re-added the two open-case supplier photos from CJ (cf.cjdropshipping.com/20210117/1629632557905.jpg and 1803460010838.jpg) as MediaImage 57438059200821 and 57438059233589, both READY. Alt text says they are supplier photos that may differ slightly. Description gained an "About the photos" paragraph: product may differ slightly from pictures, open-case photos may show a different lining, stitching or closure, do not rely on them for the compartment count. Product stays ACTIVE; page HTTP 200 with the new text.
+
+## Watch case, owner: remove the open-case photos (2026-10-09)
+Deleted the two re-added supplier photos (MediaImage 57438059200821, 57438059233589) because they show a different case. Removed the "About the photos" paragraph, which referred to them. Two photos remain (black and brown closed case, the sold version). Real interior photos need a CJ sample.
