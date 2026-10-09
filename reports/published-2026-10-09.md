@@ -72,3 +72,25 @@ Women's Glitter Evening Bag (15399510999349) set ACTIVE at CA$15.99, published t
 
 ## Batch 5 (published)
 - Cotton twill pillowcase set of 2 (17.99, profit about CA$14.41): "100% Xinjiang cotton" badge painted out of all 12 photos (plain wall, inpainted), photos re-linked to the 12 colours, old files deleted, cj tag added. HTTP 200, JSON-LD OK.
+
+## Batch 6 (published)
+- Snow gaiters (19.99, profit CA$17.03) and sedge tassel wall hanging set (26.99, profit CA$15.68): HTTP 200, JSON-LD OK.
+- Quick-dry microfibre beach and travel towel 160 x 80 (25.99; CJ 5.14 + freight 7.02 USD; checkout about 35.98, profit about CA$17.3; Amazon.ca comparison 31.74 for the same size). Photos clean. HTTP 200.
+- Retro frosted faux suede tote (25.99; CJ 5.31 + freight 9.75 USD; checkout about 40.98, profit about CA$18; Amazon.ca similar totes 26.99-39.99). Photos clean. Retitled "35 cm Wide" (dropped "Large"), copy softened. HTTP 200.
+
+## Re-check of the 13 failed drafts (2026-10-09, Amazon.ca fresh read)
+| Draft | Our checkout | Amazon.ca | Verdict |
+|---|---|---|---|
+| Beach towel | about 35.98 | 31.74 same size; 41.99 Dock and Bay | PASS, published |
+| Faux suede tote | about 40.98 | 26.99-39.99 | PASS, published |
+| PU jewellery case | 29.98 (profit 12.56) | 14-25 | BORDERLINE: price 1.5x, thin profit, Chinese badges on 4 photos |
+| Nordic tablecloth | 49.98 | 45.99 same size | Price OK but photos show a larger table and different colours: FAIL |
+| Sisal cat pad | about 31.98 (profit about 14) | 13-22 | FAIL on price |
+| Wooden wrist rest | about 40.98 | 21-30 | FAIL on price |
+| Diamond painting kit | about 40.98 | 8-32 | FAIL on price |
+| Camping stool | about 35 | 15-23 | FAIL on price |
+| Tea towels | 32.98 | 14-20 | FAIL (and photos show napkins) |
+| Christmas shower curtain | 39.98 | 15-22 | FAIL |
+| Laptop stand pair | 22.98 | 8-15.6 | FAIL |
+| Phone stand | 20.98 | 5.69-14.99 | FAIL |
+| Cat tunnel | about 35 | different product class (playpens 17-40) | FAIL (not comparable, not verified) |
