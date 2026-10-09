@@ -16,3 +16,8 @@ Re-added the two open-case supplier photos from CJ (cf.cjdropshipping.com/202101
 
 ## Watch case, owner: remove the open-case photos (2026-10-09)
 Deleted the two re-added supplier photos (MediaImage 57438059200821, 57438059233589) because they show a different case. Removed the "About the photos" paragraph, which referred to them. Two photos remain (black and brown closed case, the sold version). Real interior photos need a CJ sample.
+
+## Horse canvas set and hat set published (2026-10-09, owner: add the passes; blur the hat logo)
+- Horse canvas 5-piece set (15406899790133): ACTIVE, published to the 5 channels. CA$25.99, profit CA$20.62 on fresh CJ quote.
+- Hat, scarf, gloves set (15399508967733): supplier logo patch on the beanie blurred in 7 photos (ImageMagick, original photos deleted, blurred copies uploaded; the low-res model photo shows no patch and is unchanged and moved last). Variant colour photos relinked. Alt text rewritten, what's-included and shipping sentence added, cj-pid and cj-sku tags added. ACTIVE, published to the 5 channels. CA$22.99, profit CA$18.94.
+- Held in DRAFT: makeup brush set (needs owner OK to reprice to CA$23.99), laptop stand pair (price fail, photo text overlay), tablecloth (photos misrepresent size).
