@@ -787,3 +787,14 @@ body:has(.sticky-atc:not([hidden])) .to-top { bottom: calc(max(var(--s4), env(sa
 .slide.is-active .hero-copy.stagger > * { opacity: 1; translate: 0 0; transition: none; }
 .main > * { animation-duration: 0.35s; animation-delay: 0s; }
 .side.left > *, .side.right > * { animation-duration: 0.35s; animation-delay: 0s; }
+
+/* ---------- perf pass 2 (measured on staging): stop invisible work ---------- */
+/* The card border glow animates a custom property forever, even while hidden at opacity 0, which forces a style recalculation every frame for every card. Only run it while hovered. */
+.card::before { animation-play-state: paused; }
+@media (hover: hover) { .card:hover::before { animation-play-state: running; } }
+/* Touch screens cannot hover, so do not download the hover photo there. */
+@media (hover: none) { .card .ph img.alt { display: none; } }
+/* Cards: shorter entrance, and only the first few stagger. */
+.card { animation-duration: 0.4s; animation-delay: calc(min(var(--i, 0), 3) * 40ms); }
+/* Skip layout and paint of cards far below the fold until they scroll near. */
+.feed > .cell:nth-child(n+7) { content-visibility: auto; contain-intrinsic-size: auto 380px; }
