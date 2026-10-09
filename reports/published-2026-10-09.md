@@ -56,3 +56,13 @@ Women's Glitter Evening Bag (15399510999349) set ACTIVE at CA$15.99, published t
 | Snow gaiters (photos blurred: brand tags removed, uploaded) | 19.99 + 9.99 | 17.03 |
 | Sedge tassel wall hanging set of 3 (photos clean) | 26.99 + 14.99 | 15.68 |
 | Cat tent bed, Large (not yet checked photos) | 23.99 + 14.99 | 12.98 (thin) |
+
+## Batch 3 (published)
+- Boho raffia and cotton wall hanging tapestry: repriced 25.99 to 20.99 (checkout 30.98, profit about CA$12.9). Photos clean. HTTP 200, JSON-LD OK.
+- 4-piece satin-look eye mask, pillowcase and hair tie set (25.99, profit about CA$18.80). One clean photo. HTTP 200, JSON-LD OK.
+
+## Held after photo review
+- Cat tent bed: photos show one pale blue floral tent but variants are Cherry / Light Green / Dark Green, so photos do not match. Also thin profit (12.98).
+- Snowflake cushion cover: crown logo on all 7 photos plus smeared text and a "4PCS" label. Needs photo rework. Profit 12.94 (thin).
+- Rope basket: "MiniArk" hang tag visible in 6 photos (blurrable). Needs blur plus reprice (suggested 17.99, checkout 42.98, profit about 14).
+- Pillowcase set: Xinjiang cotton badge on all 12 photos.
