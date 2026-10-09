@@ -21,3 +21,9 @@ Deleted the two re-added supplier photos (MediaImage 57438059200821, 57438059233
 - Horse canvas 5-piece set (15406899790133): ACTIVE, published to the 5 channels. CA$25.99, profit CA$20.62 on fresh CJ quote.
 - Hat, scarf, gloves set (15399508967733): supplier logo patch on the beanie blurred in 7 photos (ImageMagick, original photos deleted, blurred copies uploaded; the low-res model photo shows no patch and is unchanged and moved last). Variant colour photos relinked. Alt text rewritten, what's-included and shipping sentence added, cj-pid and cj-sku tags added. ACTIVE, published to the 5 channels. CA$22.99, profit CA$18.94.
 - Held in DRAFT: makeup brush set (needs owner OK to reprice to CA$23.99), laptop stand pair (price fail, photo text overlay), tablecloth (photos misrepresent size).
+
+## Owner decisions after hat set (2026-10-09)
+- Hat set set back to DRAFT (unpublished) while a paint-out of the logo is tested instead of blur.
+- Makeup brush set repriced to CA$23.99 (checkout 33.98, profit about CA$12.86) and published to the 5 channels. Hero photo carries a small red "1" marker; not a logo.
+- Deleted the 3 old DSers drafts (15409004478773, 15409004740917, 15409004773685).
+- Paint-out test on 3 hat photos: reports/hat-set-blurred/paint-out-test-compare.png (original | current blur | texture-clone paint-out). Flat-lay photos near seamless; the model photo disturbs the beanie fold and brow, needs manual care.
