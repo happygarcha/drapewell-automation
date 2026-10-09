@@ -18,3 +18,15 @@ Status of each check as of now. Nothing is published. Owner must confirm competi
 
 ## Update: Amazon.ca read with a browser (2026-10-09)
 Playwright Chromium loaded amazon.ca search results (HTTP 200, no block page) once the session proxy CA was added to the browser trust store (certificate verification stayed on). Watch roll case results, item price CAD: 3-slot hard case 19.99 (4.7 stars, 516 reviews); luxury roll 22.99 (4.6, 302); hard 5-slot 24.99; 3-slot 36.99 (4.4, 195); 3-slot 37.99 (4.7, 264); 3-slot PU 45.99 (4.4, 17 reviews). Typical 3-slot: about 20-38. Competitor shipping not captured. Our case at CA$22.99 + CA$14.99 shipping = CA$37.98, about 1.5-1.9x the cheapest and near the top once shipping is counted. Suggested price CA$19.99 (checkout 34.98, profit about CA$14.7).
+
+## Amazon.ca browser read, 2026-10-09 (wrist rest set, shawl cape)
+
+Playwright Chromium, amazon.ca search results, item price CAD, shown prices only (competitor shipping not captured; many Amazon.ca listings ship free from CA$35 up). Two searches, one pass each.
+
+**Wrist rest + mouse pad set** (12 results): 13.99 (4.1 stars, 440 reviews), 16.79 (4.4, 3.5K), 17.99 (4.7, 37), 18.99 (4.2, 2.4K), 20.52 (4.7, 232), 21.99 (4.4, 4.6K), 23.91 (4.6, 3.8K), 23.99 (4.4, 5.6K), 23.99 (4.6, 346), 25.99 (4.7, 605), 28.99 (4.4, 1K), 43.69 (stand set). Typical about 17-24.
+Ours 15.99 + 14.99 (314 g band) = 30.98 checkout, about 1.3-1.8x typical. Borderline, passes only against the 20-24 group. Profit is thin (about CA$12.9 on the earlier quote; not re-quoted). Result: borderline, owner decision. Competitor price: checked (item price), shipping not checked.
+
+**Shawl cape / poncho with buttons** (12 results): 9.99 (no ratings), 16.99 (no ratings), 25.99 (4.2, 200), 26.99 (heated, 2.0), 30.89 (4.5, 910), 32.99 (4.3, 482), 45-64 (brand PULI, 4.2-4.4). Typical knit button poncho about 17-33.
+Ours 22.99 + 9.99 (190 g) = 32.98 checkout, within about 1.0-1.9x typical. Result: price check PASS on item price; profit about CA$14.8 (earlier quote). Competitor price: checked (item price), shipping not checked.
+
+No prices invented; all figures read from the pages above. Nothing published or repriced.
