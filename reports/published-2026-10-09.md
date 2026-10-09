@@ -69,3 +69,6 @@ Women's Glitter Evening Bag (15399510999349) set ACTIVE at CA$15.99, published t
 
 ## Batch 4 (published)
 - Woven cotton rope storage basket 43 x 33 cm: MiniArk hang tag blurred out of 7 photos (6 colour photos plus the stack photo), photos re-linked (Beige now shows the beige stack photo), repriced 22.99 to 17.99 (checkout 42.98, profit about CA$14), cj tag added. HTTP 200, JSON-LD OK.
+
+## Batch 5 (published)
+- Cotton twill pillowcase set of 2 (17.99, profit about CA$14.41): "100% Xinjiang cotton" badge painted out of all 12 photos (plain wall, inpainted), photos re-linked to the 12 colours, old files deleted, cj tag added. HTTP 200, JSON-LD OK.
