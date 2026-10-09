@@ -45,3 +45,14 @@ Fresh CJ quotes (Canada, CJPacket Ordinary): S 3.35+6.49, M 4.19+7.41, L 5.03+7.
 
 ## Evening bag published (owner: publish all that passed, 2026-10-09)
 Women's Glitter Evening Bag (15399510999349) set ACTIVE at CA$15.99, published to the 5 channels. Store now 73 active, 23 draft.
+
+## Batch 2 (published)
+- Plush 3-Piece Bathroom Rug Set (24.99, profit about CA$23.2): supplier stickers and label removed from 13 photos (inpainted plain tank), photos re-linked to the 13 colours, retitled, cj tag added. HTTP 200, CAD JSON-LD (13 offers) with shipping and returns, no ratings.
+- Folding Stadium Seat Cushion (17.99, profit about CA$14.91): photos clean, copy now mentions backrest and handle. HTTP 200, JSON-LD OK.
+
+## Batch 2 held for owner decision
+| Product | Price + band | Profit CAD |
+|---|---|---|
+| Snow gaiters (photos blurred: brand tags removed, uploaded) | 19.99 + 9.99 | 17.03 |
+| Sedge tassel wall hanging set of 3 (photos clean) | 26.99 + 14.99 | 15.68 |
+| Cat tent bed, Large (not yet checked photos) | 23.99 + 14.99 | 12.98 (thin) |
