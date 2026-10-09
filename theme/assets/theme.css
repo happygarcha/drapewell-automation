@@ -780,3 +780,10 @@ body:has(.sticky-atc:not([hidden])) .to-top { bottom: calc(max(var(--s4), env(sa
 .intro a { color: var(--text); text-underline-offset: 3px; }
 .wallets { margin-top: var(--s3); }
 .reviews.is-empty .jdgm-histogram, .reviews.is-empty .jdgm-rev-widg__summary-text { display: none !important; }
+
+/* ---------- first-paint speed (LCP): never hide above-the-fold content behind entrance animation ---------- */
+.js .ph img[fetchpriority="high"], .js .ph img[loading="eager"] { opacity: 1; transition: none; }
+.slide.is-active .hero-art .ph { opacity: 1; scale: 1; rotate: 0deg; transition: none; }
+.slide.is-active .hero-copy.stagger > * { opacity: 1; translate: 0 0; transition: none; }
+.main > * { animation-duration: 0.35s; animation-delay: 0s; }
+.side.left > *, .side.right > * { animation-duration: 0.35s; animation-delay: 0s; }
