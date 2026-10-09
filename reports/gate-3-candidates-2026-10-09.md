@@ -15,3 +15,6 @@ Status of each check as of now. Nothing is published. Owner must confirm competi
 | Ubersuggest demand | not run | not run | not run |
 | Fresh CJ freight quote today | not done | not done | not done |
 | Verdict | READY after owner price check | READY after owner price check (price is the weakest point) | READY after owner price check |
+
+## Update: Amazon.ca read with a browser (2026-10-09)
+Playwright Chromium loaded amazon.ca search results (HTTP 200, no block page) once the session proxy CA was added to the browser trust store (certificate verification stayed on). Watch roll case results, item price CAD: 3-slot hard case 19.99 (4.7 stars, 516 reviews); luxury roll 22.99 (4.6, 302); hard 5-slot 24.99; 3-slot 36.99 (4.4, 195); 3-slot 37.99 (4.7, 264); 3-slot PU 45.99 (4.4, 17 reviews). Typical 3-slot: about 20-38. Competitor shipping not captured. Our case at CA$22.99 + CA$14.99 shipping = CA$37.98, about 1.5-1.9x the cheapest and near the top once shipping is counted. Suggested price CA$19.99 (checkout 34.98, profit about CA$14.7).
