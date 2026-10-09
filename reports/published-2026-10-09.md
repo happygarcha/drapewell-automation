@@ -42,3 +42,6 @@ Fresh CJ quotes (Canada, CJPacket Ordinary): S 3.35+6.49, M 4.19+7.41, L 5.03+7.
 ## Owner decisions on crochet kit and crossbody bag (2026-10-09)
 - Crochet fawn kit (15399507820853) deleted at owner request (selfie-with-doodle photos, unverifiable contents).
 - PU crossbody bag (15399510999349) retitled "Women's Glitter Evening Bag with Top Handle and Chain Strap, 18 x 7 x 12 cm", product type Evening Bag, description rewritten from CJ data (PU, polyester lining, hard shape, rhinestone decoration, phone and ID card pockets, single strap, six colours). Amazon.ca glitter top-handle evening bags run CA$13.5-36, typical 21-27. Price lowered 19.99 -> 15.99: checkout 30.98, profit about CA$14.77 on the CJ quote (cost 3.13 + freight 7.41 USD). Left in DRAFT as a borderline for owner decision.
+
+## Evening bag published (owner: publish all that passed, 2026-10-09)
+Women's Glitter Evening Bag (15399510999349) set ACTIVE at CA$15.99, published to the 5 channels. Store now 73 active, 23 draft.
