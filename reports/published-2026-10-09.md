@@ -94,3 +94,9 @@ Women's Glitter Evening Bag (15399510999349) set ACTIVE at CA$15.99, published t
 | Laptop stand pair | 22.98 | 8-15.6 | FAIL |
 | Phone stand | 20.98 | 5.69-14.99 | FAIL |
 | Cat tunnel | about 35 | different product class (playpens 17-40) | FAIL (not comparable, not verified) |
+
+## Archived (owner said do it)
+Cat tent bed, snowflake cushion cover, Nordic tablecloth, sisal cat pad, wooden wrist rest, diamond painting kit, camping stool, tea towels, Christmas shower curtain, laptop stand pair, pocket phone stand, PU jewellery case. All 12 set to ARCHIVED (reversible).
+
+## Cat tunnel (kept as draft, owner said add)
+CJ lists 6 designs (A brown 61 cm, B cream cartoon, C blue pattern, D red pattern, E silver grey, F red; E/F are the two on our page). Photos 3-6 on our page show A-D, which we do not list. E/F landed cost: 4.84 + 8.50 freight USD; at the usual 14.99 shipping band the lowest price that holds CA$12 profit is about 17.99 (checkout about 32.98). Amazon.ca collapsible tubes: 11.39-25.99 (the 48 inch S-shape is 25.99; Pawaboo S-shape 19.99). Ours is a single 48.5 cm tube, so about 1.6x typical: FAIL on price unless the owner accepts that.
