@@ -796,5 +796,3 @@ body:has(.sticky-atc:not([hidden])) .to-top { bottom: calc(max(var(--s4), env(sa
 @media (hover: none) { .card .ph img.alt { display: none; } }
 /* Cards: shorter entrance, and only the first few stagger. */
 .card { animation-duration: 0.4s; animation-delay: calc(min(var(--i, 0), 3) * 40ms); }
-/* Skip layout and paint of cards far below the fold until they scroll near. */
-.feed > .cell:nth-child(n+7) { content-visibility: auto; contain-intrinsic-size: auto 380px; }
