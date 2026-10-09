@@ -103,3 +103,6 @@ CJ lists 6 designs (A brown 61 cm, B cream cartoon, C blue pattern, D red patter
 
 ## Cat tunnel built (still DRAFT, waiting on owner go because it fails the 1.5x price check)
 Six designs now on the page with their own photos, weights, SKUs, cost, inventory at cjdropshipping and the CJ delivery profile. Prices: Silver Grey and Red 17.99 (CJ 4.84 + 8.50 freight, profit about CA$13); Brown 61 cm 21.99 (CJ 6.08 + 10.10, profit about CA$12.6); Cream, Blue, Red flower 20.99 (CJ 6.08 + estimated freight, not individually quoted). Checkout with the 14.99 band is 32.98 to 36.98 against Amazon.ca tubes at 11-26.
+
+## Cat tunnel PUBLISHED (owner said "Publish all" after being told it fails the 1.5x price check)
+Exception to the price rule, accepted by the owner. Six designs, 17.99-21.99. Published to the five channels.
