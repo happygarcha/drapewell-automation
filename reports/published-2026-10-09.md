@@ -10,3 +10,6 @@ CJ detail check: the sold variants (Black2, Brownness, CJ cost 4.77) use only th
 
 ## Watch case published (owner chose option 2)
 Deleted photos 3 and 4 (MediaImage 57436481552693, 57436481585461); two photos remain (black and brown closed case, the sold version). Description and meta reworded: no watch count, "padded compartments with removable cushions", snap tab kept. Price CA$19.99. ACTIVE and published to the 5 channels. Page check: see chat.
+
+## Watch case, owner chose option 2 again (2026-10-09)
+Re-added the two open-case supplier photos from CJ (cf.cjdropshipping.com/20210117/1629632557905.jpg and 1803460010838.jpg) as MediaImage 57438059200821 and 57438059233589, both READY. Alt text says they are supplier photos that may differ slightly. Description gained an "About the photos" paragraph: product may differ slightly from pictures, open-case photos may show a different lining, stitching or closure, do not rely on them for the compartment count. Product stays ACTIVE; page HTTP 200 with the new text.
