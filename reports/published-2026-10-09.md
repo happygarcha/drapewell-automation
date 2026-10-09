@@ -30,3 +30,6 @@ Deleted the two re-added supplier photos (MediaImage 57438059200821, 57438059233
 
 ## Hat set back on sale (owner chose soft blur, 2026-10-09)
 Owner decided on soft blur to hide the logo (round or square depending on the photo; blur and keep the image when the logo is away from the main object). The blurred photos already on the product were kept; paint-out tests discarded. Hat set set ACTIVE and republished to the 5 channels.
+
+## Horse canvas repriced and sizes added (owner yes, 2026-10-09)
+Fresh CJ quotes (Canada, CJPacket Ordinary): S 3.35+6.49, M 4.19+7.41, L 5.03+7.95 USD. Prices: S 32.99 (checkout 42.98, profit about CA$27.41), M 34.99 (49.98, about CA$31.71, band 14.99 for 320 g), L 36.99 (51.98, about CA$31.68, band 14.99 for 370 g). Competitor 5-piece sets on Amazon.ca start at CA$62.99, so checkout sits at 0.68 / 0.79 / 0.83 of that. M and L variants created (SKU CJJT264045102BY / CJJT264045103CX, weights 320 / 370 g), activated at the cjdropshipping location, added to the CJ Dropshipping Fulfillment profile. Description lists all three panel sets. All three share the same product photos.
