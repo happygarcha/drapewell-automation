@@ -27,3 +27,6 @@ Deleted the two re-added supplier photos (MediaImage 57438059200821, 57438059233
 - Makeup brush set repriced to CA$23.99 (checkout 33.98, profit about CA$12.86) and published to the 5 channels. Hero photo carries a small red "1" marker; not a logo.
 - Deleted the 3 old DSers drafts (15409004478773, 15409004740917, 15409004773685).
 - Paint-out test on 3 hat photos: reports/hat-set-blurred/paint-out-test-compare.png (original | current blur | texture-clone paint-out). Flat-lay photos near seamless; the model photo disturbs the beanie fold and brow, needs manual care.
+
+## Hat set back on sale (owner chose soft blur, 2026-10-09)
+Owner decided on soft blur to hide the logo (round or square depending on the photo; blur and keep the image when the logo is away from the main object). The blurred photos already on the product were kept; paint-out tests discarded. Hat set set ACTIVE and republished to the 5 channels.
