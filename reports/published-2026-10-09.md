@@ -100,3 +100,6 @@ Cat tent bed, snowflake cushion cover, Nordic tablecloth, sisal cat pad, wooden 
 
 ## Cat tunnel (kept as draft, owner said add)
 CJ lists 6 designs (A brown 61 cm, B cream cartoon, C blue pattern, D red pattern, E silver grey, F red; E/F are the two on our page). Photos 3-6 on our page show A-D, which we do not list. E/F landed cost: 4.84 + 8.50 freight USD; at the usual 14.99 shipping band the lowest price that holds CA$12 profit is about 17.99 (checkout about 32.98). Amazon.ca collapsible tubes: 11.39-25.99 (the 48 inch S-shape is 25.99; Pawaboo S-shape 19.99). Ours is a single 48.5 cm tube, so about 1.6x typical: FAIL on price unless the owner accepts that.
+
+## Cat tunnel built (still DRAFT, waiting on owner go because it fails the 1.5x price check)
+Six designs now on the page with their own photos, weights, SKUs, cost, inventory at cjdropshipping and the CJ delivery profile. Prices: Silver Grey and Red 17.99 (CJ 4.84 + 8.50 freight, profit about CA$13); Brown 61 cm 21.99 (CJ 6.08 + 10.10, profit about CA$12.6); Cream, Blue, Red flower 20.99 (CJ 6.08 + estimated freight, not individually quoted). Checkout with the 14.99 band is 32.98 to 36.98 against Amazon.ca tubes at 11-26.
