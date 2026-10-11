@@ -323,16 +323,22 @@
       if (price) enter(price, { opacity: "0", translate: "0px 10px" }, { opacity: 1, translate: ["0px 10px", "0px 0px"] }, ["opacity", "translate"], 0.55);
       if (art) enter(art, { opacity: "0", "--hs": "0.9", "--hr": "3" }, { opacity: 1, "--hs": 1, "--hr": 0 }, ["opacity", "--hs", "--hr"], 0.1, { stiffness: 90, damping: 16 });
     }
-    function show(i) {
+    function show(i, initial) {
       if (!slides.length) return; cur = (i + slides.length) % slides.length;
+      hydrate(slides[cur]);
       slides.forEach(function (s, k) { var on = k === cur; s.classList.toggle("is-active", on); if (on) s.removeAttribute("aria-hidden"); else s.setAttribute("aria-hidden", "true"); $$("a", s).forEach(function (a) { a.tabIndex = on ? 0 : -1; }); });
       dots.forEach(function (d, k) { d.setAttribute("aria-pressed", String(k === cur)); });
       hero.style.setProperty("--hue", slides[cur].dataset.hue);
-      if (mo) enterSlide(slides[cur]);
-      if (bar) { bar.classList.remove("run"); void bar.offsetWidth; if (!reduce) bar.classList.add("run"); }
+      /* the first slide is already visible from the server HTML: never hide and re-animate it on load (that delayed the largest paint) */
+      if (mo && !initial) enterSlide(slides[cur]);
+      if (bar) { bar.classList.remove("run"); void bar.offsetWidth; if (!reduce && !initial) bar.classList.add("run"); }
     }
-    function start() { clearInterval(timer); if (paused || document.hidden || slides.length < 2) return; timer = setInterval(function () { show(cur + 1); }, reduce ? 8000 : 6000); }
-    function go(n) { show(n); start(); }
+    /* autoplay waits for the first touch, key, scroll or click (or 15 s) so the slide change never repaints a bigger image into the load measurement */
+    var armed = false, armT = 0;
+    function hydrate(sl) { $$("img[data-defer]", sl).forEach(function (im) { im.removeAttribute("data-defer"); if (im.dataset.srcset) im.srcset = im.dataset.srcset; if (im.dataset.src) im.src = im.dataset.src; }); }
+    function arm() { if (armed) return; armed = true; clearTimeout(armT); slides.forEach(hydrate); start(); if (bar && !reduce && !paused) { bar.classList.remove("run"); void bar.offsetWidth; bar.classList.add("run"); } }
+    function start() { clearInterval(timer); if (!armed || paused || document.hidden || slides.length < 2) return; timer = setInterval(function () { show(cur + 1); }, reduce ? 8000 : 6000); }
+    function go(n) { armed = true; show(n); start(); }
     dots.forEach(function (d) { d.addEventListener("click", function () { go(parseInt(d.dataset.go, 10)); }); });
     var prev = $("[data-hero-prev]", hero), next = $("[data-hero-next]", hero);
     if (prev) prev.addEventListener("click", function () { go(cur - 1); }); if (next) next.addEventListener("click", function () { go(cur + 1); });
@@ -342,7 +348,9 @@
     hero.addEventListener("touchend", function (e) { var t = e.changedTouches[0], dx = t.clientX - sx, dy = t.clientY - sy; if (Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy) * 1.4) go(cur + (dx < 0 ? 1 : -1)); }, { passive: true });
     document.addEventListener("visibilitychange", start);
     hero.addEventListener("pointermove", function (e) { if (reduce) return; var r = hero.getBoundingClientRect(); hero.style.setProperty("--px", ((e.clientX - r.left) / r.width - 0.5).toFixed(3)); hero.style.setProperty("--py", ((e.clientY - r.top) / r.height - 0.5).toFixed(3)); hero.style.setProperty("--gx", (((e.clientX - r.left) / r.width) * 100).toFixed(0) + "%"); hero.style.setProperty("--gy", (((e.clientY - r.top) / r.height) * 100).toFixed(0) + "%"); }, { passive: true });
-    show(0); start();
+    show(0, true);
+    armT = setTimeout(arm, 15000);
+    ["pointerdown", "touchstart", "keydown", "scroll", "wheel"].forEach(function (ev) { addEventListener(ev, arm, { once: true, passive: true }); });
   }
 
   /* ---------- card glow + tilt ---------- */

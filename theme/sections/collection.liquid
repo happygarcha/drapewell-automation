@@ -22,7 +22,7 @@
   {%- else -%}
     <div class="feed">
       {%- for product in collection.products -%}
-        {% render 'product-card', product: product, index: forloop.index0 %}
+        {% render 'product-card', product: product, index: forloop.index0, eager: 2 %}
       {%- endfor -%}
     </div>
   {%- endif -%}

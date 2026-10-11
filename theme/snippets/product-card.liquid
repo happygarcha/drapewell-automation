@@ -1,15 +1,16 @@
-{%- comment -%} Usage: render 'product-card', product: product, index: forloop.index0 {%- endcomment -%}
+{%- comment -%} Usage: render 'product-card', product: product, index: forloop.index0, eager: 2. Only the first `eager` cards load immediately (and only the very first at high priority); everything else is lazy. Leave eager out when the cards sit below a hero. {%- endcomment -%}
 <div class="cell" data-price="{{ product.price }}" data-title="{{ product.title | escape }}" data-new="{{ product.published_at | date: '%s' }}">
   <a class="card" href="{{ product.url }}" style="--i: {{ index | default: 0 | at_most: 14 }}">
     <figure class="ph" style="view-transition-name: pv-{{ product.handle }}">
       {%- if product.featured_image -%}
-        {%- assign card_eager = index | default: 99 | at_most: 99 -%}
-        {%- if card_eager < 4 -%}{%- assign card_loading = 'eager' -%}{%- else -%}{%- assign card_loading = 'lazy' -%}{%- endif -%}
-        {%- if card_eager == 0 -%}{%- assign card_prio = 'high' -%}{%- else -%}{%- assign card_prio = 'auto' -%}{%- endif -%}
+        {%- assign card_index = index | default: 99 -%}
+        {%- assign eager_n = eager | default: 0 -%}
+        {%- if card_index < eager_n -%}{%- assign card_loading = 'eager' -%}{%- else -%}{%- assign card_loading = 'lazy' -%}{%- endif -%}
+        {%- if card_index == 0 and eager_n > 0 -%}{%- assign card_prio = 'high' -%}{%- else -%}{%- assign card_prio = 'auto' -%}{%- endif -%}
         {{ product.featured_image | image_url: width: 700 | image_tag: loading: card_loading, fetchpriority: card_prio, widths: '300, 500, 700', sizes: '(min-width: 1500px) 20vw, (min-width: 760px) 24vw, 46vw', alt: product.featured_image.alt | default: product.title }}
       {%- endif -%}
       {%- if product.images.size > 1 -%}
-        {{ product.images[1] | image_url: width: 500 | image_tag: loading: 'lazy', class: 'alt', widths: '300, 500', sizes: '(min-width: 1500px) 20vw, (min-width: 760px) 24vw, 46vw', alt: '' }}
+        {{ product.images[1] | image_url: width: 500 | image_tag: loading: 'lazy', fetchpriority: 'low', class: 'alt', widths: '300, 500', sizes: '(min-width: 1500px) 20vw, (min-width: 760px) 24vw, 46vw', alt: '' }}
       {%- endif -%}
     </figure>
     <span class="t">{{ product.title }}</span>
