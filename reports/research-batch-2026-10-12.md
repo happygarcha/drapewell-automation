@@ -34,3 +34,15 @@ Christmas elk plush slippers CJNS1607164; wool dog sweater CJPC2586988; bear dog
 ## Proposal
 1. Owner approves 1, 2, 3 (pick one or two) and 4 to move to draft + publish gate. Each gets fresh freight, photo review, SEO/schema/GEO, copy, CAD competitor note.
 2. Tomorrow (Tue research slot): screen the unscreened list above and add new light categories (winter accessories, small decor, kitchen silicone sets) to reach 10.
+
+## Pass 2 (same day, after owner asked again): kitchen utensil sets, neck warmers/scarves, winter gloves
+Searched 3 more categories (about 90 more listings). Screened 2 more light products:
+
+| # | Product (CJ SKU) | CJ cost USD | Weight | Est. freight | Landed CAD | Price + band = checkout | Est. profit CAD | Notes | Verdict |
+|---|---|---|---|---|---|---|---|---|---|
+| 9 | Women's tassel scarf/wrap, 67 x 185 cm, imitation-cashmere polyester, 5 colours (CJYD2371963) | 2.81 | 360 g | 7.85 | 15.2 | 19.99 + 14.99 = 34.98 | 18.4 | 10 photos. Supplier calls it "cashmere-like": copy must say soft polyester knit-look, no cashmere claim. Listing text says "suitable season: summer" but "keep warm": needs a check. CAD competitor not checked | CANDIDATE |
+| 10 | Women's fleece-lined suede-look gloves, free size, 4 colours (CJYD1916933) | 2.18 | 100 g | 4.91 | 10.1 | 19.99 + 9.99 = 29.98 | 18.7 | 6 photos. Fabric is artificial leather per supplier (do not say suede or leather). No sizing risk. CAD competitor not checked | CANDIDATE |
+
+Skipped without detail fetch: kitchen utensil sets (likely 500 g+, commodity shelf prices); electric/USB heated neck gaiters (battery, sensitive shipping); cycling/boxing gloves (off-brand).
+
+Running total after pass 2: 6 candidates (1, 2, 3, 4, 9, 10), 1 risk (5), the rest rejected or unscreened. Still short of 10.
