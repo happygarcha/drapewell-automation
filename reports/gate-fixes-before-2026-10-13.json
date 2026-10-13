@@ -1,0 +1,63 @@
+{
+  "captured": "2026-10-13",
+  "note": "State read live from Shopify Admin GraphQL before any edit. Both products DRAFT, resourcePublicationsCount 0. All variants in delivery profile gid://shopify/DeliveryProfile/135205912885 (CJ Dropshipping Fulfillment), inventory levels at gid://shopify/Location/115880493365 and gid://shopify/Location/115880919349, tracked=false.",
+  "C": {
+    "id": "gid://shopify/Product/15414982377781",
+    "title": "Dog Vest with Teddy-Fleece Style Lining, Beige or Green",
+    "handle": "dog-vest-teddy-fleece-style-lining-beige-green",
+    "status": "DRAFT",
+    "productType": "Pet Clothing",
+    "tags": ["cj:1440623013967040512", "dog vest", "pet clothing", "small dogs"],
+    "seoTitle": "Dog Vest, Beige or Green, XS to 2XL | Drapewell",
+    "seoDescription": "Casual dog vest in beige or green with a teddy-fleece style lining and twill outer. Sizes XS to 2XL, with a supplier size guide for small dogs.",
+    "descriptionHtml": "<p>A casual dog vest in beige or green, with a teddy-fleece style lining and a twill outer, in sizes XS to 2XL.</p><ul>\n<li>Colours: beige or green</li>\n<li>Fabric: teddy-fleece style lining with a twill outer</li>\n<li>Casual style</li>\n<li>Sizes XS, S, M, L, XL and 2XL</li>\n<li>Included: 1 dog vest</li>\n</ul><p><strong>Supplier size guide (cm)</strong></p><table>\n<tr>\n<th>Size</th>\n<th>Bust</th>\n<th>Back length</th>\n<th>Recommended dog weight</th>\n</tr>\n<tr>\n<td>XS</td>\n<td>32</td>\n<td>20</td>\n<td>1-3 kg</td>\n</tr>\n<tr>\n<td>S</td>\n<td>37</td>\n<td>25</td>\n<td>3-5 kg</td>\n</tr>\n<tr>\n<td>M</td>\n<td>42</td>\n<td>30</td>\n<td>5-8 kg</td>\n</tr>\n<tr>\n<td>L</td>\n<td>47</td>\n<td>35</td>\n<td>8-11 kg</td>\n</tr>\n<tr>\n<td>XL</td>\n<td>52</td>\n<td>38</td>\n<td>11-15 kg</td>\n</tr>\n<tr>\n<td>2XL</td>\n<td>57</td>\n<td>42</td>\n<td>15-20 kg</td>\n</tr>\n</table><p>Weight bands are the supplier's recommendation. Measure your dog and compare with the table before ordering.</p><p>Ships with tracking from our supplier. Estimated delivery is 13-25 days to Canada and 10-20 days to the US, counted from the order date. Taxes are extra and shipping is calculated by weight at checkout.</p>",
+    "media": [
+      {"id": "gid://shopify/MediaImage/57514718265653", "alt": "Beige dog vest with a brown teddy-fleece style collar, two front pockets and a D-ring on the back"},
+      {"id": "gid://shopify/MediaImage/57514718298421", "alt": "Green dog vest with a cream teddy-fleece style collar and two cream pockets"},
+      {"id": "gid://shopify/MediaImage/57514718331189", "alt": "White dog wearing a beige vest with a brown teddy-fleece style collar"},
+      {"id": "gid://shopify/MediaImage/57514718363957", "alt": "Beige dog vest on a white background, back view with D-ring and two brown pockets"},
+      {"id": "gid://shopify/MediaImage/57514718396725", "alt": "Back view of a small white dog in a beige vest with brown collar and pockets"},
+      {"id": "gid://shopify/MediaImage/57514718429493", "alt": "Small white dog facing the camera in a beige vest with brown collar and button front"}
+    ],
+    "variants": [
+      {"id": "gid://shopify/ProductVariant/67678870339893", "title": "Beige / XS", "sku": "CJGY129587701AZ", "grams": 120},
+      {"id": "gid://shopify/ProductVariant/67678870372661", "title": "Beige / S", "sku": "CJGY129587702BY", "grams": 130},
+      {"id": "gid://shopify/ProductVariant/67678870405429", "title": "Beige / M", "sku": "CJGY129587703CX", "grams": 140},
+      {"id": "gid://shopify/ProductVariant/67678870438197", "title": "Beige / L", "sku": "CJGY129587704DW", "grams": 150},
+      {"id": "gid://shopify/ProductVariant/67678870470965", "title": "Beige / XL", "sku": "CJGY129587705EV", "grams": 160},
+      {"id": "gid://shopify/ProductVariant/67678870503733", "title": "Beige / 2XL", "sku": "CJGY129587706FU", "grams": 170},
+      {"id": "gid://shopify/ProductVariant/67678870536501", "title": "Green / XS", "sku": "CJGY129587707GT", "grams": 120},
+      {"id": "gid://shopify/ProductVariant/67678870569269", "title": "Green / S", "sku": "CJGY129587708HS", "grams": 130},
+      {"id": "gid://shopify/ProductVariant/67678870602037", "title": "Green / M", "sku": "CJGY129587709IR", "grams": 140},
+      {"id": "gid://shopify/ProductVariant/67678870634805", "title": "Green / L", "sku": "CJGY129587710JQ", "grams": 150},
+      {"id": "gid://shopify/ProductVariant/67678870667573", "title": "Green / XL", "sku": "CJGY129587711KP", "grams": 160},
+      {"id": "gid://shopify/ProductVariant/67678870700341", "title": "Green / 2XL", "sku": "CJGY129587712LO", "grams": 170}
+    ]
+  },
+  "D": {
+    "id": "gid://shopify/Product/15414984180021",
+    "title": "Women's Tassel Scarf Wrap, 67 x 185 cm, Soft Polyester Knit",
+    "handle": "womens-tassel-scarf-wrap-67-x-185-cm",
+    "status": "DRAFT",
+    "productType": "Scarves & Wraps",
+    "tags": ["cj:2505090302361608000", "scarf", "tassel", "womens accessories", "wrap"],
+    "seoTitle": "Women's Tassel Scarf Wrap, 67 x 185 cm | Drapewell",
+    "seoDescription": "Long tassel scarf wrap for women in a soft polyester knit-look fabric, 67 x 185 cm. Four colours, retro style, one wrap per order.",
+    "descriptionHtml": "<p>A long tassel scarf wrap for women in a soft polyester knit-look fabric, with a retro style.</p><ul>\n<li>Size: 67 x 185 cm</li>\n<li>Fabric: soft polyester knit-look fabric</li>\n<li>Tassel trim</li>\n<li>Colours: beige red, sky blue orange, camel, yellow</li>\n<li>Included: 1 scarf wrap</li>\n</ul><p>Colours may look slightly different on screen. Measurements are from the supplier.</p><p>Ships with tracking from our supplier. Estimated delivery is 13-25 days to Canada and 10-20 days to the US, counted from the order date. Taxes are extra and shipping is calculated by weight at checkout.</p>",
+    "optionColour": {"optionId": "gid://shopify/ProductOption/17879547576629", "values": ["Beige Red", "Sky Blue Orange", "Camel", "Yellow"]},
+    "media": [
+      {"pos": 1, "id": "gid://shopify/MediaImage/57514733732149", "file": "a37c99aa-c4be-406d-ab3e-1845c84b828a.jpg", "alt": "Sky blue and orange tassel scarf wrap with a leaf and bird pattern draped over a chair"},
+      {"pos": 2, "id": "gid://shopify/MediaImage/57514733764917", "file": "a92ef85f-427e-4906-a554-511a4f2731cc.jpg", "alt": "Camel tassel scarf wrap with a paisley pattern and fringed ends"},
+      {"pos": 3, "id": "gid://shopify/MediaImage/57514733895989", "file": "eae4467f-e036-4d91-bb64-98c67bf7d8f8.jpg", "alt": "Camel patterned wrap draped on a stand against a white background"},
+      {"pos": 4, "id": "gid://shopify/MediaImage/57514733928757", "file": "6bb54190-5ebb-4390-a6fe-62bb94b31b48.jpg", "alt": "Yellow patterned tassel wrap draped over a chair"},
+      {"pos": 5, "id": "gid://shopify/MediaImage/57514733961525", "file": "9d7b5fff-08e2-4ab2-bf6f-ccb56b6d1271.jpg", "alt": "Close-up of a blue and cream paisley pattern with a fringed edge"},
+      {"pos": 6, "id": "gid://shopify/MediaImage/57514733994293", "file": "29f3d33a-53f7-4b54-a016-4571b0e8822a.jpg", "alt": "Beige and grey patterned wrap draped over a chair"}
+    ],
+    "variants": [
+      {"id": "gid://shopify/ProductVariant/67678873026869", "title": "Beige Red", "sku": "CJYD237196301AZ", "grams": 360, "mediaId": "gid://shopify/MediaImage/57514733994293"},
+      {"id": "gid://shopify/ProductVariant/67678873059637", "title": "Sky Blue Orange", "sku": "CJYD237196302BY", "grams": 360, "mediaId": "gid://shopify/MediaImage/57514733732149"},
+      {"id": "gid://shopify/ProductVariant/67678873092405", "title": "Camel", "sku": "CJYD237196303CX", "grams": 360, "mediaId": "gid://shopify/MediaImage/57514733764917"},
+      {"id": "gid://shopify/ProductVariant/67678873125173", "title": "Yellow", "sku": "CJYD237196304DW", "grams": 360, "mediaId": "gid://shopify/MediaImage/57514733928757"}
+    ]
+  }
+}
