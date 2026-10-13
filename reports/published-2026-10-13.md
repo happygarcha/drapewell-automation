@@ -14,3 +14,9 @@ Channels: Online Store, Google & YouTube, Pinterest, Facebook & Instagram (Meta)
 
 Note: the first publish call for A returned a Bad Gateway error but had applied (checked afterwards: ACTIVE, 4 channels).
 Still DRAFT: C (vest, fixed, needs a gate re-run), D (scarf, fixed, needs a gate re-run), E (gloves, competitor FAIL), H (airship, photos FAIL), slippers (no clean photos).
+
+## Addendum: brush organiser (owner approved publish 2026-10-13)
+- Product 15415536288053, "Rotating Makeup Brush Organiser with Clear Lid, 5 Compartments", CA$19.99, 350 g.
+- Gate: PASS (reports/gate-beauty-tech-2026-10-13.md); brand marks blurred (reports/blur-brush-organiser-2026-10-13.md); 4 media READY.
+- Published ACTIVE to Online Store, Pinterest, Google & YouTube, Facebook & Instagram (4 publications). Collective paused; Copilot unavailable.
+- Competitor price: not checked (sites blocked).
