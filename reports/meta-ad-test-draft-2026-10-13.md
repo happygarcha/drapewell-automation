@@ -13,3 +13,6 @@ Status: DRAFT / PAUSED. Nothing live, nothing spent. Owner approved CA$5/day for
 - Profit per order before ad cost (fresh CJ quotes 2026-10-13, YunExpress US / CJPacket CA): horse M US 30.47 / CA 31.71; carrier S US 18.62 / CA 20.33, L 22.45 / 24.38; bath mat 40x60 US 13.06-15.82 / CA 14.80-17.56, 50x80 US 18.04-22.79 / CA 19.01+.
 - Competitor prices: not re-checked today for the pet carrier and bath mat (Amazon.ca blocked). AI disclosure field left unset for the owner to decide.
 - Success measure: purchases. Stop after 7 days or CA$35 spent.
+
+## Switched on (owner said "turn it on", 2026-10-13)
+Campaign 52521883774229, ad set 52521883823829 and ads 52521883961629, 52521883975829, 52521883982029 activated. Meta review pending at activation. Budget CA$5/day for the whole campaign (not per item). Stop rule: 7 days or about CA$35 spent; review results before any change.
