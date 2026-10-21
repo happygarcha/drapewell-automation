@@ -43,6 +43,7 @@
       "@id": {{ shop.url | append: '/#organization' | json }},
       "name": {{ shop.name | json }},
       "url": {{ shop.url | json }},
+      "sameAs": ["https://www.pinterest.com/drapewell1/"],
       "email": "happygarcha2018@hotmail.com",
       "telephone": "+1-604-226-9941",
       "address": {
@@ -99,6 +100,33 @@
     { "@type": "Question", "name": "Will I pay import duties on a US order?", "acceptedAnswer": { "@type": "Answer", "text": "Import duties for US orders are included in the shipping charge." } },
     { "@type": "Question", "name": "Can I return or exchange an item?", "acceptedAnswer": { "@type": "Answer", "text": "We do not accept change-of-mind returns or exchanges. If an item arrives damaged, defective or incorrect, or is lost, contact us within 30 days of delivery for a replacement or refund. Please do not mail items back unless we give you written instructions. Approved refunds go to the original payment method within 5 business days of approval." } },
     { "@type": "Question", "name": "How do I contact Drapewell, and when is support available?", "acceptedAnswer": { "@type": "Answer", "text": "Email happygarcha2018@hotmail.com or call 604-226-9941. Support hours are Monday to Friday, 9:00 AM to 5:00 PM Pacific. We may also reply outside these hours, and we reply within 1 business day." } }
+  ]
+}
+</script>
+{%- endif -%}
+
+{%- if page.handle == 'faq' -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Where does Drapewell ship?", "acceptedAnswer": { "@type": "Answer", "text": "We ship to Canada and the United States. Prices are in Canadian dollars (CAD)." } },
+    { "@type": "Question", "name": "How much is shipping?", "acceptedAnswer": { "@type": "Answer", "text": "Shipping is calculated by order weight and shown at checkout before you pay. Rates start from CA$9.99 to Canada and CA$12.99 to the United States." } },
+    { "@type": "Question", "name": "How long does delivery take?", "acceptedAnswer": { "@type": "Answer", "text": "Estimated total time from the day you order is 13–25 days to Canada and 10–20 days to the United States. That includes 3–5 calendar days of processing. These are estimates, not guarantees, and carriers, customs and weather can add time." } },
+    { "@type": "Question", "name": "Where is my order shipped from?", "acceptedAnswer": { "@type": "Answer", "text": "Orders are made and dispatched by our supplier partners and shipped directly to you. They aren't shipped from our Surrey office, so please don't send anything to that address." } },
+    { "@type": "Question", "name": "Will my order arrive in one parcel?", "acceptedAnswer": { "@type": "Answer", "text": "Not always. Items in the same order can arrive in separate parcels when they are dispatched from different facilities. You won't pay extra shipping because an order is split." } },
+    { "@type": "Question", "name": "Do I pay import duties?", "acceptedAnswer": { "@type": "Answer", "text": "Import duties and customs fees on US orders are included in your shipping charge. For Canadian orders, any applicable taxes are shown at checkout." } },
+    { "@type": "Question", "name": "Does my order have tracking?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Every order ships with tracking, and you get the tracking number by email once it ships." } },
+    { "@type": "Question", "name": "Why does tracking show nothing?", "acceptedAnswer": { "@type": "Answer", "text": "Tracking can show little or no movement for the first 5–8 days while the parcel moves through the export network. That's normal." } },
+    { "@type": "Question", "name": "What if my order hasn't arrived?", "acceptedAnswer": { "@type": "Answer", "text": "If tracking hasn't moved for 15 days, or you're more than 10 days past the estimated delivery window, email us with your order number. If the carrier confirms the parcel is lost, you can choose a replacement or a refund." } },
+    { "@type": "Question", "name": "Can I return or exchange an item?", "acceptedAnswer": { "@type": "Answer", "text": "We don't accept change-of-mind returns or exchanges. We will replace or refund an order that is lost, damaged, defective, materially different from its description, or not the item you ordered." } },
+    { "@type": "Question", "name": "What if something arrives damaged or wrong?", "acceptedAnswer": { "@type": "Answer", "text": "Email us within 30 days of delivery with your order number, a description of the problem, and clear photos of the item and packaging. You don't need to send anything back unless we give you written instructions." } },
+    { "@type": "Question", "name": "How long do refunds take?", "acceptedAnswer": { "@type": "Answer", "text": "Approved refunds go to your original payment method within 5 business days of approval. Your bank may need extra time to show it." } },
+    { "@type": "Question", "name": "Can I cancel my order?", "acceptedAnswer": { "@type": "Answer", "text": "Email us as soon as possible. We can cancel and refund an order that hasn't started processing. After processing begins we can't guarantee a cancellation." } },
+    { "@type": "Question", "name": "What if I chose the wrong size or colour?", "acceptedAnswer": { "@type": "Answer", "text": "Because of the no-change-of-mind policy, please check the measurements, colour and selected option before you order. Each product page lists sizes and what's included." } },
+    { "@type": "Question", "name": "Where is Drapewell based?", "acceptedAnswer": { "@type": "Answer", "text": "Drapewell is an online store based in Surrey, British Columbia, Canada." } },
+    { "@type": "Question", "name": "How do I contact you?", "acceptedAnswer": { "@type": "Answer", "text": "Email happygarcha2018@hotmail.com or call 604-226-9941. Support hours are Monday to Friday, 9:00 AM to 5:00 PM Pacific. We reply within 1 business day, and sometimes outside those hours. Please include your order number." } }
   ]
 }
 </script>
