@@ -26,16 +26,13 @@
       ]
     },
     "mcp-gsc": {
-      "command": "uvx",
+      "command": "bash",
       "args": [
-        "--with",
-        "mcp<2",
-        "mcp-gsc"
+        ".claude/gsc-mcp.sh"
       ],
       "env": {
-        "GSC_OAUTH_CLIENT_SECRETS_FILE": "${GSC_OAUTH_CLIENT_SECRETS_FILE:-}",
-        "GSC_CREDENTIALS_PATH": "${GSC_CREDENTIALS_PATH:-}",
-        "GSC_SKIP_OAUTH": "${GSC_SKIP_OAUTH:-}"
+        "GSC_SERVICE_ACCOUNT_JSON": "${GSC_SERVICE_ACCOUNT_JSON:-}",
+        "GSC_OAUTH_CLIENT_SECRETS_FILE": "${GSC_OAUTH_CLIENT_SECRETS_FILE:-}"
       }
     },
     "gsc": {
