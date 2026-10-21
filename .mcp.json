@@ -25,6 +25,16 @@
         "--no-performance-crux"
       ]
     },
+    "mcp-gsc": {
+      "command": "bash",
+      "args": [
+        ".claude/gsc-mcp.sh"
+      ],
+      "env": {
+        "GSC_SERVICE_ACCOUNT_JSON": "${GSC_SERVICE_ACCOUNT_JSON:-}",
+        "GSC_OAUTH_CLIENT_SECRETS_FILE": "${GSC_OAUTH_CLIENT_SECRETS_FILE:-}"
+      }
+    },
     "gsc": {
       "command": "uvx",
       "args": [
