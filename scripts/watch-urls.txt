@@ -1,0 +1,9 @@
+# URLs to watch for Google indexing. One per line: URL, a space, the date it went live (YYYY-MM-DD).
+# The weekly Search Console report checks each one and lists the ones still not indexed 7+ days after going live.
+# Delete a line once the page shows "indexed" in the report.
+https://drapewell.myshopify.com/collections/shower-curtains 2026-10-21
+https://drapewell.myshopify.com/collections/bath-mats 2026-10-21
+https://drapewell.myshopify.com/collections/christmas-table-runners 2026-10-21
+https://drapewell.myshopify.com/pages/standard-shower-curtain-size 2026-10-21
+https://drapewell.myshopify.com/pages/shower-curtain-materials 2026-10-21
+https://drapewell.myshopify.com/pages/faq 2026-10-21

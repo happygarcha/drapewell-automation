@@ -15,6 +15,7 @@ import os
 import sys
 import urllib.parse
 from collections import defaultdict
+from pathlib import Path
 
 SITE = "https://drapewell.myshopify.com/"
 SCOPE = "https://www.googleapis.com/auth/webmasters.readonly"
@@ -40,6 +41,65 @@ def fetch_rows(site, start, end):
         if len(batch) < 25000:
             return rows
         start_row += 25000
+
+
+def read_watch(path):
+    """Lines of 'URL YYYY-MM-DD'; blank lines and # comments are skipped."""
+    out = []
+    for line in Path(path).read_text().splitlines():
+        line = line.strip()
+        if line and not line.startswith("#"):
+            url, added = line.split()
+            out.append((url, dt.date.fromisoformat(added)))
+    return out
+
+
+def inspect_urls(site, urls):
+    """URL Inspection API (read-only). Returns {url: indexStatusResult dict, or {'error': text}}."""
+    from google.auth.transport.requests import AuthorizedSession
+    from google.oauth2 import service_account
+
+    info = json.loads(os.environ["GSC_SERVICE_ACCOUNT_JSON"])
+    creds = service_account.Credentials.from_service_account_info(info, scopes=[SCOPE])
+    session = AuthorizedSession(creds)
+    res = {}
+    for u in urls:
+        r = session.post("https://searchconsole.googleapis.com/v1/urlInspection/index:inspect",
+                         json={"inspectionUrl": u, "siteUrl": site}, timeout=60)
+        if r.ok:
+            res[u] = r.json().get("inspectionResult", {}).get("indexStatusResult", {})
+        else:
+            res[u] = {"error": f"HTTP {r.status_code}"}
+    return res
+
+
+def render_watch(watch, results, today, wait_days=7):
+    out = ["# New pages: indexing check", "",
+           f"Checked {today} with the Search Console URL Inspection API. A page that is not indexed {wait_days} days "
+           "after going live is marked STUCK: request indexing for it by hand in Search Console (no API for that).", "",
+           "| Page | Live since | Google says | Last crawl | Action |", "|---|---|---|---|---|"]
+    stuck = []
+    for url, added in watch:
+        r = results.get(url, {})
+        if "error" in r:
+            state, crawl, action = f"check failed ({r['error']})", "", "retry next run"
+        else:
+            indexed = r.get("verdict") == "PASS"
+            state = r.get("coverageState") or "no data"
+            crawl = (r.get("lastCrawlTime") or "never")[:10]
+            age = (today - added).days
+            if indexed:
+                action = "indexed: remove from watch-urls.txt"
+            elif age >= wait_days:
+                action = "STUCK: request indexing"
+                stuck.append(url)
+            else:
+                action = f"waiting ({age} of {wait_days} days)"
+        out.append(f"| {url} | {added} | {state} | {crawl} | {action} |")
+    out.append("")
+    if stuck:
+        out += ["## Request indexing for these", ""] + [f"- {u}" for u in stuck] + [""]
+    return "\n".join(out)
 
 
 def select(rows, min_impr):
@@ -81,6 +141,8 @@ def main():
     ap.add_argument("--lag", type=int, default=3, help="Search Console data trails by about 2-3 days")
     ap.add_argument("--min-impr", type=float, default=50)
     ap.add_argument("--out", default="")
+    ap.add_argument("--watch", default="", help="file of 'URL date' lines to check for indexing")
+    ap.add_argument("--watch-json", default="", help="offline: inspection results as {url: indexStatusResult}")
     ap.add_argument("--from-json", default="", help="offline mode: a JSON list of API rows")
     a = ap.parse_args()
     end = dt.date.today() - dt.timedelta(days=a.lag)
@@ -92,6 +154,13 @@ def main():
             sys.exit("GSC_SERVICE_ACCOUNT_JSON is not set")
         rows = fetch_rows(a.site, start.isoformat(), end.isoformat())
     text = render(select(rows, a.min_impr), start, end, a.min_impr, len(rows))
+    if a.watch:
+        watch = read_watch(a.watch)
+        if a.watch_json:
+            results = json.load(open(a.watch_json))
+        else:
+            results = inspect_urls(a.site, [u for u, _ in watch])
+        text += "\n\n" + render_watch(watch, results, dt.date.today())
     if a.out:
         os.makedirs(os.path.dirname(a.out) or ".", exist_ok=True)
         open(a.out, "w").write(text + "\n")
