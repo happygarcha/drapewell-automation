@@ -25,6 +25,19 @@
         "--no-performance-crux"
       ]
     },
+    "mcp-gsc": {
+      "command": "uvx",
+      "args": [
+        "--with",
+        "mcp<2",
+        "mcp-gsc"
+      ],
+      "env": {
+        "GSC_OAUTH_CLIENT_SECRETS_FILE": "${GSC_OAUTH_CLIENT_SECRETS_FILE:-}",
+        "GSC_CREDENTIALS_PATH": "${GSC_CREDENTIALS_PATH:-}",
+        "GSC_SKIP_OAUTH": "${GSC_SKIP_OAUTH:-}"
+      }
+    },
     "gsc": {
       "command": "uvx",
       "args": [
