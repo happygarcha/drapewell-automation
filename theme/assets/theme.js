@@ -621,7 +621,7 @@
     sForm.addEventListener("submit", function (e) { e.preventDefault(); runSearch(sIn.value.trim(), !onSearch); });
     /* the sort menu inside the results: re-runs the same search with the chosen order */
     sMain.addEventListener("change", function (e) {
-      var sel = e.target.closest && e.target.closest("select[name=sort_by]"); if (!sel || !sel.closest(".sortbar")) return;
+      var sel = e.target.closest && e.target.closest("select[name=sort_by]"); if (!sel || !sel.closest(".sortbar") || !isSearchPath()) return; /* collection pages sort through their own form (onchange submit); handling it here too made the two fight */
       sSort = sel.value; runSearch(sIn.value.trim() || ($("[data-q]", sMain) || {}).textContent || "", false);
     });
     sIn.addEventListener("input", function () {

@@ -56,6 +56,9 @@
     {%- endform -%}
 
     {% render 'trust-row' %}
+    {%- if product.type == 'Shower Curtain' -%}
+      <p class="fine mat-note">Not sure which material suits you? <a href="/pages/shower-curtain-materials">Compare PEVA, polyester and PVC-free shower curtains</a>. The material of this curtain is named in the description above.</p>
+    {%- endif -%}
 
   </div>
 </div>
