@@ -210,6 +210,19 @@
       swapMain(b.dataset.thumb);
       $$("[data-thumb]").forEach(function (x) { x.setAttribute("aria-current", String(x === b)); }); b.focus();
     }); });
+    /* product video: its thumbnail swaps the main photo for the player; any photo thumbnail or a colour change swaps back */
+    var vpane = $("[data-video-pane]"), vthumb = $("[data-thumb-video]"), vfig = $("[data-main-image]");
+    if (vpane && vthumb && vfig) {
+      var vvid = $("video", vpane);
+      var showVideo = function (on) {
+        vpane.hidden = !on; vfig.hidden = on; vthumb.setAttribute("aria-current", String(on));
+        if (on) $$("[data-thumb]").forEach(function (x) { x.setAttribute("aria-current", "false"); });
+        else if (vvid) vvid.pause();
+      };
+      vthumb.addEventListener("click", function () { showVideo(true); });
+      $$("[data-thumb]").forEach(function (b) { b.addEventListener("click", function () { showVideo(false); }); });
+      form.addEventListener("change", function (e) { if (e.target.matches("[data-option]") && !vpane.hidden) showVideo(false); });
+    }
     var fig = $("[data-main-image]");
     if (fig && fine) fig.addEventListener("pointermove", function (e) { var r = fig.getBoundingClientRect(); fig.style.setProperty("--zx", (((e.clientX - r.left) / r.width) * 100).toFixed(0) + "%"); fig.style.setProperty("--zy", (((e.clientY - r.top) / r.height) * 100).toFixed(0) + "%"); }, { passive: true });
     /* swipe the gallery on touch screens */

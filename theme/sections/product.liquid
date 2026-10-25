@@ -7,10 +7,20 @@
     <figure class="ph tall" data-main-image style="view-transition-name: pv-{{ product.handle }}">
       {%- if product.featured_media -%}{{ product.featured_media.preview_image | image_url: width: 1200 | image_tag: loading: 'eager', fetchpriority: 'high', widths: '600, 900, 1200', sizes: '(min-width: 900px) 46vw, 92vw', alt: product.featured_media.alt | default: product.title }}{%- endif -%}
     </figure>
-    {%- if product.images.size > 1 -%}
+    {%- assign product_video = product.media | where: 'media_type', 'video' | first -%}
+    {%- if product_video -%}
+      <div class="vid-pane" data-video-pane role="group" aria-label="Product video" hidden>
+        {{- product_video | video_tag: image_size: '1200x', controls: true, preload: 'metadata', playsinline: true -}}
+      </div>
+    {%- endif -%}
+    {%- if product.media.size > 1 -%}
       <ul class="thumbs">
-        {%- for image in product.images limit: 8 -%}
-          <li><button type="button" data-thumb="{{ image | image_url: width: 1200 }}" aria-label="{{ 'product.photo' | t }} {{ forloop.index }}" aria-current="{% if forloop.first %}true{% else %}false{% endif %}">{{ image | image_url: width: 160 | image_tag: loading: 'lazy', alt: '' }}</button></li>
+        {%- for media in product.media limit: 9 -%}
+          {%- if media.media_type == 'image' -%}
+            <li><button type="button" data-thumb="{{ media | image_url: width: 1200 }}" aria-label="{{ 'product.photo' | t }} {{ forloop.index }}" aria-current="{% if forloop.first %}true{% else %}false{% endif %}">{{ media | image_url: width: 160 | image_tag: loading: 'lazy', alt: '' }}</button></li>
+          {%- elsif media.media_type == 'video' and media.id == product_video.id -%}
+            <li><button type="button" class="vt" data-thumb-video aria-label="Play product video" aria-current="false">{{ media.preview_image | image_url: width: 160 | image_tag: loading: 'lazy', alt: '' }}<span class="vt-play" aria-hidden="true"></span></button></li>
+          {%- endif -%}
         {%- endfor -%}
       </ul>
     {%- endif -%}
