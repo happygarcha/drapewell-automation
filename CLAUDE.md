@@ -64,4 +64,26 @@ Report each product as PASS or FAIL against the five checks, in one table, befor
 
 # CJ product video + images to Shopify (owner rule, set 2026-10-25)
 
-Whenever a CJ product's pictures or video go onto a Shopify product, follow `docs/cj-video-images-workflow.md`. The image gate in it is the existing one, unchanged. The video gate: fetch the free or already-purchased active CJ video by CJ product ID; if it carries a third-party logo, trademark, watermark or brand name, cover it (blur, pixelate or opaque) for every frame it appears using `scripts/video_mark_cover.py` instead of rejecting the video; mute any copyrighted audio (mute when it cannot be verified); if a mark cannot be reliably covered, stop and ask. Upload only a processed, valid MP4 after Shopify reports READY, and never remove or replace existing images or media.
+Whenever a CJ product's pictures or video go onto a Shopify product, follow this section. Full detail and report format: `docs/cj-video-images-workflow.md`. The image rules stay exactly as they are in the publish gate above (no visible logo or watermark; a marked photo is removed or replaced).
+
+How to get the CJ video:
+1. Use the CJ product ID (`pid`, from the product's `CJ pid` tag), never a video ID. The CJ MCP only returns video IDs and the CJ product page is behind a human check, so use the documented API instead.
+2. Token: the environment variable `CJ_ACCESS_TOKEN` holds the CJ API key. Exchange it with `POST https://developers.cjdropshipping.com/api2.0/v1/authentication/getAccessToken` and body `{"apiKey": "<key>"}`. Keep the returned tokens in memory only. Never print, log, save or paste the key, tokens, email or password.
+3. `POST https://developers.cjdropshipping.com/api2.0/v1/product/queryVideosByProductId` with body `{"productId": "<pid>"}` and header `CJ-Access-Token`. Use only a video with `videoState` = `ON_STATE` and (`isFree` = `"1"` or `isBuy` = true). Never buy a video. If none: report `NO VIDEO` ("No active video found for this CJ product.") and stop.
+4. Download `videoUrl` (host `download-only-api.cjdropshipping.com`) with the header `Referer: https://developers.cjdropshipping.com/`. Save as `cj-video-<pid>.mp4` and check it is a valid MP4 with size above 0. Helper: `scripts/cj_fetch_video.py <pid> <out_dir>`. Hosts that must be allowed in the environment: `developers.cjdropshipping.com`, `download-only-api.cjdropshipping.com`.
+
+Video gate (before upload):
+5. View a contact sheet of the whole video plus finer frames at the corners and at every scene change. A third-party logo, trademark, watermark, brand name or competitor branding is covered, not rejected: use `scripts/video_mark_cover.py` (blur, pixelate or opaque cover, kept on for every frame the mark appears, moving marks tracked with keyframes). Never cover or alter the product itself. Keep duration, resolution and aspect ratio. Add no text, captions, branding or music. View the check sheet the tool writes.
+6. Audio: if it contains copyrighted audio, remove or mute it (`--mute-audio`). The assistant cannot hear audio, so mute it unless the owner says it is safe, and report `AUDIO MUTED (could not verify)`. Never add replacement music unless the owner provides an approved audio file.
+7. If a mark cannot be reliably covered, stop before uploading, report the timestamps and the reason, and ask whether to skip the video or approve it manually.
+
+How to upload the video to Shopify (only after 5 and 6 are done and the file is a valid MP4):
+8. `stagedUploadsCreate` with `resource: VIDEO`, `mimeType: video/mp4`, `filename: cj-video-<pid>.mp4`, `fileSize` as the exact byte count (string), `httpMethod: POST`.
+9. Upload the bytes: multipart POST to the returned URL, all returned parameters first and the file last, no manual Content-Type on the file part. Success is HTTP 204.
+10. `fileCreate` with `originalSource` = the returned `resourceUrl`, `contentType: VIDEO`, `alt` describing the video, `filename`. Never paste a raw CJ video URL into Shopify.
+11. Poll the file until `fileStatus` = READY (it passes through UPLOADED and PROCESSING). Do not attach before READY.
+12. Attach with `fileUpdate` and `referencesToAdd: [<product gid>]`. Never remove or replace existing images or media.
+13. Verify with `product.media`: the video is READY, on the right product, and every earlier image is still there.
+14. Report: image gate result (PASSED / BLURRED / FLAGGED / BLOCKED), video gate result (NO VIDEO / CLEAN / BLURRED / AUDIO MUTED / FLAGGED / BLOCKED), what was blurred or muted with timestamps, final Shopify video status, and confirmation that existing images and media were preserved.
+
+Known limit: the live theme has no video player in the product gallery, so an attached video does not play on the website until the theme gets one (staging copy first, owner publishes).
