@@ -61,3 +61,7 @@ When the owner says to make products active or publish them on the website, EVER
 Also before publishing: check the competitor price for the item shipped to Canada (checkout total within about 1.5x the typical total) and record the result as checked or not checked; never invent competitor prices, demand or sales figures.
 
 Report each product as PASS or FAIL against the five checks, in one table, before and after publishing. Publish only the PASS products to the sales channels (Online Store, Google & YouTube, Pinterest, Microsoft Copilot, Meta AI and Muse, Shopify Collective). Log what was published and when in `reports/`.
+
+# CJ product video + images to Shopify (owner rule, set 2026-10-25)
+
+Whenever a CJ product's pictures or video go onto a Shopify product, follow `docs/cj-video-images-workflow.md`. The image gate in it is the existing one, unchanged. The video gate: fetch the free or already-purchased active CJ video by CJ product ID; if it carries a third-party logo, trademark, watermark or brand name, cover it (blur, pixelate or opaque) for every frame it appears using `scripts/video_mark_cover.py` instead of rejecting the video; mute any copyrighted audio (mute when it cannot be verified); if a mark cannot be reliably covered, stop and ask. Upload only a processed, valid MP4 after Shopify reports READY, and never remove or replace existing images or media.
