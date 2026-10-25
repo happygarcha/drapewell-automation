@@ -88,6 +88,6 @@ Steps:
 
 ## 4. Known limits
 
-- A video that plays in the admin may still not play on the website: the live theme has no video player in the product gallery (as of 2026-10-25). Fixing that is a theme change, deployed to a staging copy, then published by the owner.
+- Website playback (live since 2026-10-25, theme "Copy of Copy of Drapewell Discover", repo 8432a85): the product gallery lists `product.media`. A video gets a play-badged thumbnail after the photos that swaps the main photo for a Shopify video player (controls, no autoplay; photo thumbnails and colour changes swap back). Theme changes must keep the `data-video-pane` / `data-thumb-video` code in `theme/sections/product.liquid`, `theme/assets/theme.js` and `theme/assets/theme.css`. After attaching a video to a live product, load the live page and confirm it has the `data-video-pane` block and a `<video>` tag.
 - Marks are found by looking at frames, not automatically. A mark that appears only briefly between sampled frames can be missed, so view finer frames around scene changes.
 - A cover is visible as a blurred or pixelated patch. That is intended.
