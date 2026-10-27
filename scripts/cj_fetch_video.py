@@ -14,6 +14,7 @@ import sys
 import urllib.parse
 import urllib.request
 
+AUTH = "https://developers.cjdropshipping.com/api2.0/v1/authentication/getAccessToken"
 API = "https://developers.cjdropshipping.com/api2.0/v1/product/queryVideosByProductId"
 REFERER = "https://developers.cjdropshipping.com/"
 
@@ -22,9 +23,20 @@ def main():
     if len(sys.argv) != 3:
         sys.exit(__doc__)
     pid, out_dir = sys.argv[1], sys.argv[2]
-    token = os.environ.get("CJ_ACCESS_TOKEN")
-    if not token:
+    api_key = os.environ.get("CJ_ACCESS_TOKEN")
+    if not api_key:
         sys.exit("CJ_ACCESS_TOKEN is not set in this session")
+    # CJ_ACCESS_TOKEN holds the API key; exchange it for a session token (kept in memory only).
+    auth = urllib.request.Request(
+        AUTH,
+        data=json.dumps({"apiKey": api_key}).encode(),
+        headers={"Content-Type": "application/json"},
+        method="POST",
+    )
+    with urllib.request.urlopen(auth, timeout=30) as r:
+        token = (json.load(r).get("data") or {}).get("accessToken")
+    if not token:
+        sys.exit("CJ token exchange returned no access token")
     req = urllib.request.Request(
         API,
         data=json.dumps({"productId": pid}).encode(),
