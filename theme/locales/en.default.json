@@ -94,7 +94,7 @@
     "shipping_policy": "Shipping policy",
     "refund_policy": "Refund policy",
     "reviews": "Customer reviews",
-    "reviews_soon": "Reviews will show here once customers have shared them.",
+    "reviews_soon": "No reviews yet. Be the first to write a review.",
     "rating_label": "Rated {{ rating }} out of 5 from {{ count }} reviews",
     "no_reviews": "No reviews yet",
     "be_first": "Be the first to review this product.",

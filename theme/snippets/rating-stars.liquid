@@ -23,5 +23,7 @@
     <span class="rating-n" aria-hidden="true">{{ rv_shown }} ({{ rv_count }})</span>
   {%- if link != blank -%}</a>{%- else -%}</span>{%- endif -%}
 {%- elsif show_empty -%}
-  <span class="rating is-empty"><span class="stars" style="--r: 0%" aria-hidden="true"><span>★★★★★</span></span><span class="rating-n">{{ 'product.no_reviews' | t }}</span></span>
+  {%- if link != blank -%}<a class="rating is-empty" href="{{ link }}">{%- else -%}<span class="rating is-empty">{%- endif -%}
+    <span class="stars" style="--r: 0%" aria-hidden="true"><span>★★★★★</span></span><span class="rating-n">{{ 'product.no_reviews' | t }}</span>
+  {%- if link != blank -%}</a>{%- else -%}</span>{%- endif -%}
 {%- endif -%}

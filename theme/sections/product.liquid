@@ -30,7 +30,7 @@
   <div class="buy stagger">
     <p class="eyebrow">{{ product.type | default: product.vendor }}</p>
     <h1>{{ product.title }}</h1>
-    {% render 'rating-stars', product: product, link: '#reviews' %}
+    {% render 'rating-stars', product: product, link: '#reviews', show_empty: true %}
     <p class="p-price" data-price>{{ current.price | money }}{% if current.compare_at_price > current.price %}<s class="was">{{ current.compare_at_price | money }}</s><span class="off">-{{ current.compare_at_price | minus: current.price | times: 100 | divided_by: current.compare_at_price }}%</span>{% endif %}</p>
     {%- if product.price_varies -%}<p class="fine price-note">{{ 'product.price_varies' | t }}</p>{%- endif -%}
     {% render 'ship-estimate', weight: current.weight, scope: 'item' %}

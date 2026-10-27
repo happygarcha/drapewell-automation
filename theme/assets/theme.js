@@ -691,7 +691,8 @@
       addEventListener("load", function () { reveal(); setTimeout(reveal, 1500); setTimeout(reveal, 4000); });
     }
   }
-  if (rv) addEventListener("load", function () { setTimeout(function () { var w = $("#judgeme_product_reviews", rv), note = $("[data-reviews-soon]", rv); if (w && note && !w.children.length) { note.hidden = false; } }, 3500); });
+  /* the empty-state message shows whenever the page holds no real review and no review form (Judge.me can leave an empty wrapper div, so counting children is not enough) */
+  if (rv) addEventListener("load", function () { setTimeout(function () { var note = $("[data-reviews-soon]", rv); if (note && !$(".jdgm-rev, .jdgm-form, .jdgm-write-rev-link", rv)) { note.hidden = false; } }, 3500); });
   /* homepage feed: sort the products shown (collection and search pages sort on the server) */
   var homeSort = $("[data-home-sort]"), homeFeed = $("#feed");
   if (homeSort && homeFeed) {
