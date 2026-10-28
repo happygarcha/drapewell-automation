@@ -168,7 +168,7 @@
     var addLabel = addBtn.textContent;
     function selected() { var vals = []; $$("[data-option]:checked", form).forEach(function (r) { vals[parseInt(r.dataset.option, 10) - 1] = r.value; }); return vals; }
     function find(vals) { return data.variants.filter(function (v) { return vals.every(function (x, i) { return x === undefined || v.options[i] === x; }); })[0]; }
-    function swapMain(url) { var main = $("[data-main-image] img"), fig = $("[data-main-image]"); if (!main) return; if (reduce) { main.removeAttribute("srcset"); main.src = url; return; } fig.classList.add("swap"); setTimeout(function () { main.removeAttribute("srcset"); main.src = url; fig.classList.remove("swap"); }, 220); }
+    function swapMain(url) { var main = $("[data-main-image] img"), fig = $("[data-main-image]"); if (!main) return; if (reduce) { main.removeAttribute("srcset"); main.removeAttribute("width"); main.removeAttribute("height"); main.src = url; return; } fig.classList.add("swap"); setTimeout(function () { main.removeAttribute("srcset"); main.removeAttribute("width"); main.removeAttribute("height"); main.src = url; fig.classList.remove("swap"); }, 220); }
     var shipEl = $("[data-ship]");
     function shipBand(list, g) { var out = null; String(list || "").split(",").some(function (pair) { var p = pair.split(":"); if (g <= parseFloat(p[0])) { out = p[1]; return true; } return false; }); return out; }
     function shipFor(g) {

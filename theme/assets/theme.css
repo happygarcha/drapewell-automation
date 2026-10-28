@@ -250,8 +250,8 @@ a.card { text-decoration: none; }
 .pdp { display: grid; gap: var(--s8); grid-template-columns: 1fr; align-items: start; }
 @media (min-width: 900px) { .pdp { grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr); } }
 /* product photos are mostly square: show the whole photo, never crop it */
-.gallery .ph.tall { aspect-ratio: 1 / 1; border-radius: var(--r); }
-.gallery .ph.tall img { object-fit: contain; }
+.gallery .ph.tall { aspect-ratio: auto; border-radius: var(--r); }
+.gallery .ph.tall img { position: static; width: 100%; height: auto; max-height: 90dvh; object-fit: contain; }
 .thumbs { list-style: none; margin: var(--s3) 0 0; padding: 0; display: flex; gap: var(--s2); flex-wrap: wrap; }
 .thumbs button { width: 64px; height: 64px; padding: 0; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--surface-2); cursor: pointer; }
 .thumbs button[aria-current="true"] { border-color: var(--neon-b); }
