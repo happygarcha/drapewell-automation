@@ -43,6 +43,7 @@
     "search_go": "Search",
     "accepted_payments": "Accepted payment methods",
     "co_delivery": "Canada 13–25 days · United States 10–20 days",
+    "co_collective": "Items from Shopify Collective brands ship from the brand. Shipping cost is shown at checkout.",
     "co_tracking": "Tracking on every order · Import duties included on US orders",
     "home_crumb": "Home"
   },
@@ -90,6 +91,10 @@
     "trust_fix_b": "We replace it or refund you. Contact us within 30 days of delivery.",
     "trust_pay_h": "Secure checkout",
     "trust_pay_b": "Shopify checkout with Shop Pay, Apple Pay and Google Pay.",
+    "collective_ship_h": "Shipped by the brand",
+    "collective_ship_b": "This item is supplied and shipped by {{ vendor }} through Shopify Collective. Shipping cost is shown at checkout before you pay, and delivery time is set by the brand.",
+    "collective_fix_h": "Returns",
+    "collective_fix_b": "Because {{ vendor }} supplies this item, our standard returns terms may not apply. Contact us before you order and we will confirm.",
     "trust_note": "Change-of-mind returns are not accepted.",
     "shipping_policy": "Shipping policy",
     "refund_policy": "Refund policy",
@@ -126,6 +131,8 @@
     "to_us": "to the US",
     "item_note": "Taxes extra. Shipping is by weight, so adding items changes the total. The final amount is shown at checkout before you pay.",
     "cart_note": "Taxes extra. The final amount is shown at checkout before you pay.",
+    "collective_item": "Shipped by {{ vendor }} through Shopify Collective. Taxes extra. The shipping cost is shown at checkout before you pay.",
+    "collective_cart": "Your cart has an item shipped by a Shopify Collective brand. Taxes extra. Shipping is shown at checkout before you pay.",
     "from": "Shipping starts from CA$9.99 to Canada and CA$12.99 to the U.S., calculated by weight. The exact amount is shown at checkout before you pay."
   }
 }

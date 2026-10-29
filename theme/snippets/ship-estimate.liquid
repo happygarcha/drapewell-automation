@@ -1,9 +1,15 @@
 {%- comment -%}
   Shipping estimate shown before checkout. Rates mirror the store's weight-based delivery profile in Shopify admin
   (CJ Dropshipping Fulfillment). If the profile changes, change the bands string below and the matching one is read by theme.js.
-  Usage: render 'ship-estimate', weight: variant.weight (grams), scope: 'item' or 'cart'
+  Usage: render 'ship-estimate', weight: variant.weight (grams), scope: 'item' or 'cart', collective: true for Shopify Collective items
+  Collective items are priced and shipped by the brand, so the weight bands do not apply to them and a plain note is shown instead.
   Bands are "max grams:price" pairs. Canada first, United States second.
 {%- endcomment -%}
+{%- if collective -%}
+<p class="ship-est" data-ship-collective>
+  {%- if scope == 'cart' -%}{{ 'ship_estimate.collective_cart' | t }}{%- else -%}{{ 'ship_estimate.collective_item' | t: vendor: vendor }}{%- endif -%}
+</p>
+{%- else -%}
 {%- assign ca_bands = '300:9.99,600:14.99,900:19.99,1200:24.99,2000:36.99,3000:59.99,4000:69.99' -%}
 {%- assign us_bands = '300:12.99,600:18.99,900:24.99,1200:30.99,2000:46.99,3000:74.99,4000:94.99' -%}
 {%- assign ca_price = blank -%}
@@ -33,3 +39,4 @@
     {{ 'ship_estimate.from' | t }}
   {%- endif -%}
 </p>
+{%- endif -%}

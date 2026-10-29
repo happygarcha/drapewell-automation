@@ -136,6 +136,7 @@
 {%- comment -%}
   Shipping rates mirror the weight bands in snippets/ship-estimate.liquid (variant weight in grams). Transit times are the published
   total delivery windows (Canada 13-25 days, US 10-20 days) minus the 3-5 day processing time. Returns follow the Refund Policy: no change-of-mind returns.
+  Shopify Collective items are skipped: the brand sets their shipping and returns, so no shipping or return data is stated for them.
 {%- endcomment -%}
 {%- capture seo_desc -%}{{ product.description | replace: '</', ' </' | replace: '<br>', ' ' | replace: '<br/>', ' ' | strip_html | strip_newlines | replace: '&amp;', '&' | replace: '&nbsp;', ' ' | replace: '  ', ' ' | strip | truncate: 480 }}{%- endcapture -%}
 <script type="application/ld+json">
@@ -186,7 +187,8 @@
       "priceCurrency": {{ cart.currency.iso_code | json }},
       "availability": "{% if variant.available %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}",
       "itemCondition": "https://schema.org/NewCondition",
-      "seller": { "@type": "Organization", "name": {{ shop.name | json }} },
+      "seller": { "@type": "Organization", "name": {{ shop.name | json }} }
+      {%- unless product.tags contains 'Shopify Collective' -%},
       "shippingDetails": [
         {
           "@type": "OfferShippingDetails",
@@ -219,6 +221,7 @@
         "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"{% if shop.refund_policy.url != blank %},
         "merchantReturnLink": {{ shop.refund_policy.url | json }}{% endif %}
       }
+      {%- endunless %}
     }{% unless forloop.last %},{% endunless %}
     {%- endfor -%}
   ]

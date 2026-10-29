@@ -33,7 +33,9 @@
     {% render 'rating-stars', product: product, link: '#reviews', show_empty: true %}
     <p class="p-price" data-price>{{ current.price | money }}{% if current.compare_at_price > current.price %}<s class="was">{{ current.compare_at_price | money }}</s><span class="off">-{{ current.compare_at_price | minus: current.price | times: 100 | divided_by: current.compare_at_price }}%</span>{% endif %}</p>
     {%- if product.price_varies -%}<p class="fine price-note">{{ 'product.price_varies' | t }}</p>{%- endif -%}
-    {% render 'ship-estimate', weight: current.weight, scope: 'item' %}
+    {%- assign is_collective = false -%}
+    {%- if product.tags contains 'Shopify Collective' -%}{%- assign is_collective = true -%}{%- endif -%}
+    {% render 'ship-estimate', weight: current.weight, scope: 'item', collective: is_collective, vendor: product.vendor %}
 
     {%- form 'product', product, id: 'product-form' -%}
       <input type="hidden" name="id" value="{{ current.id }}" data-variant-id>
@@ -65,7 +67,7 @@
       <p class="msg" data-msg role="status" aria-live="polite"></p>
     {%- endform -%}
 
-    {% render 'trust-row' %}
+    {% render 'trust-row', collective: is_collective, vendor: product.vendor %}
     {%- if product.type == 'Shower Curtain' -%}
       <p class="fine mat-note">Not sure which material suits you? <a href="/pages/shower-curtain-materials">Compare PEVA, polyester and PVC-free shower curtains</a>. The material of this curtain is named in the description above.</p>
     {%- endif -%}

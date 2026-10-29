@@ -10,7 +10,11 @@
     </ul>
   {%- endif -%}
   <ul class="co-facts">
+    {%- if collective -%}
+    <li>{{ 'general.co_collective' | t }}</li>
+    {%- else -%}
     <li>{{ 'general.co_delivery' | t }}</li>
     <li>{{ 'general.co_tracking' | t }}</li>
+    {%- endif -%}
   </ul>
 </div>

@@ -18,12 +18,14 @@
       {%- endfor -%}
     </div>
     <div class="cart-total"><span>{{ 'general.subtotal' | t }}</span><span>{{ cart.total_price | money }}</span></div>
-    {% render 'ship-estimate', weight: cart.total_weight, scope: 'cart' %}
+    {%- assign cart_collective = false -%}
+    {%- for item in cart.items -%}{%- if item.product.tags contains 'Shopify Collective' -%}{%- assign cart_collective = true -%}{%- endif -%}{%- endfor -%}
+    {% render 'ship-estimate', weight: cart.total_weight, scope: 'cart', collective: cart_collective %}
     <p class="fine">{{ 'general.shipping_note' | t }}</p>
     <button type="submit" name="update" class="btn block">{{ 'cart.update' | t }}</button>
     <button type="submit" name="checkout" class="btn primary block">{{ 'general.checkout' | t }}</button>
     {%- if additional_checkout_buttons -%}<div class="wallets">{{ content_for_additional_checkout_buttons }}</div>{%- endif -%}
-    {% render 'checkout-strip' %}
+    {% render 'checkout-strip', collective: cart_collective %}
   </form>
 {%- endif -%}
 {% schema %}
