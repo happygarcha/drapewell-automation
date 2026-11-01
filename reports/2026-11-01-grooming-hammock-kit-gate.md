@@ -34,3 +34,9 @@ Small Blue is the thinnest at C$12.95 (floor C$12).
 - Hanging restraint-style product: no safety, calming or comfort claims; copy carries the supervision and anchor-point notes.
 - CJ video exists for this product but was not added (needs the video gate: marks, audio).
 - Photos are the supplier's examples; the Black and Red photo carries a plain English caption listing the contents.
+
+## Update (2026-11-01, later): technical items re-checked
+- Stock: CJ per-variant factory stock (China, unverified warehouse) is 6,138 to 14,274 per variant for all 6 built variants; CJ's own warehouse stock is 0. Shopify keeps 50 per variant as the selling cap.
+- Canada freight now quoted for Large Black and Red: US$6.43 (CJPacket Ordinary), landed C$13.56, profit C$13.31. Medium Black and Red still not individually quoted (cost and weight sit between Small and Large Black and Red, so about C$13.0 to C$13.3).
+- US freight quoted for Large Blue (heaviest): US$8.94 (LuWei Ordinary US, 5-11 days), landed C$17.33, US band C$18.99, profit about C$18.28. Other variants not quoted for the US. No Amazon.com price check done.
+- Still open: page HTTP 200 and valid markup (draft), Product JSON-LD (draft).
