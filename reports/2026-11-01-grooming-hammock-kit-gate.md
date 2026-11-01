@@ -62,3 +62,11 @@ CJ has 10 product photos, 5 description images and 1 video for this product. Gal
 
 ## Safety note restyled (2026-11-01, owner: make warnings visible without discouraging buyers)
 The safety note is now a calm "Safe use" box at the top of the description (dark card with a cyan edge, same look as the theme, three short plain lines): stay with your pet; hang it from a secure overhead anchor point (not included); check straps, buckle and clips before each use. Screenshots checked at desktop (1280 px) and phone (390 px) widths; text readable, nothing cut off. Product stays ACTIVE.
+
+## Safe use picture added (2026-11-01)
+1200x1200 "Safe use" picture (same dark card and cyan edge as the page box, same three lines) uploaded and placed third in the gallery; alt text repeats the lines. Gallery order now: dog photo, blue contents photo, Safe use picture, black and red contents photo, captioned contents photo, in-use collage, video. Rule saved in CLAUDE.md ("Safe use notice on page and in pictures").
+
+## Profit at C$17.99 (model: landed = (CJ + freight US$) x 1.42443; profit = 0.971 x (price + shipping charged) - 0.30 - landed)
+Canada: Small Blue C$12.95, Medium Blue C$17.31, Large Blue C$16.21, Small Black and Red C$13.04, Large Black and Red C$13.31, Medium Black and Red about C$13 (not quoted). Margin on revenue about 46% to 52%.
+US worst case (Large Blue freight US$8.94 applied to every variant): C$12.15 to C$18.77.
+Before ad spend, returns, refunds and taxes.
