@@ -79,3 +79,6 @@ Both printed photos redone: photo brightness under the strip measured light (0.6
 
 ## Safe use text printed with no panel (2026-11-01, owner: text background transparent, contrasting colours)
 Both printed photos redone with no background panel at all: dark navy text with a thin white outline (photo behind measured light) and a deep-magenta "Safe use" heading, printed directly on the photo. Viewed both at full size: readable, photo fully visible. Uploaded, previous panel versions removed from the product, gallery order unchanged. CLAUDE.md rule updated. Limit: in the collage the text sits over the bottom row of panels and partly over a dog's face; in the dog photo it sits over the dog's lower legs.
+
+## Second pin with the printed dog photo (2026-11-01, owner asked)
+Pin id 1130896156516444082, board "Pet Supplies for Cats & Dogs", image = printed dog photo (hammock-inuse-safe4.jpg), link tagged utm_content=hammock-kit-inuse, text starts "Always stay with your pet in the hammock." The earlier pin (1130896156516442122, plain contents photo) stays up.
