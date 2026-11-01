@@ -40,3 +40,10 @@ Small Blue is the thinnest at C$12.95 (floor C$12).
 - Canada freight now quoted for Large Black and Red: US$6.43 (CJPacket Ordinary), landed C$13.56, profit C$13.31. Medium Black and Red still not individually quoted (cost and weight sit between Small and Large Black and Red, so about C$13.0 to C$13.3).
 - US freight quoted for Large Blue (heaviest): US$8.94 (LuWei Ordinary US, 5-11 days), landed C$17.33, US band C$18.99, profit about C$18.28. Other variants not quoted for the US. No Amazon.com price check done.
 - Still open: page HTTP 200 and valid markup (draft), Product JSON-LD (draft).
+
+## Activation and live checks (2026-11-01, owner approved: Online Store only)
+Product set ACTIVE and published to Online Store only (publication 315061371189). Other channels not published.
+- Page https://drapewell.myshopify.com/products/pet-grooming-hammock-kit-nail-clippers-comb: HTTP 200, 205 KB, no noindex, canonical correct, title and meta description match the SEO fields, no images without alt text.
+- Product JSON-LD parses: 6 offers, each C$17.99 CAD, InStock, with shippingDetails (CA C$9.99 shown on the first offer, US C$12.99) and a return policy; no aggregateRating and no reviews. BreadcrumbList also present.
+- No customer-visible Shopify Collective wording (only the internal isCollective:false flag in page data).
+- Result: checks 1 (noindex), 2 (page loads) and 3 (schema) now PASS. Remaining non-blocking items: Medium Black and Red freight not individually quoted; US freight quoted for Large Blue only; no Amazon.com price check.
