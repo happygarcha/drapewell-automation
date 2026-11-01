@@ -59,3 +59,6 @@ CJ has 10 product photos, 5 description images and 1 video for this product. Gal
 - Video: CJ pid 1600305022192070656, free and ON_STATE, 8.2 s, 960x960. Contact sheet and four finer frames viewed: no logo, watermark, text or brand. Audio MUTED (could not verify the audio). Uploaded as cj-video-1600305022192070656.mp4 (688,951 bytes, HTTP 204), fileCreate, READY, attached with fileUpdate. product.media now: 5 images (the original 3 kept) + video READY.
 - Live page after attaching: HTTP 200, contains data-video-pane and a video tag.
 - Video gate result: AUDIO MUTED (could not verify). Image gate: PASSED.
+
+## Safety note restyled (2026-11-01, owner: make warnings visible without discouraging buyers)
+The safety note is now a calm "Safe use" box at the top of the description (dark card with a cyan edge, same look as the theme, three short plain lines): stay with your pet; hang it from a secure overhead anchor point (not included); check straps, buckle and clips before each use. Screenshots checked at desktop (1280 px) and phone (390 px) widths; text readable, nothing cut off. Product stays ACTIVE.
