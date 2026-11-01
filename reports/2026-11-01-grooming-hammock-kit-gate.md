@@ -51,3 +51,11 @@ Product set ACTIVE and published to Online Store only (publication 315061371189)
 ## Pin on go-live (new owner rule, 2026-11-01)
 Pin created right after activation (first version id 1130896156516441707 was replaced because Pinterest blocks editing pins, pin_edit; the new pin adds "Never leave a pet unattended"): current pin id 1130896156516442122, board "Pet Supplies for Cats & Dogs", photo 2 (blue hammock with accessories), link tagged utm_content=hammock-kit.
 Warning update: product description now opens with a bold safety note ("never leave a pet unattended in the hammock", overhead anchor point not included); verified on the live page (HTTP 200, also in the Product JSON-LD description).
+
+## Gallery and video added (2026-11-01, owner asked why only 3 photos)
+CJ has 10 product photos, 5 description images and 1 video for this product. Gallery had 3 photos; now 5 photos plus the video.
+- Added photos: 8-piece Blue with contents caption (2192f723), four-panel in-use collage (bfb79eb8).
+- Not added, with reasons: 5-piece version photos (25a42217, dbdaf2c2) show no tools and would mislead; description duplicates of photos already used (ea175683, c5edbb08); close-up infographic fragments with "02/03" numerals (45be37ea); dog graphic with empty green label bars (55f1fb52); XS/S/L parameter chart whose size names differ from ours (fed633fd); coral "Pink" photo, 489x375 (92aee046).
+- Video: CJ pid 1600305022192070656, free and ON_STATE, 8.2 s, 960x960. Contact sheet and four finer frames viewed: no logo, watermark, text or brand. Audio MUTED (could not verify the audio). Uploaded as cj-video-1600305022192070656.mp4 (688,951 bytes, HTTP 204), fileCreate, READY, attached with fileUpdate. product.media now: 5 images (the original 3 kept) + video READY.
+- Live page after attaching: HTTP 200, contains data-video-pane and a video tag.
+- Video gate result: AUDIO MUTED (could not verify). Image gate: PASSED.
