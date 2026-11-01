@@ -76,3 +76,6 @@ Printed a calm "Safe use" strip on the two photos that show the hammock in use (
 
 ## Safe use strip made translucent (2026-11-01, owner: transparent, contrasting colours, easy to read)
 Both printed photos redone: photo brightness under the strip measured light (0.60 to 0.70), so the strip is a dark panel at about 50 percent opacity with blur and a thin light outline (photo shows through), yellow "Safe use" heading, white semi-bold text with a soft shadow. Viewed at full size, text clearly readable on both. New files uploaded, solid versions removed from the product, gallery order unchanged. CLAUDE.md rule updated.
+
+## Safe use text printed with no panel (2026-11-01, owner: text background transparent, contrasting colours)
+Both printed photos redone with no background panel at all: dark navy text with a thin white outline (photo behind measured light) and a deep-magenta "Safe use" heading, printed directly on the photo. Viewed both at full size: readable, photo fully visible. Uploaded, previous panel versions removed from the product, gallery order unchanged. CLAUDE.md rule updated. Limit: in the collage the text sits over the bottom row of panels and partly over a dog's face; in the dog photo it sits over the dog's lower legs.
