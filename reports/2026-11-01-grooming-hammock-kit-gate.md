@@ -47,3 +47,6 @@ Product set ACTIVE and published to Online Store only (publication 315061371189)
 - Product JSON-LD parses: 6 offers, each C$17.99 CAD, InStock, with shippingDetails (CA C$9.99 shown on the first offer, US C$12.99) and a return policy; no aggregateRating and no reviews. BreadcrumbList also present.
 - No customer-visible Shopify Collective wording (only the internal isCollective:false flag in page data).
 - Result: checks 1 (noindex), 2 (page loads) and 3 (schema) now PASS. Remaining non-blocking items: Medium Black and Red freight not individually quoted; US freight quoted for Large Blue only; no Amazon.com price check.
+
+## Pin on go-live (new owner rule, 2026-11-01)
+Pin created right after activation: id 1130896156516441707, board "Pet Supplies for Cats & Dogs", photo 2 (blue hammock with accessories), link tagged utm_content=hammock-kit.
