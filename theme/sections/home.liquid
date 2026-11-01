@@ -72,7 +72,6 @@
         <li><a class="room-tile" href="{{ link.url }}">
           <figure class="ph">{%- if rp.featured_image -%}{{ rp.featured_image | image_url: width: 400 | image_tag: loading: 'lazy', widths: '200, 300, 400', sizes: '(min-width: 760px) 18vw, 44vw', alt: '' }}{%- endif -%}</figure>
           <span class="rt">{{ link.title }}</span>
-          <span class="rn">{{ link.object.products_count }} {% if link.object.products_count == 1 %}item{% else %}items{% endif %}</span>
         </a></li>
       {%- endif -%}
     {%- endfor -%}
@@ -82,7 +81,7 @@
 
 <header class="feed-head">
   <h2>{{ section.settings.feed_title }}</h2>
-  {%- if new_src.handle != 'all' -%}<a class="row-link" href="{{ new_src.url }}">See all {{ new_src.products_count }}</a>{%- endif -%}
+  {%- if new_src.handle != 'all' -%}<a class="row-link" href="{{ new_src.url }}">See all</a>{%- endif -%}
   <div class="sortbar">
     <label class="sr-only" for="home_sort">{{ 'collection.sort' | t }}</label>
     <select id="home_sort" data-home-sort>
