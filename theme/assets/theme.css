@@ -833,3 +833,37 @@ body:has(.sticky-atc:not([hidden])) .to-top { bottom: calc(max(var(--s4), env(sa
   .slide .hero-art .ph { width: min(56%, 190px); }
   .hero .hero-nav-row { margin-top: var(--s5, 20px); }
 }
+
+/* Home refresh v2 (2026-11-01): shorter page. Category tiles and rows become one swipeable line; hero is compact on phones. */
+.room-tiles { display: flex; grid-template-columns: none; overflow-x: auto; gap: var(--s2); scroll-snap-type: x proximity; padding-bottom: var(--s2); scrollbar-width: thin; -webkit-overflow-scrolling: touch; }
+.room-tiles li { flex: 0 0 112px; scroll-snap-align: start; }
+@media (min-width: 760px) { .room-tiles { grid-template-columns: none; } .room-tiles li { flex-basis: 132px; } }
+.room-tile { padding: var(--s1); gap: 2px; height: 100%; }
+.room-tile .ph { aspect-ratio: 1 / 1; }
+.room-tile .rt { font-size: 13px; line-height: 18px; padding: var(--s1) var(--s1) 0; }
+.room-tile .rn { display: none; }
+.rooms-band, .home-row { margin-top: var(--s6); }
+.row-head { margin-bottom: var(--s3); }
+.row-head h2, .feed-head h2 { font-size: 20px; line-height: 26px; }
+.feed-head { align-items: center; }
+.feed-head .row-link { margin-right: auto; margin-left: var(--s4); }
+.intro { margin-top: var(--s8); }
+@media (max-width: 759px) {
+  .trust-strip { flex-wrap: nowrap; overflow-x: auto; white-space: nowrap; gap: var(--s5, 20px); padding: var(--s2) var(--s3); scrollbar-width: none; margin-top: var(--s4); }
+  .hero { padding: var(--s5, 20px); }
+  .slide { grid-template-columns: minmax(0, 1fr) 104px; align-items: center; gap: var(--s3); }
+  .slide .hero-art { order: 2; justify-items: end; }
+  .slide .hero-art .ph { width: 104px; border-radius: 52px 52px 16px 16px; }
+  .slide .hero-copy { order: 1; }
+  .hero h1 { font-size: 19px; line-height: 1.15; }
+  .hero-sub { display: none; }
+  .hero-price { font-size: 18px; margin-top: var(--s1); }
+  .hero .hero-actions { margin-top: var(--s3); }
+  .hero .hero-nav-row { margin-top: var(--s3); }
+  .hero-nav .ctl { width: 36px; height: 36px; }
+  .sortbar { display: none; }
+  #feed, .row-feed { display: flex; overflow-x: auto; gap: var(--s3); scroll-snap-type: x proximity; padding-bottom: var(--s2); scrollbar-width: thin; -webkit-overflow-scrolling: touch; }
+  #feed .cell, .row-feed .cell { flex: 0 0 44vw; max-width: 190px; scroll-snap-align: start; }
+  #feed .card, .row-feed .card { height: 100%; }
+}
+@media (min-width: 760px) and (max-width: 1499px) { #feed .cell:nth-child(n+7) { display: none; } }

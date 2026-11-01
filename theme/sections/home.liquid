@@ -79,14 +79,10 @@
   </ul>
 </section>
 
-<section class="intro" aria-labelledby="intro-h">
-  <h1 id="intro-h">{{ 'home.intro_h' | t }}</h1>
-  <p>{{ 'home.intro_p1' | t }}</p>
-  <p>{{ 'home.intro_p2' | t }}{% if shop.shipping_policy.url != blank %} <a href="{{ shop.shipping_policy.url }}">{{ 'home.intro_link' | t }}</a>.{% endif %}</p>
-</section>
 
 <header class="feed-head">
   <h2>{{ section.settings.feed_title }}</h2>
+  {%- if new_src.handle != 'all' -%}<a class="row-link" href="{{ new_src.url }}">See all {{ new_src.products_count }}</a>{%- endif -%}
   <div class="sortbar">
     <label class="sr-only" for="home_sort">{{ 'collection.sort' | t }}</label>
     <select id="home_sort" data-home-sort>
@@ -112,12 +108,18 @@
   {% render 'home-row', handle: 'seasonal', title: 'Seasonal picks', count: 4 %}
 {%- endif -%}
 
+<section class="intro" aria-labelledby="intro-h">
+  <h1 id="intro-h">{{ 'home.intro_h' | t }}</h1>
+  <p>{{ 'home.intro_p1' | t }}</p>
+  <p>{{ 'home.intro_p2' | t }}{% if shop.shipping_policy.url != blank %} <a href="{{ shop.shipping_policy.url }}">{{ 'home.intro_link' | t }}</a>.{% endif %}</p>
+</section>
+
 {% schema %}
 {
   "name": "Discover home",
   "settings": [
     { "type": "text", "id": "feed_title", "label": "Feed title", "default": "New arrivals" },
-    { "type": "text", "id": "rooms_title", "label": "Rooms heading", "default": "Shop by room" },
+    { "type": "text", "id": "rooms_title", "label": "Categories heading", "default": "Shop by category" },
     { "type": "text", "id": "trust_label", "label": "Trust strip label (screen readers)", "default": "Shipping and returns" },
     { "type": "text", "id": "trust_1", "label": "Trust line 1", "default": "Ships across Canada and the US" },
     { "type": "text", "id": "trust_2", "label": "Trust line 2", "default": "Tracked delivery" },
