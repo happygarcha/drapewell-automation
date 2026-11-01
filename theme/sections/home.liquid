@@ -72,7 +72,7 @@
         <li><a class="room-tile" href="{{ link.url }}">
           <figure class="ph">{%- if rp.featured_image -%}{{ rp.featured_image | image_url: width: 400 | image_tag: loading: 'lazy', widths: '200, 300, 400', sizes: '(min-width: 760px) 18vw, 44vw', alt: '' }}{%- endif -%}</figure>
           <span class="rt">{{ link.title }}</span>
-          <span class="rn">{{ link.object.products_count }} items</span>
+          <span class="rn">{{ link.object.products_count }} {% if link.object.products_count == 1 %}item{% else %}items{% endif %}</span>
         </a></li>
       {%- endif -%}
     {%- endfor -%}
