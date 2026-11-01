@@ -49,4 +49,5 @@ Product set ACTIVE and published to Online Store only (publication 315061371189)
 - Result: checks 1 (noindex), 2 (page loads) and 3 (schema) now PASS. Remaining non-blocking items: Medium Black and Red freight not individually quoted; US freight quoted for Large Blue only; no Amazon.com price check.
 
 ## Pin on go-live (new owner rule, 2026-11-01)
-Pin created right after activation: id 1130896156516441707, board "Pet Supplies for Cats & Dogs", photo 2 (blue hammock with accessories), link tagged utm_content=hammock-kit.
+Pin created right after activation (first version id 1130896156516441707 was replaced because Pinterest blocks editing pins, pin_edit; the new pin adds "Never leave a pet unattended"): current pin id 1130896156516442122, board "Pet Supplies for Cats & Dogs", photo 2 (blue hammock with accessories), link tagged utm_content=hammock-kit.
+Warning update: product description now opens with a bold safety note ("never leave a pet unattended in the hammock", overhead anchor point not included); verified on the live page (HTTP 200, also in the Product JSON-LD description).
