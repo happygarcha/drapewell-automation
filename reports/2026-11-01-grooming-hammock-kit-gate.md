@@ -70,3 +70,6 @@ The safety note is now a calm "Safe use" box at the top of the description (dark
 Canada: Small Blue C$12.95, Medium Blue C$17.31, Large Blue C$16.21, Small Black and Red C$13.04, Large Black and Red C$13.31, Medium Black and Red about C$13 (not quoted). Margin on revenue about 46% to 52%.
 US worst case (Large Blue freight US$8.94 applied to every variant): C$12.15 to C$18.77.
 Before ad spend, returns, refunds and taxes.
+
+## Safe use printed on the in-use photos (2026-11-01, owner clarification)
+Printed a calm "Safe use" strip on the two photos that show the hammock in use (dog photo 1000x1000, collage 750x750), uploaded both, and removed the plain versions from the product (files still in Files). Gallery order now: dog photo with strip, blue contents, Safe use picture, black and red contents, captioned contents, collage with strip, video. Alt text repeats the note. Viewed both printed photos at full size and checked the gallery on a phone-sized screenshot. The strip covers the lower edge of each photo (the bottom row of the collage and part of the dog's legs); the hammock itself stays visible in the dog photo.
