@@ -73,3 +73,6 @@ Before ad spend, returns, refunds and taxes.
 
 ## Safe use printed on the in-use photos (2026-11-01, owner clarification)
 Printed a calm "Safe use" strip on the two photos that show the hammock in use (dog photo 1000x1000, collage 750x750), uploaded both, and removed the plain versions from the product (files still in Files). Gallery order now: dog photo with strip, blue contents, Safe use picture, black and red contents, captioned contents, collage with strip, video. Alt text repeats the note. Viewed both printed photos at full size and checked the gallery on a phone-sized screenshot. The strip covers the lower edge of each photo (the bottom row of the collage and part of the dog's legs); the hammock itself stays visible in the dog photo.
+
+## Safe use strip made translucent (2026-11-01, owner: transparent, contrasting colours, easy to read)
+Both printed photos redone: photo brightness under the strip measured light (0.60 to 0.70), so the strip is a dark panel at about 50 percent opacity with blur and a thin light outline (photo shows through), yellow "Safe use" heading, white semi-bold text with a soft shadow. Viewed at full size, text clearly readable on both. New files uploaded, solid versions removed from the product, gallery order unchanged. CLAUDE.md rule updated.
