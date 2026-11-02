@@ -24,3 +24,10 @@ Amazon.ca search page, 2026-11-02, "pull out dish rack cabinet stainless steel k
 - Page HTTP 200, valid markup, Product JSON-LD and noindex need the live page.
 - Stock of 50 per variant is a placeholder.
 - Pin on go-live applies once it is live (clean photo needed: the supplier photos carry text, so a pin photo needs a text-free image or a custom render).
+
+## SEOWILL update (2026-11-02)
+- Target keyword: **pull out dish rack** (no hyphen).
+- Title (66): "Stainless Steel Pull Out Dish Rack for Kitchen Cabinets, 2 Colours". SEO title (56): "Pull Out Dish Rack for Kitchen Cabinets, Stainless Steel". Meta description (149) contains the keyword.
+- H2 headings now carry the keyword (What's included / Check your cabinet).
+- Gallery is 4 images (limit 3-8): two clean scene photos (no supplier panel text) first, then the two supplier panel images. All have alt text.
+- Product is still DRAFT; publish needs the owner's "publish" plus the remaining gate items.
