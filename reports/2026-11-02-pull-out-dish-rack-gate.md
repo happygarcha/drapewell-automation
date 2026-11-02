@@ -6,7 +6,7 @@ Source: CJ pid 2601110215281605100 (SKU CJCF2724757), China-shipped ordinary CJ 
 ## Result: NOT YET PASS (3 items cannot be tested while it is a draft)
 | Check | Result | Notes |
 |---|---|---|
-| 1 SEO | PASS (noindex to confirm when live) | Title 66, SEO title 55, meta 148, type Kitchen Storage, tags set, in Home & Kitchen and Kitchen, 2 image alts describe the photo. Keyword demand: Ubersuggest not run today. |
+| 1 SEO | PASS (noindex to confirm when live) | Title 66, SEO title 55, meta 149, type Kitchen Storage, tags set, in Home & Kitchen and Kitchen, 2 image alts describe the photo. Keyword demand: Ubersuggest not run today. |
 | 2 Technical | OPEN (page 200 and markup) | 2 photos READY, viewed: no logo or watermark. They carry the supplier's infographic text (colour name, capacity, a model code). Weight 1,550 g on both variants, both in "CJ Dropshipping Fulfillment", inventory active at cjdropshipping (50 each, placeholder; CJ shows 48,054 unverified for the whole product), SKU and CJ pid tags set. Canada and US freight quoted today. |
 | 3 Schema | PENDING | Needs the live page. |
 | 4 Copywriting | PASS | Original text, no brand names, no health or performance claims. Capacity (21 bowls) and size (42 x 30.8 x 8.4 cm) come from the supplier's photo; contents from CJ's packing list (rack, draining basket, 1 pair guide rails, 2 adhesive strips). Cabinet-measure note and shipping sentence present. |
