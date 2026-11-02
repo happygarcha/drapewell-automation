@@ -30,3 +30,6 @@ CJ video found (3 listed, free, ON_STATE); one downloaded (32 s, 960x960). Conta
 - Ubersuggest (Canada, English): "electric knife sharpener" 1,600 searches/month, SEO difficulty 33, transactional intent. Check 1 keyword demand: done.
 - Page HTTP 200 / valid markup / noindex / Product JSON-LD: NOT checked. The product is a draft and the preview host (shopifypreview.com) is blocked from this session. These must be checked once the page is live or previewed.
 - Verdict: NOT PASS YET (2 checks cannot be run on a draft). Stays DRAFT.
+
+## Safe use printed on photos (same day)
+Printed on the 3 in-use photos (cleaver in slot): bottom of photo, no panel, white text with black outline and yellow "Safe use" heading (measured brightness 0.39, 0.39, 0.21 = dark). Lines: "Unplug the USB cable before sharpening." / "Keep fingers clear of the slots and keep it dry." Alt text repeats them. Plain versions replaced. Gallery order: printed in-use, details, Safe use picture, printed in-use x2, rest, video last. Not printed: description photo "one-key start" (hand pressing button) - in the gallery plain. Photos checked on a contact sheet; a phone-width screenshot check is pending (draft page not reachable from this session).
