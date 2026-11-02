@@ -37,3 +37,20 @@ All colour variants on: waffle towel, draining mat, pet carrier tote, camping pi
 
 ## Why not fixed yet
 Matching a picture to a variant needs the photo viewed: many products have fewer pictures than variants (e.g. 24 shower curtain variants, 5 pictures) and some pictures do not show a particular colour/size. I will not guess. Plan: fix in batches, view the images, attach the one that matches (colour pictures can be shared across sizes), and report any variant with no matching picture.
+
+
+## Fix pass 1 (same day)
+FIXED (variant pictures attached, matched by what each picture shows; read back on 3 samples, no errors on all 22 updates):
+kitchen runner rug (4 designs), botanical shower curtain (24: Wildflower/Hydrangea/Eucalyptus Canopy/Fern & Eucalyptus; the last two matched by description, please eyeball), chenille table runner (14), botanical wall art (4, one picture shared across sizes), flower bedside rug (4), modern art print (2), autumn cushion (2), ombre curtains Gray + Olive Green (8), door mat (2), printed shower curtain (2), horse canvas Medium/Large, squishy duck (4), squishy bunny (2), pet sling S/M (2), bamboo topper (6), dishwasher tabs (2), reed diffuser Bergamot.
+
+NOT FIXED (no matching picture exists on the product, or order-only match I will not guess):
+- Round Christmas Doormat Design A/B/C (12) - 3 photos but nothing says which is A/B/C
+- Christmas Tablecloth Style 1-4 (12) - 4 colour photos, no style names
+- Moon and Stars Tapestry Design A/B/C (12) - 6 photos, no design names
+- Ombre curtains Black (4) - no black photo
+- Lace Toilet Seat Cover: Pink Cloud Mist, Light Purple Clouds, Purplish Red, Coffee Color (4) - no photos
+- Laptop Sleeve: Black (3), Grey (2), Navy (2), Red (2) - only pink and brown photos
+- Back Seat Dog Bed Mat: Black - no black photo
+- Milk-Velvet Fleece Throw: Grey, Beige, Coffee, Spruce Green - only pink photos
+- Double Camping Hammock: 4 colours - only carabiner, sack and 9-colour collage photos
+Next step: pull the per-variant images from CJ for these, add them as pictures, attach, and view them.
