@@ -54,3 +54,22 @@ NOT FIXED (no matching picture exists on the product, or order-only match I will
 - Milk-Velvet Fleece Throw: Grey, Beige, Coffee, Spruce Green - only pink photos
 - Double Camping Hammock: 4 colours - only carabiner, sack and 9-colour collage photos
 Next step: pull the per-variant images from CJ for these, add them as pictures, attach, and view them.
+
+## Fix pass 2 (same day): CJ variant pictures
+Pulled each variant's own picture from CJ (get_product_variants), viewed them, and attached.
+FIXED and read back without errors:
+- Round Christmas Doormat: Design A/B/C attached (CJ A/B/C pictures matched the 3 existing photos, viewed).
+- Christmas Tablecloth: Style 1-4 = purple, red Santa, mint, blue (matched to CJ Style 1-4 pictures, viewed).
+- Moon and Stars Tapestry: Design A/B/C (CJ pictures matched existing photos, viewed).
+- Ombre Curtains Black: added CJ Black photo after CROPPING OFF a supplier shop address stamped at the bottom (watermark); viewed clean.
+- Lace Toilet Cover: added photos for Pink Cloud Mist, Light Purple Clouds, Purplish Red, Coffee Color.
+- Dog Bed Mat Black: added CJ photo (shows a black plush mat on a black sofa, not a car seat; flagged).
+- Fleece Throw: added Grey, Beige, Coffee, Spruce Green photos (small "ENJOY LIFE" tag on the blanket itself, product label).
+- Camping Hammock: CJ supplies ONE shared picture for all 4 colours (a 9-colour collage); attached that. No per-colour photo exists.
+STILL OPEN:
+- Laptop Sleeve Black/Grey/Navy/Red: CJ colour photos show an iPhone with the Apple logo and a laptop. Not added (logo rule). Owner to decide: blur the phone, or skip.
+- Variants sharing one picture across sizes (rugs, mats, canvases, pet slings, topper, tabs) are intentional.
+Variant ids are all read back OK on samples; full re-audit not rerun.
+
+## Pins (Nov 2 morning, slot 3)
+Created 3 of 4: round Christmas doormat 1130896156516533624, Christmas tablecloth 1130896156516533629, moon tapestry 1130896156516533633. Fourth skipped: no other unpinned product whose listing photo I could verify as clean (cdn.shopify.com not viewable). Duplicate check against Pinterest list not run (artifact shows these handles never pinned).
