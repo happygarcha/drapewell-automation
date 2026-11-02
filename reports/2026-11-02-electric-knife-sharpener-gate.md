@@ -25,3 +25,8 @@ Not done: the Safe use text printed ON the in-use photos (owner addendum) - not 
 
 ## Video
 CJ video found (3 listed, free, ON_STATE); one downloaded (32 s, 960x960). Contact sheet viewed: no logo, text or watermark. Audio MUTED (could not verify). Uploaded to Shopify, processing; attach when READY.
+
+## Update (same day)
+- Ubersuggest (Canada, English): "electric knife sharpener" 1,600 searches/month, SEO difficulty 33, transactional intent. Check 1 keyword demand: done.
+- Page HTTP 200 / valid markup / noindex / Product JSON-LD: NOT checked. The product is a draft and the preview host (shopifypreview.com) is blocked from this session. These must be checked once the page is live or previewed.
+- Verdict: NOT PASS YET (2 checks cannot be run on a draft). Stays DRAFT.
