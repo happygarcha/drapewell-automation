@@ -122,3 +122,17 @@ For every CJ product that goes onto Shopify (new, or a draft being fixed):
 - The report for each product lists: pictures found, added, held (with reason), duplicates, and the video result.
 
 Variant pictures (owner, 2026-11-02): every variant (colour, size, style) must have its own matching picture attached with `productVariantsBulkUpdate` (`mediaId`). Check this on every product before reporting; a variant with no picture is a technical-check fail.
+
+# Owner corrections: do not repeat these (2026-11-02)
+
+Run this checklist on EVERY product I create or edit, and tick it off in the report before saying "done". The owner has pointed out each of these as a mistake already.
+1. Only work on what the owner asked. If the owner says hold, drop or dislike something (e.g. a rack), stop all work on it at once; no extra uploads, searches or reports for it. Wasting credits is a mistake.
+2. Never leave a product ACTIVE or on sales channels with a placeholder price or unverified cost. Imported or hand-added products start as DRAFT until the gate passes.
+3. Pictures: add EVERY unique CJ picture (gallery + description images, dedupe by hash). Anything not added is shown to the owner with the reason.
+4. EVERY variant gets its own matching picture (`productVariantsBulkUpdate` mediaId). Read it back and confirm before reporting. Colour pictures may be shared across sizes; a variant with no matching picture is reported, never guessed.
+5. Alt text describes what the picture really shows (never "view 1"); it names the colour/variant. If I could not view the photo, say so in the report.
+6. Always run the CJ video check and report found/added or NO VIDEO. Mute audio I cannot hear.
+7. Safe-use notice (box, third picture, printed on in-use photos) on every product that needs it (batteries, blades, straps, heat, small parts, children).
+8. Copy: no supplier claims I cannot back (battery life, "razor sharp", "lifetime"), no brand names, no health claims; no "Shopify Collective" on customer pages.
+9. Read back from Shopify after every write (status, variants, media, delivery profile, inventory, collections) and report what I actually saw, with a PASS/FAIL table. Say plainly what I could not check (page load, schema, US price, photos not viewable).
+10. Honest reporting only: no faking, no guessing, no claiming a check was done when it was not.
