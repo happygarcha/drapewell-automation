@@ -46,3 +46,6 @@ Target keyword to type in the SEOWILL 'Target Keyword' box for each page. Title 
 | sitemap | site map | Site Map: Shop by Room, Guides and Policies | Drapewell | Drapewell site map: every collection, buying guide and store policy in one list. Shop by room or find shipping and refund information. |
 
 Not changed: halloween collection (0 products), html-sitemap-* pages and reviewing-your-brand-assessment (utility or hidden). Products were not touched; they go through the publish gate.
+
+## About page images (2026-11-02)
+Added a "What you will find at Drapewell" section to /pages/about with 3 product photos already on live products (PEVA shower curtain, knit throw blanket, foldable pet bathing stand), each linked to its product, with descriptive alt text, width/height set and lazy loading. Live page checked: HTTP 200, 3 images with alt text, FAQPage JSON-LD still parses. Text of the page was otherwise unchanged. The photos were not re-viewed from this session (cdn.shopify.com is blocked); they are the products' own gate-checked photos and alt text.
