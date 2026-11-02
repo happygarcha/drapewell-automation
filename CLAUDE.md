@@ -111,3 +111,12 @@ The owner runs this app in Shopify admin and sends screenshots; I cannot open it
 - Site Verification tab: the live store already has a `google-site-verification` tag. Bing and Pinterest codes come from the owner's own accounts (Bing Webmaster Tools HTML meta tag; Pinterest Claim website). Yandex and Norton stay empty.
 - Favicon: set by the owner in Online Store > Themes > Customize > Theme settings > Favicon (never upload `config/settings_data.json`). No logo file exists in the repo; do not invent a brand mark without the owner's yes.
 - seowill.com is not reachable from this session (network); ask the owner to paste text from its guides.
+
+# Add ALL CJ pictures and check video (owner rule, last warning, 2026-11-02)
+
+For every CJ product that goes onto Shopify (new, or a draft being fixed):
+- Fetch the full CJ gallery AND the description images (`get_product_detail`: `productImageSet` plus every `<img>` in `description`). Drop exact duplicates by file hash. Do not stop at 2 or 3 photos.
+- Upload every unique picture to the product. Apply the image gate (view each one: no third-party logo or watermark).
+- If a picture is NOT added, never drop it silently. Send it to the owner (SendUserFile) with the reason (e.g. shows a variant or set we do not sell, unverified claim such as load strength, supplier badge, logo) and let the owner approve or reject. A fixable mark is covered or cropped, not skipped, when the owner approves.
+- Always run the video check (`scripts/cj_fetch_video.py <pid> <dir>`) and report the result: found/added, or `NO VIDEO`. Same rule: if a video is not added, report why and show it.
+- The report for each product lists: pictures found, added, held (with reason), duplicates, and the video result.
