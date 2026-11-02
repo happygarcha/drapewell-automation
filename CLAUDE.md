@@ -120,3 +120,5 @@ For every CJ product that goes onto Shopify (new, or a draft being fixed):
 - If a picture is NOT added, never drop it silently. Send it to the owner (SendUserFile) with the reason (e.g. shows a variant or set we do not sell, unverified claim such as load strength, supplier badge, logo) and let the owner approve or reject. A fixable mark is covered or cropped, not skipped, when the owner approves.
 - Always run the video check (`scripts/cj_fetch_video.py <pid> <dir>`) and report the result: found/added, or `NO VIDEO`. Same rule: if a video is not added, report why and show it.
 - The report for each product lists: pictures found, added, held (with reason), duplicates, and the video result.
+
+Variant pictures (owner, 2026-11-02): every variant (colour, size, style) must have its own matching picture attached with `productVariantsBulkUpdate` (`mediaId`). Check this on every product before reporting; a variant with no picture is a technical-check fail.
