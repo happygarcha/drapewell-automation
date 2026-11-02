@@ -49,3 +49,6 @@ Not changed: halloween collection (0 products), html-sitemap-* pages and reviewi
 
 ## About page images (2026-11-02)
 Added a "What you will find at Drapewell" section to /pages/about with 3 product photos already on live products (PEVA shower curtain, knit throw blanket, foldable pet bathing stand), each linked to its product, with descriptive alt text, width/height set and lazy loading. Live page checked: HTTP 200, 3 images with alt text, FAQPage JSON-LD still parses. Text of the page was otherwise unchanged. The photos were not re-viewed from this session (cdn.shopify.com is blocked); they are the products' own gate-checked photos and alt text.
+
+## Collection images and intros (2026-11-02)
+Added a collection image (a product photo already on a live product, with descriptive alt text) and a short "<keyword> at Drapewell" section (H2 + 1-2 factual sentences, CAD prices and delivery windows) to: home page, recently added, beauty, tech, home & kitchen, fashion, gifts under $25, outdoors, desk & hobby, shower curtains, bath mats, Christmas table runners, car accessories, new arrivals. Existing text was kept above the new section. Photos not re-viewed from this session (image host blocked). Halloween (0 products) left alone.
