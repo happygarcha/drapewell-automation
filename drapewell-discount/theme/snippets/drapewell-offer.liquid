@@ -1,0 +1,14 @@
+{%- comment -%}
+  Drapewell additional 1% countdown. Render it ONLY in the cart drawer and on the cart page:
+    {% render 'drapewell-offer' %}
+  Never include this snippet in a checkout, order status or customer account template (those are not editable on Shopify Basic and must
+  stay free of custom promotional UI). The countdown only displays what the server says; the discount itself is applied by Shopify at checkout
+  through the app's Function, which Shopify shows with its own native line in the order summary.
+  The theme script talks to the app through the Shopify app proxy at /apps/drapewell/offer/*.
+{%- endcomment -%}
+{{ 'drapewell-offer.css' | asset_url | stylesheet_tag }}
+<div class="dwo" data-dwo-root data-dwo-endpoint="/apps/drapewell/offer" hidden>
+  <p class="dwo__text" data-dwo-text role="status" aria-live="polite"></p>
+  <div class="dwo__bar" aria-hidden="true"><span class="dwo__fill" data-dwo-fill></span></div>
+</div>
+<script src="{{ 'drapewell-offer.js' | asset_url }}" defer></script>

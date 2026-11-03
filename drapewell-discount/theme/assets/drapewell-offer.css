@@ -1,0 +1,10 @@
+/* Isolated: every selector starts with .dwo so nothing in the existing theme is touched. */
+.dwo { box-sizing: border-box; margin: 12px 0; padding: 12px 14px; border: 1px solid rgba(127, 127, 127, 0.35); border-left: 4px solid #22d3ee; border-radius: 10px; font: inherit; }
+.dwo[hidden] { display: none; }
+.dwo *, .dwo *::before, .dwo *::after { box-sizing: inherit; }
+.dwo__text { margin: 0 0 8px; font-size: 14px; line-height: 20px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.dwo__bar { height: 8px; border-radius: 999px; background: rgba(127, 127, 127, 0.25); overflow: hidden; }
+.dwo__fill { display: block; height: 100%; width: 100%; border-radius: inherit; background: #22d3ee; transform-origin: left center; transition: transform 1s linear; }
+.dwo--ended { border-left-color: rgba(127, 127, 127, 0.6); }
+.dwo--ended .dwo__fill { transform: scaleX(0); }
+@media (prefers-reduced-motion: reduce) { .dwo__fill { transition: none; } }

@@ -1,0 +1,28 @@
+# Input for the order-level 1% discount. Everything the Function may decide on comes from here.
+# There is deliberately NO clock field: Functions can only ask "is it before/after this fixed date-time?",
+# not "what time is it?", so expiry is enforced by the server removing the offer id from the
+# activeOffers list in the discount metafield (see README, "Enforcement").
+query CartLinesInput {
+  cart {
+    offerAttribute: attribute(key: "drapewell_offer_id") {
+      value
+    }
+    lines {
+      id
+      quantity
+      merchandise {
+        __typename
+        ... on ProductVariant {
+          product {
+            id
+          }
+        }
+      }
+    }
+  }
+  discount {
+    config: metafield(namespace: "$app:drapewell", key: "offer-config") {
+      jsonValue
+    }
+  }
+}

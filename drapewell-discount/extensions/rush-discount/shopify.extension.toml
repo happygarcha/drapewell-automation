@@ -1,0 +1,19 @@
+# Scaffold note: this file was written by hand because the Shopify CLI could not be run in the build environment.
+# Before deploying, run `shopify app generate extension --template discount` in the real app and merge these targets,
+# input queries and exports into the generated file (build command and wasm path come from the generated template).
+api_version = "2026-10"
+
+[[extensions]]
+name = "Drapewell additional 1% (rush)"
+handle = "rush-discount"
+type = "function"
+
+  [[extensions.targeting]]
+  target = "cart.lines.discounts.generate.run"
+  input_query = "src/cart_lines_discounts_generate_run.graphql"
+  export = "cart_lines_discounts_generate_run"
+
+  [[extensions.targeting]]
+  target = "cart.delivery-options.discounts.generate.run"
+  input_query = "src/cart_delivery_options_discounts_generate_run.graphql"
+  export = "cart_delivery_options_discounts_generate_run"

@@ -1,0 +1,7 @@
+# This promotion never touches shipping. The target is declared only so the discount can be created
+# with the same function id as the cart-lines target; the run returns no operations.
+query DeliveryInput {
+  cart {
+    id
+  }
+}

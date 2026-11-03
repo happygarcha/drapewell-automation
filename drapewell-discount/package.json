@@ -1,0 +1,16 @@
+{
+  "name": "drapewell-discount",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Drapewell: automatic additional 1% discount with a server-authoritative 15-minute window (DISABLED until a compatible public app is deployed).",
+  "scripts": {
+    "test": "node --test",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.0.0",
+    "eslint": "^9.0.0",
+    "globals": "^15.0.0"
+  }
+}
