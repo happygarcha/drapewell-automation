@@ -879,3 +879,13 @@ body:has(.sticky-atc:not([hidden])) .to-top { bottom: calc(max(var(--s4), env(sa
 .offer-list a:hover .o-t, .offer-list a:focus-visible .o-t { text-decoration: underline; }
 .o-p { font-weight: 600; white-space: nowrap; }
 .offer-all { font-size: 14px; }
+
+/* Buy 2, save 10% progress bar in the cart drawer and on the cart page */
+.offer-nudge { margin: 0 0 var(--s3, 12px); padding: 12px 14px; background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--neon-b); border-radius: var(--r-sm, 10px); }
+.offer-nudge[hidden] { display: none; }
+.on-t { margin: 0 0 8px; font-size: 14px; line-height: 20px; font-weight: 600; }
+.on-bar { height: 8px; border-radius: 999px; background: oklch(1 0 0 / 0.12); overflow: hidden; }
+.on-bar > span { display: block; height: 100%; border-radius: inherit; background: var(--neon-b); transition: width 0.45s var(--ease, ease); }
+.on-a { display: inline-block; margin-top: 8px; font-size: 14px; }
+.on-a[hidden] { display: none; }
+@media (prefers-reduced-motion: reduce) { .on-bar > span { transition: none; } }

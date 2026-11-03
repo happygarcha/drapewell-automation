@@ -4,6 +4,7 @@
 {%- else -%}
   <form action="{{ routes.cart_url }}" method="post" class="cart-page">
     <div>
+      {% render 'offer-nudge', id: 'offer-nudge-page' %}
       {%- for item in cart.items -%}
         <div class="line">
           <div class="th">{% if item.image %}{{ item.image | image_url: width: 160 | image_tag: loading: 'lazy', alt: '' }}{% endif %}</div>

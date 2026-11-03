@@ -77,8 +77,22 @@
       cartQty = {}; $$(".line", drawer).forEach(function (ln) { cartQty[ln.dataset.key] = parseInt($("output", ln).textContent, 10); });
     }
     var co = $("#cart-co", drawer); co.href = cart.items.length ? "/checkout" : "/cart"; co.setAttribute("aria-disabled", String(!cart.items.length));
+    paintNudge();
     paintUpsell();
   }
+  /* ---------- Buy 2, save 10% progress bar: counts cart items whose product is in the offer collection ---------- */
+  function paintNudge() {
+    var box = $("#offer-nudge"); if (!box) return;
+    var ids = (box.dataset.offerIds || "").split(",").filter(Boolean);
+    var q = 0; if (ids.length) cart.items.forEach(function (i) { if (ids.indexOf(String(i.product_id)) > -1) q += i.quantity; });
+    box.hidden = !ids.length || q === 0;
+    var done = q >= 2;
+    $("[data-on-text]", box).textContent = done ? "Offer unlocked: 10% off your offer items is applied at checkout." : "Add 1 more offer item to save 10%.";
+    $("[data-on-fill]", box).style.width = (done ? 100 : q === 1 ? 50 : 0) + "%";
+    $("[role=progressbar]", box).setAttribute("aria-valuenow", String(Math.min(q, 2)));
+    $("[data-on-link]", box).hidden = done;
+  }
+
   /* ---------- cart upsell: Shopify's related-product recommendations for the newest cart item ---------- */
   var upCache = {}, upSig = "";
   function renderUp(list) {
