@@ -113,7 +113,7 @@
       /* the code is only handed out by the server to a cart that really holds 2 offer items (templates/cart.quick.liquid);
          the clock starts only after the code was received and applied, so the promise on screen is always true */
       if (quickBusy) return; quickBusy = true;
-      fetch("/cart?view=quick", { credentials: "same-origin", headers: { Accept: "text/plain" } }).then(function (r) { return r.text(); }).then(function (t) {
+      fetch("/cart?view=quick", { credentials: "same-origin" }).then(function (r) { return r.text(); }).then(function (t) {
         var code = (t || "").trim(); if (!/^[0-9a-f]{32}$/.test(code)) throw 0;
         return fetch("/discount/" + code, { credentials: "same-origin" }).then(function () {
           localStorage.setItem(QUICK.key, JSON.stringify({ start: Date.now() })); quickBusy = false; tickQuick();
