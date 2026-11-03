@@ -148,3 +148,7 @@ Never list 20, 30 or 70 variants. Cap every listing at 8 variants, usually 3 to 
 # Standing authorization for pictures and videos (owner, 2026-11-03, repeated)
 
 The owner AUTHORIZES adding, editing and blurring pictures and videos on their own. Never ask again for permission to add, blur, cover or edit pictures or videos. Add ALL CJ pictures and ALL usable CJ videos, no skipping. A third-party logo, brand name, watermark or unwanted overlay text is blurred or covered (pictures with ImageMagick, videos with scripts/video_mark_cover.py) and the picture or video is still added. Mute video audio I cannot verify. Report afterwards what was blurred or muted; do not ask before doing it.
+
+# Alcohol in pictures (owner, 2026-11-03)
+
+Where a product picture shows alcohol (bottles, wine, spirits, bar scenes, drinks being served), add a calm banner strip on the picture itself: "We do not sell alcohol. Drinks, bottles and glasses shown are not included. Alcohol can harm your health. Please drink responsibly and only if of legal age." (dark navy strip, cyan edge, white text; at the top if the bottom holds Safe use text). Replace the picture in place with `fileUpdate` + `originalSource` so order and variant pictures stay, and repeat the notice in the alt text. Add a matching "Please note" box (same style as the Safe use box) at the top of the description. Brand labels are still blurred. Done for the wine opener, shot dispenser and ice ball kettle. Never ask permission for this.
