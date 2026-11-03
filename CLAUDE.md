@@ -144,3 +144,7 @@ For a list of CJ SKUs: (1) research each with the CJ API (variant given, weight,
 # Variant limit (owner, 2026-11-03)
 
 Never list 20, 30 or 70 variants. Cap every listing at 8 variants, usually 3 to 6. How to cut: (1) keep ONE option axis the shopper really chooses (usually colour or style) and fix the others to a single standard (one size, one length, one plug); (2) start from the variant the owner gave; (3) drop wrong-plug (EU/AU), "random", bundle/multi-pack, unsold-size and near-duplicate variants; (4) keep only variants with their own clean picture, the same weight band, and that each clear C$12 profit at one common price and stay within 1.5x the competitor total; (5) show the owner the kept and dropped list with reasons before building. Large option lists go in the description (e.g. "other sizes on request"), not in the variant picker.
+
+# Standing authorization for pictures and videos (owner, 2026-11-03, repeated)
+
+The owner AUTHORIZES adding, editing and blurring pictures and videos on their own. Never ask again for permission to add, blur, cover or edit pictures or videos. Add ALL CJ pictures and ALL usable CJ videos, no skipping. A third-party logo, brand name, watermark or unwanted overlay text is blurred or covered (pictures with ImageMagick, videos with scripts/video_mark_cover.py) and the picture or video is still added. Mute video audio I cannot verify. Report afterwards what was blurred or muted; do not ask before doing it.
