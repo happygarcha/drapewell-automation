@@ -76,7 +76,7 @@
     } else {
       cartQty = {}; $$(".line", drawer).forEach(function (ln) { cartQty[ln.dataset.key] = parseInt($("output", ln).textContent, 10); });
     }
-    var co = $("#cart-co", drawer); co.href = cart.items.length ? "/checkout" : "/cart"; co.setAttribute("aria-disabled", String(!cart.items.length));
+    var co = $("#cart-co", drawer); co.href = cart.items.length ? quickHref() : "/cart"; co.setAttribute("aria-disabled", String(!cart.items.length));
     paintNudge();
     paintUpsell();
   }
@@ -99,10 +99,26 @@
      Per-browser and one-time: the clock starts when the shopper first has 2 offer items, the extra 1% is the Shopify
      the quick-checkout code (set with /discount/<code>, applied at checkout), and when the 15 minutes are over the code cookie
      is removed and this browser never gets the window again. Without localStorage nothing is shown, because it could not be enforced. */
-  var QUICK = { ms: 15 * 60 * 1000, key: "dw_quick1" }, quickTimer = null, quickBusy = false;
+  var QUICK = { ms: 15 * 60 * 1000, key: "dw_quick1" }, quickTimer = null, quickBusy = false, quickRefreshed = false;
   function quickState() {
     try { var v = JSON.parse(localStorage.getItem(QUICK.key) || "null"); return v && typeof v.start === "number" ? v : null; } catch (e) { return false; }
   }
+  /* the code is only handed out by the server to a cart that really holds 2 offer items (templates/cart.quick.liquid) */
+  function quickFetchCode() {
+    return fetch("/cart?view=quick", { credentials: "same-origin" }).then(function (r) { return r.text(); }).then(function (t) {
+      var c = (t || "").trim(); if (!/^[A-Za-z0-9-]{12,48}$/.test(c)) throw 0; return c;
+    });
+  }
+  /* while the 15 minutes run, the checkout link carries the code itself, so checkout does not depend on the cookie alone */
+  function quickHref() {
+    var st = quickState();
+    return st && st.code && st.start + QUICK.ms > Date.now() ? "/checkout?discount=" + encodeURIComponent(st.code) : "/checkout";
+  }
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest && e.target.closest('button[name="checkout"]'); if (!b || quickHref() === "/checkout") return;
+    e.preventDefault(); location.href = quickHref();
+  });
+  function paintCheckoutLink() { var co = $("#cart-co", drawer); if (co && cart.items.length) co.href = quickHref(); }
   function dropQuickCode() { document.cookie = "discount_code=; Max-Age=0; path=/"; }
   function tickQuick() {
     var boxes = $$(".offer-nudge"); if (!boxes.length) return;
@@ -110,21 +126,29 @@
     if (st === false) { $$("[data-on-q]").forEach(function (el) { el.hidden = true; }); return; }
     var unlocked = boxes.some(function (b) { return b.dataset.unlocked === "1"; });
     if (!st && unlocked) {
-      /* the code is only handed out by the server to a cart that really holds 2 offer items (templates/cart.quick.liquid);
-         the clock starts only after the code was received and applied, so the promise on screen is always true */
+      /* the clock starts only after the code was received and applied, so the promise on screen is always true */
       if (quickBusy) return; quickBusy = true;
-      fetch("/cart?view=quick", { credentials: "same-origin" }).then(function (r) { return r.text(); }).then(function (t) {
-        var code = (t || "").trim(); if (!/^[0-9a-f]{32}$/.test(code)) throw 0;
+      quickFetchCode().then(function (code) {
         return fetch("/discount/" + code, { credentials: "same-origin" }).then(function () {
-          localStorage.setItem(QUICK.key, JSON.stringify({ start: Date.now() })); quickBusy = false; tickQuick();
+          localStorage.setItem(QUICK.key, JSON.stringify({ start: Date.now(), code: code })); quickRefreshed = true; quickBusy = false; tickQuick();
         });
       }).catch(function () { quickBusy = false; });
       return;
     }
+    /* once per page load, while the window runs: fetch the current code again and re-apply it (covers a changed code or a lost cookie) */
+    if (st && unlocked && !quickRefreshed && st.start + QUICK.ms > Date.now() && !quickBusy) {
+      quickRefreshed = true;
+      quickFetchCode().then(function (code) {
+        return fetch("/discount/" + code, { credentials: "same-origin" }).then(function () {
+          try { localStorage.setItem(QUICK.key, JSON.stringify({ start: st.start, code: code })); } catch (e) {} paintCheckoutLink();
+        });
+      }).catch(function () {});
+    }
     if (!st) { $$("[data-on-q]").forEach(function (el) { el.hidden = true; }); return; }
     var left = st.start + QUICK.ms - Date.now(), txt;
-    if (left > 0) { var m = Math.floor(left / 60000), sec = Math.floor(left / 1000) % 60; txt = "Extra 1% off at checkout if you order within " + m + ":" + (sec < 10 ? "0" : "") + sec + ". One time per browser."; }
-    else { dropQuickCode(); txt = "The extra 1% offer has ended. Your 10% offer discount still applies."; }
+    if (left > 0) { var m = Math.floor(left / 60000), sec = Math.floor(left / 1000) % 60; txt = "Additional 1% off is applied at checkout. Keep it by ordering within " + m + ":" + (sec < 10 ? "0" : "") + sec + ". One time per browser."; }
+    else { dropQuickCode(); txt = "The additional 1% offer has ended. Your 10% offer discount still applies."; }
+    paintCheckoutLink();
     $$("[data-on-q]").forEach(function (el) { el.hidden = false; el.textContent = txt; });
     if (left > 0 && !quickTimer) quickTimer = setInterval(tickQuick, 1000);
     if (left <= 0 && quickTimer) { clearInterval(quickTimer); quickTimer = null; }
