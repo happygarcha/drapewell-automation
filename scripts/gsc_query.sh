@@ -7,7 +7,14 @@
 set -u
 SITE="${GSC_SITE:-https://drapewell.myshopify.com/}"
 CMD="${1:-totals}"; DAYS="${2:-28}"
-[ -n "${GSC_SERVICE_ACCOUNT_JSON:-}" ] || { echo "GSC_SERVICE_ACCOUNT_JSON is not set"; exit 1; }
+# Accept either the whole JSON (GSC_SERVICE_ACCOUNT_JSON) or the same JSON as ONE base64 line
+# (GSC_SERVICE_ACCOUNT_B64, for settings boxes that cut multi-line or long values). B64 wins if set.
+if [ -n "${GSC_SERVICE_ACCOUNT_B64:-}" ]; then
+  GSC_SERVICE_ACCOUNT_JSON=$(printf '%s' "$GSC_SERVICE_ACCOUNT_B64" | tr -d ' \n\r' | base64 -d 2>/dev/null) \
+    || { echo "GSC_SERVICE_ACCOUNT_B64 is not valid base64"; exit 1; }
+fi
+export GSC_SERVICE_ACCOUNT_JSON
+[ -n "${GSC_SERVICE_ACCOUNT_JSON:-}" ] || { echo "Neither GSC_SERVICE_ACCOUNT_B64 nor GSC_SERVICE_ACCOUNT_JSON is set"; exit 1; }
 KF=$(mktemp /dev/shm/gsc.XXXXXX); chmod 600 "$KF"; trap 'rm -f "$KF"' EXIT
 python3 -I -c 'import os,json,sys;sys.stdout.write(json.loads(os.environ["GSC_SERVICE_ACCOUNT_JSON"])["private_key"])' > "$KF" 2>/dev/null \
   || { echo "GSC_SERVICE_ACCOUNT_JSON is not valid JSON with a private_key"; exit 1; }
