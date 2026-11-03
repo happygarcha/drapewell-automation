@@ -35,6 +35,7 @@
     {%- if product.price_varies -%}<p class="fine price-note">{{ 'product.price_varies' | t }}</p>{%- endif -%}
     {%- assign is_collective = false -%}
     {%- if product.tags contains 'Shopify Collective' -%}{%- assign is_collective = true -%}{%- endif -%}
+    {% render 'offer-flag', product: product, mode: 'panel' %}
     {% render 'ship-estimate', weight: current.weight, scope: 'item', collective: is_collective, vendor: product.vendor %}
 
     {%- form 'product', product, id: 'product-form' -%}

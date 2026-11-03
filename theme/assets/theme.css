@@ -867,3 +867,15 @@ body:has(.sticky-atc:not([hidden])) .to-top { bottom: calc(max(var(--s4), env(sa
   #feed .card, .row-feed .card { height: 100%; }
 }
 @media (min-width: 760px) and (max-width: 1499px) { #feed .cell:nth-child(n+7) { display: none; } }
+
+/* Buy 2, save 10% offer: badge on cards, panel on product pages (driven by the buy-2-save-10 collection) */
+.offer-badge { position: absolute; left: var(--s2, 8px); top: var(--s2, 8px); z-index: 2; padding: 3px 9px; border-radius: 999px; background: var(--neon-b); color: oklch(0.2 0.03 285); font-size: 12px; line-height: 18px; font-weight: 700; box-shadow: 0 2px 8px oklch(0 0 0 / 0.35); pointer-events: none; }
+.offer-box { margin: var(--s3, 12px) 0; padding: 14px 16px; background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--neon-b); border-radius: var(--r-sm, 10px); }
+.offer-h { margin: 0 0 4px; font-weight: 700; }
+.offer-p { margin: 0 0 10px; font-size: 14px; line-height: 20px; }
+.offer-list { list-style: none; margin: 0 0 8px; padding: 0; display: grid; gap: 8px; }
+.offer-list a { display: grid; grid-template-columns: 56px 1fr auto; gap: 10px; align-items: center; color: inherit; text-decoration: none; font-size: 14px; line-height: 20px; }
+.offer-list img { width: 56px; height: 56px; object-fit: cover; border-radius: 8px; display: block; }
+.offer-list a:hover .o-t, .offer-list a:focus-visible .o-t { text-decoration: underline; }
+.o-p { font-weight: 600; white-space: nowrap; }
+.offer-all { font-size: 14px; }

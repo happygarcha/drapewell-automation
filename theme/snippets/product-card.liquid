@@ -14,6 +14,7 @@
       {%- if product.images.size > 1 -%}
         {{ product.images[1] | image_url: width: 500 | image_tag: loading: 'lazy', fetchpriority: 'low', class: 'alt', widths: '300, 500', sizes: '(min-width: 1500px) 20vw, (min-width: 760px) 24vw, 46vw', alt: '' }}
       {%- endif -%}
+      {% render 'offer-flag', product: product, mode: 'badge' %}
     </figure>
     <span class="t">{{ product.title }}</span>
     {% render 'rating-stars', product: product %}
