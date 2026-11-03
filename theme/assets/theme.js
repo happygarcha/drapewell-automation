@@ -97,9 +97,9 @@
 
   /* ---------- extra 1% for checking out within 15 minutes of unlocking the offer ----------
      Per-browser and one-time: the clock starts when the shopper first has 2 offer items, the extra 1% is the Shopify
-     code QUICK1OFF (set with /discount/QUICK1OFF, applied at checkout), and when the 15 minutes are over the code cookie
+     the quick-checkout code (set with /discount/<code>, applied at checkout), and when the 15 minutes are over the code cookie
      is removed and this browser never gets the window again. Without localStorage nothing is shown, because it could not be enforced. */
-  var QUICK = { code: "QUICK1OFF", ms: 15 * 60 * 1000, key: "dw_quick1" }, quickTimer = null;
+  var QUICK = { code: "Q1-9TTBSTP3Q6", ms: 15 * 60 * 1000, key: "dw_quick1" }, quickTimer = null;
   function quickState() {
     try { var v = JSON.parse(localStorage.getItem(QUICK.key) || "null"); return v && typeof v.start === "number" ? v : null; } catch (e) { return false; }
   }
