@@ -99,7 +99,7 @@
      Per-browser and one-time: the clock starts when the shopper first has 2 offer items, the extra 1% is the Shopify
      the quick-checkout code (set with /discount/<code>, applied at checkout), and when the 15 minutes are over the code cookie
      is removed and this browser never gets the window again. Without localStorage nothing is shown, because it could not be enforced. */
-  var QUICK = { code: "Q1-9TTBSTP3Q6", ms: 15 * 60 * 1000, key: "dw_quick1" }, quickTimer = null;
+  var QUICK = { ms: 15 * 60 * 1000, key: "dw_quick1" }, quickTimer = null, quickBusy = false;
   function quickState() {
     try { var v = JSON.parse(localStorage.getItem(QUICK.key) || "null"); return v && typeof v.start === "number" ? v : null; } catch (e) { return false; }
   }
@@ -110,8 +110,16 @@
     if (st === false) { $$("[data-on-q]").forEach(function (el) { el.hidden = true; }); return; }
     var unlocked = boxes.some(function (b) { return b.dataset.unlocked === "1"; });
     if (!st && unlocked) {
-      try { st = { start: Date.now() }; localStorage.setItem(QUICK.key, JSON.stringify(st)); } catch (e) { return; }
-      fetch("/discount/" + QUICK.code, { credentials: "same-origin" }).catch(function () {});
+      /* the code is only handed out by the server to a cart that really holds 2 offer items (templates/cart.quick.liquid);
+         the clock starts only after the code was received and applied, so the promise on screen is always true */
+      if (quickBusy) return; quickBusy = true;
+      fetch("/cart?view=quick", { credentials: "same-origin", headers: { Accept: "text/plain" } }).then(function (r) { return r.text(); }).then(function (t) {
+        var code = (t || "").trim(); if (!/^[0-9a-f]{32}$/.test(code)) throw 0;
+        return fetch("/discount/" + code, { credentials: "same-origin" }).then(function () {
+          localStorage.setItem(QUICK.key, JSON.stringify({ start: Date.now() })); quickBusy = false; tickQuick();
+        });
+      }).catch(function () { quickBusy = false; });
+      return;
     }
     if (!st) { $$("[data-on-q]").forEach(function (el) { el.hidden = true; }); return; }
     var left = st.start + QUICK.ms - Date.now(), txt;
