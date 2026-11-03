@@ -91,7 +91,37 @@
     $("[data-on-fill]", box).style.width = (done ? 100 : q === 1 ? 50 : 0) + "%";
     $("[role=progressbar]", box).setAttribute("aria-valuenow", String(Math.min(q, 2)));
     $("[data-on-link]", box).hidden = done;
+    box.dataset.unlocked = done ? "1" : "0";
+    tickQuick();
   }
+
+  /* ---------- extra 1% for checking out within 15 minutes of unlocking the offer ----------
+     Per-browser and one-time: the clock starts when the shopper first has 2 offer items, the extra 1% is the Shopify
+     code QUICK1OFF (set with /discount/QUICK1OFF, applied at checkout), and when the 15 minutes are over the code cookie
+     is removed and this browser never gets the window again. Without localStorage nothing is shown, because it could not be enforced. */
+  var QUICK = { code: "QUICK1OFF", ms: 15 * 60 * 1000, key: "dw_quick1" }, quickTimer = null;
+  function quickState() {
+    try { var v = JSON.parse(localStorage.getItem(QUICK.key) || "null"); return v && typeof v.start === "number" ? v : null; } catch (e) { return false; }
+  }
+  function dropQuickCode() { document.cookie = "discount_code=; Max-Age=0; path=/"; }
+  function tickQuick() {
+    var boxes = $$(".offer-nudge"); if (!boxes.length) return;
+    var st = quickState();
+    if (st === false) { $$("[data-on-q]").forEach(function (el) { el.hidden = true; }); return; }
+    var unlocked = boxes.some(function (b) { return b.dataset.unlocked === "1"; });
+    if (!st && unlocked) {
+      try { st = { start: Date.now() }; localStorage.setItem(QUICK.key, JSON.stringify(st)); } catch (e) { return; }
+      fetch("/discount/" + QUICK.code, { credentials: "same-origin" }).catch(function () {});
+    }
+    if (!st) { $$("[data-on-q]").forEach(function (el) { el.hidden = true; }); return; }
+    var left = st.start + QUICK.ms - Date.now(), txt;
+    if (left > 0) { var m = Math.floor(left / 60000), sec = Math.floor(left / 1000) % 60; txt = "Extra 1% off at checkout if you order within " + m + ":" + (sec < 10 ? "0" : "") + sec + ". One time per browser."; }
+    else { dropQuickCode(); txt = "The extra 1% offer has ended. Your 10% offer discount still applies."; }
+    $$("[data-on-q]").forEach(function (el) { el.hidden = false; el.textContent = txt; });
+    if (left > 0 && !quickTimer) quickTimer = setInterval(tickQuick, 1000);
+    if (left <= 0 && quickTimer) { clearInterval(quickTimer); quickTimer = null; }
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", tickQuick); else tickQuick();
 
   /* ---------- cart upsell: Shopify's related-product recommendations for the newest cart item ---------- */
   var upCache = {}, upSig = "";

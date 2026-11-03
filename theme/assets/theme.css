@@ -889,3 +889,5 @@ body:has(.sticky-atc:not([hidden])) .to-top { bottom: calc(max(var(--s4), env(sa
 .on-a { display: inline-block; margin-top: 8px; font-size: 14px; }
 .on-a[hidden] { display: none; }
 @media (prefers-reduced-motion: reduce) { .on-bar > span { transition: none; } }
+.on-q { margin: 8px 0 0; font-size: 13px; line-height: 18px; opacity: 0.9; font-variant-numeric: tabular-nums; }
+.on-q[hidden] { display: none; }
