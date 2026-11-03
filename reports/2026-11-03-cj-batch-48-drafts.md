@@ -58,3 +58,14 @@ NOT done: Amazon.ca competitor check (Amazon blocks automated access, so every r
 - Wine opener (#10): set variant contents follow CJ wording; check the set before publishing.
 - Ice ball kettle (#5): the White variant costs more at CJ (US$7.50 vs 1.79); both sell at one price.
 - Variant names for Mermaid (#11) and Gold (#14) follow the pictures; CJ calls them A Human and Yellow.
+
+## Update 2026-11-03 (later): pictures, videos, extra builds
+
+- Held pictures are now added (no skipping). Brand marks, logos and overlay text were blurred first: 5-05, 6-02, 6-05, 6-07, 20-07, 24-09. Text graphics and other-colour pictures were added as they are, with honest alt text.
+- Videos added with audio muted (could not be heard): #2, 3, 8, 10, 11, 15, 20, 21, 23 clean; #5 (drink labels blurred), #9 (caption blurred), #14 (promo text blurred). NO VIDEO for 1, 4, 6, 12, 13, 17, 18, 19, 22, 24. On products that later got extra pictures the video is no longer last in the gallery (order not yet fixed).
+- New drafts, all DRAFT, nothing published:
+  - #18 men's crossbody bag, gid 15470189707573: Brown, Black at C$19.99, 5 blurred pictures, variant pictures set.
+  - #4 embroidered handbag, gid 15470189773109: 6 colours at C$21.99, 8 blurred pictures plus the interior picture, variant pictures set.
+  - #17 wall-mounted toothpaste dispenser, gid 15470191116597: Nordic Pink, Grey, Blue at C$18.99, 280 g, all 13 CJ pictures with the maker logo and toothpaste/character-licence tube artwork blurred (pictures 01, 02, 04-13). Read back: DRAFT, 13 media, every variant has its own picture, delivery profile "CJ Dropshipping Fulfillment", Bathroom collection. No safe-use notice needed (adhesive wall pad only).
+- Not built: #7 rose gift box (53 composite pictures, still to process) and #16 mommy backpack (folds into a baby bed, so infant-sleep safety rules apply; held).
+- Still not checked: Amazon.ca competitor ratios (site blocks automated access), page load, schema, US prices, and audio (could not be heard).
