@@ -2,7 +2,7 @@
 # Read-only Google Search Console queries using the service account in the env var
 # GSC_SERVICE_ACCOUNT_JSON (the WHOLE downloaded JSON key file). The key is written to
 # memory (/dev/shm) only for the signing step and removed on exit. Never print the key.
-# Usage: scripts/gsc_query.sh sites|totals|dates|queries|pages|countries|sitemaps [days]
+# Usage: scripts/gsc_query.sh sites|totals|dates|queries|pages|pq|countries|sitemaps [days]
 # The MCP Search Console tools do NOT read this variable; use this script instead.
 set -u
 SITE="${GSC_SITE:-https://drapewell.myshopify.com/}"
@@ -41,6 +41,7 @@ case "$CMD" in
   dates) q "{\"startDate\":\"$START\",\"endDate\":\"$END\",\"dimensions\":[\"date\"],\"rowLimit\":200}" | rows ;;
   queries) q "{\"startDate\":\"$START\",\"endDate\":\"$END\",\"dimensions\":[\"query\"],\"rowLimit\":50}" | rows ;;
   pages) q "{\"startDate\":\"$START\",\"endDate\":\"$END\",\"dimensions\":[\"page\"],\"rowLimit\":50}" | rows ;;
+  pq) q "{\"startDate\":\"$START\",\"endDate\":\"$END\",\"dimensions\":[\"query\",\"page\"],\"rowLimit\":250}" | rows ;;
   countries) q "{\"startDate\":\"$START\",\"endDate\":\"$END\",\"dimensions\":[\"country\"],\"rowLimit\":20}" | rows ;;
   sitemaps) curl -s -H "Authorization: Bearer $TOK" "https://www.googleapis.com/webmasters/v3/sites/$ENC/sitemaps" ;;
   *) echo "unknown command $CMD"; exit 1 ;;
