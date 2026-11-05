@@ -114,13 +114,33 @@
     var st = quickState();
     return st && st.code && st.start + QUICK.ms > Date.now() ? "/checkout?discount=" + encodeURIComponent(st.code) : "/checkout";
   }
+  /* once the window is over, the code must also leave the CART (Shopify keeps a code on the cart, so going back from checkout and checking out again would keep it) */
+  var quickClearing = null, QUICK_CODE_RE = /^(ADDITIONAL-|[0-9a-f]{32}$)/i;
+  function quickExpired() { var st = quickState(); return !!(st && st.start + QUICK.ms <= Date.now()); }
+  function quickClearCart() {
+    if (quickClearing) return quickClearing;
+    quickClearing = fetch("/cart.js", { credentials: "same-origin" }).then(function (r) { return r.json(); }).then(function (c) {
+      var has = (c.discount_codes || []).some(function (d) { return QUICK_CODE_RE.test(String(d.code)); });
+      if (!has) return;
+      return fetch("/cart/update.js", { method: "POST", credentials: "same-origin", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ discount: "" }) });
+    }).catch(function () {});
+    return quickClearing;
+  }
   document.addEventListener("click", function (e) {
-    var b = e.target.closest && e.target.closest('button[name="checkout"]'); if (!b || quickHref() === "/checkout") return;
+    var b = e.target.closest && e.target.closest('button[name="checkout"], #cart-co'); if (!b) return;
+    if (quickExpired() && (b.id !== "cart-co" || cart.items.length)) {
+      e.preventDefault(); dropQuickCode();
+      quickClearCart().then(function () { location.href = "/checkout"; });
+      return;
+    }
+    if (b.id === "cart-co" || quickHref() === "/checkout") return;
     e.preventDefault(); location.href = quickHref();
   });
+  window.addEventListener("pageshow", function (ev) { if (ev.persisted) { quickClearing = null; tickQuick(); } });
   function paintCheckoutLink() { var co = $("#cart-co", drawer); if (co && cart.items.length) co.href = quickHref(); }
   function dropQuickCode() { document.cookie = "discount_code=; Max-Age=0; path=/"; }
   function tickQuick() {
+    if (quickExpired()) { dropQuickCode(); quickClearCart(); }
     var boxes = $$(".offer-nudge"); if (!boxes.length) return;
     var st = quickState();
     if (st === false) { $$("[data-on-q]").forEach(function (el) { el.hidden = true; }); return; }
@@ -147,7 +167,7 @@
     if (!st) { $$("[data-on-q]").forEach(function (el) { el.hidden = true; }); return; }
     var left = st.start + QUICK.ms - Date.now(), txt;
     if (left > 0) { var m = Math.floor(left / 60000), sec = Math.floor(left / 1000) % 60; txt = "Additional 1% off is applied at checkout. Keep it by ordering within " + m + ":" + (sec < 10 ? "0" : "") + sec + ". One time per browser."; }
-    else { dropQuickCode(); txt = "The additional 1% offer has ended. Your 10% offer discount still applies."; }
+    else { dropQuickCode(); quickClearCart(); txt = "The additional 1% offer has ended. Your 10% offer discount still applies."; }
     paintCheckoutLink();
     $$("[data-on-q]").forEach(function (el) { el.hidden = false; el.textContent = txt; });
     if (left > 0 && !quickTimer) quickTimer = setInterval(tickQuick, 1000);
