@@ -102,6 +102,9 @@
   {%- endfor -%}
 </div>
 
+{%- comment -%} Featured picks: five products Google already shows for related searches; the row links straight to their product pages. Edit the "Featured Picks" collection to change it. {%- endcomment -%}
+{% render 'home-row', handle: 'featured-picks', title: 'Featured picks', count: 5 %}
+
 {%- if section.settings.show_rows -%}
   {% render 'home-row', handle: 'pet-supplies', title: 'Pet supplies', count: 4 %}
   {% render 'home-row', handle: 'seasonal', title: 'Seasonal picks', count: 4 %}
