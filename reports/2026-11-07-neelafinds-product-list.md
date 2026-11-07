@@ -44,3 +44,48 @@ The Instagram reel DfYnxLHuy7v (Nov 5, "Which one is your favorite?") is not cle
 | 35 | Aug 21 | Wireless electric whisk | cordless electric whisk |
 
 Next step (not started): search CJ for the ones the owner picks, then the usual checks (C$12 profit, weight/freight CA+US, Amazon.ca total ratio <= 1.5x, no brand names, no health claims, safety items).
+
+## Amazon IDs (ASIN) behind each post link, added 2026-11-07
+
+Resolved from the amzlink.to short links (first redirect only). amazon.com itself returns 503 to this session, so titles, prices and photos are NOT read; only the product ID and, where Amazon put it in the URL, the title slug. Look up any ID at amazon.com/dp/<ASIN>.
+
+| # | ASIN | Title slug in URL (if any) |
+|---|---|---|
+| 0 | B0D78QX9CB | dp/B0D78QX9CB |
+| 1 | B0CGH8911X | dp/B0CGH8911X |
+| 2 | B0DXSSLC81 | dp/B0DXSSLC81 |
+| 3 | B07BB6HWT6 | dp/B07BB6HWT6 |
+| 4 | B0CGTGZQWP | dp/B0CGTGZQWP |
+| 5 | B0C2Z4JFJ3 | dp/B0C2Z4JFJ3 |
+| 6 | B00FGPV814 | dp/B00FGPV814 |
+| 7 | B0FHH4DV2Y | dp/B0FHH4DV2Y |
+| 8 | B08QH1KQHD | Joseph-40105-Measure-Up-Adjustable-Measuring |
+| 9 | B01KVKMGBE | Lockabox-Compact-hygienic-lockable-medicines |
+| 10 | B0FLJSVZT9 | dp/B0FLJSVZT9 |
+| 11 | B0FSWMCX3M | dp/B0FSWMCX3M |
+| 12 | B0H66S3QDG | Portable-Stretch-Rectangle-2-Pack-Stackable |
+| 13 | B0DHYXLBH2 | dp/B0DHYXLBH2 |
+| 14 | B0FR8GV3LW | dp/B0FR8GV3LW |
+| 15 | B0H6B1VV4Q | dp/B0H6B1VV4Q |
+| 16 | B08MPZB5TY | dp/B08MPZB5TY |
+| 17 | B06XHH3GLF | dp/B06XHH3GLF |
+| 18 | B0G11MWTSR | dp/B0G11MWTSR |
+| 19 | B0H442KGG4 | COWSAR-Countertop-Automatic-Self-Cleaning-Dispensing |
+| 20 | B09PY2RC4B | dp/B09PY2RC4B |
+| 21 | B00WHCIEPW | dp/B00WHCIEPW |
+| 22 | B08C355HFF | dp/B08C355HFF |
+| 23 | B08ZMVYWMD | dp/B08ZMVYWMD |
+| 24 | B0GHPPLBQ9 | dp/B0GHPPLBQ9 |
+| 25 | B0CQLXQW4T | dp/B0CQLXQW4T |
+| 26 | B0BRSYX5F6 | dp/B0BRSYX5F6 |
+| 27 | B0CQ2GTQ88 | dp/B0CQ2GTQ88 |
+| 28 | B0DFLY2WZJ | dp/B0DFLY2WZJ |
+| 29 | B0BS6ZGG95 | dp/B0BS6ZGG95 |
+| 30 | B001447LEE | dp/B001447LEE |
+| 31 | B0DPNKPWK2 | Blender-Electric-Multifunctional-Handheld-Oatmilk |
+| 32 | B0FJ2FSW77 | Sopito-Electric-Vegetable-Stainless-Potatoes |
+| 33 | B0H9KVPHCF | YDHEFRGS-Cooling-Chiller-Elephant-Noodles%EF%BC%8CMonkey |
+| 34 | B0GKSGYF8X | dp/B0GKSGYF8X |
+| 35 | B0F323N6D8 | dp/B0F323N6D8 |
+
+Corrections from the slugs: #9 is a lockable box (Lockabox), not a snack bag clip; #12 is a stackable stretch container 2-pack; #19 is a countertop automatic self-cleaning dispenser (the "ice" post, so likely a nugget ice maker); #31 is a handheld electric blender/frother (slug mentions oat milk); #32 is an electric vegetable/potato cutter; #8 is a branded adjustable measuring spoon (Joseph Joseph), so skip or find a no-brand lookalike. Several are branded Amazon items; CJ will only have lookalikes.
