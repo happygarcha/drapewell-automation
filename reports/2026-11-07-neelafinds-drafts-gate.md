@@ -25,3 +25,20 @@ Checked from Shopify data (read back) and the product text. Nothing published.
 ## Still open
 - Page load, schema and competitor checks need the page live or an allowed host.
 - Safe use text printed on in-use photos for #31 and #33.
+
+## Update: information cards added (2026-11-07)
+32 information cards (dark card, cyan edge, same style as the Safe use picture) were added to the 9 drafts that had fewer than 10 real pictures. Text uses only facts already in each listing (size, material, what is included or not, options, delivery sentence); alt text repeats the card text. Read back from Shopify, all DRAFT, all media READY, variant pictures unchanged:
+
+| Draft | Real photos | Cards added | Total pictures |
+|---|---|---|---|
+| #0 Plate | 7 | 3 | 10 |
+| #1 Curtain brackets | 5 | 5 | 10 |
+| #8 Measuring spoon | 9 | 1 | 10 + video (last) |
+| #12 Stretch covers | 9 | 1 | 10 |
+| #13 Handbag rack | 7 | 3 | 10 |
+| #14 Pumpkin mold | 5 | 5 | 10 |
+| #24 Batter bottle | 5 | 5 | 10 + video (last) |
+| #28 Strainer dome | 6 | 4 | 10 |
+| #29 Rice washing bowl | 5 | 5 | 10 |
+
+The 10+ picture rule now passes for all 16 drafts, but cards are padding, not extra real photos.
