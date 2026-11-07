@@ -25,3 +25,30 @@ NOT done / NOT checked: Amazon.ca competitor price (blocked), CJ videos (found f
 
 Gate fails (not built): #21 microwave pasta cooker (Joseph Joseph branded box and design in photos), #26 potato bag (brand name printed on the product in every photo).
 Held pictures (not added): #1 kettlebell weight-capacity picture and 6-piece picture (unverified load claim, other variant); #13 most supplier photos (luxury handbag brand logos and supplier text overlays; would need blurring); #31 text-heavy photos with food-grade and standards claims; #33 flame photo (conflicts with Safe use) and pair photos (single-glove listing); #34 one photo with a BPA-free claim; #5 White colour shown only in group photos.
+
+## Update 2026-11-07 (later): pictures, videos, Safe use (read back from Shopify)
+
+All 16 drafts are still DRAFT. Every variant has its own matching picture (read back).
+
+| # | Product | Pictures now | CJ video |
+|---|---|---|---|
+| 0 | Plate | 7 | none at CJ |
+| 1 | Curtain brackets | 5 | none at CJ |
+| 5 | Rice strainer | 14 + video | added, audio muted, "Midea" pot brand blurred |
+| 8 | Measuring spoon | 9 + video | added, audio muted, no mark found |
+| 12 | Stretch covers | 9 | none at CJ |
+| 13 | Handbag rack | 7 (3 new, brand logos and patterns blurred) | none at CJ |
+| 14 | Pumpkin mold | 5 | none at CJ |
+| 20 | Tongs | 15 + video | added, audio muted, stove brand blurred |
+| 23 | Rolling pin | 12 | none at CJ |
+| 24 | Batter bottle | 5 + video | added, audio muted, no legible mark (faint jar and knife-block lettering not readable) |
+| 27 | Patty press | 11 | none at CJ |
+| 28 | Strainer dome | 6 | none at CJ |
+| 29 | Rice washing bowl | 5 | none at CJ |
+| 31 | Frother | 17 + Safe use picture (3rd) | none at CJ |
+| 33 | Glove | 16 + Safe use picture (3rd) | none at CJ |
+| 34 | Batter dispenser | 19 | none at CJ |
+
+Under 10 real pictures: #0, #1, #8, #12, #13, #14, #24, #28, #29 (no more unique CJ photos). Owner to decide on information cards or detail crops.
+Frother #31: spec-table photo relabelled; description now gives both supplier sizes (16 cm drawing, 224 mm table).
+Not done: Safe use text printed on in-use photos for #31 and #33, Amazon.ca check (blocked), page/schema/SEO/GEO gates.
