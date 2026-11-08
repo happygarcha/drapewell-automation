@@ -55,3 +55,7 @@ Method (owner rule, now in CLAUDE.md): default Playwright Chromium, one search p
 - **#0 plate** ("white porcelain salad plate round", 24 listings): median checkout total about C$38 (price plus delivery where shown, free delivery counted as 0), cheapest about C$23. Ours C$13.99 + C$9.99 = C$28.98, ratio about 0.76: **PASS**. Prices as shown on the search page, not verified one by one.
 - **#31 frother** (first attempt, 12 listings, delivery text not captured): item prices C$7.99 to C$29.99, median about C$13.99. Ours C$12.99 + C$9.99 = C$22.98, about 1.64x the median item price if delivery is free: **likely FAIL (indicative only)**, would need the delivery text to confirm.
 - **#1 curtain brackets and the other 13 drafts: NOT CHECKED.** Amazon served the first search and then showed its robot-check page on the second, so the run stopped as planned.
+
+## Update 2026-11-08: Amazon.com (US), same plain-Chromium method
+- **#0 plate** ("white porcelain salad plate round", 24 non-sponsored listings): median checkout total about C$37 (USD converted at 1.42443, delivery added where shown, free counted as 0), cheapest about C$18.50. Ours to the US: C$13.99 + C$12.99 = C$32.98, ratio about 0.89: **PASS**. Search-page prices, not verified one by one.
+- **The other 15 drafts: NOT CHECKED.** Amazon.com served the first search and showed the robot-check page on the second, same as Amazon.ca, so the run stopped.
