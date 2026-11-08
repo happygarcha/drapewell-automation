@@ -42,3 +42,10 @@ Checked from Shopify data (read back) and the product text. Nothing published.
 | #29 Rice washing bowl | 5 | 5 | 10 |
 
 The 10+ picture rule now passes for all 16 drafts, but cards are padding, not extra real photos.
+
+## Update 2026-11-08: remaining gates
+- **Page load and schema (preview pages, now reachable): PASS for all 16.** HTTP 200, one H1, Product JSON-LD parses, offers carry the right CAD price per variant (matches Shopify), availability InStock, shipping and return data present, no ratings or reviews. The four drafts with a video (#5, #8, #20, #24) contain the `data-video-pane` block. Previews are marked noindex because they are unpublished: re-check the live page after publishing.
+- **CJ freight re-quote: unchanged** for every variant of all 16 drafts (cost and freight to CA and US), so the profit table holds.
+- **Safe use printed on photos:** done on the four frother in-use photos. The glove has no in-use photo, so none printed.
+- **Keyword demand (Canada, Ubersuggest, searches/month):** silicone oven gloves 1000, pancake batter dispenser 390, milk frother handheld 260, silicone stretch lids 170, adjustable rolling pin 140. Other products not looked up.
+- **Competitor price: NOT CHECKED.** Amazon.ca returns its bot-check page (503) even with network access; no workaround attempted. Walmart.ca search rate-limited (429) after a few queries; the only usable data is for handheld milk frothers: item prices C$8.39-13.83 (shipping unknown). Our frother is C$12.99 plus the shop's weight-band shipping, so the 1.5x checkout-total comparison could not be made for any product.
