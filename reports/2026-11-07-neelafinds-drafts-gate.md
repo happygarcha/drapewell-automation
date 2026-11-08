@@ -49,3 +49,9 @@ The 10+ picture rule now passes for all 16 drafts, but cards are padding, not ex
 - **Safe use printed on photos:** done on the four frother in-use photos. The glove has no in-use photo, so none printed.
 - **Keyword demand (Canada, Ubersuggest, searches/month):** silicone oven gloves 1000, pancake batter dispenser 390, milk frother handheld 260, silicone stretch lids 170, adjustable rolling pin 140. Other products not looked up.
 - **Competitor price: NOT CHECKED.** Amazon.ca returns its bot-check page (503) even with network access; no workaround attempted. Walmart.ca search rate-limited (429) after a few queries; the only usable data is for handheld milk frothers: item prices C$8.39-13.83 (shipping unknown). Our frother is C$12.99 plus the shop's weight-band shipping, so the 1.5x checkout-total comparison could not be made for any product.
+
+## Update 2026-11-08 (later): Amazon.ca with plain Chromium
+Method (owner rule, now in CLAUDE.md): default Playwright Chromium, one search page per product, about 20 s apart, non-sponsored first page, stop at the first robot check.
+- **#0 plate** ("white porcelain salad plate round", 24 listings): median checkout total about C$38 (price plus delivery where shown, free delivery counted as 0), cheapest about C$23. Ours C$13.99 + C$9.99 = C$28.98, ratio about 0.76: **PASS**. Prices as shown on the search page, not verified one by one.
+- **#31 frother** (first attempt, 12 listings, delivery text not captured): item prices C$7.99 to C$29.99, median about C$13.99. Ours C$12.99 + C$9.99 = C$22.98, about 1.64x the median item price if delivery is free: **likely FAIL (indicative only)**, would need the delivery text to confirm.
+- **#1 curtain brackets and the other 13 drafts: NOT CHECKED.** Amazon served the first search and then showed its robot-check page on the second, so the run stopped as planned.
