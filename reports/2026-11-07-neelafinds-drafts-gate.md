@@ -59,3 +59,8 @@ Method (owner rule, now in CLAUDE.md): default Playwright Chromium, one search p
 ## Update 2026-11-08: Amazon.com (US), same plain-Chromium method
 - **#0 plate** ("white porcelain salad plate round", 24 non-sponsored listings): median checkout total about C$37 (USD converted at 1.42443, delivery added where shown, free counted as 0), cheapest about C$18.50. Ours to the US: C$13.99 + C$12.99 = C$32.98, ratio about 0.89: **PASS**. Search-page prices, not verified one by one.
 - **The other 15 drafts: NOT CHECKED.** Amazon.com served the first search and showed the robot-check page on the second, same as Amazon.ca, so the run stopped.
+
+## Update 2026-11-10: leftover gates
+- Amazon.ca retry with the plain-Chromium method (one search, curtain brackets): HTTP 503 "Something Went Wrong" on the very first search of the session. Stopped per the owner rule, nothing worked around. Competitor price is still NOT CHECKED for the other 15 drafts (only #0 plate PASS, #31 frother indicative FAIL).
+- Shopify read-back: all drafts still DRAFT; the 16 neelafinds drafts each have 10+ media (read from the list query, not re-viewed).
+- Nothing else is open that can be run from here: SEO, technical, schema, copy, GEO and freight were done 2026-11-07/08.
