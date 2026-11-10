@@ -72,3 +72,24 @@ Method (owner rule, now in CLAUDE.md): default Playwright Chromium, one search p
 ## Update 2026-11-10 (evening): Amazon.ca, rice strainer
 - **#5 rice strainer** ("silicone rice strainer clip on bowl"): Amazon.ca returned HTTP 200 this time. 21 of 24 non-sponsored listings read (the last 3 were cut from my capture), prices C$3.89-34.95, almost all with free delivery (items showing a delivery date without "FREE" counted as 0, which is the stricter way). Median total C$14.99, cheapest C$3.89. Ours C$11.99 + C$9.99 = C$21.98, ratio about 1.47: **PASS, borderline** (limit 1.5). Search-page prices, not verified one by one. Many cheaper items are 2-3 week delivery.
 - Search not repeated afterwards (rule: one per session).
+
+## Update 2026-11-10 (night): Amazon.ca run on the other drafts
+Amazon.ca served all 12 searches this time (plain Playwright Chromium, a fresh browser per search, 20 s apart, no block). Per search: first 24 non-sponsored listings, item price plus delivery (free or an unlabelled delivery date counted as 0, the stricter way). Ours = cheapest variant price + weight-band shipping to Canada. Raw numbers: reports/data/amazon-ca-2026-11-10-batch.json.
+
+| Draft | Search used | Median total | Cheapest | Ours | Ratio | Result |
+|---|---|---|---|---|---|---|
+| #12 Stretch silicone covers | silicone stretch lids reusable set | 14.99 | 8.49 | 25.98 | 1.73 | FAIL |
+| #13 Handbag rack | handbag organizer closet shelf divider | 33.49 | 16.99 | 28.98 | 0.87 | PASS |
+| #20 Tongs | stainless steel kitchen tongs silicone tip | 15.49 | 8.99 | 19.98 | 1.29 | PASS |
+| #23 Rolling pin | adjustable rolling pin thickness rings | 22.99 | 13.39 | 37.98 | 1.65 | FAIL |
+| #24 Batter bottle | pancake batter mixing bottle whisk ball | 23.74 | 9.84 | 26.98 | 1.14 | PASS |
+| #27 Patty press | hamburger patty press | 23.49 | 11.99 | 20.98 | 0.89 | PASS |
+| #28 Strainer dome | silicone strainer for cans and jars | 12.64 | 5.27 | 19.98 | 1.58 | FAIL |
+| #31 Frother | handheld milk frother whisk | 14.00 | 7.99 | 22.98 | 1.64 | FAIL (confirms the earlier indication) |
+| Oven glove (silicone heat resistant glove) | silicone oven glove heat resistant | 20.49 | 11.57 | 22.98 | 1.12 | PASS |
+| #1x Batter dispenser | pancake batter dispenser | 20.74 | 10.49 | 31.98 | 1.54 | FAIL (just over) |
+| #8 Measuring spoon | adjustable measuring spoon slider | 13.19 | 5.59 | 20.98 | 1.59 | FAIL |
+| #14 Pumpkin mold | pumpkin silicone cake mold | 17.49 | 7.99 | 25.98 | 1.49 | PASS, borderline |
+
+(Earlier results: #0 plate 0.76 PASS, #1 curtain brackets 1.17 PASS, #5 rice strainer 1.47 PASS borderline.)
+Caveats: search-page prices, not verified one by one; the search words are generic, so some listings may be a different size, pack or type than ours; relevance was not hand-checked. Result labels are indicative (UNVERIFIED in the strict sense of scripts/competitor_price_check.py, which needs sourced, dated rows). Amazon.com (US) not run. No prices, listings or drafts were changed.
