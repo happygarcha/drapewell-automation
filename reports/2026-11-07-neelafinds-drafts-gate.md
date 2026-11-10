@@ -93,3 +93,31 @@ Amazon.ca served all 12 searches this time (plain Playwright Chromium, a fresh b
 
 (Earlier results: #0 plate 0.76 PASS, #1 curtain brackets 1.17 PASS, #5 rice strainer 1.47 PASS borderline.)
 Caveats: search-page prices, not verified one by one; the search words are generic, so some listings may be a different size, pack or type than ours; relevance was not hand-checked. Result labels are indicative (UNVERIFIED in the strict sense of scripts/competitor_price_check.py, which needs sourced, dated rows). Amazon.com (US) not run. No prices, listings or drafts were changed.
+
+## Update 2026-11-10 (night): Amazon.com (US) run
+Same method as the Amazon.ca run (plain Chromium, fresh browser per search, 20 s apart, 24 non-sponsored listings, free or unlabelled delivery counted as 0). USD converted to CAD at 1.42443. Ours = cheapest variant + weight-band shipping to the US. All 14 searches were served. Raw data: reports/data/amazon-com-2026-11-10-batch.json.
+
+| Draft | Median total (C$) | Ours US (C$) | Ratio | Result |
+|---|---|---|---|---|
+| #13 Handbag rack | 38.45 | 32.98 | 0.86 | PASS |
+| #27 Patty press (only 16 listings read) | 28.76 | 23.98 | 0.83 | PASS |
+| #20 Tongs | 17.78 | 22.98 | 1.29 | PASS |
+| #24 Batter bottle (23 listings) | 24.20 | 30.98 | 1.28 | PASS |
+| #31 Frother | 19.22 | 25.98 | 1.35 | PASS (Canada was FAIL) |
+| #34 Batter dispenser | 26.34 | 35.98 | 1.37 | PASS |
+| #5 Rice strainer | 17.44 | 24.98 | 1.43 | PASS, borderline |
+| #33 Oven glove | 18.22 | 25.98 | 1.43 | PASS, borderline |
+| #1 Curtain brackets | 17.33 | 24.98 | 1.44 | PASS, borderline |
+| #12 Stretch covers | 18.50 | 28.98 | 1.57 | FAIL |
+| #8 Measuring spoon | 13.16 | 23.98 | 1.82 | FAIL |
+| #14 Pumpkin mold | 15.65 | 28.98 | 1.85 | FAIL |
+| #23 Rolling pin | 19.36 | 37.98 | 1.96 | FAIL |
+| #28 Strainer dome (23 listings) | 11.38 | 22.98 | 2.02 | FAIL |
+
+Not run: #0 plate (done earlier, 0.89 PASS) and #29 rice washing bowl.
+Caveats as for Canada: search-page prices, generic search words, relevance not hand-checked, delivery priced for whatever address Amazon assumed for this session, so US shipping on non-free items is uncertain. Labels are indicative.
+
+### Combined Canada + US (both must pass)
+PASS both: #0 plate, #1 curtain brackets, #5 rice strainer (both borderline), #13 handbag rack, #20 tongs, #24 batter bottle, #27 patty press, #33 oven glove.
+FAIL at least one: #8 spoon, #12 stretch covers, #14 pumpkin mold (CA borderline pass, US fail), #23 rolling pin, #28 strainer dome, #31 frother (CA fail), #34 batter dispenser (CA just over).
+Not checked: #29.
