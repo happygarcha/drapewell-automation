@@ -86,8 +86,8 @@ Amazon.ca served all 12 searches this time (plain Playwright Chromium, a fresh b
 | #27 Patty press | hamburger patty press | 23.49 | 11.99 | 20.98 | 0.89 | PASS |
 | #28 Strainer dome | silicone strainer for cans and jars | 12.64 | 5.27 | 19.98 | 1.58 | FAIL |
 | #31 Frother | handheld milk frother whisk | 14.00 | 7.99 | 22.98 | 1.64 | FAIL (confirms the earlier indication) |
-| Oven glove (silicone heat resistant glove) | silicone oven glove heat resistant | 20.49 | 11.57 | 22.98 | 1.12 | PASS |
-| #1x Batter dispenser | pancake batter dispenser | 20.74 | 10.49 | 31.98 | 1.54 | FAIL (just over) |
+| #33 Oven glove | silicone oven glove heat resistant | 20.49 | 11.57 | 22.98 | 1.12 | PASS |
+| #34 Batter dispenser | pancake batter dispenser | 20.74 | 10.49 | 31.98 | 1.54 | FAIL (just over) |
 | #8 Measuring spoon | adjustable measuring spoon slider | 13.19 | 5.59 | 20.98 | 1.59 | FAIL |
 | #14 Pumpkin mold | pumpkin silicone cake mold | 17.49 | 7.99 | 25.98 | 1.49 | PASS, borderline |
 
