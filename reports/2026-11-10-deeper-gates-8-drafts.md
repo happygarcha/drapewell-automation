@@ -19,3 +19,6 @@ Amazon.com results so far for the other drafts (C$): dog scooper 1.06, kitchen r
 
 ## Update (owner: "Add note (manufacturer claims)")
 Knife sharpener: photo 11 kept. A calm strip was added at the bottom of the picture ("Manufacturer's claim shown above. We have not tested it."), replaced in place (READY, 750x1011), alt text now describes the claims and the strip (the old alt text did not match the photo and was corrected). A "Please note" box was added at the top of the description under Safe use: claims printed on some pictures, such as fast sharpening and razor sharp, are the manufacturer's statements and are untested. Read back: still DRAFT, 13 media (12 images + video), all READY. The hold is cleared; the knife sharpener now passes the gates (Amazon 1.26 CA / 1.00 US, profit C$13.21-14.81 CA / 14.19-16.20 US). Not published yet.
+
+## Update: softer wording (owner request)
+Knife sharpener note reworded without "not tested". Picture strip: "Claims shown above are the manufacturer's. Results may vary with the knife and how it is used." (replaced in place, READY). Page "Please note" box: "Statements printed on some pictures, such as fast sharpening and a razor-sharp result, come from the manufacturer's product description. Results may vary with the knife and how it is used." Alt text matches the strip. Still DRAFT.
