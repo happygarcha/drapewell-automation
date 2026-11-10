@@ -64,3 +64,7 @@ Method (owner rule, now in CLAUDE.md): default Playwright Chromium, one search p
 - Amazon.ca retry with the plain-Chromium method (one search, curtain brackets): HTTP 503 "Something Went Wrong" on the very first search of the session. Stopped per the owner rule, nothing worked around. Competitor price is still NOT CHECKED for the other 15 drafts (only #0 plate PASS, #31 frother indicative FAIL).
 - Shopify read-back: all drafts still DRAFT; the 16 neelafinds drafts each have 10+ media (read from the list query, not re-viewed).
 - Nothing else is open that can be run from here: SEO, technical, schema, copy, GEO and freight were done 2026-11-07/08.
+
+## Update 2026-11-10 (later): Amazon.ca re-run
+- **#1 curtain brackets** ("curtain rod brackets adhesive no drill", 24 non-sponsored listings, most with free delivery): median checkout total about C$17.9, cheapest C$4.99. Ours C$11.99 + C$9.99 = C$21.98, ratio about 1.23: **PASS** (within 1.5x). Search-page prices, not verified one by one.
+- **Rice strainer (#5)**: next search 20 s later returned the 503 robot-check page. Stopped per the owner rule. The other 13 drafts remain NOT CHECKED.
