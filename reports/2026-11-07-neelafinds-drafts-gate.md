@@ -68,3 +68,7 @@ Method (owner rule, now in CLAUDE.md): default Playwright Chromium, one search p
 ## Update 2026-11-10 (later): Amazon.ca re-run
 - **#1 curtain brackets** ("curtain rod brackets adhesive no drill", 24 non-sponsored listings, most with free delivery): median checkout total about C$18.79, cheapest C$4.99. Ours C$11.99 + C$9.99 = C$21.98, ratio about 1.17: **PASS** (within 1.5x). Search-page prices, not verified one by one.
 - **Rice strainer (#5)**: next search 20 s later returned the 503 robot-check page. Stopped per the owner rule. The other 13 drafts remain NOT CHECKED.
+
+## Update 2026-11-10 (evening): Amazon.ca, rice strainer
+- **#5 rice strainer** ("silicone rice strainer clip on bowl"): Amazon.ca returned HTTP 200 this time. 21 of 24 non-sponsored listings read (the last 3 were cut from my capture), prices C$3.89-34.95, almost all with free delivery (items showing a delivery date without "FREE" counted as 0, which is the stricter way). Median total C$15.11, cheapest C$3.89. Ours C$11.99 + C$9.99 = C$21.98, ratio about 1.45: **PASS, borderline** (limit 1.5). Search-page prices, not verified one by one. Many cheaper items are 2-3 week delivery.
+- Search not repeated afterwards (rule: one per session).
