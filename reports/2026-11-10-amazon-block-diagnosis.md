@@ -1,0 +1,12 @@
+# Amazon.ca / .com block diagnosis (2026-11-10)
+- Tool: Playwright 1.63.0 (Node), bundled Chromium 153.0.8010.12 in /opt/pw-browsers, headless, default launch (no flags, no custom UA). Not Puppeteer; agent-browser 0.42.0 (Chrome 157) installed later behaves the same.
+- Network: all traffic through the container agent proxy (127.0.0.1:36105); egress IP 160.79.106.128 (cloud range). No concurrent browsers (one process).
+- Profile: fresh empty context each run, no cookies/login. `navigator.webdriver` = true, UA contains "HeadlessChrome".
+- One navigation per marketplace (home page, 20 s apart):
+  - amazon.ca: HTTP 202, final URL https://www.amazon.ca/, title "Amazon.ca", server CloudFront ("Error from cloudfront"), page = "Click the button below to continue shopping" interstitial.
+  - amazon.com: HTTP 200, title "Amazon.com", server AkamaiGHost, same "Continue shopping" interstitial.
+  - Screenshots: reports/data/amazon-diag/. Search URLs earlier returned HTTP 503 "Something Went Wrong".
+- Not done: no click on the button, no retries, no stealth/proxy changes. Manual-browser comparison not possible from this container (needs the owner's own browser).
+- Likely cause: Amazon's bot filtering flags the combination of a datacenter IP, headless Chromium (webdriver flag and HeadlessChrome UA) and fresh cookieless sessions, serving a soft gate or 503. It varies by request, which fits the first-search-passes pattern. Not a fault in the Playwright setup.
+- Compliant fix: stop scraping. Use owner-supplied totals from the Amazon app, or an authorized pricing API (PA-API after Associates approval, Keepa, Rainforest, SerpApi). Fallback implemented: scripts/competitor_price_check.py; prices without a source, date and known delivery, or fewer than 3 rows, are labelled UNVERIFIED and get no PASS/FAIL.
+- Existing browser configuration: unchanged.
