@@ -35,3 +35,9 @@ Not covered here: picture viewing (logos), copy review, schema/page load (done f
 | Silicone Rice Strainer with Handle, Clips on a B | 2 | meta 111 |
 | Adjustable Measuring Spoon with Slider, Magnetic | 1 | meta 111 |
 | Adjustable Rolling Pin, Stainless Steel with 4 T | 1 | meta 112 |
+
+## Fixes applied 2026-11-10
+Meta descriptions rewritten from each listing's own facts (all within 120-160; Shopify returned the saved text, drafts still DRAFT):
+- Rice strainer 154, measuring spoon 150, rolling pin 151 (these were empty, so Shopify truncated the body text to about 111 characters plus a brand suffix).
+- Foldable underbed storage box 135 (was 162), rose gift box 153 (was 167), mommy backpack 155 (was 166).
+Not fixed (need your decision or real data): missing CJ pid tags and cjdropshipping stock on the older drafts (a pid cannot be invented), the dishwasher tabs draft (no type, 1 picture, no weight, wrong delivery profile, looks like a non-CJ item), 23 drafts under 10 pictures, 30 and 9 variants (garden beads, dog car seat belt leash), and 3 titles outside 45-70 characters.
